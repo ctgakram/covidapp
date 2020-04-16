@@ -1,0 +1,159 @@
+﻿<div>
+    @{
+        ViewBag.Title = "e-Assets";
+        Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    }
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="chart_div3" style="width: 1000px; height: 500px;"></div>
+        </div>
+        <div class="span12">
+            <div id="piechart2" style="width: 1000px; height: 500px;"></div>
+        </div>
+        <div class="span12">
+            <div id="barchart" style="width: 1000px; height: 300px;"></div>
+        </div>
+        <div class="span12">
+            <div id="piechart" style="width: 1000px; height: 500px;"></div>
+        </div>
+
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //DatePicker('utopia-dashboard-datepicker', 'dd MMM yyyy');
+            //PrepareMap();
+
+            google.charts.load('current', { 'packages': ['corechart'] });
+
+
+
+            google.charts.setOnLoadCallback(drawVisualizationLast3Yr);
+
+            function drawVisualizationLast3Yr() {
+                // Some raw data (not necessarily accurate)
+
+                var jsonData = $.ajax({
+                    url: "Analytics/Last3YearFundCombo",
+                    dataType: "json",
+                    async: false
+                }).responseText;
+
+                var jdata = JSON.parse(jsonData);
+                var data = google.visualization.arrayToDataTable(jdata);
+
+                var options = {
+                    title: 'জেলা ভিত্তিক  সম্ভাব্য রোগীর পরিসংখ্যান',
+                    vAxis: { title: 'জনসংখ্যা' },
+                    hAxis: { title: 'জেলা' },
+                    seriesType: 'bars',
+                    series: { 5: { type: 'line' } }
+                };
+
+                var chart = new google.visualization.ComboChart(document.getElementById('chart_div3'));
+                chart.draw(data, options);
+            }
+
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+
+                var jsonData = $.ajax({
+                    url: "Analytics/BySourcePie",
+                    dataType: "json",
+                    async: false
+                }).responseText;
+
+                var jdata = JSON.parse(jsonData);
+                var data = google.visualization.arrayToDataTable(jdata);
+
+                var tmpColumn = new Array();
+
+                // Add each data value to the array with push()
+                for (var i = 0; i < data.getNumberOfRows(); i++) {
+                    tmpColumn.push(data.getValue(i, 1));
+                }
+
+                // Use built-in Google Functions on the array
+                var tot = google.visualization.data.sum(tmpColumn);
+
+                tot = tot.toFixed(2);
+
+                var options = {
+                    /**/
+                    title: 'সোর্স অনুসারে প্রাপ্ত ডাটা',
+                    /**/
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+                chart.draw(data, options);
+            }
+
+            google.charts.setOnLoadCallback(drawChart2);
+
+            function drawChart2() {
+
+                var jsonData = $.ajax({
+                    url: "Analytics/ByAgePie",
+                    dataType: "json",
+                    async: false
+                }).responseText;
+
+                var jdata = JSON.parse(jsonData);
+                var data = google.visualization.arrayToDataTable(jdata);
+
+                var tmpColumn = new Array();
+
+                // Add each data value to the array with push()
+                for (var i = 0; i < data.getNumberOfRows(); i++) {
+                    tmpColumn.push(data.getValue(i, 1));
+                }
+
+                // Use built-in Google Functions on the array
+                var tot = google.visualization.data.sum(tmpColumn);
+
+                tot = tot.toFixed(2);
+
+                var options = {
+                    /**/
+                    title: 'বয়স অনুসারে সম্ভাব্য রোগীর পরিসংখ্যান ',
+                    /**/
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+                chart.draw(data, options);
+            }
+
+            google.charts.setOnLoadCallback(barChart);
+            function barChart() {
+
+                var jsonData = $.ajax({
+                    url: "Analytics/CountByDistrictBar",
+                    dataType: "json",
+                    async: false
+                }).responseText;
+
+                var jdata = JSON.parse(jsonData);
+                var data = google.visualization.arrayToDataTable(jdata);
+
+                var options = {
+                    title: 'জেলা অনুসারে প্রাপ্ত ডাটার পরিসংখ্যান',
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+
+                chart.draw(data, options);
+            }
+        });
+
+
+    </script>
+}

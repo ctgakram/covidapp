@@ -1,0 +1,104 @@
+﻿@model AppProj.Web.Models.BEPModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Save')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+
+@using (Ajax.BeginForm("CreateDetail", "BepSubmission", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+    if (Model != null)
+    {
+        @Html.HiddenFor(m => m.Id)
+    }
+
+    <h2>Location</h2>
+    <table class="table-striped">
+        <tr>
+            <td class="title">
+                Program
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.ProgramId, Model.Sources)
+                @Html.ValidationMessageFor(model => model.ProgramId)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="title">
+                Division
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.DivisionId, Model.Divisions)
+                @Html.ValidationMessageFor(model => model.DivisionId)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="title">
+                District
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.DistrictId, Model.Districts)
+                @Html.ValidationMessageFor(model => model.DistrictId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                Date
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                @Html.ValidationMessageFor(model => model.Date)
+            </td>
+        </tr>
+        <tr>
+            <td class="control">
+                <p>
+                    <input id="save-submit" type="submit" value="Next" class="btn btn-primary" />
+                </p>
+            </td>
+        </tr>
+    </table>
+    
+}
+<script type="text/javascript">
+    ValidatateForm("form0");
+
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+
+
+        });
+
+        $('#DivisionId').change(function (event) {
+            LoadDistrictSearch($('#DivisionId').val());
+        });
+
+        window.LoadDistrictSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('DistrictId'
+                    , url
+                    , null
+                    , null);
+        }
+
+        $('#Date').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+       
+    });
+
+</script>

@@ -1,0 +1,61 @@
+﻿@model AppProj.Web.Models.StandingDataPcRelationModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Standing Data Relation')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+<div class="row-fluid">
+    <div class="span6">
+        <h3 style="color:#33a503">Allowed @ViewBag.Title</h3>
+        <table id="gridTableF" class="table table-striped table-bordered">
+            <thead>
+                @foreach (var row in Model.Allowed)
+                {
+                    <tr>
+                        <th>@row.ChildName</th>
+                        <th>
+                            @using (Ajax.BeginForm("RelationDelete", "StandingData", ajaxOpt, new { @style = "margin:0 0 0 0" }))
+                            {
+                                <input type="hidden" id="Id" name="Id" value="@row.Id" />
+                                <input type="hidden" id="tp" name="tp" value="@Model.Type" />
+                                <input type="submit" value="X" class="btn btn-danger" />
+                            }
+                        </th>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+
+    <div class="span6">
+        <h3>Add New @ViewBag.Title</h3>
+        <table id="gridTableF" class="table table-striped table-bordered">
+            <thead>
+                @foreach (var row in Model.NotAllowed)
+                {
+                    <tr>
+                        <th>@row.ChildName</th>
+                        <th>
+                            @using (Ajax.BeginForm("RelationAdd", "StandingData", ajaxOpt, new { @style = "margin:0 0 0 0" }))
+                            {
+                                <input type="hidden" id="ChildId" name="ChildId" value="@row.ChildId" />
+                                <input type="hidden" id="ParentId" name="ParentId" value="@Model.ParentId" />
+                                <input type="hidden" id="tp" name="tp" value="@Model.Type" />
+                                <input type="submit" value="Add" class="btn btn-success" />
+                            }
+                        </th>
+                    </tr>
+                }
+            </thead>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+
+</script>

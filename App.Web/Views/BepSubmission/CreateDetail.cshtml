@@ -1,0 +1,421 @@
+﻿@model AppProj.Web.Models.BEPModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Save')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+
+    int curId = 0;
+}
+
+@using (Ajax.BeginForm("Save", "BepSubmission", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(m => m.Id)
+
+    if (Model.Id <= 0)
+    {
+
+        @Html.HiddenFor(m => m.ProgramId)
+        @Html.HiddenFor(m => m.DivisionId)
+        @Html.HiddenFor(m => m.DistrictId)
+        @Html.HiddenFor(m => m.Date)
+
+
+        <h2>Date:@String.Format("{0:dd MMM, yyyy}", Model.Date)</h2>
+        <table class="table-striped" style="width:100%">
+            <tr>
+                <td class="title">
+                    Program:<b>@Model.ProgramName</b>
+                </td>
+
+                <td class="title">
+                    Division:<b>@Model.DivisionName</b>
+                </td>
+
+                <td class="title">
+                    District:<b>@Model.DistrictName</b>
+                </td>
+            </tr>
+        </table>
+    }
+    else
+    {
+        <h2>Location</h2>
+        <table class="table-striped">
+            <tr>
+                <td class="title">
+                    Program
+                </td>
+                <td class="control">
+                    @Html.DropDownListFor(model => model.ProgramId, Model.Sources)
+                    @Html.ValidationMessageFor(model => model.ProgramId)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    Division
+                </td>
+                <td class="control">
+                    @Html.DropDownListFor(model => model.DivisionId, Model.Divisions)
+                    @Html.ValidationMessageFor(model => model.DivisionId)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="title">
+                    District
+                </td>
+                <td class="control">
+                    @Html.DropDownListFor(model => model.DistrictId, Model.Districts)
+                    @Html.ValidationMessageFor(model => model.DistrictId)
+                </td>
+            </tr>
+            <tr>
+                <td class="title">
+                    Date
+                </td>
+                <td class="control">
+                    @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.Date)
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+    <table class="table-striped">
+        <tr>
+            <td class="title">
+                # of Coverage Upazilla
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.UpazilaCoverageCount)
+                @Html.ValidationMessageFor(model => model.UpazilaCoverageCount)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                Comment on Upazilla
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.UpazillaRemarks)
+                @Html.ValidationMessageFor(model => model.UpazillaRemarks)
+            </td>
+        </tr>
+    </table>
+
+    <h2>Impact on BRAC</h2>
+    <table class="table-striped">
+        <tr>
+            <td class="title">
+                How the program has been impacted/affected?
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.ImpactProgramId, Model.ImpactedReasons)
+                @Html.ValidationMessageFor(model => model.ImpactProgramId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                Is there any national/ local restriction on program implementation?
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.RestrictonId, Model.Restrictions)
+                @Html.ValidationMessageFor(model => model.RestrictonId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                # of BRAC staff/Volunteer/Health Worker been affected by COVID-19
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.AffectedBracWorkerCount)
+                @Html.ValidationMessageFor(model => model.AffectedBracWorkerCount)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                No. of staff working from home
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.WorkFromHomeStaffCount)
+                @Html.ValidationMessageFor(model => model.WorkFromHomeStaffCount)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                Financial loss in BDT (if applicable to the program)
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.FinancialLoss)
+                @Html.ValidationMessageFor(model => model.FinancialLoss)
+            </td>
+        </tr>
+    </table>
+
+    <h2>Preparedness</h2>
+    curId = 0;
+    for (int i = 0; i < Model.BEPPreparenessActivityModels.Count; i++)
+    {
+        if (curId != Model.BEPPreparenessActivityModels[i].ActivityId)
+        {
+            if (curId != 0)
+            {
+                @Html.Raw("</table></div>")
+            }
+
+            curId = Model.BEPPreparenessActivityModels[i].ActivityId;
+
+            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPPreparenessActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity/Taka</th><th>Distributed</th><th>Male Reach</th><th>Female Reach</th></tr>")
+        }
+    <tr>
+        <td>
+            @Model.BEPPreparenessActivityModels[i].ItemName
+            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ItemId)
+            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].Id)
+            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ActivityId)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new { @style = "width:100px;" })
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new { @style = "width:100px;" })
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new { @style = "width:100px;" })
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new { @style = "width:100px;" })
+        </td>
+    </tr>
+
+    }
+    if (Model.BEPPreparenessActivityModels.Count > 0)
+    {
+        @Html.Raw("</table></div>")
+    }
+
+    <h2>Preventive Materials Information</h2>
+    <table>
+        <tr>
+            <td class="title">
+                What are the communication materials developped by the program?
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.ComMaterialId, Model.CommMaterials, "Please Select")
+                @Html.ValidationMessageFor(model => model.ComMaterialId)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="title">
+                What are the channels used to distribute the communication materials?
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.ComChannelId, Model.CommChannels, "Please Select")
+                @Html.ValidationMessageFor(model => model.ComChannelId)
+            </td>
+        </tr>
+
+        <tr>
+            <td class="title">
+                Target
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.Target)
+                @Html.ValidationMessageFor(model => model.Target)
+            </td>
+        </tr>
+    </table>
+
+    <h2>Response</h2>
+
+    curId = 0;
+    for (int i = 0; i < Model.BEPResponseActivityModels.Count; i++)
+    {
+        if (curId != Model.BEPResponseActivityModels[i].ActivityId)
+        {
+            if (curId != 0)
+            {
+                @Html.Raw("</table></div>")
+            }
+
+            curId = Model.BEPResponseActivityModels[i].ActivityId;
+
+            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity</th><th>Reach</th></tr>")
+        }
+
+        for (int j = 0; j < Model.BEPResponseActivityModels[i].BEPDetailModels.Count; j++)
+        {
+            <tr>
+                <td>
+                    @Model.BEPResponseActivityModels[i].BEPDetailModels[j].ItemName
+                    @Html.HiddenFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ItemId)
+                    @Html.HiddenFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ActivityId)
+                    @Html.HiddenFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Id)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Quantity, new { @style = "width:100px;" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ReachCount, new { @style = "width:100px;" })
+                </td>               
+            </tr>
+        }
+        <tr>
+            <td colspan="3">
+                @Html.HiddenFor(model => model.BEPResponseActivityModels[i].ActivityId)
+                @Html.HiddenFor(model => model.BEPResponseActivityModels[i].Id)
+            </td>
+        </tr>
+        <tr>
+            <th>People Type</th>
+            <th>New Reach</th>
+            <th>Old Reach</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td style="background-color:#fff0f0">All (Male/Female/Boy/Girl)</td>
+            <td style="background-color:#fff0f0">
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7NewReach, new { @style = "width:100px;" })
+            </td>
+            <td style="background-color:#fff0f0">
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7OldReach, new { @style = "width:100px;" })
+            </td>
+            <td style="background-color:#fff0f0">যদি নারী, পুরুষ, বালক, বালিকা এর তথ্য আলাদাভাবে না থাকে তাহলেই শুধুমাত্র এখানে মোট তথ্য দিন </td>
+        </tr>
+        <tr>
+            <td>Male (18 and Above)</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>Female (18 and Above)</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+        <tr>
+            <td> Boy (Less than 18)</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>Girl (Less than 18)</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>PWD</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+        <tr>
+            <td>HHs</td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6NewReach, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6OldReach, new { @style = "width:100px;" })
+            </td>
+        </tr>
+    }
+    if (Model.BEPResponseActivityModels.Count > 0)
+    {
+        @Html.Raw("</table></div>")
+    }
+
+    <table class="table-striped">
+        <tr>
+            <td class="title">
+                <h3>Remarks</h3>
+            </td>
+            <td class="control">
+                @Html.TextAreaFor(model => model.Remarks)
+                @Html.ValidationMessageFor(model => model.Remarks)
+            </td>
+        </tr>
+        <tr>
+            <td class="control">
+                <p>
+                    <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
+                </p>
+            </td>
+        </tr>
+    </table>
+
+}
+<script type="text/javascript">
+    ValidatateForm("form0");
+
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+
+            if (!confirm("Do you want to Save?")) {
+                return false;
+            }
+
+        });
+
+        $('#DivisionId').change(function (event) {
+            LoadDistrictSearch($('#DivisionId').val());
+        });
+
+        window.LoadDistrictSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('DistrictId'
+                    , url
+                    , null
+                    , null);
+        }
+
+        $('#Date').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+
+</script>
