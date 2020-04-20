@@ -19,6 +19,8 @@ namespace AppProj.Service.Services
         int GetCount();
 
         IEnumerable<BERDataItemWiseQuantityExt> GetItem(int? divId, int? disId, int? srcId,int? activityId ,DateTime? fromDate, DateTime? toDate);
+        IEnumerable<BERDataItemWiseQuantityExt> GetItemDetails(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate);
+
         //IEnumerable<BERDataItemWiseQuantity> GetItem(int divId, int disId, int srcId, DateTime date, string type);
         IEnumerable<BERDataItemWiseQuantity> GetItem(int bepDataId, string type);
         void UpdateItem(BERDataItemWiseQuantity entity);
@@ -27,6 +29,8 @@ namespace AppProj.Service.Services
         void DeleteItem(BERDataItemWiseQuantity entity);
         
         IEnumerable<BERDataItemWiseQuantityExt> GetPeople(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate);
+        IEnumerable<BERDataItemWiseQuantityExt> GetPeopleDetail(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate);
+
         IEnumerable<BERDataPeopleWiseQuantity> GetPeople(int bepDataId,string type);
         void UpdatePeople(BERDataPeopleWiseQuantity entity);
         void AddPeople(BERDataPeopleWiseQuantity entity);

@@ -52,7 +52,7 @@ namespace AppProj.Web.Models
         public int DistrictTypeValue { get; set; }
 
         public int ReliefFamily { get; set; }
-        //public int ReliefPerson { get; set; }
+        public int ReliefPerson { get; set; }
         public decimal Rice { get; set; }
         public decimal Dal { get; set; }
         public decimal Potato { get; set; }

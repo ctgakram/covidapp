@@ -268,16 +268,16 @@ namespace AppProj.Web.Controllers
                         TotalReleased = g.Sum(c => c.TotalReleased)
                         ,
                         TotalReliefFamily = g.Sum(c => c.TotalReliefFamily)
-                        //,
-                        //TotalReliefPerson = g.Sum(c => c.TotalReliefPerson)
+                        ,
+                        TotalReliefPerson = g.Sum(c => c.TotalReliefPerson)
                         ,
                         TotalRice = g.Sum(c => c.TotalRice)
-                        ,
-                        TotalDal = g.Sum(c => c.TotalDal)
+                        //,
+                        //TotalDal = g.Sum(c => c.TotalDal)
                         ,
                         TotalMoney = g.Sum(c => c.TotalMoney)
-                        ,
-                        TotalPotato = g.Sum(c => c.TotalPotato)
+                        //,
+                        //TotalPotato = g.Sum(c => c.TotalPotato)
                         //,
                         //TotalOil = g.Sum(c => c.TotalOil)
                         //,
@@ -286,12 +286,12 @@ namespace AppProj.Web.Controllers
                         //TotalSalt = g.Sum(c => c.TotalSalt)
                         //,
                         //TotalSoap = g.Sum(c => c.TotalSoap)
-                        ,
-                        PlannedDal = g.Sum(c => c.PlannedDal)
+                        //,
+                        //PlannedDal = g.Sum(c => c.PlannedDal)
                         ,
                         PlannedMoney = g.Sum(c => c.PlannedMoney)
-                        ,
-                        PlannedPotato = g.Sum(c => c.PlannedPotato)
+                        //,
+                        //PlannedPotato = g.Sum(c => c.PlannedPotato)
                         ,
                         PlannedRice = g.Sum(c => c.PlannedRice)
                         ,
@@ -315,16 +315,16 @@ namespace AppProj.Web.Controllers
                        ,c.TotalDeath
                        ,c.TotalDoTestOn
                        ,c.PlannedRice
-                       ,c.PlannedDal
-                       ,c.PlannedPotato
+                       //,c.PlannedDal
+                       //,c.PlannedPotato
                        ,c.PlannedMoney
                        //,c.Remarks
-                       ,c.TotalReliefFamily
-                       //,c.TotalReliefPerson
                        ,c.TotalRice
-                       ,c.TotalDal
-                       ,c.TotalPotato
+                       ,c.TotalReliefFamily
+                      // ,c.TotalDal
+                       //,c.TotalPotato
                        ,c.TotalMoney
+                       ,c.TotalReliefPerson
                        //,c.TotalOnion
                        //,c.TotalSalt
                        //,c.TotalOil
@@ -518,13 +518,15 @@ namespace AppProj.Web.Controllers
 
                        ,c.TillCurrentQuarantine
 
-                       ,c.ReliefFamily
+                       
 
-                       //,c.ReliefPerson
+                       
                        ,c.Rice
-                       ,c.Dal
-                       ,c.Potato
+                       ,c.ReliefFamily
+                       //,c.Dal
+                       //,c.Potato
                        ,c.Money
+                       ,c.ReliefPerson
                        ,c.ReliefRemarks
                        //,c.Onion
                        //,c.Salt
@@ -647,7 +649,7 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalDeath = entityDisSum.TotalDeath + model.Death;
 
                 entityDisSum.TotalReliefFamily = entityDisSum.TotalReliefFamily + model.ReliefFamily;
-                //entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + model.ReliefPerson;
+                entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + model.ReliefPerson;
                 entityDisSum.TotalRice = entityDisSum.TotalRice + model.Rice;
                 entityDisSum.TotalDal = entityDisSum.TotalDal + model.Dal;
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + model.Potato;
@@ -666,7 +668,7 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalDeath = entityDisSum.TotalDeath + (model.Death - entityDis.Death);
 
                 entityDisSum.TotalReliefFamily = entityDisSum.TotalReliefFamily + (model.ReliefFamily- entityDis.ReliefFamily);
-                //entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + (model.ReliefPerson- entityDis.TotalReliefPerson);
+                entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + (model.ReliefPerson- entityDis.ReliefPerson);
                 entityDisSum.TotalRice = entityDisSum.TotalRice + (model.Rice- entityDis.Rice);
                 entityDisSum.TotalDal = entityDisSum.TotalDal + (model.Dal- entityDis.Dal);
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + (model.Potato- entityDis.Potato);

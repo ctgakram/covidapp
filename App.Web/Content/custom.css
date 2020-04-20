@@ -8,9 +8,12 @@
         font-family: Arial;
     }
 }
-
+.textPrimary {
+   color:#0074cc;
+}
 .fixed_headers th {
-    background: #fef7d4;
+    background-image: -webkit-linear-gradient(rgb(255, 255, 255) 0%, rgb(245, 245, 245) 100%);
+    color: #0074cc;
     position: sticky;
     top: 0;
 }
@@ -34,7 +37,7 @@
 }
 
     .active, .collapsible:hover {
-        background-color: #c0c0ff;
+        /*background-color: #c0c0ff;*/
     }
 
 .content {

@@ -65,7 +65,7 @@ jQuery('.utopia-widget-title').hover(function(){
 });
 
 //show/hide widget content when widget title is clicked
-/* jQuery('.utopia-widget-title').click(function(){
+jQuery('.utopia-widget-title').click(function(){
     if(jQuery(this).next().is(':visible')) {
         console.log(this);
         jQuery(this).next().slideUp('fast');
@@ -75,7 +75,7 @@ jQuery('.utopia-widget-title').hover(function(){
         jQuery(this).removeClass('utopia-widget-title-toggle');
     }
 
-}); */
+});
 
 
 jQuery('.search-panel').hover(function(){

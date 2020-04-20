@@ -3306,6 +3306,7 @@
     <Content Include="aspnet_client\system_web\4_6_79\crystalreportviewers13\preview.jsp" />
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\crsmarttag.jsp" />
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\preview.jsp" />
+    <Content Include="Content\Message\External COVID-19 Sitrep_16 April 2020.pdf" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\exportExcell.js" />
@@ -3326,6 +3327,7 @@
     <Content Include="Scripts\js\alerts.js" />
     <Content Include="Scripts\js\api.js" />
     <Content Include="Scripts\js\bootstrap-colorpicker.js" />
+    <Content Include="Scripts\js\bootstrap-datepicker.js" />
     <Content Include="Scripts\js\calendarPicker.js" />
     <Content Include="Scripts\js\camera.js" />
     <Content Include="Scripts\js\camera.min.js" />
@@ -3356,6 +3358,7 @@
     <Content Include="Scripts\js\jquery.embedly.min.js" />
     <Content Include="Scripts\js\jquery.gauge.js" />
     <Content Include="Scripts\js\jquery.hoverIntent.js" />
+    <Content Include="Scripts\js\jquery.hoverIntent.min.js" />
     <Content Include="Scripts\js\jquery.infinitescroll.min.js" />
     <Content Include="Scripts\js\jquery.isotope.min.js" />
     <Content Include="Scripts\js\jquery.knob.js" />
@@ -3374,6 +3377,7 @@
     <Content Include="Scripts\js\modernizr.custom.js" />
     <Content Include="Scripts\js\mousewheel.js" />
     <Content Include="Scripts\js\pagescroller.js" />
+    <Content Include="Scripts\js\pagescroller.min.js" />
     <Content Include="Scripts\js\prettify.js" />
     <Content Include="Scripts\js\qrcode.js" />
     <Content Include="Scripts\js\respond.min.js" />
@@ -3493,6 +3497,8 @@
     <Content Include="Views\BepSubmission\CreateDetail.cshtml" />
     <Content Include="Views\Analytics\Gob.cshtml" />
     <Content Include="Views\Analytics\Survey.cshtml" />
+    <Content Include="Views\BepSubmission\IndexCount.cshtml" />
+    <Content Include="Views\Main\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

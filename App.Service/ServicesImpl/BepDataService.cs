@@ -98,7 +98,7 @@ namespace AppProj.Service.ServicesImpl
                 {
                     Item = g.Key
                     ,
-                    ExpQuantity = g.Where(c=> c.Type== "PRE").Sum(c => c.ExpQuantity)
+                    ExpQuantity = g.Where(c => c.Type == "PRE").Sum(c => c.ExpQuantity)
                       ,
                     Quantity = g.Where(c => c.Type == "PRE").Sum(c => c.Quantity)
                     ,
@@ -108,12 +108,60 @@ namespace AppProj.Service.ServicesImpl
                     ,
                     ResReachCount = g.Where(c => c.Type == "RCH").Sum(c => c.ReachCount)
                 }
-                );
+                ).OrderBy(o => o.Item);
         }
-        
+
+        public IEnumerable<BERDataItemWiseQuantityExt> GetItemDetails(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate)
+        {
+            fromDate = fromDate ?? DateTime.Now;
+            toDate = toDate ?? DateTime.Now;
+
+            return detailRepository
+                .GetMany(c =>
+            c.Date >= fromDate && c.Date <= toDate
+            && (divId == null ? true : c.DivisionId == divId)
+            && (disId == null ? true : c.DistrictId == disId)
+            && (srcId == null ? true : c.ProgramId == srcId)
+            && (activityId == null ? true : c.ActivityId == activityId)
+            ).GroupBy(q => new
+            {
+                Item = q.StandingData.Name
+            ,
+                Program = q.StandingData1.Name
+            ,
+                Division = q.StandingData2.Name
+            ,
+                District = q.StandingData3.Name
+            })
+                .Select(g => new BERDataItemWiseQuantityExt
+                {
+                    Item = g.Key.Item
+                    ,
+                    Program = g.Key.Program
+                    ,
+                    Division = g.Key.Division
+                    ,
+                    District = g.Key.District
+                    ,
+                    ExpQuantity = g.Where(c => c.Type == "PRE").Sum(c => c.ExpQuantity)
+                      ,
+                    Quantity = g.Where(c => c.Type == "PRE").Sum(c => c.Quantity)
+                    ,
+                    ReachCount = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCount)
+                    ,
+                    ResQuantity = g.Where(c => c.Type == "RCH").Sum(c => c.Quantity)
+                    ,
+                    ResReachCount = g.Where(c => c.Type == "RCH").Sum(c => c.ReachCount)
+                }
+                ).OrderBy(o => o.Program)
+                .ThenBy(o => o.Division)
+                .ThenBy(o => o.District)
+                .ThenBy(o => o.Item);
+        }
+
         public IEnumerable<BERDataItemWiseQuantity> GetItem(int bepDataId, string type)
         {
-            return detailRepository.GetMany(c => c.BEPDataId == bepDataId && c.Type==type);
+            return detailRepository.GetMany(c => c.BEPDataId == bepDataId && c.Type == type);
         }
         public void UpdateItem(BERDataItemWiseQuantity entity)
         {
@@ -132,7 +180,7 @@ namespace AppProj.Service.ServicesImpl
             detailRepository.Delete(entity);
         }
 
-        
+
         public IEnumerable<BERDataItemWiseQuantityExt> GetPeople(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate)
         {
             fromDate = fromDate ?? DateTime.Now;
@@ -175,11 +223,83 @@ namespace AppProj.Service.ServicesImpl
                     Cat6OldReach = g.Sum(c => c.Cat6OldReach)
 
                 }
-                );
+                ).OrderBy(o => o.Activity);
         }
+
+        public IEnumerable<BERDataItemWiseQuantityExt> GetPeopleDetail(int? divId, int? disId, int? srcId, int? activityId, DateTime? fromDate, DateTime? toDate)
+        {
+            fromDate = fromDate ?? DateTime.Now;
+            toDate = toDate ?? DateTime.Now;
+
+            return peopleRepository
+                .GetMany(c =>
+            c.Date >= fromDate && c.Date <= toDate
+            && (divId == null ? true : c.DivisionId == divId)
+            && (disId == null ? true : c.DistrictId == disId)
+            && (srcId == null ? true : c.ProgramId == srcId)
+            && (activityId == null ? true : c.ActivityId == activityId)
+            ).GroupBy(q => new
+            {
+                Activity = q.StandingData3.Name
+                ,
+                Program = q.StandingData.Name
+                ,
+                Division = q.StandingData1.Name
+            ,
+                District = q.StandingData2.Name
+            })
+                .Select(g => new BERDataItemWiseQuantityExt
+                {
+                    Activity = g.Key.Activity
+                    ,
+                    Program = g.Key.Program
+                    ,
+                    Division = g.Key.Division
+                     ,
+                    District = g.Key.District
+                     ,
+                    Cat1NewReach = g.Sum(c => c.Cat1NewReach)
+                    ,
+                    Cat1OldReach = g.Sum(c => c.Cat1OldReach)
+                    ,
+                    Cat2NewReach = g.Sum(c => c.Cat2NewReach)
+                    ,
+                    Cat2OldReach = g.Sum(c => c.Cat2OldReach)
+                    ,
+                    Cat3NewReach = g.Sum(c => c.Cat3NewReach)
+                    ,
+                    Cat3OldReach = g.Sum(c => c.Cat3OldReach)
+                    ,
+                    Cat4NewReach = g.Sum(c => c.Cat4NewReach)
+                    ,
+                    Cat4OldReach = g.Sum(c => c.Cat4OldReach)
+                    ,
+                    Cat5NewReach = g.Sum(c => c.Cat5NewReach)
+                    ,
+                    Cat5OldReach = g.Sum(c => c.Cat5OldReach)
+                    ,
+                    Cat6NewReach = g.Sum(c => c.Cat6NewReach)
+                    ,
+                    Cat6OldReach = g.Sum(c => c.Cat6OldReach)
+                     ,
+                    Cat7NewReach = g.Sum(c => c.Cat7NewReach)
+                    ,
+                    Cat7OldReach = g.Sum(c => c.Cat7OldReach)
+                     ,
+                    Cat8NewReach = g.Sum(c => c.Cat8NewReach)
+                    ,
+                    Cat8OldReach = g.Sum(c => c.Cat8OldReach)
+                }
+                )
+                .OrderBy(o=> o.Program)
+                .ThenBy(o => o.Division)
+                .ThenBy(o => o.District)
+                .ThenBy(o => o.Activity);
+        }
+
         public IEnumerable<BERDataPeopleWiseQuantity> GetPeople(int bepDataId, string type)
         {
-            return peopleRepository.GetMany(c => c.BEPDataId == bepDataId && c.Type==type);
+            return peopleRepository.GetMany(c => c.BEPDataId == bepDataId && c.Type == type);
         }
         public void UpdatePeople(BERDataPeopleWiseQuantity entity)
         {
@@ -191,7 +311,7 @@ namespace AppProj.Service.ServicesImpl
         }
         public BERDataPeopleWiseQuantity GetSinglePeople(int id)
         {
-           return peopleRepository.GetById(id);
+            return peopleRepository.GetById(id);
         }
         public void DeletePeople(BERDataPeopleWiseQuantity entity)
         {

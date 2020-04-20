@@ -48,12 +48,12 @@ namespace AppProj.Web.Controllers
 
             //temp
 
-            //if (IsAuthorised("154211"))
-            //{
-            //    //SessionHelper.IsGuest = true;
-            //    return Redirect("~/" + SessionHelper.DefaultPage);
-            //}
-            //return Redirect("~/Main");
+            if (IsAuthorised("154211"))
+            {
+                //SessionHelper.IsGuest = true;
+                return Redirect("~/" + SessionHelper.DefaultPage);
+            }
+            return Redirect("~/Main");
             //860538 source, 860539 dis, 860540 upz
 
 

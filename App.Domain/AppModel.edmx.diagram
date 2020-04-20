@@ -79,6 +79,7 @@
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_UserProfiles" />
+        <AssociationConnector Association="AppModel.FK_DetailData_StandingDatas4" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

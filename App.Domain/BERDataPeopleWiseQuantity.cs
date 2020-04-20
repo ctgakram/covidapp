@@ -38,6 +38,8 @@ namespace AppProj.Domain
         public System.DateTime LastUpdated { get; set; }
         public int Cat7NewReach { get; set; }
         public int Cat7OldReach { get; set; }
+        public int Cat8NewReach { get; set; }
+        public int Cat8OldReach { get; set; }
     
         public virtual BEPData BEPData { get; set; }
         public virtual StandingData StandingData { get; set; }

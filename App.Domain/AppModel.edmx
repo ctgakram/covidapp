@@ -76,6 +76,8 @@
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
           <Property Name="Cat7NewReach" Type="int" Nullable="false" />
           <Property Name="Cat7OldReach" Type="int" Nullable="false" />
+          <Property Name="Cat8NewReach" Type="int" Nullable="false" />
+          <Property Name="Cat8OldReach" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DetailData">
           <Key>
@@ -89,6 +91,7 @@
           <Property Name="Name" Type="nvarchar" MaxLength="512" />
           <Property Name="GenderId" Type="int" />
           <Property Name="Age" Type="int" />
+          <Property Name="SexId" Type="int" />
           <Property Name="Phone" Type="varchar" MaxLength="50" />
           <Property Name="IsFever" Type="bit" />
           <Property Name="IsDryCough" Type="bit" />
@@ -693,6 +696,18 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DetailData_StandingDatas4">
+          <End Role="StandingDatas" Type="Self.StandingDatas" Multiplicity="0..1" />
+          <End Role="DetailData" Type="Self.DetailData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingDatas">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetailData">
+              <PropertyRef Name="SexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DetailData_UserProfiles">
           <End Role="UserProfiles" Type="Self.UserProfiles" Multiplicity="1" />
           <End Role="DetailData" Type="Self.DetailData" Multiplicity="*" />
@@ -1145,6 +1160,10 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="DetailData" EntitySet="DetailData" />
           </AssociationSet>
           <AssociationSet Name="FK_DetailData_StandingDatas3" Association="Self.FK_DetailData_StandingDatas3">
+            <End Role="StandingDatas" EntitySet="StandingDatas" />
+            <End Role="DetailData" EntitySet="DetailData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetailData_StandingDatas4" Association="Self.FK_DetailData_StandingDatas4">
             <End Role="StandingDatas" EntitySet="StandingDatas" />
             <End Role="DetailData" EntitySet="DetailData" />
           </AssociationSet>
@@ -1614,6 +1633,10 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
+          <AssociationSet Name="FK_DetailData_StandingDatas4" Association="AppModel.FK_DetailData_StandingDatas4">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DetailData" EntitySet="DetailDatas" />
+          </AssociationSet>
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -1807,6 +1830,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas3" FromRole="BERDataPeopleWiseQuantity" ToRole="StandingData" />
           <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas4" FromRole="BERDataPeopleWiseQuantity" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_UserProfiles" FromRole="BERDataPeopleWiseQuantity" ToRole="UserProfile" />
+          <Property Name="Cat8NewReach" Type="Int32" Nullable="false" />
+          <Property Name="Cat8OldReach" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DetailData">
           <Key>
@@ -1834,6 +1859,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DetailData_StandingDatas2" FromRole="DetailData" ToRole="StandingData" />
           <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DetailData_StandingDatas3" FromRole="DetailData" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DetailData_UserProfiles" FromRole="DetailData" ToRole="UserProfile" />
+          <Property Name="SexId" Type="Int32" />
+          <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_DetailData_StandingDatas4" FromRole="DetailData" ToRole="StandingData" />
         </EntityType>
         <EntityType Name="DistrictByUserProfile">
           <Key>
@@ -2094,6 +2121,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_StandingDatas" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas1" Relationship="AppModel.FK_SummerizedData_StandingDatas1" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas2" Relationship="AppModel.FK_SummerizedData_StandingDatas2" FromRole="StandingData" ToRole="SummerizedData" />
+          <NavigationProperty Name="DetailDatas4" Relationship="AppModel.FK_DetailData_StandingDatas4" FromRole="StandingData" ToRole="DetailData" />
         </EntityType>
         <EntityType Name="SummerizedData">
           <Key>
@@ -2805,6 +2833,18 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DetailData_StandingDatas4">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
+          <End Type="AppModel.DetailData" Role="DetailData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DetailData">
+              <PropertyRef Name="SexId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2871,6 +2911,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="BERDataPeopleWiseQuantities">
             <EntityTypeMapping TypeName="AppModel.BERDataPeopleWiseQuantity">
               <MappingFragment StoreEntitySet="BERDataPeopleWiseQuantity">
+                <ScalarProperty Name="Cat8OldReach" ColumnName="Cat8OldReach" />
+                <ScalarProperty Name="Cat8NewReach" ColumnName="Cat8NewReach" />
                 <ScalarProperty Name="Cat7OldReach" ColumnName="Cat7OldReach" />
                 <ScalarProperty Name="Cat7NewReach" ColumnName="Cat7NewReach" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
@@ -2901,6 +2943,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DetailDatas">
             <EntityTypeMapping TypeName="AppModel.DetailData">
               <MappingFragment StoreEntitySet="DetailData">
+                <ScalarProperty Name="SexId" ColumnName="SexId" />
                 <ScalarProperty Name="InsertedById" ColumnName="InsertedById" />
                 <ScalarProperty Name="CollectedBy" ColumnName="CollectedBy" />
                 <ScalarProperty Name="IsContact" ColumnName="IsContact" />

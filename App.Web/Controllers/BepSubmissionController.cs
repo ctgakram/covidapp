@@ -134,7 +134,7 @@ namespace AppProj.Web.Controllers
                     ,
                     ReachCount = 0
                     ,
-                    ReachCountFemale=0
+                    ReachCountFemale = 0
 
                 });
             }
@@ -224,7 +224,7 @@ namespace AppProj.Web.Controllers
                     ,
                     ReachCount = r.ReachCount
                     ,
-                    ReachCountFemale=r.ReachCountFemale
+                    ReachCountFemale = r.ReachCountFemale
                     ,
                     Id = r.Id
 
@@ -261,7 +261,7 @@ namespace AppProj.Web.Controllers
                     ,
                     ReachCount = 0
                     ,
-                    ReachCountFemale=0
+                    ReachCountFemale = 0
 
                 });
             }
@@ -325,7 +325,7 @@ namespace AppProj.Web.Controllers
                         ,
                         ReachCount = e.ReachCount
                         ,
-                        ReachCountFemale=e.ReachCountFemale
+                        ReachCountFemale = e.ReachCountFemale
                     ,
                     });
                 }
@@ -355,7 +355,7 @@ namespace AppProj.Web.Controllers
                         ItemName = c.StandingData1.Name,
                         Quantity = c.Quantity,
                         ReachCount = c.ReachCount,
-                        ReachCountFemale=c.ReachCountFemale
+                        ReachCountFemale = c.ReachCountFemale
                     })
                     .ToList();
 
@@ -459,7 +459,7 @@ namespace AppProj.Web.Controllers
             foreach (var m in model.BEPPreparenessActivityModels)
             {
 
-                if (m.Quantity > 0 || m.ExpQuantity > 0 || m.ReachCount > 0 || m.ReachCountFemale>0)
+                if (m.Quantity > 0 || m.ExpQuantity > 0 || m.ReachCount > 0 || m.ReachCountFemale > 0)
                 {
                     BERDataItemWiseQuantity entityItem = new BERDataItemWiseQuantity();
 
@@ -500,7 +500,8 @@ namespace AppProj.Web.Controllers
                     || r.Cat4NewReach > 0 || r.Cat4OldReach > 0
                     || r.Cat5NewReach > 0 || r.Cat5OldReach > 0
                     || r.Cat6NewReach > 0 || r.Cat6OldReach > 0
-                    || r.Cat7NewReach > 0 || r.Cat7OldReach > 0)
+                    || r.Cat7NewReach > 0 || r.Cat7OldReach > 0
+                    || r.Cat8NewReach > 0 || r.Cat8OldReach > 0)
                 {
                     BERDataPeopleWiseQuantity entityPeople = new BERDataPeopleWiseQuantity();
 
@@ -536,7 +537,7 @@ namespace AppProj.Web.Controllers
                 foreach (var m in r.BEPDetailModels)
                 {
 
-                    if (m.Quantity > 0 || m.ReachCount > 0 || m.ReachCountFemale>0)
+                    if (m.Quantity > 0 || m.ReachCount > 0 || m.ReachCountFemale > 0)
                     {
                         BERDataItemWiseQuantity entityItem = new BERDataItemWiseQuantity();
 
@@ -800,6 +801,10 @@ namespace AppProj.Web.Controllers
                             Cat7NewReach = g.Sum(c => c.Cat7NewReach)
                            ,
                             Cat7OldReach = g.Sum(c => c.Cat7OldReach)
+                            ,
+                            Cat8NewReach = g.Sum(c => c.Cat8NewReach)
+                           ,
+                            Cat8OldReach = g.Sum(c => c.Cat8OldReach)
                         }).Single();
 
                     dataList.Insert(0, tot);
@@ -822,9 +827,11 @@ namespace AppProj.Web.Controllers
                        ,c.Cat5OldReach
                        ,c.Cat6NewReach
                        ,c.Cat6OldReach
-                       
+                       ,c.Cat8NewReach
+                       ,c.Cat8OldReach
+
             }).ToArray();
-            }            
+            }
             else
             {
                 dataList = bepDataService.GetItem(divId, disId, srcId, actId, FromDate, ToDate).ToList();
@@ -867,6 +874,203 @@ namespace AppProj.Web.Controllers
             return Json(js, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult IndexCount()
+        {
+            SearchModel up = new SearchModel();
+
+            var div = standingDataService.GetDivisions().Where(r => r.IsActive);
+            up.ContentTypes1 = div.ToSelectList(null, "Id", "Name");
+
+            var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
+            up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
+
+            var prog = standingDataService.GetSource().Where(r => r.IsActive);
+            up.ContentTypes3 = prog.ToSelectList(null, "Id", "Name");
+
+            var act = standingDataService.GetByType(StandingDataTypes.Activities).Where(r => r.IsActive);
+            up.ContentTypes4 = act.ToSelectList(null, "Id", "Name");
+
+
+            up.FromDate = DateTime.Now;
+            up.ToDate = DateTime.Now;
+
+            return View(up);
+        }
+
+        public JsonResult DataGridCount()
+        {
+            int count = 0;
+
+            int ec = int.Parse(Request.QueryString["sEcho"]);
+            int take = int.Parse(Request.QueryString["iDisplayLength"]);
+            int skip = int.Parse(Request.QueryString["iDisplayStart"]);
+            bool isReach = bool.Parse(Request.QueryString["isR"]);
+
+            //if (take == -1) { take = 1000000000; skip = 0; }
+
+            int? divId = null;
+            try
+            {
+                divId = Convert.ToInt32(Request.QueryString["ContentTypeId1"]);
+            }
+            catch { }
+
+            int? disId = null;
+            try
+            {
+                disId = Convert.ToInt32(Request.QueryString["ContentTypeId2"]);
+            }
+            catch { }
+
+            int? srcId = null;
+            try
+            {
+                srcId = Convert.ToInt32(Request.QueryString["ContentTypeId3"]);
+            }
+            catch { }
+
+            int? actId = null;
+            try
+            {
+                actId = Convert.ToInt32(Request.QueryString["ContentTypeId4"]);
+            }
+            catch { }
+
+            DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
+            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+
+            List<BERDataItemWiseQuantityExt> dataList = new List<BERDataItemWiseQuantityExt>();
+            object[][] obj = null;
+
+            if (isReach)
+            {
+                dataList = bepDataService.GetPeopleDetail(divId, disId, srcId, actId, FromDate, ToDate).ToList();
+
+                if (dataList.Count() > 0)
+                {
+                    BERDataItemWiseQuantityExt tot = dataList.GroupBy(q => 1)
+                        .Select(g => new BERDataItemWiseQuantityExt
+                        {                            
+                            Program = "<span style=\"color:#ff6a00; font-size:14px;\">Total</span>"
+                            ,
+                            Division = ""
+                            ,
+                            District = ""
+                            ,
+                            Activity = ""
+                            ,
+                            Cat1NewReach = g.Sum(c => c.Cat1NewReach)
+                           ,
+                            Cat1OldReach = g.Sum(c => c.Cat1OldReach)
+                           ,
+                            Cat2NewReach = g.Sum(c => c.Cat2NewReach)
+                           ,
+                            Cat2OldReach = g.Sum(c => c.Cat2OldReach)
+                           ,
+                            Cat3NewReach = g.Sum(c => c.Cat3NewReach)
+                           ,
+                            Cat3OldReach = g.Sum(c => c.Cat3OldReach)
+                           ,
+                            Cat4NewReach = g.Sum(c => c.Cat4NewReach)
+                           ,
+                            Cat4OldReach = g.Sum(c => c.Cat4OldReach)
+                           ,
+                            Cat5NewReach = g.Sum(c => c.Cat5NewReach)
+                           ,
+                            Cat5OldReach = g.Sum(c => c.Cat5OldReach)
+                           ,
+                            Cat6NewReach = g.Sum(c => c.Cat6NewReach)
+                           ,
+                            Cat6OldReach = g.Sum(c => c.Cat6OldReach)
+                            ,
+                            Cat7NewReach = g.Sum(c => c.Cat7NewReach)
+                           ,
+                            Cat7OldReach = g.Sum(c => c.Cat7OldReach)
+                            ,
+                            Cat8NewReach = g.Sum(c => c.Cat8NewReach)
+                           ,
+                            Cat8OldReach = g.Sum(c => c.Cat8OldReach)
+                        }).Single();
+
+                    dataList.Insert(0, tot);
+                }
+
+                obj = (from c in dataList
+                       select new object[] {
+                       c.Program
+                       ,c.Division
+                       ,c.District
+                       ,c.Activity
+                       ,c.Cat7NewReach
+                       ,c.Cat7OldReach
+                       ,c.Cat1NewReach
+                       ,c.Cat1OldReach
+                       ,c.Cat2NewReach
+                       ,c.Cat2OldReach
+                       ,c.Cat3NewReach
+                       ,c.Cat3OldReach
+                       ,c.Cat4NewReach
+                       ,c.Cat4OldReach
+                       ,c.Cat5NewReach
+                       ,c.Cat5OldReach
+                       ,c.Cat6NewReach
+                       ,c.Cat6OldReach
+                       ,c.Cat8NewReach
+                       ,c.Cat8OldReach
+
+            }).ToArray();
+            }
+            else
+            {
+                dataList = bepDataService.GetItemDetails(divId, disId, srcId, actId, FromDate, ToDate).ToList();
+                if (dataList.Count() > 0)
+                {
+                    BERDataItemWiseQuantityExt tot = dataList.GroupBy(q => 1)
+                    .Select(g => new BERDataItemWiseQuantityExt
+                    {
+                        
+                        Program = "<span style=\"color:#ff6a00; font-size:14px;\">Total</span>"
+                        ,
+                        Division = ""
+                         ,
+                        District = ""
+                         ,
+                        Item = ""
+                         ,
+                        ReachCount = g.Sum(c => c.ReachCount)
+                        ,
+                        ReachCountFemale = g.Sum(c => c.ReachCountFemale)
+                       ,
+                        ResReachCount = g.Sum(c => c.ResReachCount)
+                    }).Single();
+
+                    dataList.Insert(0, tot);
+                }
+
+                obj = (from c in dataList
+                       select new object[] {
+                       c.Program
+                       ,c.Division
+                       ,c.District
+                       ,c.Item
+                       ,c.Quantity
+                       ,c.ExpQuantity
+                       ,c.ReachCount
+                       ,c.ReachCountFemale
+                       ,c.ResQuantity
+                       ,c.ResReachCount
+            }).ToArray();
+            }
+
+
+            JQueryDataTable js = new JQueryDataTable();
+            js.sEcho = ec;
+            js.iTotalDisplayRecords = count.ToString();
+            js.iTotalRecords = js.iTotalDisplayRecords;
+            js.aaData = obj;
+
+            return Json(js, JsonRequestBehavior.AllowGet);
+        }
 
     }
 }
