@@ -14,117 +14,10 @@
 
 <body>
     <div class="container-fluid">
-        <div class="row-fluid">
 
-            <div class="span12">
-                <div class="header-top">
-                    <div class="header-wrapper">
-                        <a href="#" class="utopia-logo"><img src="~/Content/logo/brac_logo.png" alt="COVID-19 Response"></a>
-                        <p style="margin-bottom:0px;" class="muted">COVID-19 Response</p>
-                        <div class="header-right">
-                            <div class="header-divider">&nbsp;</div>
-                            <div class="notification header-divider">
-                                <div class="notification-wrapper">
-                                    <a href="#" class="notification-counter" style="font-style:italic;"> i </a>
-                                    <div id="triangle-down"></div>
-                                    <div class="tabbable notification-box" style="display: none;">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active"><a data-toggle="tab" href="#message">Messages</a></li>
-                                            <li class=""><a data-toggle="tab" href="#activity">Activity</a></li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div id="message" class="tab-pane active">
-                                                <ul class="message-list">
-                                                    <li class="message new">
-                                                        <div class="msg">
-                                                            From: <a href="#">Asif Saleh</a> <span>Fri, Apr 17, 2020 12:46 PM</span>
-                                                            <a class="subject" href="#">Latest in Covid 19 Response from BRAC in Bangladesh - April 17</a>
-                                                            <p>
-                                                                <a href="~/Content/Message/External COVID-19 Sitrep_16 April 2020.pdf" target="_blank">download</a>
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                    <li class="message new">
-                                                        <div class="msg">
-                                                            From: <a href="#">Asif Saleh</a> <span>Tue, Apr 14, 2020 6:44 PM</span>
-                                                            <a class="subject" href="#">Latest in Covid 19 Response from BRAC in Bangladesh - April 15</a>
-                                                            <p>
-                                                                <a href="~/Content/Message/External COVID-19 Sitrep_13 April 2020.pdf" target="_blank">download</a>
-                                                            </p>
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div class="message-more"><a href="#"> </a></div>
-                                            </div>
-                                            <div id="activity" class="tab-pane">
-                                                <ul class="message-list">
-                                                    <li class="user new">
-                                                        <div class="msg">
-                                                            <a href="">HNPP</a> field staffs <a href="#">(sk,ss,pk,ps,am)</a> are collecting possible patients data.
-                                                        </div>
-                                                    </li>
-                                                    <li class="call new">
-                                                        <div class="msg">
-                                                            All programs's are working on <a href="#">relief distribution</a> which is lead by HP
-                                                        </div>
-                                                    </li>
-                                                    <li class="calendar new">
-                                                        <div class="msg">
-                                                            <a href="#">BDC</a> are collecting data from every <a href="#">district</a>.
-                                                        </div>
-                                                    </li>
-                                                    <li class="settings">
-                                                        <div class="msg">
-                                                            Seft testing data are coming from <a href="#">Coronarodh</a> app.
-                                                        </div>
-                                                    </li>
-                                                    <li class="follow">
-                                                        <div class="msg">
-                                                            Advocacy department has done <a href="#">survay</a> on nearly 800 people.
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                                <div class="message-more"><a href="#"> </a></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><!-- Notification end -->
-
-                            <div class="user-panel header-divider">
-                                <div class="user-info">
-                                    <img src="img/icons/user.png" alt="">
-                                    <a href="#">@SessionHelper.UserName</a>
-                                </div>
-                                <div class="user-dropbox" style="display: none;">
-                                    <ul>
-                                        <li class="user"><a href="#">Profile</a></li>
-                                        @{ try
-                                            {
-
-                                                if (SessionHelper.IsGuest)
-                                                {
-                                                    <li class="settings">
-                                                        <a data-ajax-method="GET" data-ajax-mode="replace" data-ajax-loading="#loading" data-ajax-failure="failure" data-ajax="true" href="~/UserProfile/ChangePassword" data-ajax-update="#dialog1Body" data-ajax-success="openDialog1('Change Password')">Change Password</a>
-                                                    </li>
-                                                }
-                                            }
-                                            catch { }
-                                        }
-
-                                        <li class="logout"><a href="@SsoUtility.SsoLogout?site=@SsoUtility.Site">Logout</a></li>
-                                    </ul>
-                                </div>
-                            </div><!-- User panel end -->
-                        </div><!-- End header right -->
-                    </div><!-- End header wrapper -->
-                </div><!-- End header -->
-            </div>
-        </div>
+        @Html.Partial("_LayoutPartial")
 
         <div class="row-fluid">
-
-            @{var dt = DateTime.Now;}
 
             <div class="sidebar-container span2">
                 <div class="sidebar">
@@ -140,7 +33,7 @@
                     <div class="nav-collapse collapse leftmenu">
 
                         <ul>
-                            <li><a class="dashboard smronju" href="~/Main/Dashboard" title="Dashboard"><span>ড্যাশবোর্ড</span></a></li>
+                            @*<li><a class="dashboard smronju" href="~/Main/Dashboard" title="Dashboard"><span>ড্যাশবোর্ড</span></a></li>*@
                             <li><a class="tables" href="~/SummerySubmission/Index" title="Total reach"><span>মোট পরিদর্শন</span></a>
                             <li><a class="widgets smronju" href="~/DetailSubmission/Index" title="Suspected patients"><span>সম্ভাব্য রোগী</span></a></li>
                             <li><a class="wizard-form smronju" href="~/HnppSubmission/Index" title="HNPP Data"><span>ব্র্যাক হেলথ</span></a></li>
@@ -162,28 +55,6 @@
                                 </ul>
                             </li>
                             <li><a class="icons" href="~/DetailSubmission/IndexApp" title="Coronarodh App"><span>করোনারোধ</span></a></li>
-                            @if (UserRole.Check("USER", SessionHelper.Role)                                
-                                || UserRole.Check("ROLE", SessionHelper.Role))
-                            {
-                                <li>
-                                    <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
-                                    <ul class="dropdown">
-                                        @if (UserRole.Check("USER", SessionHelper.Role))
-                                        {
-                                            <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
-                                        }                                        
-
-                                        @if (UserRole.Check("ROLE", SessionHelper.Role))
-                                        {
-                                            <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
-                                        }
-                                    </ul>
-                                </li>
-                            }
-                            @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
-                            {
-                                <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
-                            }
                             @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
                             {
                                 <li>
@@ -199,23 +70,45 @@
                                     </ul>
                                 </li>
                             }
+
+                            @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
+                            {
+                                <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
+                            }
+
+                            @if (UserRole.Check("USER", SessionHelper.Role)
+                               || UserRole.Check("ROLE", SessionHelper.Role))
+                            {
+                                <li>
+                                    <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
+                                    <ul class="dropdown">
+                                        @if (UserRole.Check("USER", SessionHelper.Role))
+                                        {
+                                            <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
+                                        }
+
+                                        @if (UserRole.Check("ROLE", SessionHelper.Role))
+                                        {
+                                            <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
                         </ul>
 
                     </div>
 
                 </div>
             </div>
+
             <div id="MainBody" class="span10 body-container">
                 @RenderBody()
             </div>
         </div>
-        <hr>
-        <footer>
-            <p class="pull-right muted"><small>BRAC © @DateTime.Now.Year, </small></p>
-        </footer>
+
     </div>
 
-    @Html.Partial("_LayoutPartial")
+    @Html.Partial("_ModalPartial")
 
     <!-- Placed at the end of the document so the pages load faster -->
     @Scripts.Render("~/bundles/jquery")
@@ -225,23 +118,13 @@
 
     <script type="text/javascript">
 
-        $(".handle_accordion_event").click(function () {
-            var value = this.id;
-            value = value.replace('_', '');
-            $.cookie('parent', value);
-        });
-
         $(document).ready(function () {
 
-            if ($.cookie('parent') != null) {
-                var names = $.cookie('parent');
-                $('#' + names).removeClass('accordion-body collapse').addClass('accordion-body in collapse');
-                $('#' + names).css({ 'height': 'auto' });
-            }
+            LoadMenuTop('@Url.Action("MenuData", "Main")');
+
+            KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
 
         });
-
-        KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
 
     </script>
 </body>

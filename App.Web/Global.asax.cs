@@ -334,6 +334,16 @@ namespace AppProj.Web
 
     public static class StandingDataTypes
     {
+        public static string TreeActivity
+        {
+            get { return "TAC"; }
+        }
+
+        public static string TreeMessage
+        {
+            get { return "TMS"; }
+        }
+
         public static string Programs
         {
             get { return "SRC"; }

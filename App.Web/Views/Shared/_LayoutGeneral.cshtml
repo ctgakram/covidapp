@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <title>BRAC eAssets</title>
+    <title>COVID-19 Response</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/styles")
@@ -11,69 +11,21 @@
 @using AppProj.Web.Controllers;
 @using AppProj.Web;
 @using AppProj.Web.Helpers;
-@{
-    var ajaxOpt = new AjaxOptions
-    {
-        UpdateTargetId = "MainBody",
-        LoadingElementId = "loading",
-        OnFailure = "failure"
-    };
-}
 
 <body>
-    <div class="container">
+    <div class="container-fluid">
+
+        @Html.Partial("_LayoutPartial")
+
         <div class="row-fluid">
-            <div class="span12">
-                <div class="header-top">
-                    <div class="header-wrapper">
-                        <div class="span8">
-                            <h3 style="line-height: 47px;">COVID-19 Response</h3>
-                        </div>
-
-                        <div class="header-right">
-                            <div class="header-divider">&nbsp;</div>
-                            <div class="user-panel header-divider">
-                                <div class="user-info pull-right">
-                                    <img src="~/Content/img/icons/id.png" alt="">
-                                    <a href="#">@SessionHelper.UserName</a>
-                                </div>
-                                <div class="user-dropbox">
-                                    <ul>
-                                        @{ try
-                                            {
-
-                                                if (SessionHelper.IsGuest)
-                                                {
-                                                    <li>
-                                                        <a data-ajax-method="GET" data-ajax-mode="replace" data-ajax-loading="#loading" data-ajax-failure="failure" data-ajax="true" href="~/UserProfile/ChangePassword" data-ajax-update="#dialog1Body" data-ajax-success="openDialog1('Change Password')">Change Password</a>
-                                                    </li>
-                                                }
-                                            }
-                                            catch { }
-                                        }
-                                        <li class="logout">
-                                            <a href="@SsoUtility.SsoLogout?site=@SsoUtility.Site" style="color: #f00">Sign Out</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row-fluid">
-            <div id="MainBody" class="body-container span10">
+            <div id="MainBody" class="span12">
                 @RenderBody()
             </div>
         </div>
-        <hr>
-        <footer>
-            <p class="pull-right muted"><small>eAssets © @DateTime.Now.Year, </small>BRAC ICT</p>
-        </footer>
+
     </div>
-    @Html.Partial("_LayoutPartial")
+
+    @Html.Partial("_ModalPartial")
 
     <!-- Placed at the end of the document so the pages load faster -->
     @Scripts.Render("~/bundles/jquery")
@@ -83,23 +35,16 @@
 
     <script type="text/javascript">
 
-        $(".handle_accordion_event").click(function () {
-            var value = this.id;
-            value = value.replace('_', '');
-            $.cookie('parent', value);
-        });
 
         $(document).ready(function () {
+            
+            LoadMenuTop('@Url.Action("MenuData", "Main")');
 
-            if ($.cookie('parent') != null) {
-                var names = $.cookie('parent');
-                $('#' + names).removeClass('accordion-body collapse').addClass('accordion-body in collapse');
-                $('#' + names).css({ 'height': 'auto' });
-            }
+            KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
 
         });
 
-        KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
+        
 
     </script>
 </body>

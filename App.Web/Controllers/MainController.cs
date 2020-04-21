@@ -37,13 +37,24 @@ namespace AppProj.Web.Controllers
 
         public ActionResult Index()
         {
+            var data = standingDataService.GetByType(StandingDataTypes.TreeActivity)
+                .OrderBy(c => c.IntValue)
+                .ToList();
+                
+            return View(data);
+        }
 
-            return View();
+        public ActionResult Message()
+        {
+            var data = standingDataService.GetByType(StandingDataTypes.TreeMessage)
+                .OrderByDescending(c => c.IntValue)
+                .ToList();
+
+            return View(data);
         }
 
         public ActionResult Dashboard()
         {
-
             return View();
         }
 
@@ -123,16 +134,20 @@ namespace AppProj.Web.Controllers
                             //salt = g.Sum(c => c.TotalSalt)
                             ,
                             family = g.Sum(c => c.TotalReliefFamily)
-                            //,
-                            //person = g.Sum(c => c.TotalReliefPerson)
+                            ,
+                            person = g.Sum(c => c.TotalReliefPerson)
                             ,
                             rice = g.Sum(c => c.TotalRice)
-                            ,
-                            dal = g.Sum(c => c.TotalDal)
-                            ,
-                            potato = g.Sum(c => c.TotalPotato)
+                            //,
+                            //dal = g.Sum(c => c.TotalDal)
+                            //,
+                            //potato = g.Sum(c => c.TotalPotato)
                             ,
                             money = g.Sum(c => c.TotalMoney)
+                            ,
+                            planRice = g.Sum(c => c.PlannedRice)
+                            ,
+                            planMoney = g.Sum(c => c.PlannedMoney)
 
                         }).Single()
               ,
@@ -148,6 +163,31 @@ namespace AppProj.Web.Controllers
                           ,
                           stic = g.Sum(c => c.Sticker)
                       }).Single()
+            };
+
+            return Json(obj, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult MenuData()
+        {
+            var data = standingDataService.GetByType(StandingDataTypes.TreeActivity)
+                .Where(c => c.IsActive)
+                .OrderBy(c=>c.IntValue)
+                .Select(c=> new { c.Name})
+                .ToList();
+
+            var data2 = standingDataService.GetByType(StandingDataTypes.TreeMessage)
+                .Where(c => c.IsActive)
+                .OrderByDescending(c => c.IntValue)
+                .Select(c => new { c.Name })
+                .ToList();
+
+            var obj = new
+            {
+                act = data
+                ,
+                msg = data2
             };
 
             return Json(obj, JsonRequestBehavior.AllowGet);

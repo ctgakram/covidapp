@@ -4364,7 +4364,7 @@ a.badge:hover {
 .notification-wrapper .notification-counter {
     padding: 5px 8px;
     color: #000;
-    background: #d0d0d0;
+    /*background: #d0d0d0;*/
     font-weight: bold;
     border: 1px solid rgba(255, 255, 255, 0);
     outline: none;
@@ -4503,9 +4503,9 @@ a.badge:hover {
 .user-info {
     background-image: url('../img/icons/directional_down.png');
     background-repeat: no-repeat;
-    background-position: 123px 10px;
+    background-position: 203px 10px;
     border: 1px solid #eee;
-    width: 120px;
+    width: 200px;
 }
 .user-info,
 .user-active {
@@ -4524,7 +4524,7 @@ a.badge:hover {
 .user-active {
     background-image: url('../img/icons/directional_up.png');
     background-repeat: no-repeat;
-    background-position: 123px 10px;
+    background-position: 203px 10px;
     border-bottom: none;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
@@ -4546,7 +4546,7 @@ a.badge:hover {
     position: absolute;
     right: 10px;
     top: 65px;
-    width: 200px;
+    width: 280px;
     z-index: 10;
     display: none;
 }

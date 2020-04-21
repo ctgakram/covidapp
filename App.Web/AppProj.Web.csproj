@@ -3426,7 +3426,7 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_ModalPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\RoleFeature\AddFeature.cshtml" />
@@ -3499,6 +3499,7 @@
     <Content Include="Views\Analytics\Survey.cshtml" />
     <Content Include="Views\BepSubmission\IndexCount.cshtml" />
     <Content Include="Views\Main\Dashboard.cshtml" />
+    <Content Include="Views\Main\Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
