@@ -112,7 +112,7 @@
                         </label>
                         <div class="controls">
                             &nbsp;
-                            @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+                            @if (UserRole.Check("DETAIL", SessionHelper.Role))
                             {
                                 @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "DetailSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-primary pull-right" })
                             }
