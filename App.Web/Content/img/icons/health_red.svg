@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <g id="rh" transform="translate(168 324)">
+    <rect id="Rectangle_134" data-name="Rectangle 134" width="32" height="32" transform="translate(-168 -324)" fill="#fff" opacity="0"/>
+    <circle id="Ellipse_6" data-name="Ellipse 6" cx="14" cy="14" r="14" transform="translate(-166 -324)" fill="#ea0000"/>
+    <path id="Icon_map-health" data-name="Icon map-health" d="M14.72,5.387a.293.293,0,0,0-.292-.292H10.637a.293.293,0,0,1-.292-.292V1.012A.293.293,0,0,0,10.053.72H5.387a.293.293,0,0,0-.292.292V4.8A.293.293,0,0,1,4.8,5.1H1.012a.293.293,0,0,0-.292.292v4.667a.293.293,0,0,0,.292.292H4.8a.293.293,0,0,1,.292.292v3.792a.293.293,0,0,0,.292.292h4.667a.293.293,0,0,0,.292-.292V10.637a.293.293,0,0,1,.292-.292h3.792a.293.293,0,0,0,.292-.292Z" transform="translate(-159.72 -317.518)" fill="#fff"/>
+    <path id="Polygon_1" data-name="Polygon 1" d="M6,0l6,10H0Z" transform="translate(-146 -292) rotate(-180)" fill="#ea0000"/>
+  </g>
+</svg>

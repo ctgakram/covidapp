@@ -3075,6 +3075,10 @@
     <Content Include="Content\img\icons\hand_thumbsup.png" />
     <Content Include="Content\img\icons\hard_disk.png" />
     <Content Include="Content\img\icons\headset.png" />
+    <Content Include="Content\img\icons\health_1.svg" />
+    <Content Include="Content\img\icons\health_2.svg" />
+    <Content Include="Content\img\icons\health_3.svg" />
+    <Content Include="Content\img\icons\health_red.svg" />
     <Content Include="Content\img\icons\heart.png" />
     <Content Include="Content\img\icons\help.png" />
     <Content Include="Content\img\icons\help2.png" />
