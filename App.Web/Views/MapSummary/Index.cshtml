@@ -1,0 +1,315 @@
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.SearchModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('পরিদর্শন মানচিত্র')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+
+    string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
+    Request.ApplicationPath.TrimEnd('/');
+}
+<section id="counter-social-icon" class="utopia-widget utopia-form-box">
+    <div class="utopia-widget-title">
+        <img class="utopia-widget-icon" style="margin: 15px 0 0 15px;" src="~/Content/img/icons2/connect.png">
+        <span>পরিদর্শন মানচিত্র</span>
+    </div>
+    <div class="row-fluid">
+        <div class="utopia-widget-content main-container">
+            <div class="row-fluid">
+                <div class="span3">
+                    <h3 class="pull-left muted font-head">Program: </h3>
+                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Programs", new { @class = "ddl" })
+                </div>
+                <div class="span3">
+                    <h3 class="pull-left muted font-head">Division: </h3>
+                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "ddl" })
+                </div>
+                <div class="span2" style="vertical-align:text-bottom;">
+                    People @Html.CheckBox("isPeople", true)
+                </div>
+                <div class="span2" style="vertical-align:text-bottom;">
+                    Health @Html.CheckBox("isHealth", true)
+                </div>
+                <div class="span2" style="vertical-align:text-bottom;">
+                    Govt. Support @Html.CheckBox("isGovtSupport", true)
+                </div>
+                <div class="span2">
+                    <a id="mapSearchButton" class="btn">সার্চ <i class="icon icon-search"></i></a>
+                </div>
+                <br />
+                <!--The div element for the map -->
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        MapLoadAll();
+
+        $(document).on('change', '#ContentTypeId3', function () {
+            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+            }
+            else if ($('#ContentTypeId3').val() > 0) {
+                MapLoad($('#ContentTypeId3').val());
+            }
+            else if ($('#ContentTypeId1').val() > 0) {
+
+                MapLoadDivision($('#ContentTypeId1').val());
+            }
+            else {
+                MapLoadAll();
+            }
+        });
+
+        $("#mapSearchButton").click(function () {
+
+            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+            }
+            else if ($('#ContentTypeId3').val() > 0) {
+                
+                MapLoad($('#ContentTypeId3').val());
+            }
+            else if ($('#ContentTypeId1').val() > 0) {
+
+                MapLoadDivision($('#ContentTypeId1').val());
+            }
+            else {
+                MapLoadAll();
+            }
+
+        });
+
+        $(document).on('change', '#ContentTypeId1', function () {
+            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+            }
+            else if ($('#ContentTypeId1').val() > 0) {
+                MapLoadDivision($('#ContentTypeId1').val());
+            }
+            else if ($('#ContentTypeId3').val() > 0) {
+
+                MapLoad($('#ContentTypeId3').val());
+            }
+            else {
+                MapLoadAll();
+            }
+        });
+
+    });
+</script>
+    <script type="text/javascript">
+
+        window.MapLoad = function PrepareMap(id) {
+
+            
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Content("~/MapSummary/GetDataByProgramId")?id=' + id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            MapInit(data);
+                        }
+                    }
+                });
+        }
+        
+
+        window.MapLoadAll = function PrepareMap() {
+
+            $.ajax({
+                cache: false,
+                url: '@Url.Content("~/MapSummary/GetDataAll")',
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    if (data != null) {
+                        MapInit(data);
+                    }
+                }
+            });
+
+        }
+
+        window.MapLoadDivision = function PrepareMap(id) {
+
+            
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Content("~/MapSummary/GetDataByDivisionId")?id=' + id,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            MapInit(data);
+                        }
+                    }
+                });
+        }
+
+         window.MapLoadProgramWiseDivision = function PrepareMap(id1,id2) {
+
+            
+                $.ajax({
+                    cache: false,
+                    url: '@Url.Content("~/MapSummary/GetDataByProgramIdDivisionId")?id1=' + id1 + '&id2=' + id2,
+                    type: "GET",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data != null) {
+                            MapInit(data);
+                        }
+                    }
+                });
+        }
+
+        function MapInit(locations) {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 7,
+            center: new google.maps.LatLng(locations[0]["Latitude"], locations[0]["Longitude"]),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+            var marker, marker2, marker3, i;
+
+
+        for (i = 0; i < locations.length; i++) {
+
+            var isPeopleChecked = document.getElementById("isPeople").checked;
+            var isHealthChecked = document.getElementById("isHealth").checked;
+            var isGovtSupportChecked = document.getElementById("isGovtSupport").checked;
+
+            if (isPeopleChecked) {
+
+                marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i]["Latitude"], locations[i]["Longitude"]),
+                    map: map
+                });
+
+                marker.setIcon('@baseUrl/Content/img/icons/people_' + locations[i]["PeopleIndex"] +'.svg')
+
+                google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                    return function () {
+
+                        infowindow.setContent("People" +
+                            "<br/>" + "----------------------" +
+                            "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
+                            "<br/>" + "Population : " + locations[i]["Population"]);
+                        infowindow.open(map, marker);
+                    }
+                })(marker, i));
+
+                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                    return function () {
+                        map.setZoom(10);
+                        map.setCenter(marker.getPosition());
+                    }
+                })(marker, i));
+            }
+
+            if (isHealthChecked) {
+
+                marker2 = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i]["Latitude"] + 0.02, locations[i]["Longitude"] + 0.03),
+                    map: map
+                });
+
+                marker2.setIcon('@baseUrl/Content/img/icons/health_' + locations[i]["HealthIndex"] + '.svg')
+
+                google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
+                    return function () {
+
+                        infowindow.setContent("Health" +
+                            "<br/>" + "--------------------------" +
+                            "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
+                            "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
+                            "<br/>" + "Female: " + locations[i]["DetailData_FemaleCount"] +
+                            "<br/>" + "Male Percent: " + locations[i]["DetailData_MalePercent"] +
+                            "<br/>" + "Female Percent: " + locations[i]["DetailData_FemalePercent"] +
+                            "<br/>" + "Hospital Count : " + locations[i]["HospitalCount"] +
+                            "<br/>" + "Bed Count: " + locations[i]["BedCount"] +
+                            "<br/>" + "Total Quarantine: " + locations[i]["TotalQuarantine"] +
+                            "<br/>" + "Total Released: " + locations[i]["TotalReleased"] +
+                            "<br/>" + "Current Quarantine: " + locations[i]["CurrentQuarantine"] +
+                            "<br/>" + "Total Do Test On: " + locations[i]["TotalDoTestOn"] +
+                            "<br/>" + "Total Death: " + locations[i]["TotalDeath"]);
+                        infowindow.open(map, marker2);
+                    }
+                })(marker2, i));
+
+                google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
+                    return function () {
+                        map.setZoom(10);
+                        map.setCenter(marker2.getPosition());
+                    }
+                })(marker2, i));
+            }
+
+            if (isGovtSupportChecked) {
+
+                marker3 = new google.maps.Marker({
+                    position: new google.maps.LatLng(locations[i]["Latitude"] + 0.04, locations[i]["Longitude"] + 0.05),
+                    map: map
+                });
+
+                marker3.setIcon('@baseUrl/Content/img/icons/relief_' + locations[i]["SupportIndex"] + '.svg')
+
+                google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
+                    return function () {
+
+                        infowindow.setContent("Govt. Support" +
+                            "<br/>" + "-------------------------" +
+                            "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
+                            "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
+                            "<br/>" + "Planned Dal: " + locations[i]["PlannedDal"] +
+                            "<br/>" + "Planned Money: " + locations[i]["PlannedMoney"] +
+                            "<br/>" + "Total Rice: " + locations[i]["TotalRice"] +
+                            "<br/>" + "Total Potato: " + locations[i]["TotalPotato"] +
+                            "<br/>" + "Total Dal: " + locations[i]["TotalDal"] +
+                            "<br/>" + "Total Money: " + locations[i]["TotalMoney"] +
+                            "<br/>" + "Total Relief Family: " + locations[i]["TotalReliefFamily"]);
+
+                        infowindow.open(map, marker3);
+                    }
+                })(marker3, i));
+
+                google.maps.event.addListener(marker3, 'click', (function (marker3, i) {
+                    return function () {
+                        map.setZoom(10);
+                        map.setCenter(marker3.getPosition());
+                    }
+                })(marker3, i));
+            }
+        }
+    }
+
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=&callback=MapInit">
+    </script>
+    <style>
+        /* Set the size of the div element that contains the map */
+        #map {
+            height: 800px; /* The height is 800 pixels */
+            width: 100%; /* The width is the width of the web page */
+        }
+    </style>
+}
+
+

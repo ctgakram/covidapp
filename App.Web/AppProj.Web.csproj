@@ -255,6 +255,7 @@
     <Compile Include="Controllers\DetailSubmissionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MapSummaryController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleFeatureController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
@@ -3075,6 +3076,7 @@
     <Content Include="Content\img\icons\hand_thumbsup.png" />
     <Content Include="Content\img\icons\hard_disk.png" />
     <Content Include="Content\img\icons\headset.png" />
+    <Content Include="Content\img\icons\health_red.svg" />
     <Content Include="Content\img\icons\heart.png" />
     <Content Include="Content\img\icons\help.png" />
     <Content Include="Content\img\icons\help2.png" />
@@ -3118,6 +3120,7 @@
     <Content Include="Content\img\icons\pause.png" />
     <Content Include="Content\img\icons\pen.png" />
     <Content Include="Content\img\icons\pencil.png" />
+    <Content Include="Content\img\icons\people_green.svg" />
     <Content Include="Content\img\icons\phone.png" />
     <Content Include="Content\img\icons\photo_album.png" />
     <Content Include="Content\img\icons\pictures_folder.png" />
@@ -3130,6 +3133,7 @@
     <Content Include="Content\img\icons\random.png" />
     <Content Include="Content\img\icons\record.png" />
     <Content Include="Content\img\icons\redo.png" />
+    <Content Include="Content\img\icons\relief_yellow.svg" />
     <Content Include="Content\img\icons\reload.png" />
     <Content Include="Content\img\icons\repeat.png" />
     <Content Include="Content\img\icons\resize2.png" />
@@ -3500,6 +3504,9 @@
     <Content Include="Views\BepSubmission\IndexCount.cshtml" />
     <Content Include="Views\Main\Dashboard.cshtml" />
     <Content Include="Views\Main\Message.cshtml" />
+    <Content Include="Views\Main\GisMap.cshtml" />
+    <Content Include="Views\Main\WorldMap.cshtml" />
+    <Content Include="Views\MapSummary\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

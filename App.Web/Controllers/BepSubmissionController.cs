@@ -646,7 +646,7 @@ namespace AppProj.Web.Controllers
                     ,
                     FinancialLoss = g.Sum(c => c.FinancialLoss)
                     ,
-                    WorkFromHomeStaffCount = g.Sum(c => c.UpazilaCoverageCount)
+                    WorkFromHomeStaffCount = g.Sum(c => c.WorkFromHomeStaffCount)
                     ,
                     InsertedById = -1
                     ,

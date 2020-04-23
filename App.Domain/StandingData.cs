@@ -66,6 +66,7 @@ namespace AppProj.Domain
         public Nullable<decimal> Latitude { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public Nullable<int> ParentId { get; set; }
+        public Nullable<int> People { get; set; }
     
         public virtual ICollection<BEPData> BEPDatas { get; set; }
         public virtual ICollection<BEPData> BEPDatas1 { get; set; }

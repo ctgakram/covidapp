@@ -242,6 +242,43 @@
           <Property Name="Sticker" Type="int" Nullable="false" />
           <Property Name="InsertedById" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="MapSummary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProgramId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="SummerizedData_ReachCount" Type="int" />
+          <Property Name="DetailData_TotalCount" Type="int" />
+          <Property Name="DetailData_MaleCount" Type="int" />
+          <Property Name="DetailData_FemaleCount" Type="int" />
+          <Property Name="DetailData_MalePercent" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="DetailData_FemalePercent" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="PeopleIndex" Type="int" />
+          <Property Name="HealthIndex" Type="int" />
+          <Property Name="SupportIndex" Type="int" />
+          <Property Name="Population" Type="int" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="7" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="7" />
+          <Property Name="HospitalCount" Type="int" />
+          <Property Name="BedCount" Type="int" />
+          <Property Name="TotalQuarantine" Type="int" />
+          <Property Name="TotalReleased" Type="int" />
+          <Property Name="CurrentQuarantine" Type="int" />
+          <Property Name="TotalDoTestOn" Type="int" />
+          <Property Name="TotalDeath" Type="int" />
+          <Property Name="PlannedRice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedPotato" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedDal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalRice" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalDal" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPotato" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="TotalReliefFamily" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
         <EntityType Name="ProgramByUserProfiles">
           <Key>
             <PropertyRef Name="Id" />
@@ -298,6 +335,7 @@
           <Property Name="Latitude" Type="decimal" Precision="18" Scale="7" />
           <Property Name="Longitude" Type="decimal" Precision="18" Scale="7" />
           <Property Name="ParentId" Type="int" />
+          <Property Name="People" Type="int" />
         </EntityType>
         <EntityType Name="SummerizedData">
           <Key>
@@ -1014,6 +1052,8 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           <Parameter Name="Budget2ApprovalDate" Type="date" Mode="In" />
           <Parameter Name="day" Type="int" Mode="In" />
         </Function>
+        <Function Name="GetCSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GenerateMapSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SprMailSend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SprProjectsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectId" Type="int" Mode="In" />
@@ -1029,6 +1069,7 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           <EntitySet Name="DistrictSummery" EntityType="Self.DistrictSummery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Features" EntityType="Self.Features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HnppData" EntityType="Self.HnppData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MapSummary" EntityType="Self.MapSummary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramByUserProfiles" EntityType="Self.ProgramByUserProfiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleDefaultPages" EntityType="Self.RoleDefaultPages" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleFeatures" EntityType="Self.RoleFeatures" Schema="dbo" store:Type="Tables" />
@@ -1637,6 +1678,9 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="StandingData" EntitySet="StandingDatas" />
             <End Role="DetailData" EntitySet="DetailDatas" />
           </AssociationSet>
+          <EntitySet Name="MapSummaries" EntityType="AppModel.MapSummary" />
+          <FunctionImport Name="GetCSV" />
+          <FunctionImport Name="SP_GenerateMapSummary" ReturnType="Collection(AppModel.SP_GenerateMapSummary_Result)" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -2122,6 +2166,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="SummerizedDatas1" Relationship="AppModel.FK_SummerizedData_StandingDatas1" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas2" Relationship="AppModel.FK_SummerizedData_StandingDatas2" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="DetailDatas4" Relationship="AppModel.FK_DetailData_StandingDatas4" FromRole="StandingData" ToRole="DetailData" />
+          <Property Name="People" Type="Int32" />
         </EntityType>
         <EntityType Name="SummerizedData">
           <Key>
@@ -2845,6 +2890,77 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="MapSummary">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProgramId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="SummerizedData_ReachCount" Type="Int32" />
+          <Property Name="DetailData_TotalCount" Type="Int32" />
+          <Property Name="DetailData_MaleCount" Type="Int32" />
+          <Property Name="DetailData_FemaleCount" Type="Int32" />
+          <Property Name="DetailData_MalePercent" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DetailData_FemalePercent" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="PeopleIndex" Type="Int32" />
+          <Property Name="HealthIndex" Type="Int32" />
+          <Property Name="SupportIndex" Type="Int32" />
+          <Property Name="Population" Type="Int32" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="7" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="7" />
+          <Property Name="HospitalCount" Type="Int32" />
+          <Property Name="BedCount" Type="Int32" />
+          <Property Name="TotalQuarantine" Type="Int32" />
+          <Property Name="TotalReleased" Type="Int32" />
+          <Property Name="CurrentQuarantine" Type="Int32" />
+          <Property Name="TotalDoTestOn" Type="Int32" />
+          <Property Name="TotalDeath" Type="Int32" />
+          <Property Name="PlannedRice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedPotato" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedDal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="PlannedMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalRice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalDal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPotato" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalReliefFamily" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <ComplexType Name="SP_GenerateMapSummary_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="ProgramId" Nullable="true" />
+          <Property Type="Int32" Name="DivisionId" Nullable="true" />
+          <Property Type="Int32" Name="DistrictId" Nullable="true" />
+          <Property Type="Int32" Name="SummerizedData_ReachCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_TotalCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_MaleCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_FemaleCount" Nullable="true" />
+          <Property Type="Decimal" Name="DetailData_MalePercent" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="DetailData_FemalePercent" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Int32" Name="PeopleIndex" Nullable="true" />
+          <Property Type="Int32" Name="HealthIndex" Nullable="true" />
+          <Property Type="Int32" Name="SupportIndex" Nullable="true" />
+          <Property Type="Int32" Name="Population" Nullable="true" />
+          <Property Type="Decimal" Name="Latitude" Nullable="true" Precision="18" Scale="7" />
+          <Property Type="Decimal" Name="Longitude" Nullable="true" Precision="18" Scale="7" />
+          <Property Type="Int32" Name="HospitalCount" Nullable="true" />
+          <Property Type="Int32" Name="BedCount" Nullable="true" />
+          <Property Type="Int32" Name="TotalQuarantine" Nullable="true" />
+          <Property Type="Int32" Name="TotalReleased" Nullable="true" />
+          <Property Type="Int32" Name="CurrentQuarantine" Nullable="true" />
+          <Property Type="Int32" Name="TotalDoTestOn" Nullable="true" />
+          <Property Type="Int32" Name="TotalDeath" Nullable="true" />
+          <Property Type="Decimal" Name="PlannedRice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PlannedPotato" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PlannedDal" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="PlannedMoney" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalRice" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalDal" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalPotato" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalMoney" Nullable="true" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="TotalReliefFamily" Nullable="true" Precision="18" Scale="2" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3160,6 +3276,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="StandingDatas">
             <EntityTypeMapping TypeName="AppModel.StandingData">
               <MappingFragment StoreEntitySet="StandingDatas">
+                <ScalarProperty Name="People" ColumnName="People" />
                 <ScalarProperty Name="ParentId" ColumnName="ParentId" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
@@ -3222,6 +3339,83 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="MapSummaries">
+            <EntityTypeMapping TypeName="AppModel.MapSummary">
+              <MappingFragment StoreEntitySet="MapSummary">
+                <ScalarProperty Name="TotalReliefFamily" ColumnName="TotalReliefFamily" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="TotalPotato" ColumnName="TotalPotato" />
+                <ScalarProperty Name="TotalDal" ColumnName="TotalDal" />
+                <ScalarProperty Name="TotalRice" ColumnName="TotalRice" />
+                <ScalarProperty Name="PlannedMoney" ColumnName="PlannedMoney" />
+                <ScalarProperty Name="PlannedDal" ColumnName="PlannedDal" />
+                <ScalarProperty Name="PlannedPotato" ColumnName="PlannedPotato" />
+                <ScalarProperty Name="PlannedRice" ColumnName="PlannedRice" />
+                <ScalarProperty Name="TotalDeath" ColumnName="TotalDeath" />
+                <ScalarProperty Name="TotalDoTestOn" ColumnName="TotalDoTestOn" />
+                <ScalarProperty Name="CurrentQuarantine" ColumnName="CurrentQuarantine" />
+                <ScalarProperty Name="TotalReleased" ColumnName="TotalReleased" />
+                <ScalarProperty Name="TotalQuarantine" ColumnName="TotalQuarantine" />
+                <ScalarProperty Name="BedCount" ColumnName="BedCount" />
+                <ScalarProperty Name="HospitalCount" ColumnName="HospitalCount" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="SupportIndex" ColumnName="SupportIndex" />
+                <ScalarProperty Name="HealthIndex" ColumnName="HealthIndex" />
+                <ScalarProperty Name="PeopleIndex" ColumnName="PeopleIndex" />
+                <ScalarProperty Name="DetailData_FemalePercent" ColumnName="DetailData_FemalePercent" />
+                <ScalarProperty Name="DetailData_MalePercent" ColumnName="DetailData_MalePercent" />
+                <ScalarProperty Name="DetailData_FemaleCount" ColumnName="DetailData_FemaleCount" />
+                <ScalarProperty Name="DetailData_MaleCount" ColumnName="DetailData_MaleCount" />
+                <ScalarProperty Name="DetailData_TotalCount" ColumnName="DetailData_TotalCount" />
+                <ScalarProperty Name="SummerizedData_ReachCount" ColumnName="SummerizedData_ReachCount" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCSV" FunctionName="AppModel.Store.GetCSV" />
+          <FunctionImportMapping FunctionImportName="SP_GenerateMapSummary" FunctionName="AppModel.Store.SP_GenerateMapSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AppModel.SP_GenerateMapSummary_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="SummerizedData_ReachCount" ColumnName="SummerizedData_ReachCount" />
+                <ScalarProperty Name="DetailData_TotalCount" ColumnName="DetailData_TotalCount" />
+                <ScalarProperty Name="DetailData_MaleCount" ColumnName="DetailData_MaleCount" />
+                <ScalarProperty Name="DetailData_FemaleCount" ColumnName="DetailData_FemaleCount" />
+                <ScalarProperty Name="DetailData_MalePercent" ColumnName="DetailData_MalePercent" />
+                <ScalarProperty Name="DetailData_FemalePercent" ColumnName="DetailData_FemalePercent" />
+                <ScalarProperty Name="PeopleIndex" ColumnName="PeopleIndex" />
+                <ScalarProperty Name="HealthIndex" ColumnName="HealthIndex" />
+                <ScalarProperty Name="SupportIndex" ColumnName="SupportIndex" />
+                <ScalarProperty Name="Population" ColumnName="Population" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="HospitalCount" ColumnName="HospitalCount" />
+                <ScalarProperty Name="BedCount" ColumnName="BedCount" />
+                <ScalarProperty Name="TotalQuarantine" ColumnName="TotalQuarantine" />
+                <ScalarProperty Name="TotalReleased" ColumnName="TotalReleased" />
+                <ScalarProperty Name="CurrentQuarantine" ColumnName="CurrentQuarantine" />
+                <ScalarProperty Name="TotalDoTestOn" ColumnName="TotalDoTestOn" />
+                <ScalarProperty Name="TotalDeath" ColumnName="TotalDeath" />
+                <ScalarProperty Name="PlannedRice" ColumnName="PlannedRice" />
+                <ScalarProperty Name="PlannedPotato" ColumnName="PlannedPotato" />
+                <ScalarProperty Name="PlannedDal" ColumnName="PlannedDal" />
+                <ScalarProperty Name="PlannedMoney" ColumnName="PlannedMoney" />
+                <ScalarProperty Name="TotalRice" ColumnName="TotalRice" />
+                <ScalarProperty Name="TotalDal" ColumnName="TotalDal" />
+                <ScalarProperty Name="TotalPotato" ColumnName="TotalPotato" />
+                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
+                <ScalarProperty Name="TotalReliefFamily" ColumnName="TotalReliefFamily" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -53,6 +53,16 @@ namespace AppProj.Web.Controllers
             return View(data);
         }
 
+        public ActionResult GisMap()
+        {
+            return View();
+        }
+
+        public ActionResult WorldMap()
+        {
+            return View();
+        }
+
         public ActionResult Dashboard()
         {
             return View();
