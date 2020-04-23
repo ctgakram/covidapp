@@ -51,48 +51,24 @@
                 </div>
             </fieldset>
         </div>
-        <div class="span1 utopia-form-freeSpace">
+        <div class="span5 utopia-form-freeSpace">
             <fieldset>
                 <div class="control-group ">
-                    <label class="control-label" for="ContentTypeId3">
-                        জনসংখ্যা
+                    <label class="control-label" >
+                        <span class="control-label">জনসংখ্যা</span>
+                        <span class="control-label" style="padding-left:50px;">স্বাস্থ্যগত তথ্য</span>
+                        <span class="control-label" style="padding-left:50px;"> মানবিক সহায়তা </span> 
+                        <span class="control-label" style="padding-left:50px;">  ব্র্যাকের অবস্থান </span>
                     </label>
                     <div class="controls">
                         <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px;" /> @Html.CheckBox("isPeople", true)
+                        <img src="~/Content/img/icons/map/health.svg" style="padding-right:10px; padding-left:35px;" /> @Html.CheckBox("isHealth", true)
+                        <img src="~/Content/img/icons/map/relief.svg" style="padding-right:10px; padding-left:55px;" /> @Html.CheckBox("isGovtSupport", true)
+                        <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px; padding-left:70px;" /> @Html.CheckBox("isBrac", true)
                     </div>
                 </div>
             </fieldset>
-        </div>
-        <div class="span1 utopia-form-freeSpace">
-            <fieldset>
-                <div class="control-group ">
-                    <label class="control-label" for="ContentTypeId3">স্বাস্থ্যগত তথ্য</label>
-                    <div class="controls">
-                        <img src="~/Content/img/icons/map/health.svg" style="padding-right:10px;" /> @Html.CheckBox("isHealth", true)
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="span2 utopia-form-freeSpace">
-            <fieldset>
-                <div class="control-group ">
-                    <label class="control-label" for="ContentTypeId3">মানবিক সহায়তা</label>
-                    <div class="controls">
-                        <img src="~/Content/img/icons/map/relief.svg" style="padding-right:10px;" /> @Html.CheckBox("isGovtSupport", true)
-                    </div>
-                </div>
-            </fieldset>
-        </div>
-        <div class="span1 utopia-form-freeSpace">
-            <fieldset>
-                <div class="control-group ">
-                    <label class="control-label" for="ContentTypeId3">ব্র্যাক</label>
-                    <div class="controls">
-                        <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px;" />
-                    </div>
-                </div>
-            </fieldset>
-        </div>
+        </div>       
         <div class="span2 utopia-form-freeSpace">
             <fieldset>
                 <div class="control-group">
@@ -101,10 +77,10 @@
                     </label>
                     <div class="controls">
                         <select class="span12 ddl" data-val="true" data-val-number="The field must be a number." data-val-required="The ContentTypeId1 field is required." id="ContentTypeId2" name="ContentTypeId2">
-                            <option value="">সকল অগ্রাধিকার</option>
-                            <option value="1">ঠিক আছে (সবুজ )</option>
-                            <option value="2">মনোযোগ দেয়া প্রয়োজন (হলুদ )</option>
-                            <option value="3">ভয়াবহ (লাল )</option>
+                            <option value="" style="color:#000;">সকল অগ্রাধিকার</option>
+                            <option value="1" style="color:#11be11;">ঠিক আছে (সবুজ )</option>
+                            <option value="2" style="color:#eacb20;">মনোযোগ দেয়া প্রয়োজন (হলুদ )</option>
+                            <option value="3" style="color:#f00;">ভয়াবহ (লাল )</option>
                         </select>
                     </div>
                 </div>
