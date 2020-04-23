@@ -8,6 +8,9 @@ namespace AppProj.Domain.ModelExt
 {
     public class BERDataItemWiseQuantityExt
     {
+        public string Program { get; set; }
+        public string Division { get; set; }
+        public string District { get; set; }
         public string Item { get; set; }
         public string Activity { get; set; }
         public int Quantity { get; set; }
@@ -38,6 +41,9 @@ namespace AppProj.Domain.ModelExt
 
         public int Cat7NewReach { get; set; }
         public int Cat7OldReach { get; set; }
+
+        public int Cat8NewReach { get; set; }
+        public int Cat8OldReach { get; set; }
 
     }
 }

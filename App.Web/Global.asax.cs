@@ -73,6 +73,7 @@ namespace AppProj.Web
                 .RegisterType<IDistrictQuestionRepository, DistrictQuestionRepository>(new HttpContextLifetimeManager<IDistrictQuestionRepository>())
                 .RegisterType<IStandingDataPcRelationRepository, StandingDataPcRelationRepository>(new HttpContextLifetimeManager<IStandingDataPcRelationRepository>())
                 .RegisterType<IBERDataPeopleWiseQuantityRepository, BERDataPeopleWiseQuantityRepository>(new HttpContextLifetimeManager<IBERDataPeopleWiseQuantityRepository>())
+                .RegisterType<IMapSummaryRepository, MapSummaryRepository>(new HttpContextLifetimeManager<IMapSummaryRepository>())
 
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
@@ -90,6 +91,7 @@ namespace AppProj.Web
                 .RegisterType<IBepDataService, BepDataService>(new HttpContextLifetimeManager<IBepDataService>())
                 .RegisterType<IProgramByUserProfileService, ProgramByUserProfileService>(new HttpContextLifetimeManager<IProgramByUserProfileService>())
                 .RegisterType<IDistrictQuestionService, DistrictQuestionService>(new HttpContextLifetimeManager<IDistrictQuestionService>())
+                .RegisterType<IMapSummaryService, MapSummaryService>(new HttpContextLifetimeManager<IMapSummaryService>())
 
             ;
 
@@ -334,6 +336,16 @@ namespace AppProj.Web
 
     public static class StandingDataTypes
     {
+        public static string TreeActivity
+        {
+            get { return "TAC"; }
+        }
+
+        public static string TreeMessage
+        {
+            get { return "TMS"; }
+        }
+
         public static string Programs
         {
             get { return "SRC"; }

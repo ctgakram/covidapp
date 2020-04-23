@@ -48,6 +48,7 @@ namespace AppProj.Domain
         public DbSet<UserLoginLog> UserLoginLogs { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
+        public DbSet<MapSummary> MapSummaries { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)
@@ -425,6 +426,16 @@ namespace AppProj.Domain
         public virtual ObjectResult<SprMailSend_Result> SprMailSend()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SprMailSend_Result>("SprMailSend");
+        }
+    
+        public virtual int GetCSV()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetCSV");
+        }
+    
+        public virtual ObjectResult<SP_GenerateMapSummary_Result> SP_GenerateMapSummary()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GenerateMapSummary_Result>("SP_GenerateMapSummary");
         }
     }
 }

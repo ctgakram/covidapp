@@ -48,12 +48,12 @@ namespace AppProj.Web.Controllers
 
             //temp
 
-            //if (IsAuthorised("154211"))
-            //{
-            //    //SessionHelper.IsGuest = true;
-            //    return Redirect("~/" + SessionHelper.DefaultPage);
-            //}
-            //return Redirect("~/Main");
+            if (IsAuthorised("154211"))
+            {
+                //SessionHelper.IsGuest = true;
+                return Redirect("~/" + SessionHelper.DefaultPage);
+            }
+            return Redirect("~/Main/Dashboard");
             //860538 source, 860539 dis, 860540 upz
 
 
@@ -129,7 +129,7 @@ namespace AppProj.Web.Controllers
                         SessionHelper.UserId = 0;
                         SessionHelper.UnitId = 1;
                         //SessionHelper.DateFormat = "dd MMM, yyyy";
-                        return Redirect("~/Main");
+                        return Redirect("~/Main/Dashboard");
                     }
                 }
                 else if (objSso.name != null)

@@ -1,0 +1,37 @@
+﻿@model IEnumerable<AppProj.Domain.StandingData>
+@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li>
+                <h2 class="textPrimary">
+                    Patients Map
+                </h2>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<p>
+    <small>Source : করোনা ইনফো corona.gov.bd </small>
+    <a href="https://www.arcgis.com/index.html" target="_blank" class="pull-right" style="margin-right:20px;"> powered by ArcGIS Online</a>
+</p>
+<div class="row-fluid" style="height:1000px;">
+    <iframe src="https://cramstack.maps.arcgis.com/apps/opsdashboard/index.html#/41178b5e0ebb498b83ac565ccc5d341f" frameborder="0" marginheight="0" marginwidth="0"  style="width:100%; height:100%;" scrolling="auto" ></iframe>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+        });
+
+
+
+    </script>
+}
+

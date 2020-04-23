@@ -92,6 +92,9 @@
     <Compile Include="HnppData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="MapSummary.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelExt\BERDataItemWiseQuantityExt.cs" />
     <Compile Include="ModelExt\ChartModel.cs" />
     <Compile Include="ProgramByUserProfile.cs">
@@ -129,6 +132,9 @@
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SprRptProductMatrix_Result.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SP_GenerateMapSummary_Result.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StandingData.cs">

@@ -3,7 +3,7 @@ var keepSessionAliveUrl = null;
 //var totalRecordCount = 0;
 
 /*general modal functions*/
-function openDialog1(title) {
+function openDialog1(title) {    
     $('#dialog1Label').html(title);
     $('#dialog1').modal('show');
 }
@@ -50,6 +50,36 @@ function runHeartBit() {
         }
     });
 }
+
+function LoadMenuTop(url) {
+
+    var jsonTopMenuText = $.ajax({
+        url: url,
+        dataType: "json",
+        async: false
+    }).responseText;
+
+    var jsonTopMenuData = JSON.parse(jsonTopMenuText);
+
+    var topMenuActivities = '';
+    var topMenuMessages = '';
+    var topMenuAct = document.getElementById('topMenuAct');
+    var topMenuMsg = document.getElementById('topMenuMsg');
+
+    $.each(jsonTopMenuData.act, function (index, element) {
+        topMenuActivities = topMenuActivities + element.Name;
+    });
+    topMenuAct.innerHTML = topMenuActivities;
+
+    $.each(jsonTopMenuData.msg, function (index, element) {
+        topMenuMessages = topMenuMessages + element.Name;
+        //+ '<li class="message new">< div class="msg" >' + element.Name + '</div></li>' ;
+    });
+
+    topMenuMsg.innerHTML = topMenuMessages;
+
+}
+
 
 function LoadDropDownList(objDDLId, url, optionalLabel, objDataTableToReload) {
     var objDDL = $("#" + objDDLId);

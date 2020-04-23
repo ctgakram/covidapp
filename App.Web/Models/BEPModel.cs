@@ -59,26 +59,29 @@ namespace AppProj.Web.Models
         public System.DateTime Date { get; set; }
         public int ActivityId { get; set; }
         
-        public int Cat1NewReach { get; set; }
+        public int Cat1NewReach { get; set; } //male
         public int Cat1OldReach { get; set; }
 
-        public int Cat2NewReach { get; set; }
+        public int Cat2NewReach { get; set; } //female
         public int Cat2OldReach { get; set; }
 
-        public int Cat3NewReach { get; set; }
+        public int Cat3NewReach { get; set; } //boy
         public int Cat3OldReach { get; set; }
 
-        public int Cat4NewReach { get; set; }
+        public int Cat4NewReach { get; set; } //girl
         public int Cat4OldReach { get; set; }
 
-        public int Cat5NewReach { get; set; }
+        public int Cat5NewReach { get; set; } //PWD
         public int Cat5OldReach { get; set; }
 
-        public int Cat6NewReach { get; set; }
+        public int Cat6NewReach { get; set; } //HHS
         public int Cat6OldReach { get; set; }
 
-        public int Cat7NewReach { get; set; }
+        public int Cat7NewReach { get; set; } //not classified
         public int Cat7OldReach { get; set; }
+
+        public int Cat8NewReach { get; set; } //pregnant
+        public int Cat8OldReach { get; set; }
 
         public List<BEPDetailModel> BEPDetailModels { get; set; }
 

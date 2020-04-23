@@ -162,5 +162,12 @@ namespace AppProj.Service.ServicesImpl
         {
             servicePcRepository.Delete(entity);
         }
+
+        public IEnumerable<StandingData> GetAllDataById(int id)
+        {
+            return serviceRepository
+                .GetMany(c => c.Id == id)
+                .OrderBy(d => d.Name);
+        }
     }
 }

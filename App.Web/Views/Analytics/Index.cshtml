@@ -1,26 +1,79 @@
-﻿<div>
-    @{
-        ViewBag.Title = "e-Assets";
-        Layout = "~/Views/Shared/_LayoutMain.cshtml";
-    }
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+﻿@{
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
 
-    <div class="row-fluid">
-        <div class="span12">
-            <div id="chart_div3" style="width: 1000px; height: 500px;"></div>
-        </div>
-        <div class="span12">
-            <div id="piechart2" style="width: 1000px; height: 500px;"></div>
-        </div>
-        <div class="span12">
-            <div id="barchart" style="width: 1000px; height: 300px;"></div>
-        </div>
-        <div class="span12">
-            <div id="piechart" style="width: 1000px; height: 500px;"></div>
-        </div>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
+<div class="row-fluid">
+    <div class="span12">
+
+        <section class="utopia-widget">
+            <div class="utopia-widget-title">
+                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                <span>জেলা ভিত্তিক  সম্ভাব্য রোগীর পরিসংখ্যান</span>
+            </div>
+
+            <div class="utopia-widget-content">
+
+                <div id="chart_div3" style="width: 100%; height: 500px;"></div>
+
+            </div>
+        </section>
     </div>
 </div>
+
+<div class="row-fluid">
+    <div class="span6">
+
+        <section class="utopia-widget">
+            <div class="utopia-widget-title">
+                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                <span>বয়স অনুসারে সম্ভাব্য রোগীর পরিসংখ্যান</span>
+            </div>
+
+            <div class="utopia-widget-content">
+
+                <div id="piechart2" style="width: 100%; height: 500px;"></div>
+
+            </div>
+        </section>
+    </div>
+
+    <div class="span6">
+
+        <section class="utopia-widget">
+            <div class="utopia-widget-title">
+                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                <span>সোর্স অনুসারে প্রাপ্ত ডাটা</span>
+            </div>
+
+            <div class="utopia-widget-content">
+
+                <div id="piechart" style="width: 100%; height: 500px;"></div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+
+        <section class="utopia-widget">
+            <div class="utopia-widget-title">
+                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                <span>জেলা অনুসারে প্রাপ্ত ডাটার পরিসংখ্যান</span>
+            </div>
+
+            <div class="utopia-widget-content">
+
+                <div id="barchart" style="width: 100%; height: 300px;"></div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
@@ -46,7 +99,7 @@
                 var data = google.visualization.arrayToDataTable(jdata);
 
                 var options = {
-                    title: 'জেলা ভিত্তিক  সম্ভাব্য রোগীর পরিসংখ্যান',
+                    title: '',
                     vAxis: { title: 'জনসংখ্যা' },
                     hAxis: { title: 'জেলা' },
                     seriesType: 'bars',
@@ -84,7 +137,7 @@
 
                 var options = {
                     /**/
-                    title: 'সোর্স অনুসারে প্রাপ্ত ডাটা',
+                    title: '',
                     /**/
                     is3D: true,
                 };
@@ -121,7 +174,7 @@
 
                 var options = {
                     /**/
-                    title: 'বয়স অনুসারে সম্ভাব্য রোগীর পরিসংখ্যান ',
+                    title: '',
                     /**/
                     is3D: true,
                 };
@@ -144,7 +197,7 @@
                 var data = google.visualization.arrayToDataTable(jdata);
 
                 var options = {
-                    title: 'জেলা অনুসারে প্রাপ্ত ডাটার পরিসংখ্যান',
+                    title: '',
                     is3D: true,
                 };
 

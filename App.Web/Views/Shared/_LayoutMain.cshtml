@@ -13,51 +13,11 @@
 @using AppProj.Web.Helpers;
 
 <body>
-    <div class="container">
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="header-top">
-                    <div class="header-wrapper">
-                        <div class="span8">
-                            <h3 style="line-height: 47px;">COVID-19 Response</h3>
-                        </div>
+    <div class="container-fluid">
 
-                        <div class="header-right">
-                            <div class="header-divider">&nbsp;</div>
-                            <div class="user-panel header-divider">
-                                <div class="user-info pull-right">
-                                    <img src="~/Content/img/icons/id.png" alt="">
-                                    <a href="#">@SessionHelper.UserName</a>
-                                </div>
-                                <div class="user-dropbox">
-                                    <ul>
-                                        @{ try
-                                            {
-
-                                                if (SessionHelper.IsGuest)
-                                                {
-                                                    <li>
-                                                        <a data-ajax-method="GET" data-ajax-mode="replace" data-ajax-loading="#loading" data-ajax-failure="failure" data-ajax="true" href="~/UserProfile/ChangePassword" data-ajax-update="#dialog1Body" data-ajax-success="openDialog1('Change Password')">Change Password</a>
-                                                    </li>
-                                                }
-                                            }
-                                            catch { }
-                                        }
-                                        <li class="logout">
-                                            <a href="@SsoUtility.SsoLogout?site=@SsoUtility.Site" style="color: #f00">Sign Out</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @Html.Partial("_LayoutPartial")
 
         <div class="row-fluid">
-            @{var dt = DateTime.Now;}
 
             <div class="sidebar-container span2">
                 <div class="sidebar">
@@ -70,226 +30,85 @@
                             </a>
                         </div>
                     </div>
-                    <div class="nav-collapse leftmenu collapse" style="height: 0px;">
-                        <img src="~/Content/logo/brac_logo.png" style="width:80%;" />
-                        <h2 class="muted">&nbsp;@String.Format("{0:MMM dd, yyyy}", dt)</h2>
-                        <h4 style="color: #d17f44">&nbsp;@String.Format("{0:dddd}", dt)</h4>
-                        <div class="accordion" id="accordion2" style="padding-top: 15px;">
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/stats_lines.png">&nbsp;
-                                        <strong>
-                                            <a href="~/Main">ড্যাশবোর্ড </a>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/stats_lines.png">&nbsp;
-                                        <strong>
-                                            <a href="~/Analytics">Analytics</a>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/star.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("মোট পরিদর্শন", "Index", "SummerySubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/power.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("সম্ভাব্য রোগী", "Index", "DetailSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
+                    <div class="nav-collapse collapse leftmenu">
 
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/pyramid.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("ব্র্যাক হেলথ", "Index", "HnppSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
+                        <ul>
+                            @*<li><a class="dashboard smronju" href="~/Main/Dashboard" title="Dashboard"><span>ড্যাশবোর্ড</span></a></li>*@
+                            <li><a class="tables" href="~/SummerySubmission/Index" title="Total reach"><span>মোট পরিদর্শন</span></a>
+                            <li><a class="widgets smronju" href="~/DetailSubmission/Index" title="Suspected patients"><span>সম্ভাব্য রোগী</span></a></li>
+                            <li><a class="wizard-form smronju" href="~/HnppSubmission/Index" title="HNPP Data"><span>ব্র্যাক হেলথ</span></a></li>
+                            <li>
+                                <a class="editor" href="javascript:void(0)" title="Program data"><span>প্রোগ্রাম ডাটা</span></a>
+                                <ul class="dropdown">
+                                    <li><a class="simple smronju" href="~/BepSubmission/Index" title="Data entry"><span>ডাটা এন্ট্রি</span></a></li>
+                                    <li><a class="wizard-form smronju" href="~/BepSubmission/IndexItem" title="Total counts"><span>মোট তথ্য</span></a></li>
+                                    <li><a class="grid" href="~/BepSubmission/IndexCount" title="Detail counts"><span>বিস্তারিত তথ্য</span></a></li>
+                                </ul>
+                            </li>
 
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/bold.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("All Program", "Index", "BepSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/bold.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("All Program Count", "IndexItem", "BepSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/attachment.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("জেলার প্রতিদিনের মন্তব্য (BDC)", "Index", "DistrictSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/attachment.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("জেলার প্রতিদিনের  তথ্য (BDC)", "IndexReleif", "DistrictSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/monitor.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("জেলার Summary (BDC)", "IndexSum", "DistrictSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/stats_lines.png">&nbsp;
-                                        <strong>
-                                            <a href="~/Analytics/GoB">GoB Emergency Response</a>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/stats_lines.png">&nbsp;
-                                        <strong>
-                                            @Html.ActionLink("BRAC Coronarodh App", "IndexApp", "DetailSubmission")
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-group">
-                                <div class="accordion-heading">
-                                    <div class="accordion-toggle">
-                                        <img title="Administrator" src="~/Content/img/icons/stats_lines.png">&nbsp;
-                                        <strong>
-                                            <a href="~/Analytics/Survey">Survey</a>
-                                        </strong>
-                                    </div>
-                                </div>
-                            </div>
-                            @if (UserRole.Check("USER", SessionHelper.Role)
-                                || UserRole.Check("ALL_PROGRAM", SessionHelper.Role)
-                                || UserRole.Check("BDC_ADMIN", SessionHelper.Role)
-                                || UserRole.Check("ROLE", SessionHelper.Role)
-                                )
+                            <li>
+                                <a class="list" href="javascript:void(0)" title="Data by BDC"><span>বি.ডি.সি. তথ্য</span></a>
+                                <ul class="dropdown">
+                                    <li><a class="tables" href="~/DistrictSubmission/Index" title="Comments from district"><span>জেলার মন্তব্য</span></a>
+                                    <li><a class="widgets smronju" href="~/DistrictSubmission/IndexReleif" title="District daily update"><span>জেলার প্রতিদিনের তথ্য</span></a></li>
+                                    <li><a class="elements" href="~/DistrictSubmission/IndexSum" title="Current status of district"><span>জেলার বর্তমান অবস্থা</span></a></li>
+                                </ul>
+                            </li>
+                            <li><a class="icons" href="~/DetailSubmission/IndexApp" title="Coronarodh App"><span>করোনারোধ</span></a></li>
+                            @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
                             {
-                                <div class="accordion-group">
+                                <li>
+                                    <a class="charts" href="javascript:void(0)" title="Standing Data"><span>Standing Data</span></a>
+                                    <ul class="dropdown">
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Programs" title="Programs"><span>Programs</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.HowProgramsAffected" title="Impacted/Affected"><span>Impacted/Affected</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationMaterial" title="Communication Materials"><span>Comm Materials</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationChannel" title="Communication Channels"><span>Comm Channels</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.MaterialsOrItems" title="Materials"><span>Materials</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Activities" title="Activities"><span>Activities</span></a></li>
+                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.RestrictionsOnProgramImplementation" title="Restrictions"><span>Restrictions</span></a></li>
+                                    </ul>
+                                </li>
+                            }
 
-                                    <div class="accordion-heading handle_accordion_event" id="_collapseOne">
-                                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2"
-                                           href="#collapseOne">
-                                            <img title="Administrator" src="~/Content/img/icons/gear.png">&nbsp;<span class="releasetext"><strong>Admin</strong> </span>
-                                        </a>
-                                    </div>
+                            @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
+                            {
+                                <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
+                            }
 
-                                    <div runat="server" id="collapseOne" class="accordion-body collapse" style="height: 0px;">
+                            @if (UserRole.Check("USER", SessionHelper.Role)
+                               || UserRole.Check("ROLE", SessionHelper.Role))
+                            {
+                                <li>
+                                    <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
+                                    <ul class="dropdown">
                                         @if (UserRole.Check("USER", SessionHelper.Role))
                                         {
-                                            <div class="accordion-inner" runat="server" id="UserProfile">
-                                                @Html.ActionLink("User Management", "Index", "UserProfile")
-                                            </div>
+                                            <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
                                         }
-                                        @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
-                                        {
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Programs", "Index/" + StandingDataTypes.Programs, "Standing")
-                                            </div>
-                                            @*<div class="accordion-inner" runat="server" id="Role">
-                            @Html.ActionLink("Reach Type", "Index/RTP", "Standing")
-                        </div>*@
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Impacted/Affected", "Index/" + StandingDataTypes.HowProgramsAffected, "Standing")
-                                            </div>
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Communication Materials", "Index/" + StandingDataTypes.CommunicationMaterial, "Standing")
-                                            </div>
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Communication Channels", "Index/" + StandingDataTypes.CommunicationChannel, "Standing")
-                                            </div>
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Materials", "Index/" + StandingDataTypes.MaterialsOrItems, "Standing")
-                                            </div>
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Activities", "Index/" + StandingDataTypes.Activities, "Standing")
-                                            </div>
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Restriction", "Index/" + StandingDataTypes.RestrictionsOnProgramImplementation, "Standing")
-                                            </div>
-                                        }
-                                        @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
-                                        {
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("BDC Questions", "DistQuestion", "Standing")
-                                            </div>
-                                        }
+
                                         @if (UserRole.Check("ROLE", SessionHelper.Role))
                                         {
-                                            <div class="accordion-inner" runat="server" id="Role">
-                                                @Html.ActionLink("Role & Rights", "Index", "Role")
-                                            </div>
+                                            <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
                                         }
-                                    </div>
-                                </div>
+                                    </ul>
+                                </li>
                             }
-                        </div>
+                        </ul>
+
                     </div>
+
                 </div>
             </div>
-            <div id="MainBody" class="body-container span10">
+
+            <div id="MainBody" class="span10 body-container">
                 @RenderBody()
             </div>
         </div>
-        <hr>
-        <footer>
-            <p class="pull-right muted"><small>BRAC © @DateTime.Now.Year, </small></p>
-        </footer>
+
     </div>
-    @Html.Partial("_LayoutPartial")
+
+    @Html.Partial("_ModalPartial")
 
     <!-- Placed at the end of the document so the pages load faster -->
     @Scripts.Render("~/bundles/jquery")
@@ -299,23 +118,13 @@
 
     <script type="text/javascript">
 
-        $(".handle_accordion_event").click(function () {
-            var value = this.id;
-            value = value.replace('_', '');
-            $.cookie('parent', value);
-        });
-
         $(document).ready(function () {
 
-            if ($.cookie('parent') != null) {
-                var names = $.cookie('parent');
-                $('#' + names).removeClass('accordion-body collapse').addClass('accordion-body in collapse');
-                $('#' + names).css({ 'height': 'auto' });
-            }
+            LoadMenuTop('@Url.Action("MenuData", "Main")');
+
+            KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
 
         });
-
-        KeepSessionAlive('@Url.Content("~/Home/HeartBeat")');
 
     </script>
 </body>

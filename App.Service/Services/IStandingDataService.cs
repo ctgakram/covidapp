@@ -35,5 +35,7 @@ namespace AppProj.Service.Services
         StandingData GetDataById(int id);
         void Add(StandingData entity);
         void Update(StandingData entity);
+
+        IEnumerable<StandingData> GetAllDataById(int id);
     }
 }

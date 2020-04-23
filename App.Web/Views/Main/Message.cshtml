@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AppProj.Domain.StandingData>
+@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+}
+
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li>
+                <h2 class="textPrimary">
+                    BRAC COVID-19 Messages
+                </h2>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<section id="formElement" class="utopia-widget utopia-form-box section">
+    <div class="row-fluid">
+        <div id="message" class="tab-pane active">
+            <ul id="topMenuMsg" class="message-list">
+                @foreach (var v in Model)
+                {
+                    @MvcHtmlString.Create(v.Name)
+                }
+            </ul>            
+        </div>
+    </div>
+</section>
+
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+        });
+
+
+
+    </script>
+}
+

@@ -23,24 +23,53 @@ jQuery('.user-info').click(function(){
 
 
 //notification onclick
-jQuery('.notification-counter').click(function(){
+jQuery('#notCnt').click(function(){
 
     var $counter = jQuery(this);
 
     if(!$counter.hasClass('notification-active')) {
         $counter.addClass('notification-active');
         jQuery('#triangle-down').hide();
-        jQuery('.notification-box').slideDown('fast');			//show notification box
+        jQuery('#notBox').slideDown('fast');			//show notification box
 
     } else {
         $counter.removeClass('notification-active');
         jQuery('#triangle-down').show();
-        jQuery('.notification-box').hide();
+        jQuery('#notBox').hide();
     }
 
     //this will hide user info drop down when visible
     jQuery('.user-info').removeClass('user-active');
     jQuery('.user-dropbox').hide();
+
+    jQuery('#notCnt2').removeClass('notification-active');
+    jQuery('#notBox2').hide();
+
+    return false;
+});
+
+//notification onclick
+jQuery('#notCnt2').click(function () {
+
+    var $counter = jQuery(this);
+
+    if (!$counter.hasClass('notification-active')) {
+        $counter.addClass('notification-active');
+        jQuery('#triangle-down2').hide();
+        jQuery('#notBox2').slideDown('fast');			//show notification box
+
+    } else {
+        $counter.removeClass('notification-active');
+        jQuery('#triangle-down2').show();
+        jQuery('#notBox2').hide();
+    }
+
+    //this will hide user info drop down when visible
+    jQuery('.user-info').removeClass('user-active');
+    jQuery('.user-dropbox').hide();
+
+    jQuery('#notCnt').removeClass('notification-active');
+    jQuery('#notBox').hide();
 
     return false;
 });
@@ -65,7 +94,7 @@ jQuery('.utopia-widget-title').hover(function(){
 });
 
 //show/hide widget content when widget title is clicked
-/* jQuery('.utopia-widget-title').click(function(){
+jQuery('.utopia-widget-title').click(function(){
     if(jQuery(this).next().is(':visible')) {
         console.log(this);
         jQuery(this).next().slideUp('fast');
@@ -75,7 +104,7 @@ jQuery('.utopia-widget-title').hover(function(){
         jQuery(this).removeClass('utopia-widget-title-toggle');
     }
 
-}); */
+});
 
 
 jQuery('.search-panel').hover(function(){

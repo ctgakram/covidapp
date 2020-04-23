@@ -79,6 +79,8 @@
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_UserProfiles" />
+        <AssociationConnector Association="AppModel.FK_DetailData_StandingDatas4" />
+        <EntityTypeShape EntityType="AppModel.MapSummary" Width="1.5" PointX="0.75" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

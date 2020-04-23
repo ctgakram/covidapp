@@ -1,0 +1,304 @@
+﻿@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+}
+
+<div class="row-fluid">
+
+    <!--Chart Icons -->
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/access_point.png">
+            </div>
+            <div class="utopia-chart-heading" id="td2"></div>
+            <div class="utopia-chart-desc">মোট সাক্ষাত নেয়া হয়েছে</div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/emoticon_sleeping.png">
+            </div>
+            <div class="utopia-chart-heading" id="td1"></div>
+            <div class="utopia-chart-desc">সম্ভাব্য রোগীর সংখ্যা</div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/user_woman.png">
+            </div>
+            <div class="utopia-chart-heading" id="td8"></div>
+            <div class="utopia-chart-desc">সম্ভাব্য নারী রোগীর সংখ্যা</div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/game_control.png">
+            </div>
+            <div class="utopia-chart-heading" id="td11"></div>
+            <div class="utopia-chart-desc">করোনারোধ App থেকে প্রাপ্ত </div>
+        </div>
+    </div>
+
+    <!--Chart Icons End -->
+</div>
+
+
+<div class="row-fluid">
+
+    <div class="span12">
+
+        <div class="row-fluid">
+
+            <div class="span6">
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                                <span>সরকারি হিসেবে দেশের সার্বিক অবস্থা</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>হাসপাতালের সংখ্যা</td>
+                                            <td id="tdd1"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>আইসোলেশন বেড সংখ্যা</td>
+                                            <td id="tdd4"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>বর্তমান হোম কোয়ারান্টিন</td>
+                                            <td id="tdd2"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>হোম কোয়ারান্টিন শেষ হয়েছে</td>
+                                            <td id="tdd3"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Covid-19 টেস্ট করা হয়েছে</td>
+                                            <td id="tdd6"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট মৃত্যু</td>
+                                            <td id="tdd5"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons/paragraph_justify.png" class="utopia-widget-icon">
+                                <span>সরকারের সামাজিক নিরাপত্তা তথ্য</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>মোট বরাদ্দ চালের পরিমাণ (মেঃটন)</td>
+                                            <td id="plR"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট বরাদ্দ নগদ অর্থের পরিমাণ (টাকা)</td>
+                                            <td id="plM"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট চাল বিতরণ (মেঃটন)</td>
+                                            <td id="tdr7"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>চাল প্রাপ্ত পরিবার</td>
+                                            <td id="tdr5"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট নগদ অর্থ বিতরণ (টাকা)</td>
+                                            <td id="tdr10"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>নগদ অর্থ প্রাপ্ত পরিবার </td>
+                                            <td id="tdr6"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div><!-- Mid panel -->
+
+            <div class="span6">
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+                        <div class="well utopia-form-tooltip">
+                            <h2>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</h2>
+                            <h3 id="td10"></h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="alert alert-success">
+                            ব্র্যাক সমন্বয় মিটিং করা হয়েছে মোট <strong><span id="tdh2"></span></strong> টি
+                        </div>
+                        <div class="alert alert-info">
+                            সরকারী সমন্বয় মিটিং করা হয়েছে মোট <strong><span id="tdh1"></span> </strong> টি
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-icon">
+                                <img src="~/content/img/icons2/mail.png">
+                            </div>
+                            <div class="utopia-chart-heading" id="tdh3"></div>
+                            <div class="utopia-chart-desc">লিফলেট বিতরণ</div>
+                        </div>
+                    </div>
+
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-icon">
+                                <img src="~/content/img/icons2/notepad.png">
+                            </div>
+                            <div class="utopia-chart-heading" id="tdh4"></div>
+                            <div class="utopia-chart-desc">স্টিকার বিতরণ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-sparkline" id="utopia-sparkline-type1"><canvas style="display: inline-block; width: 48px; height: 48px; vertical-align: top;" width="48" height="48"></canvas></div>
+                            <div class="utopia-chart-heading">চাল </div>
+                            <div class="utopia-chart-desc">মোট বরাদ্দ ও বিতরণ</div>
+                        </div>
+                    </div>
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-sparkline" id="utopia-sparkline-type2"><canvas style="display: inline-block; width: 48px; height: 48px; vertical-align: top;" width="48" height="48"></canvas></div>
+                            <div class="utopia-chart-heading">নগদ অর্থ</div>
+                            <div class="utopia-chart-desc">মোট বরাদ্দ ও বিতরণ</div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Right panel -->
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Body end -->
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/js/jquery.sparkline.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //DatePicker('utopia-dashboard-datepicker', 'dd MMM yyyy');
+            //PrepareMap();
+
+
+            var jsonTableData = $.ajax({
+                url: "SummeryData",
+                dataType: "json",
+                async: false
+            }).responseText;
+
+            var jd = JSON.parse(jsonTableData);
+
+            $('#td1').html(jd.suspect);
+            $('#td2').html(jd.reach);
+            $('#td8').html(jd.femaleSuspect);
+            $('#td9').html(jd.feverBreadth);
+            $('#td10').html(jd.vulnarable);
+            $('#td11').html(jd.app);
+
+            $('#tdd1').html(jd.district.hospital);
+            $('#tdd2').html(jd.district.curquarantine);
+            $('#tdd3').html(jd.district.released);
+            $('#tdd4').html(jd.district.bed);
+            $('#tdd5').html(jd.district.death);
+            $('#tdd6').html(jd.district.test);
+
+            //$('#tdr1').html(jd.district.oil);
+            //$('#tdr2').html(jd.district.soap);
+            //$('#tdr3').html(jd.district.onion);
+            //$('#tdr4').html(jd.district.salt);
+
+            $('#plR').html(jd.district.planRice);
+            $('#plM').html(jd.district.planMoney);
+
+            $('#tdr7').html(jd.district.rice);
+            $('#tdr5').html(jd.district.family);
+            $('#tdr10').html(jd.district.money);
+            $('#tdr6').html(jd.district.person);
+
+            //$('#tdr8').html(jd.district.dal);
+            //$('#tdr9').html(jd.district.potato);
+
+
+            $('#tdh1').html(jd.hnpp.govtMeet);
+            $('#tdh2').html(jd.hnpp.bracMeet);
+            $('#tdh3').html(jd.hnpp.stic);
+            $('#tdh4').html(jd.hnpp.leaf);
+
+            $("#utopia-sparkline-type1").sparkline([jd.district.planRice, jd.district.rice], { type: "pie", height: 48 });
+            $("#utopia-sparkline-type2").sparkline([jd.district.planMoney, jd.district.money], { type: "pie", height: 48 });
+
+        });
+
+
+
+    </script>
+}

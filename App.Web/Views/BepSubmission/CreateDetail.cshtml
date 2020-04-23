@@ -174,26 +174,26 @@
 
             @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPPreparenessActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity/Taka</th><th>Distributed</th><th>Male Reach</th><th>Female Reach</th></tr>")
         }
-    <tr>
-        <td>
-            @Model.BEPPreparenessActivityModels[i].ItemName
-            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ItemId)
-            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].Id)
-            @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ActivityId)
-        </td>
-        <td>
-            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new { @style = "width:100px;" })
-        </td>
-        <td>
-            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new { @style = "width:100px;" })
-        </td>
-        <td>
-            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new { @style = "width:100px;" })
-        </td>
-        <td>
-            @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new { @style = "width:100px;" })
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @Model.BEPPreparenessActivityModels[i].ItemName
+                @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ItemId)
+                @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].Id)
+                @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ActivityId)
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new { @style = "width:100px;" })
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new { @style = "width:100px;" })
+            </td>
+        </tr>
 
     }
     if (Model.BEPPreparenessActivityModels.Count > 0)
@@ -265,7 +265,7 @@
                 </td>
                 <td>
                     @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ReachCount, new { @style = "width:100px;" })
-                </td>               
+                </td>
             </tr>
         }
         <tr>
@@ -327,7 +327,7 @@
             </td>
         </tr>
         <tr>
-            <td>PWD</td>
+            <td>People With Disabilities</td>
             <td>
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5NewReach, new { @style = "width:100px;" })
             </td>
@@ -344,6 +344,18 @@
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6OldReach, new { @style = "width:100px;" })
             </td>
         </tr>
+        if (Model.ProgramId == 860515)
+        {
+            <tr>
+                <td>Pregnant Women</td>
+                <td>
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8NewReach, new { @style = "width:100px;" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8OldReach, new { @style = "width:100px;" })
+                </td>
+            </tr>
+        }
     }
     if (Model.BEPResponseActivityModels.Count > 0)
     {
