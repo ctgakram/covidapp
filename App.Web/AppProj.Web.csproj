@@ -2746,6 +2746,7 @@
     <Content Include="Content\img\fullsize\19.jpg" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\img\icons2\gov.png" />
     <Content Include="Content\img\help.gif" />
     <Content Include="Content\img\hm.jpg" />
     <Content Include="Content\img\homeImages\2.jpg" />
@@ -2828,6 +2829,7 @@
     <Content Include="Content\img\icons2\connect.png" />
     <Content Include="Content\img\icons2\contrast.png" />
     <Content Include="Content\img\icons2\copy.png" />
+    <Content Include="Content\img\icons2\corona.png" />
     <Content Include="Content\img\icons2\cross.png" />
     <Content Include="Content\img\icons2\cutter.png" />
     <Content Include="Content\img\icons2\delete.png" />

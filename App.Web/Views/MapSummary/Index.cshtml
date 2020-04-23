@@ -22,7 +22,7 @@
         <ul class="breadcrumb">
             <li>
                 <h2 class="textPrimary">
-                    Status of different index
+                    Demand and supply mapping
                 </h2>
             </li>
         </ul>
@@ -57,8 +57,8 @@
                     <label class="control-label" >
                         <span class="control-label">জনসংখ্যা</span>
                         <span class="control-label" style="padding-left:50px;">স্বাস্থ্যগত তথ্য</span>
-                        <span class="control-label" style="padding-left:50px;"> মানবিক সহায়তা </span> 
-                        <span class="control-label" style="padding-left:50px;">  ব্র্যাকের অবস্থান </span>
+                        <span class="control-label" style="padding-left:50px;">মানবিক সহায়তা</span> 
+                        <span class="control-label" style="padding-left:50px;">ব্র্যাক অভ্যন্তরীন</span>
                     </label>
                     <div class="controls">
                         <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px;" /> @Html.CheckBox("isPeople", true)
@@ -78,10 +78,11 @@
                     <div class="controls">
                         <select class="span12 ddl" data-val="true" data-val-number="The field must be a number." data-val-required="The ContentTypeId1 field is required." id="ContentTypeId2" name="ContentTypeId2">
                             <option value="" style="color:#000;">সকল অগ্রাধিকার</option>
-                            <option value="1" style="color:#11be11;">ঠিক আছে (সবুজ )</option>
-                            <option value="2" style="color:#eacb20;">মনোযোগ দেয়া প্রয়োজন (হলুদ )</option>
-                            <option value="3" style="color:#f00;">ভয়াবহ (লাল )</option>
+                            <option value="1" style="color:#159d15;">ঠিক আছে</option>
+                            <option value="2" style="color:#cdb21e;">মনোযোগ দেয়া প্রয়োজন</option>
+                            <option value="3" style="color:#f00;">ভয়াবহ</option>
                         </select>
+                        
                     </div>
                 </div>
             </fieldset>
@@ -93,7 +94,7 @@
                         &nbsp;
                     </label>
                     <div class="controls">
-                        <a id="mapSearchButton" class="btn btn-info pull-right"><i class="icon icon-search icon-white"></i> সার্চ </a>
+                        <a id="mapSearchButton" class="btn btn-info pull-right"><i class="icon icon-refresh icon-white"></i> রিলোড</a>
                     </div>
                 </div>
             </fieldset>
