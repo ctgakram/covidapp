@@ -1,0 +1,21 @@
+<svg id="rp" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-1 {
+        opacity: 0;
+      }
+
+      .cls-2 {
+        fill: #ea0000;
+      }
+    </style>
+  </defs>
+  <rect id="Rectangle_136" data-name="Rectangle 136" class="cls-1" width="16" height="16"/>
+  <circle id="Ellipse_8" data-name="Ellipse 8" class="cls-2" cx="7" cy="7" r="7" transform="translate(1)"/>
+  <path id="Polygon_3" data-name="Polygon 3" class="cls-2" d="M3,0,6,5H0Z" transform="translate(11 16) rotate(-180)"/>
+  <path id="Icon_open-people" data-name="Icon open-people" class="cls-3" d="M6.225,0A1.652,1.652,0,0,0,4.844.769,2.5,2.5,0,0,1,5.659,2.63a2.415,2.415,0,0,1-.1.708,1.617,1.617,0,0,0,.668.166,1.725,1.725,0,0,0,1.7-1.748A1.725,1.725,0,0,0,6.225.009ZM2.83.874a1.725,1.725,0,0,0-1.7,1.748A1.725,1.725,0,0,0,2.83,4.37a1.725,1.725,0,0,0,1.7-1.748A1.725,1.725,0,0,0,2.83.874ZM8.206,3.635a2.9,2.9,0,0,1-1.913.734,1.735,1.735,0,0,1,.5,1.171v.577H9.055V4.667a1.189,1.189,0,0,0-.849-1.04ZM.849,4.509A1.189,1.189,0,0,0,0,5.549V7H5.659V5.549a1.189,1.189,0,0,0-.849-1.04,2.91,2.91,0,0,1-1.981.734A2.952,2.952,0,0,1,.849,4.509Z" transform="translate(3.432 2.938)"/>
+</svg>

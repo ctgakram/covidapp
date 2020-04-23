@@ -2,7 +2,7 @@
 @using AppProj.Web;
 @model AppProj.Web.Models.SearchModel
 @{
-    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
     var ajaxOpt = new AjaxOptions
     {
         HttpMethod = "POST",
@@ -16,105 +16,182 @@
     string baseUrl = Request.Url.Scheme + "://" + Request.Url.Authority +
     Request.ApplicationPath.TrimEnd('/');
 }
-<section id="counter-social-icon" class="utopia-widget utopia-form-box">
-    <div class="utopia-widget-title">
-        <img class="utopia-widget-icon" style="margin: 15px 0 0 15px;" src="~/Content/img/icons2/connect.png">
-        <span>পরিদর্শন মানচিত্র</span>
+
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li>
+                <h2 class="textPrimary">
+                    Status of different index
+                </h2>
+            </li>
+        </ul>
+
     </div>
-    <div class="row-fluid">
-        <div class="utopia-widget-content main-container">
-            <div class="row-fluid">
-                <div class="span3">
-                    <h3 class="pull-left muted font-head">Program: </h3>
-                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Programs", new { @class = "ddl" })
+</div>
+<div class="row-fluid">
+    <div class="utopia-widget-content">
+        <div class="span2 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId1">তথ্যের উৎস</label>
+                    <div class="controls">
+                        @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Programs", new { @class = "span12 ddl" })
+
+                    </div>
                 </div>
-                <div class="span3">
-                    <h3 class="pull-left muted font-head">Division: </h3>
-                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "ddl" })
+            </fieldset>
+        </div>
+        <div class="span2 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId2">বিভাগ</label>
+                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "span12 ddl" })
+
                 </div>
-                <div class="span2" style="vertical-align:text-bottom;">
-                    People @Html.CheckBox("isPeople", true)
+            </fieldset>
+        </div>
+        <div class="span1 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId3">
+                        জনসংখ্যা
+                    </label>
+                    <div class="controls">
+                        <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px;" /> @Html.CheckBox("isPeople", true)
+                    </div>
                 </div>
-                <div class="span2" style="vertical-align:text-bottom;">
-                    Health @Html.CheckBox("isHealth", true)
+            </fieldset>
+        </div>
+        <div class="span1 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId3">স্বাস্থ্যগত তথ্য</label>
+                    <div class="controls">
+                        <img src="~/Content/img/icons/map/health.svg" style="padding-right:10px;" /> @Html.CheckBox("isHealth", true)
+                    </div>
                 </div>
-                <div class="span2" style="vertical-align:text-bottom;">
-                    Govt. Support @Html.CheckBox("isGovtSupport", true)
+            </fieldset>
+        </div>
+        <div class="span2 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId3">মানবিক সহায়তা</label>
+                    <div class="controls">
+                        <img src="~/Content/img/icons/map/relief.svg" style="padding-right:10px;" /> @Html.CheckBox("isGovtSupport", true)
+                    </div>
                 </div>
-                <div class="span2">
-                    <a id="mapSearchButton" class="btn">সার্চ <i class="icon icon-search"></i></a>
+            </fieldset>
+        </div>
+        <div class="span1 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group ">
+                    <label class="control-label" for="ContentTypeId3">ব্র্যাক</label>
+                    <div class="controls">
+                        <img src="~/Content/img/icons/map/people.svg" style="padding-right:10px;" />
+                    </div>
                 </div>
-                <br />
-                <!--The div element for the map -->
-                <div id="map"></div>
-            </div>
+            </fieldset>
+        </div>
+        <div class="span2 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="select01">
+                        অগ্রাধিকার ভিত্তি
+                    </label>
+                    <div class="controls">
+                        <select class="span12 ddl" data-val="true" data-val-number="The field must be a number." data-val-required="The ContentTypeId1 field is required." id="ContentTypeId2" name="ContentTypeId2">
+                            <option value="">সকল অগ্রাধিকার</option>
+                            <option value="1">ঠিক আছে (সবুজ )</option>
+                            <option value="2">মনোযোগ দেয়া প্রয়োজন (হলুদ )</option>
+                            <option value="3">ভয়াবহ (লাল )</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="span1 utopia-form-freeSpace">
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label" for="select01">
+                        &nbsp;
+                    </label>
+                    <div class="controls">
+                        <a id="mapSearchButton" class="btn btn-info pull-right"><i class="icon icon-search icon-white"></i> সার্চ </a>
+                    </div>
+                </div>
+            </fieldset>
         </div>
     </div>
-</section>
+</div>
+<div id="map" class="row-fluid">
+</div>
+
+
 @section scripts{
-<script type="text/javascript">
-    $(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
 
-        MapLoadAll();
+            MapLoadAll();
 
-        $(document).on('change', '#ContentTypeId3', function () {
-            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
-                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
-            }
-            else if ($('#ContentTypeId3').val() > 0) {
-                MapLoad($('#ContentTypeId3').val());
-            }
-            else if ($('#ContentTypeId1').val() > 0) {
+            $(document).on('change', '#ContentTypeId3', function () {
+                if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                    MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+                }
+                else if ($('#ContentTypeId3').val() > 0) {
+                    MapLoad($('#ContentTypeId3').val());
+                }
+                else if ($('#ContentTypeId1').val() > 0) {
 
-                MapLoadDivision($('#ContentTypeId1').val());
-            }
-            else {
-                MapLoadAll();
-            }
+                    MapLoadDivision($('#ContentTypeId1').val());
+                }
+                else {
+                    MapLoadAll();
+                }
+            });
+
+            $("#mapSearchButton").click(function () {
+
+                if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                    MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+                }
+                else if ($('#ContentTypeId3').val() > 0) {
+
+                    MapLoad($('#ContentTypeId3').val());
+                }
+                else if ($('#ContentTypeId1').val() > 0) {
+
+                    MapLoadDivision($('#ContentTypeId1').val());
+                }
+                else {
+                    MapLoadAll();
+                }
+
+            });
+
+            $(document).on('change', '#ContentTypeId1', function () {
+                if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+                    MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
+                }
+                else if ($('#ContentTypeId1').val() > 0) {
+                    MapLoadDivision($('#ContentTypeId1').val());
+                }
+                else if ($('#ContentTypeId3').val() > 0) {
+
+                    MapLoad($('#ContentTypeId3').val());
+                }
+                else {
+                    MapLoadAll();
+                }
+            });
+
         });
-
-        $("#mapSearchButton").click(function () {
-
-            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
-                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
-            }
-            else if ($('#ContentTypeId3').val() > 0) {
-                
-                MapLoad($('#ContentTypeId3').val());
-            }
-            else if ($('#ContentTypeId1').val() > 0) {
-
-                MapLoadDivision($('#ContentTypeId1').val());
-            }
-            else {
-                MapLoadAll();
-            }
-
-        });
-
-        $(document).on('change', '#ContentTypeId1', function () {
-            if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
-                MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
-            }
-            else if ($('#ContentTypeId1').val() > 0) {
-                MapLoadDivision($('#ContentTypeId1').val());
-            }
-            else if ($('#ContentTypeId3').val() > 0) {
-
-                MapLoad($('#ContentTypeId3').val());
-            }
-            else {
-                MapLoadAll();
-            }
-        });
-
-    });
-</script>
+    </script>
     <script type="text/javascript">
 
         window.MapLoad = function PrepareMap(id) {
 
-            
+
                 $.ajax({
                     cache: false,
                     url: '@Url.Content("~/MapSummary/GetDataByProgramId")?id=' + id,
@@ -127,7 +204,7 @@
                     }
                 });
         }
-        
+
 
         window.MapLoadAll = function PrepareMap() {
 
@@ -147,7 +224,7 @@
 
         window.MapLoadDivision = function PrepareMap(id) {
 
-            
+
                 $.ajax({
                     cache: false,
                     url: '@Url.Content("~/MapSummary/GetDataByDivisionId")?id=' + id,
@@ -163,7 +240,7 @@
 
          window.MapLoadProgramWiseDivision = function PrepareMap(id1,id2) {
 
-            
+
                 $.ajax({
                     cache: false,
                     url: '@Url.Content("~/MapSummary/GetDataByProgramIdDivisionId")?id1=' + id1 + '&id2=' + id2,
@@ -202,12 +279,12 @@
                     map: map
                 });
 
-                marker.setIcon('@baseUrl/Content/img/icons/people_' + locations[i]["PeopleIndex"] +'.svg')
+                marker.setIcon('@baseUrl/Content/img/icons/map/people_' + locations[i]["PeopleIndex"] +'.svg')
 
                 google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
                     return function () {
 
-                        infowindow.setContent("People" +
+                        infowindow.setContent("জনসংখ্যা" +
                             "<br/>" + "----------------------" +
                             "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
                             "<br/>" + "Population : " + locations[i]["Population"]);
@@ -230,12 +307,12 @@
                     map: map
                 });
 
-                marker2.setIcon('@baseUrl/Content/img/icons/health_' + locations[i]["HealthIndex"] + '.svg')
+                marker2.setIcon('@baseUrl/Content/img/icons/map/health_' + locations[i]["HealthIndex"] + '.svg')
 
                 google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
                     return function () {
 
-                        infowindow.setContent("Health" +
+                        infowindow.setContent("স্বাস্থ্যগত তথ্য" +
                             "<br/>" + "--------------------------" +
                             "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
                             "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
@@ -268,12 +345,12 @@
                     map: map
                 });
 
-                marker3.setIcon('@baseUrl/Content/img/icons/relief_' + locations[i]["SupportIndex"] + '.svg')
+                marker3.setIcon('@baseUrl/Content/img/icons/map/relief_' + locations[i]["SupportIndex"] + '.svg')
 
                 google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
                     return function () {
 
-                        infowindow.setContent("Govt. Support" +
+                        infowindow.setContent("মানবিক সহায়তা" +
                             "<br/>" + "-------------------------" +
                             "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
                             "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
@@ -301,7 +378,7 @@
 
     </script>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=&callback=MapInit">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBC7krAHGRtYAWKjsvGQno_2KYVh3fBVpQ&callback=MapInit">
     </script>
     <style>
         /* Set the size of the div element that contains the map */

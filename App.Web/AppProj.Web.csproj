@@ -2788,6 +2788,7 @@
     <Content Include="Content\img\icons2\battery_empty.png" />
     <Content Include="Content\img\icons2\battery_full.png" />
     <Content Include="Content\img\icons2\battery_half.png" />
+    <Content Include="Content\img\icons2\bd.png" />
     <Content Include="Content\img\icons2\bell.png" />
     <Content Include="Content\img\icons2\bill.png" />
     <Content Include="Content\img\icons2\binoculars.png" />
@@ -3076,7 +3077,6 @@
     <Content Include="Content\img\icons\hand_thumbsup.png" />
     <Content Include="Content\img\icons\hard_disk.png" />
     <Content Include="Content\img\icons\headset.png" />
-    <Content Include="Content\img\icons\health_red.svg" />
     <Content Include="Content\img\icons\heart.png" />
     <Content Include="Content\img\icons\help.png" />
     <Content Include="Content\img\icons\help2.png" />
@@ -3101,6 +3101,18 @@
     <Content Include="Content\img\icons\login.png" />
     <Content Include="Content\img\icons\mail.png" />
     <Content Include="Content\img\icons\mail_open.png" />
+    <Content Include="Content\img\icons\map\health_1.svg" />
+    <Content Include="Content\img\icons\map\people_1.svg" />
+    <Content Include="Content\img\icons\map\relief_1.svg" />
+    <Content Include="Content\img\icons\map\health_3.svg" />
+    <Content Include="Content\img\icons\map\people_3.svg" />
+    <Content Include="Content\img\icons\map\relief_3.svg" />
+    <Content Include="Content\img\icons\map\health_2.svg" />
+    <Content Include="Content\img\icons\map\health.svg" />
+    <Content Include="Content\img\icons\map\people_2.svg" />
+    <Content Include="Content\img\icons\map\people.svg" />
+    <Content Include="Content\img\icons\map\relief_2.svg" />
+    <Content Include="Content\img\icons\map\relief.svg" />
     <Content Include="Content\img\icons\messenger.png" />
     <Content Include="Content\img\icons\microhpone.png" />
     <Content Include="Content\img\icons\microphone.png" />
@@ -3120,7 +3132,6 @@
     <Content Include="Content\img\icons\pause.png" />
     <Content Include="Content\img\icons\pen.png" />
     <Content Include="Content\img\icons\pencil.png" />
-    <Content Include="Content\img\icons\people_green.svg" />
     <Content Include="Content\img\icons\phone.png" />
     <Content Include="Content\img\icons\photo_album.png" />
     <Content Include="Content\img\icons\pictures_folder.png" />
@@ -3133,7 +3144,6 @@
     <Content Include="Content\img\icons\random.png" />
     <Content Include="Content\img\icons\record.png" />
     <Content Include="Content\img\icons\redo.png" />
-    <Content Include="Content\img\icons\relief_yellow.svg" />
     <Content Include="Content\img\icons\reload.png" />
     <Content Include="Content\img\icons\repeat.png" />
     <Content Include="Content\img\icons\resize2.png" />
