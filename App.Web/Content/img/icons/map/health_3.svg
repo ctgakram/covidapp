@@ -1,21 +1,6 @@
-<svg id="rh" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
-  <defs>
-    <style>
-      .cls-1, .cls-3 {
-        fill: #fff;
-      }
-
-      .cls-1 {
-        opacity: 0;
-      }
-
-      .cls-2 {
-        fill: #ea0000;
-      }
-    </style>
-  </defs>
-  <rect id="Rectangle_134" data-name="Rectangle 134" class="cls-1" width="16" height="16"/>
-  <circle id="Ellipse_6" data-name="Ellipse 6" class="cls-2" cx="7" cy="7" r="7" transform="translate(1)"/>
-  <path id="Icon_map-health" data-name="Icon map-health" class="cls-3" d="M7.72,3.053a.146.146,0,0,0-.146-.146h-1.9a.146.146,0,0,1-.146-.146V.866A.146.146,0,0,0,5.387.72H3.053a.146.146,0,0,0-.146.146v1.9a.146.146,0,0,1-.146.146H.866a.146.146,0,0,0-.146.146V5.387a.146.146,0,0,0,.146.146h1.9a.146.146,0,0,1,.146.146v1.9a.146.146,0,0,0,.146.146H5.387a.146.146,0,0,0,.146-.146v-1.9a.146.146,0,0,1,.146-.146h1.9a.146.146,0,0,0,.146-.146Z" transform="translate(3.78 2.881)"/>
-  <path id="Polygon_1" data-name="Polygon 1" class="cls-2" d="M3,0,6,5H0Z" transform="translate(11 16) rotate(-180)"/>
+<svg id="health_3" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect id="Rectangle_138" data-name="Rectangle 138" width="32" height="32" fill="#fff" opacity="0"/>
+  <circle id="Ellipse_27" data-name="Ellipse 27" cx="12" cy="12" r="12" transform="translate(4)" fill="#ea0000"/>
+  <path id="Icon_map-health" data-name="Icon map-health" d="M12.68,4.707a.25.25,0,0,0-.249-.249H9.192a.25.25,0,0,1-.249-.249V.969A.25.25,0,0,0,8.694.72H4.707a.25.25,0,0,0-.249.249V4.208a.25.25,0,0,1-.249.249H.969a.25.25,0,0,0-.249.249V8.694a.25.25,0,0,0,.249.249H4.208a.25.25,0,0,1,.249.249v3.239a.25.25,0,0,0,.249.249H8.694a.25.25,0,0,0,.249-.249V9.192a.25.25,0,0,1,.249-.249h3.239a.25.25,0,0,0,.249-.249Z" transform="translate(9.28 5.472)" fill="#fff"/>
+  <path id="Polygon_4" data-name="Polygon 4" d="M4,0,8,10H0Z" transform="translate(20 32) rotate(-180)" fill="#ea0000"/>
 </svg>

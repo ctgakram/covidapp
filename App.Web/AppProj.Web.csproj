@@ -3103,6 +3103,9 @@
     <Content Include="Content\img\icons\login.png" />
     <Content Include="Content\img\icons\mail.png" />
     <Content Include="Content\img\icons\mail_open.png" />
+    <Content Include="Content\img\icons\map\brac_1.svg" />
+    <Content Include="Content\img\icons\map\brac_2.svg" />
+    <Content Include="Content\img\icons\map\brac_3.svg" />
     <Content Include="Content\img\icons\map\health_1.svg" />
     <Content Include="Content\img\icons\map\people_1.svg" />
     <Content Include="Content\img\icons\map\relief_1.svg" />
@@ -3110,11 +3113,8 @@
     <Content Include="Content\img\icons\map\people_3.svg" />
     <Content Include="Content\img\icons\map\relief_3.svg" />
     <Content Include="Content\img\icons\map\health_2.svg" />
-    <Content Include="Content\img\icons\map\health.svg" />
     <Content Include="Content\img\icons\map\people_2.svg" />
-    <Content Include="Content\img\icons\map\people.svg" />
     <Content Include="Content\img\icons\map\relief_2.svg" />
-    <Content Include="Content\img\icons\map\relief.svg" />
     <Content Include="Content\img\icons\messenger.png" />
     <Content Include="Content\img\icons\microhpone.png" />
     <Content Include="Content\img\icons\microphone.png" />
