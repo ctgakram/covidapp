@@ -147,11 +147,14 @@ namespace AppProj.Service.ServicesImpl
                       ,
                     Quantity = g.Where(c => c.Type == "PRE").Sum(c => c.Quantity)
                     ,
-                    ReachCount = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCount)
+                    ReachCount = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCount)                    
+                    ,
+                    ReachCountFemale = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCountFemale)
                     ,
                     ResQuantity = g.Where(c => c.Type == "RCH").Sum(c => c.Quantity)
                     ,
                     ResReachCount = g.Where(c => c.Type == "RCH").Sum(c => c.ReachCount)
+                    
                 }
                 ).OrderBy(o => o.Program)
                 .ThenBy(o => o.Division)
@@ -316,6 +319,110 @@ namespace AppProj.Service.ServicesImpl
         public void DeletePeople(BERDataPeopleWiseQuantity entity)
         {
             peopleRepository.Delete(entity);
+        }
+
+
+        //Dashboard
+
+        public List<BepDataSummeryModelReach> GetReachForDashboard()
+        {
+            List<BepDataSummeryModelReach> model = peopleRepository
+                .GetAll().GroupBy(q => new
+            {
+                Activity = q.StandingData3.Name
+            })
+                .Select(g => new BepDataSummeryModelReach
+                {
+                    Activity = g.Key.Activity
+                    ,
+                    Male = g.Sum(c => c.Cat1NewReach)
+                    //,
+                    //Cat1OldReach = g.Sum(c => c.Cat1OldReach)
+                    ,
+                    Female = g.Sum(c => c.Cat2NewReach)
+                    //,
+                    //Cat2OldReach = g.Sum(c => c.Cat2OldReach)
+                    ,
+                    Boy = g.Sum(c => c.Cat3NewReach)
+                    //,
+                    //Cat3OldReach = g.Sum(c => c.Cat3OldReach)
+                    ,
+                    Girl = g.Sum(c => c.Cat4NewReach)
+                    //,
+                    //Cat4OldReach = g.Sum(c => c.Cat4OldReach)
+                    ,
+                    PWD = g.Sum(c => c.Cat5NewReach)
+                    //,
+                    //Cat5OldReach = g.Sum(c => c.Cat5OldReach)
+                    ,
+                    HHS = g.Sum(c => c.Cat6NewReach)
+                    //,
+                    //Cat6OldReach = g.Sum(c => c.Cat6OldReach)
+                    // ,
+                    //Cat7NewReach = g.Sum(c => c.Cat7NewReach)
+                    //,
+                    //Cat7OldReach = g.Sum(c => c.Cat7OldReach)
+                     ,
+                    Pregnant = g.Sum(c => c.Cat8NewReach)
+                    //,
+                    //Cat8OldReach = g.Sum(c => c.Cat8OldReach)
+                }
+                )
+                .OrderBy(o => o.Activity)
+                .ToList();
+
+            return model;
+        }
+
+        public List<BepDataSummeryModelMaterial> GetMaterialForDashboard()
+        {
+            List<BepDataSummeryModelMaterial> model = detailRepository
+               .GetAll().GroupBy(q => new
+               {
+                   Item = q.StandingData.Name
+               })
+               .Select(g => new BepDataSummeryModelMaterial
+               {
+                   Item = g.Key.Item
+                   ,
+                   Qnt = g.Where(c => c.Type == "PRE").Sum(c => c.Quantity)
+                     ,
+                   ExpQnt = g.Where(c => c.Type == "PRE").Sum(c => c.ExpQuantity)
+                   ,
+                   Male = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCount)
+                   ,
+                   Female = g.Where(c => c.Type == "PRE").Sum(c => c.ReachCountFemale)
+               }
+               ).OrderBy(o => o.Item)
+               .ToList();
+
+            return model;
+        }
+
+        public List<BepDataSummeryModelMaterial> GetDistributionForDashboard()
+        {
+            List<BepDataSummeryModelMaterial> model = detailRepository
+                .GetAll().GroupBy(q => new
+                {
+                    Item = q.StandingData.Name
+                    ,
+                    Activity =q.StandingData4.Name
+                })
+                .Select(g => new BepDataSummeryModelMaterial
+                {
+                    Item = g.Key.Item
+                    ,
+                    Activity=g.Key.Activity
+                    ,
+                    Qnt = g.Where(c => c.Type == "RCH").Sum(c => c.Quantity)                     
+                    ,
+                    Reach = g.Where(c => c.Type == "RCH").Sum(c => c.ReachCount)                    
+                }
+                ).OrderBy(o => o.Activity)
+                .ThenBy(o => o.Item)
+                .ToList();
+
+            return model;
         }
     }
 }

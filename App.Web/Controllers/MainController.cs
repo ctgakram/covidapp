@@ -8,6 +8,7 @@ using System.Configuration;
 using AppProj.Web.Helpers;
 using System.Data;
 using AppProj.Domain;
+using AppProj.Web.Models;
 
 namespace AppProj.Web.Controllers
 {
@@ -19,11 +20,11 @@ namespace AppProj.Web.Controllers
         readonly IDetailDataService detDataService;
         readonly IDistrictDataService disDataService;
         readonly IHnppDataService hnppDataService;
-
+        readonly IBepDataService bepDataService;
 
         public MainController(IDetailDataService detDataService, ISummerizedDataService sumDataService
             , IStandingDataService standingDataService, IDistrictDataService disDataService
-            , IHnppDataService hnppDataService
+            , IHnppDataService hnppDataService, IBepDataService bepDataService
             )
         {
 
@@ -32,7 +33,7 @@ namespace AppProj.Web.Controllers
             this.sumDataService = sumDataService;
             this.detDataService = detDataService;
             this.hnppDataService = hnppDataService;
-
+            this.bepDataService = bepDataService;
         }
 
         public ActionResult Index()
@@ -65,7 +66,64 @@ namespace AppProj.Web.Controllers
 
         public ActionResult Dashboard()
         {
-            return View();
+            DashboardModel model = new DashboardModel();
+
+            model.Suspect = detDataService.GetCount();
+            model.SuspectFemale = detDataService.GetCountFemale();
+            model.SuspectApp = detDataService.GetAppCount();
+            model.Reach = sumDataService.GetReachCount();
+            model.Districts = detDataService.Vulnarable(5);
+
+            model.DashboardModelBDCs = disDataService.GetSummery()
+                        .GroupBy(q => 1)
+                        .Select(g => new DashboardModelBDC
+                        {
+                            Hospital = g.Sum(c => c.HospitalCount)
+                            ,
+                            Bed = g.Sum(c => c.BedCount)
+                             ,
+                            QrnCurrent = g.Sum(c => c.CurrentQuarantine)
+                            ,
+                            Qrn = g.Sum(c => c.TotalQuarantine)
+                            ,
+                            QrnReleased = g.Sum(c => c.TotalReleased)
+                            ,
+                            Death = g.Sum(c => c.TotalDeath)
+                            ,
+                            Test = g.Sum(c => c.TotalDoTestOn)
+                            ,
+                            DisRiceFamily = g.Sum(c => c.TotalReliefFamily)
+                            ,
+                            DisMoneyFamily = g.Sum(c => c.TotalReliefPerson)
+                            ,
+                            DisRice = g.Sum(c => c.TotalRice)
+                            ,
+                            DisMoney = g.Sum(c => c.TotalMoney)
+                            ,
+                            PlanRice = g.Sum(c => c.PlannedRice)
+                            ,
+                            PlanMoney = g.Sum(c => c.PlannedMoney)
+
+                        }).Single();
+
+            model.DashboardModelHnpps = hnppDataService.Get()
+                      .GroupBy(q => 1)
+                      .Select(g => new DashboardModelHnpp
+                      {
+                          MeetingGovt = g.Sum(c => c.GovtMeeting)
+                          ,
+                          MeetingBrac = g.Sum(c => c.BracMeeting)
+                          ,
+                          Leaflet = g.Sum(c => c.Leaflet)
+                          ,
+                          Sticker = g.Sum(c => c.Sticker)
+                      }).Single();
+
+            model.BepDataSummeryModelReaches = bepDataService.GetReachForDashboard();
+            model.BepDataSummeryModelMaterials = bepDataService.GetMaterialForDashboard();
+            model.BepDataSummeryModelMaterialDistributions = bepDataService.GetDistributionForDashboard();
+            
+            return View(model);
         }
 
         public ActionResult Error()

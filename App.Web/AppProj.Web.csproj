@@ -282,6 +282,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\ConfigModel.cs" />
+    <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\Fund.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\QuestionDistrictModel.cs" />

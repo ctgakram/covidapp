@@ -608,6 +608,7 @@ namespace AppProj.Web.Controllers
             }
             catch { }
 
+
             DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
             DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
 
@@ -726,8 +727,26 @@ namespace AppProj.Web.Controllers
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
             int skip = int.Parse(Request.QueryString["iDisplayStart"]);
             bool isReach = bool.Parse(Request.QueryString["isR"]);
+            bool isShow = bool.Parse(Request.QueryString["isShow"]);
 
             //if (take == -1) { take = 1000000000; skip = 0; }
+
+            if(!isShow)
+            {
+                object[][] obj1 = new object[0][];
+
+                if (isReach)
+                {
+                }
+
+                JQueryDataTable js1 = new JQueryDataTable();
+                js1.sEcho = ec;
+                js1.iTotalDisplayRecords = count.ToString();
+                js1.iTotalRecords = js1.iTotalDisplayRecords;
+                js1.aaData = obj1;
+
+                return Json(js1, JsonRequestBehavior.AllowGet);
+            }
 
             int? divId = null;
             try
@@ -905,8 +924,22 @@ namespace AppProj.Web.Controllers
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
             int skip = int.Parse(Request.QueryString["iDisplayStart"]);
             bool isReach = bool.Parse(Request.QueryString["isR"]);
+            bool isShow = bool.Parse(Request.QueryString["isShow"]);
 
             //if (take == -1) { take = 1000000000; skip = 0; }
+
+            if (!isShow)
+            {
+                object[][] obj1 = new object[0][];
+
+                JQueryDataTable js1 = new JQueryDataTable();
+                js1.sEcho = ec;
+                js1.iTotalDisplayRecords = count.ToString();
+                js1.iTotalRecords = js1.iTotalDisplayRecords;
+                js1.aaData = obj1;
+
+                return Json(js1, JsonRequestBehavior.AllowGet);
+            }
 
             int? divId = null;
             try

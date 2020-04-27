@@ -278,6 +278,13 @@
           <Property Name="TotalPotato" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalMoney" Type="decimal" Precision="18" Scale="2" />
           <Property Name="TotalReliefFamily" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="DistrictName" Type="nvarchar(max)" />
+          <Property Name="BracIndex" Type="int" />
+          <Property Name="StaffWorkFromHome" Type="int" />
+          <Property Name="StaffAffected" Type="int" />
+          <Property Name="BracFinancialLoss" Type="int" />
+          <Property Name="StaffMaleReach" Type="int" />
+          <Property Name="StaffFemaleReach" Type="int" />
         </EntityType>
         <EntityType Name="ProgramByUserProfiles">
           <Key>
@@ -2926,6 +2933,13 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="TotalPotato" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalMoney" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="TotalReliefFamily" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="DistrictName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BracIndex" Type="Int32" />
+          <Property Name="StaffWorkFromHome" Type="Int32" />
+          <Property Name="StaffAffected" Type="Int32" />
+          <Property Name="BracFinancialLoss" Type="Int32" />
+          <Property Name="StaffMaleReach" Type="Int32" />
+          <Property Name="StaffFemaleReach" Type="Int32" />
         </EntityType>
         <ComplexType Name="SP_GenerateMapSummary_Result">
           <Property Type="Int32" Name="Id" Nullable="false" />
@@ -3342,6 +3356,13 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="MapSummaries">
             <EntityTypeMapping TypeName="AppModel.MapSummary">
               <MappingFragment StoreEntitySet="MapSummary">
+                <ScalarProperty Name="StaffFemaleReach" ColumnName="StaffFemaleReach" />
+                <ScalarProperty Name="StaffMaleReach" ColumnName="StaffMaleReach" />
+                <ScalarProperty Name="BracFinancialLoss" ColumnName="BracFinancialLoss" />
+                <ScalarProperty Name="StaffAffected" ColumnName="StaffAffected" />
+                <ScalarProperty Name="StaffWorkFromHome" ColumnName="StaffWorkFromHome" />
+                <ScalarProperty Name="BracIndex" ColumnName="BracIndex" />
+                <ScalarProperty Name="DistrictName" ColumnName="DistrictName" />
                 <ScalarProperty Name="TotalReliefFamily" ColumnName="TotalReliefFamily" />
                 <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
                 <ScalarProperty Name="TotalPotato" ColumnName="TotalPotato" />

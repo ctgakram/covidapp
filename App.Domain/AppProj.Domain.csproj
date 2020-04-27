@@ -95,6 +95,7 @@
     <Compile Include="MapSummary.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ModelExt\BepDataSummeryModel.cs" />
     <Compile Include="ModelExt\BERDataItemWiseQuantityExt.cs" />
     <Compile Include="ModelExt\ChartModel.cs" />
     <Compile Include="ProgramByUserProfile.cs">

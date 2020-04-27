@@ -37,5 +37,10 @@ namespace AppProj.Service.Services
         BERDataPeopleWiseQuantity GetSinglePeople(int id);
         void DeletePeople(BERDataPeopleWiseQuantity entity);
 
+        //dashboard
+        List<BepDataSummeryModelReach> GetReachForDashboard();
+        List<BepDataSummeryModelMaterial> GetMaterialForDashboard();
+        List<BepDataSummeryModelMaterial> GetDistributionForDashboard();
+
     }
 }

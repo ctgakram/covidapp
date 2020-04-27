@@ -99,6 +99,7 @@
                             <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Material</a>
                             <a id="dateSearchButtonR" class="btn btn-info"><i class="icon icon-search icon-white"></i> Reach</a>
                             <input type="hidden" id="isR" name="isR" value="false" />
+                            <input type="hidden" id="isShow" name="isShow" value="false" />
                         </div>
                     </div>
 
@@ -256,6 +257,7 @@
 
         $("#dateSearchButton").click(function () {
             $("#isR").val(false);
+            $("#isShow").val(true);
             $('#gridTableDivR').hide();
             $('#gridTableDiv').show();
             $('#gridTable').dataTable().fnDraw();
@@ -263,6 +265,7 @@
 
         $("#dateSearchButtonR").click(function () {
             $("#isR").val(true);
+            $("#isShow").val(true);
             $('#gridTableDivR').show();
             $('#gridTableDiv').hide();
             $('#gridTableR').dataTable().fnDraw();
@@ -289,7 +292,8 @@
             'ContentTypeId4': 'ContentTypeId4',
             'FromDate': 'FromDate',
             'ToDate': 'ToDate',
-            'isR':'isR'
+            'isR': 'isR',
+            'isShow': 'isShow'
         };
         var btns = {
             //38: false //column number : is button group

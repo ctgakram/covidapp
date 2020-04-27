@@ -46,5 +46,12 @@ namespace AppProj.Domain
         public Nullable<decimal> TotalPotato { get; set; }
         public Nullable<decimal> TotalMoney { get; set; }
         public Nullable<decimal> TotalReliefFamily { get; set; }
+        public string DistrictName { get; set; }
+        public Nullable<int> BracIndex { get; set; }
+        public Nullable<int> StaffWorkFromHome { get; set; }
+        public Nullable<int> StaffAffected { get; set; }
+        public Nullable<int> BracFinancialLoss { get; set; }
+        public Nullable<int> StaffMaleReach { get; set; }
+        public Nullable<int> StaffFemaleReach { get; set; }
     }
 }

@@ -25,7 +25,7 @@ namespace AppProj.Web.Controllers
         public ActionResult Index()
         {
             SearchModel up = new SearchModel();
-          
+
             var prog = standingDataService.GetSource().Where(r => r.IsActive);
             up.ContentTypes3 = prog.ToSelectList(null, "Id", "Name");
 
@@ -44,7 +44,7 @@ namespace AppProj.Web.Controllers
 
         public JsonResult GetDataAll()
         {
-            var data = mapSummaryService.Get().Distinct().DistinctBy(l=>l.DistrictId).Where(x=>x.Latitude != null);
+            var data = mapSummaryService.Get().Distinct().DistinctBy(l => l.DistrictId).Where(x => x.Latitude != null);
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
@@ -56,9 +56,25 @@ namespace AppProj.Web.Controllers
             return Json(data, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult GetDataByProgramIdDivisionId(int id1,int id2)
+        public JsonResult GetDataByProgramIdDivisionId(int id1, int id2)
         {
             var data = mapSummaryService.Get().Where(l => l.ProgramId == id1 && l.DivisionId == id2);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDataByPriorityIdDivisionId(int id1, int id2)
+        {
+            var data = mapSummaryService.Get().Where(l => l.Latitude != null &&
+            (l.PeopleIndex == id1 || l.HealthIndex == id1 || l.SupportIndex == id1 || l.BracIndex == id1) && l.DivisionId == id2);
+
+            return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetDataByPriorityIdAllDivision(int id)
+        {
+            var data = mapSummaryService.Get().Where(l => l.Latitude != null &&
+            (l.PeopleIndex == id || l.HealthIndex == id || l.SupportIndex == id || l.BracIndex == id));
 
             return Json(data, JsonRequestBehavior.AllowGet);
         }
