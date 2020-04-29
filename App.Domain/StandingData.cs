@@ -36,11 +36,13 @@ namespace AppProj.Domain
             this.DetailDatas1 = new HashSet<DetailData>();
             this.DetailDatas2 = new HashSet<DetailData>();
             this.DetailDatas3 = new HashSet<DetailData>();
+            this.DetailDatas4 = new HashSet<DetailData>();
             this.DistrictByUserProfiles = new HashSet<DistrictByUserProfile>();
             this.DistrictDatas = new HashSet<DistrictData>();
             this.DistrictDatas1 = new HashSet<DistrictData>();
             this.DistrictDatas2 = new HashSet<DistrictData>();
             this.DistrictDatas3 = new HashSet<DistrictData>();
+            this.DistrictPatients = new HashSet<DistrictPatient>();
             this.DistrictQuestions = new HashSet<DistrictQuestion>();
             this.DistrictQuestions1 = new HashSet<DistrictQuestion>();
             this.DistrictSummeries = new HashSet<DistrictSummery>();
@@ -53,7 +55,6 @@ namespace AppProj.Domain
             this.SummerizedDatas = new HashSet<SummerizedData>();
             this.SummerizedDatas1 = new HashSet<SummerizedData>();
             this.SummerizedDatas2 = new HashSet<SummerizedData>();
-            this.DetailDatas4 = new HashSet<DetailData>();
         }
     
         public int Id { get; set; }
@@ -88,11 +89,13 @@ namespace AppProj.Domain
         public virtual ICollection<DetailData> DetailDatas1 { get; set; }
         public virtual ICollection<DetailData> DetailDatas2 { get; set; }
         public virtual ICollection<DetailData> DetailDatas3 { get; set; }
+        public virtual ICollection<DetailData> DetailDatas4 { get; set; }
         public virtual ICollection<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
         public virtual ICollection<DistrictData> DistrictDatas { get; set; }
         public virtual ICollection<DistrictData> DistrictDatas1 { get; set; }
         public virtual ICollection<DistrictData> DistrictDatas2 { get; set; }
         public virtual ICollection<DistrictData> DistrictDatas3 { get; set; }
+        public virtual ICollection<DistrictPatient> DistrictPatients { get; set; }
         public virtual ICollection<DistrictQuestion> DistrictQuestions { get; set; }
         public virtual ICollection<DistrictQuestion> DistrictQuestions1 { get; set; }
         public virtual ICollection<DistrictSummery> DistrictSummeries { get; set; }
@@ -105,6 +108,5 @@ namespace AppProj.Domain
         public virtual ICollection<SummerizedData> SummerizedDatas { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas1 { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas2 { get; set; }
-        public virtual ICollection<DetailData> DetailDatas4 { get; set; }
     }
 }

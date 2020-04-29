@@ -62,6 +62,22 @@ namespace AppProj.Web.Controllers
             return Json(chartData, JsonRequestBehavior.AllowGet);
         }
 
+        public object PatientCountBar()
+        {
+            var obj = disDataService.GetLastPatientCount(15);
+
+            List<object> chartData = new List<object>();
+            chartData.Add(new object[] { "Date", "Patient", new { role = "style" } });
+
+
+            foreach (var row in obj)
+            {
+                chartData.Add(new object[] { row.Name, row.Count, "#76A7FA" });
+            }
+
+            return Json(chartData, JsonRequestBehavior.AllowGet);
+        }
+
         public object CountByDistrictBar()
         {
             var obj = sumDataService.GetByDistrict();

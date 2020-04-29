@@ -65,6 +65,7 @@ namespace AppProj.Web
                 .RegisterType<IDetailDataRepository, DetailDataRepository>(new HttpContextLifetimeManager<IDetailDataRepository>())
                 .RegisterType<IDistrictDataRepository, DistrictDataRepository>(new HttpContextLifetimeManager<IDistrictDataRepository>())
                 .RegisterType<IDistrictSummeryRepository, DistrictSummeryRepository>(new HttpContextLifetimeManager<IDistrictSummeryRepository>())
+                .RegisterType<IDistrictPatientRepository, DistrictPatientRepository>(new HttpContextLifetimeManager<IDistrictPatientRepository>())
                 .RegisterType<ISummerizedDataRepository, SummerizedDataRepository>(new HttpContextLifetimeManager<ISummerizedDataRepository>())
                 .RegisterType<IHnppDataRepository, HnppDataRepository>(new HttpContextLifetimeManager<IHnppDataRepository>())
                 .RegisterType<IBepDataRepository, BepDataRepository>(new HttpContextLifetimeManager<IBepDataRepository>())

@@ -255,6 +255,7 @@
     <Compile Include="Controllers\DetailSubmissionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MapSummaryController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleFeatureController.cs" />
@@ -282,6 +283,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApiModel.cs" />
     <Compile Include="Models\ConfigModel.cs" />
+    <Compile Include="Models\CoronaGov.cs" />
     <Compile Include="Models\DashboardModel.cs" />
     <Compile Include="Models\Fund.cs" />
     <Compile Include="Models\MailModel.cs" />
@@ -2747,6 +2749,7 @@
     <Content Include="Content\img\fullsize\19.jpg" />
     <Content Include="Content\img\glyphicons-halflings-white.png" />
     <Content Include="Content\img\glyphicons-halflings.png" />
+    <Content Include="Content\img\icons2\bg-gov.png" />
     <Content Include="Content\img\icons2\gov.png" />
     <Content Include="Content\img\help.gif" />
     <Content Include="Content\img\hm.jpg" />
@@ -3520,6 +3523,7 @@
     <Content Include="Views\Main\GisMap.cshtml" />
     <Content Include="Views\Main\WorldMap.cshtml" />
     <Content Include="Views\MapSummary\Index.cshtml" />
+    <Content Include="Views\Main\BracDashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

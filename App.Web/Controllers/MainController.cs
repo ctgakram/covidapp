@@ -72,12 +72,14 @@ namespace AppProj.Web.Controllers
             model.SuspectFemale = detDataService.GetCountFemale();
             model.SuspectApp = detDataService.GetAppCount();
             model.Reach = sumDataService.GetReachCount();
-            model.Districts = detDataService.Vulnarable(5);
+            model.Districts = disDataService.GetTopDistricts(5);
 
             model.DashboardModelBDCs = disDataService.GetSummery()
                         .GroupBy(q => 1)
                         .Select(g => new DashboardModelBDC
                         {
+                            Patient = g.Sum(c => c.PatientCount).Value
+                            ,
                             Hospital = g.Sum(c => c.HospitalCount)
                             ,
                             Bed = g.Sum(c => c.BedCount)
@@ -119,10 +121,17 @@ namespace AppProj.Web.Controllers
                           Sticker = g.Sum(c => c.Sticker)
                       }).Single();
 
+            return View(model);
+        }
+
+        public ActionResult BracDashboard()
+        {
+            DashboardModel model = new DashboardModel();
+                        
             model.BepDataSummeryModelReaches = bepDataService.GetReachForDashboard();
             model.BepDataSummeryModelMaterials = bepDataService.GetMaterialForDashboard();
             model.BepDataSummeryModelMaterialDistributions = bepDataService.GetDistributionForDashboard();
-            
+
             return View(model);
         }
 

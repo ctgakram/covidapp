@@ -22,6 +22,7 @@ namespace AppProj.Domain
         public string Name { get; set; }
         public Nullable<int> GenderId { get; set; }
         public Nullable<int> Age { get; set; }
+        public Nullable<int> SexId { get; set; }
         public string Phone { get; set; }
         public Nullable<bool> IsFever { get; set; }
         public Nullable<bool> IsDryCough { get; set; }
@@ -31,13 +32,12 @@ namespace AppProj.Domain
         public Nullable<bool> IsContact { get; set; }
         public string CollectedBy { get; set; }
         public int InsertedById { get; set; }
-        public Nullable<int> SexId { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
         public virtual StandingData StandingData2 { get; set; }
         public virtual StandingData StandingData3 { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
         public virtual StandingData StandingData4 { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
     }
 }

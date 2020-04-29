@@ -34,10 +34,12 @@ namespace AppProj.Domain
         public DbSet<DetailData> DetailDatas { get; set; }
         public DbSet<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
         public DbSet<DistrictData> DistrictDatas { get; set; }
+        public DbSet<DistrictPatient> DistrictPatients { get; set; }
         public DbSet<DistrictQuestion> DistrictQuestions { get; set; }
         public DbSet<DistrictSummery> DistrictSummeries { get; set; }
         public DbSet<Feature> Features { get; set; }
         public DbSet<HnppData> HnppDatas { get; set; }
+        public DbSet<MapSummary> MapSummaries { get; set; }
         public DbSet<ProgramByUserProfile> ProgramByUserProfiles { get; set; }
         public DbSet<RoleDefaultPage> RoleDefaultPages { get; set; }
         public DbSet<RoleFeature> RoleFeatures { get; set; }
@@ -48,7 +50,6 @@ namespace AppProj.Domain
         public DbSet<UserLoginLog> UserLoginLogs { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
-        public DbSet<MapSummary> MapSummaries { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)

@@ -45,6 +45,31 @@ namespace AppProj.Domain
         public decimal PlannedPotato { get; set; }
         public decimal PlannedDal { get; set; }
         public decimal PlannedMoney { get; set; }
+        public Nullable<int> PeopleIndex { get; set; }
+        public Nullable<int> HealthIndex { get; set; }
+        public Nullable<int> SupportIndex { get; set; }
+        public Nullable<int> BracIndex { get; set; }
+        public Nullable<int> Population { get; set; }
+        public Nullable<decimal> Latitude { get; set; }
+        public Nullable<decimal> Longitude { get; set; }
+        public string DistrictName { get; set; }
+        public Nullable<int> StaffWorkFromHome { get; set; }
+        public Nullable<int> StaffAffected { get; set; }
+        public Nullable<int> BracFinancialLoss { get; set; }
+        public Nullable<int> StaffMaleReach { get; set; }
+        public Nullable<int> StaffFemaleReach { get; set; }
+        public Nullable<int> SummerizedData_ReachCount { get; set; }
+        public Nullable<int> DetailData_TotalCount { get; set; }
+        public Nullable<int> DetailData_MaleCount { get; set; }
+        public Nullable<int> DetailData_FemaleCount { get; set; }
+        public Nullable<decimal> DetailData_MalePercent { get; set; }
+        public Nullable<decimal> DetailData_FemalePercent { get; set; }
+        public Nullable<int> PovertyRank { get; set; }
+        public Nullable<int> ExtreamPovertyRank { get; set; }
+        public Nullable<int> BracMoneyDistribution { get; set; }
+        public Nullable<int> BracFoodDistribution { get; set; }
+        public string DistrictCode { get; set; }
+        public Nullable<int> PatientCount { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }

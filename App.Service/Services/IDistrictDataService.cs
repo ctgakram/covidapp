@@ -1,4 +1,5 @@
 ﻿using AppProj.Domain;
+using AppProj.Domain.ModelExt;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,13 @@ namespace AppProj.Service.Services
         IEnumerable<DistrictData> Get(int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, out int count);
         IEnumerable<DistrictSummery> GetSummery(int? divId, int? disId, int skip, int take, out int count);
         IEnumerable<DistrictSummery> GetSummery();
+        string GetTopDistricts(int take);
+        IEnumerable<CountModel> GetLastPatientCount(int take);
         void Update(DistrictData disEntity, DistrictSummery sumEntity);
+
+        IEnumerable<DistrictPatient> GetPatient(DateTime date);
+        void AddPatient(DistrictPatient entity);
+        void UpdatePatient(DistrictPatient entity);
 
     }
 }

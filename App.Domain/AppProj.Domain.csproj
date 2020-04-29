@@ -80,6 +80,9 @@
     <Compile Include="DistrictData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DistrictPatient.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DistrictQuestion.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
@@ -98,6 +101,7 @@
     <Compile Include="ModelExt\BepDataSummeryModel.cs" />
     <Compile Include="ModelExt\BERDataItemWiseQuantityExt.cs" />
     <Compile Include="ModelExt\ChartModel.cs" />
+    <Compile Include="ModelExt\MapModel.cs" />
     <Compile Include="ProgramByUserProfile.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>

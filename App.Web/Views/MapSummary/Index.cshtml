@@ -57,7 +57,7 @@
                     <label class="control-label" >
                         <span class="control-label">জনসংখ্যা</span>
                         <span class="control-label" style="padding-left:50px;">স্বাস্থ্যগত তথ্য</span>
-                        <span class="control-label" style="padding-left:50px;">সরকারি সহায়তা</span> 
+                        <span class="control-label" style="padding-left:50px;">মানবিক সহায়তা</span> 
                         <span class="control-label" style="padding-left:50px;">ব্র্যাক অভ্যন্তরীন</span>
                     </label>
                     <div class="controls">
@@ -112,14 +112,62 @@
             MapLoadAll();
 
             $(document).on('change', '#ContentTypeId3', function () {
+
                 if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+
+                    $('#isGovtSupport').prop("checked", false);
+                    $("#isGovtSupport").attr('disabled', 'disabled');
+                    $('#isGovtSupport').attr('readonly', true);
+
                     MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
                 }
                 else if ($('#ContentTypeId3').val() > 0) {
+
+                    $('#isGovtSupport').prop("checked", false);
+                    $("#isGovtSupport").attr('disabled', 'disabled');
+                    $('#isGovtSupport').attr('readonly', true);
+
                     MapLoad($('#ContentTypeId3').val());
                 }
+                else if ($('#ContentTypeId1').val() > 0) {
+
+                    if ($('#isGovtSupport').prop("checked", false)) {
+
+                        $('#isGovtSupport').prop("checked", true);
+                        $('#isGovtSupport').prop("disabled", false);
+                        $('#isGovtSupport').attr('readonly', false);
+                    }
+
+                    MapLoadDivision($('#ContentTypeId1').val());
+                }
+                else if (($('#ContentTypeId2').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
+
+                    if ($('#isGovtSupport').prop("checked", false)) {
+
+                        $('#isGovtSupport').prop("checked", true);
+                        $('#isGovtSupport').prop("disabled", false);
+                        $('#isGovtSupport').attr('readonly', false);
+                    }
+
+                    
+
+                    MapLoadPriorityWiseDivision($('#ContentTypeId2').val(), $('#ContentTypeId1').val());
+                }
                 else {
-                    MapLoadAll();
+
+                    $('#isGovtSupport').prop("checked", true);
+                    $('#isGovtSupport').prop("disabled", false);
+                    $('#isGovtSupport').attr('readonly', false);
+
+                    if ($('#ContentTypeId2').val() > 0) {
+                        MapLoadPriorityWiseAllDivision($('#ContentTypeId2').val());
+                    }
+                    else if ($('#ContentTypeId1').val() > 0) {
+                        MapLoadPriorityWiseAllDivision($('#ContentTypeId2').val());
+                    }
+                    else {
+                        MapLoadAll();
+                    }
                 }
             });
 
@@ -155,6 +203,7 @@
             });
 
             $(document).on('change', '#ContentTypeId1', function () {
+
                 if (($('#ContentTypeId3').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
                     MapLoadProgramWiseDivision($('#ContentTypeId3').val(), $('#ContentTypeId1').val())
                 }
@@ -184,6 +233,8 @@
             });
 
             $(document).on('change', '#ContentTypeId2', function () {
+
+
                 if (($('#ContentTypeId2').val() > 0) && ($('#ContentTypeId1').val() > 0)) {
                     MapLoadPriorityWiseDivision($('#ContentTypeId2').val(), $('#ContentTypeId1').val());
                 }
@@ -218,6 +269,9 @@
                         if (data != null) {
                             MapInit(data);
                         }
+                        else {
+                            BlankMap();
+                        }
                     }
                 });
         }
@@ -233,6 +287,9 @@
                 success: function (data) {
                     if (data != null) {
                         MapInit(data);
+                    }
+                    else {
+                        BlankMap();
                     }
                 }
             });
@@ -251,6 +308,9 @@
                         if (data != null) {
                             MapInit(data);
                         }
+                        else {
+                            BlankMap();
+                        }
                     }
                 });
         }
@@ -266,6 +326,9 @@
                     success: function (data) {
                         if (data != null) {
                             MapInit(data);
+                        }
+                        else {
+                            BlankMap();
                         }
                     }
                 });
@@ -285,7 +348,8 @@
                             MapInit(data);
                         }
                         else
-                            MapInit(data);
+                            //MapInit(data);
+                            BlankMap();
                     }
                 });
         }
@@ -302,346 +366,363 @@
                         if (data != null) {
                             MapInit(data);
                         }
+                        else
+                            BlankMap();
                         
                         
                     }
+
                 });
         }
 
-        function MapInit(locations) {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 7,
-            center: new google.maps.LatLng(locations[0]["Latitude"], locations[0]["Longitude"]),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+        function BlankMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 7,
+                center: new google.maps.LatLng('23.7099200', '90.4071400'),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
 
-        var infowindow = new google.maps.InfoWindow();
-
-            var marker, marker2, marker3, i;
-
-
-        for (i = 0; i < locations.length; i++) {
-
-            var isPeopleChecked = document.getElementById("isPeople").checked;
-            var isHealthChecked = document.getElementById("isHealth").checked;
-            var isGovtSupportChecked = document.getElementById("isGovtSupport").checked;
-            var isBracChecked = document.getElementById("isBrac").checked;
-            var priorityType = $('#ContentTypeId2').val();
-
-            if (isPeopleChecked) {
-
-                if (priorityType > 0) {
-
-                    if (priorityType == locations[i]["PeopleIndex"]) {
-
-                        marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"], locations[i]["Longitude"]),
-                            map: map
-                        });
-
-                        marker.setIcon('@baseUrl/Content/img/icons/map/people_' + locations[i]["PeopleIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "জনসংখ্যা" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
-                                    "<br/>" + "Population : " + locations[i]["Population"]);
-                                infowindow.open(map, marker);
-                            }
-                        })(marker, i));
-
-                        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker.getPosition());
-                            }
-                        })(marker, i));
-
-                    }
-                }
-                else {
-
-                    marker = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"], locations[i]["Longitude"]),
-                            map: map
-                        });
-
-                    marker.setIcon('@baseUrl/Content/img/icons/map/people_' + locations[i]["PeopleIndex"] + '.svg')
-
-                    google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
-                        return function () {
-
-                            infowindow.setContent(
-                                "" + locations[i]["DistrictName"] +
-                                "<br/>" + "-------------------------------------" +
-                                "<br/>" + "জনসংখ্যা" +
-                                "<br/>" + "-------------------------------------" +
-                                "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
-                                "<br/>" + "Population : " + locations[i]["Population"]);
-                            infowindow.open(map, marker);
-                        }
-                    })(marker, i));
-
-                    google.maps.event.addListener(marker, 'click', (function (marker, i) {
-                        return function () {
-                            map.setZoom(10);
-                            map.setCenter(marker.getPosition());
-                        }
-                    })(marker, i));
-                }
-
-                
-
-            }
-
-            if (isHealthChecked) {
-
-                if (priorityType > 0) {
-
-                    if (priorityType == locations[i]["HealthIndex"]) {
-
-                        marker2 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.02, locations[i]["Longitude"] + 0.03),
-                            map: map
-                        });
-
-                        marker2.setIcon('@baseUrl/Content/img/icons/map/health_' + locations[i]["HealthIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "স্বাস্থ্যগত তথ্য" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
-                                    "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
-                                    "<br/>" + "Female: " + locations[i]["DetailData_FemaleCount"] +
-                                    "<br/>" + "Male Percent: " + locations[i]["DetailData_MalePercent"] +
-                                    "<br/>" + "Female Percent: " + locations[i]["DetailData_FemalePercent"] +
-                                    "<br/>" + "Hospital Count : " + locations[i]["HospitalCount"] +
-                                    "<br/>" + "Bed Count: " + locations[i]["BedCount"] +
-                                    "<br/>" + "Total Quarantine: " + locations[i]["TotalQuarantine"] +
-                                    "<br/>" + "Total Released: " + locations[i]["TotalReleased"] +
-                                    "<br/>" + "Current Quarantine: " + locations[i]["CurrentQuarantine"] +
-                                    "<br/>" + "Total Do Test On: " + locations[i]["TotalDoTestOn"] +
-                                    "<br/>" + "Total Death: " + locations[i]["TotalDeath"]);
-                                infowindow.open(map, marker2);
-                            }
-                        })(marker2, i));
-
-                        google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker2.getPosition());
-                            }
-                        })(marker2, i));
-                    }
-                }
-                else {
-                        marker2 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.02, locations[i]["Longitude"] + 0.03),
-                            map: map
-                        });
-
-                        marker2.setIcon('@baseUrl/Content/img/icons/map/health_' + locations[i]["HealthIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "স্বাস্থ্যগত তথ্য" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
-                                    "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
-                                    "<br/>" + "Female: " + locations[i]["DetailData_FemaleCount"] +
-                                    "<br/>" + "Male Percent: " + locations[i]["DetailData_MalePercent"] +
-                                    "<br/>" + "Female Percent: " + locations[i]["DetailData_FemalePercent"] +
-                                    "<br/>" + "Hospital Count : " + locations[i]["HospitalCount"] +
-                                    "<br/>" + "Bed Count: " + locations[i]["BedCount"] +
-                                    "<br/>" + "Total Quarantine: " + locations[i]["TotalQuarantine"] +
-                                    "<br/>" + "Total Released: " + locations[i]["TotalReleased"] +
-                                    "<br/>" + "Current Quarantine: " + locations[i]["CurrentQuarantine"] +
-                                    "<br/>" + "Total Do Test On: " + locations[i]["TotalDoTestOn"] +
-                                    "<br/>" + "Total Death: " + locations[i]["TotalDeath"]);
-                                infowindow.open(map, marker2);
-                            }
-                        })(marker2, i));
-
-                        google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker2.getPosition());
-                            }
-                        })(marker2, i));
-                }
-            }
-
-            if (isGovtSupportChecked) {
-
-                if (priorityType > 0) {
-
-                    if (priorityType == locations[i]["SupportIndex"]) {
-
-                        marker3 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.04, locations[i]["Longitude"] + 0.05),
-                            map: map
-                        });
-
-                        marker3.setIcon('@baseUrl/Content/img/icons/map/relief_' + locations[i]["SupportIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "মানবিক সহায়তা" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
-                                    "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
-                                    "<br/>" + "Planned Dal: " + locations[i]["PlannedDal"] +
-                                    "<br/>" + "Planned Money: " + locations[i]["PlannedMoney"] +
-                                    "<br/>" + "Total Rice: " + locations[i]["TotalRice"] +
-                                    "<br/>" + "Total Potato: " + locations[i]["TotalPotato"] +
-                                    "<br/>" + "Total Dal: " + locations[i]["TotalDal"] +
-                                    "<br/>" + "Total Money: " + locations[i]["TotalMoney"] +
-                                    "<br/>" + "Total Relief Family: " + locations[i]["TotalReliefFamily"]);
-
-                                infowindow.open(map, marker3);
-                            }
-                        })(marker3, i));
-
-                        google.maps.event.addListener(marker3, 'click', (function (marker3, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker3.getPosition());
-                            }
-                        })(marker3, i));
-                    }
-                }
-                else {
-                        marker3 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.04, locations[i]["Longitude"] + 0.05),
-                            map: map
-                        });
-
-                        marker3.setIcon('@baseUrl/Content/img/icons/map/relief_' + locations[i]["SupportIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "মানবিক সহায়তা" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
-                                    "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
-                                    "<br/>" + "Planned Dal: " + locations[i]["PlannedDal"] +
-                                    "<br/>" + "Planned Money: " + locations[i]["PlannedMoney"] +
-                                    "<br/>" + "Total Rice: " + locations[i]["TotalRice"] +
-                                    "<br/>" + "Total Potato: " + locations[i]["TotalPotato"] +
-                                    "<br/>" + "Total Dal: " + locations[i]["TotalDal"] +
-                                    "<br/>" + "Total Money: " + locations[i]["TotalMoney"] +
-                                    "<br/>" + "Total Relief Family: " + locations[i]["TotalReliefFamily"]);
-
-                                infowindow.open(map, marker3);
-                            }
-                        })(marker3, i));
-
-                        google.maps.event.addListener(marker3, 'click', (function (marker3, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker3.getPosition());
-                            }
-                        })(marker3, i));
-                }
-            }
-
-            if (isBracChecked) {
-
-
-                if (priorityType > 0) {
-
-                    if (priorityType == locations[i]["BracIndex"]) {
-
-                        marker4 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.06, locations[i]["Longitude"] + 0.07),
-                            map: map
-                        });
-
-                        marker4.setIcon('@baseUrl/Content/img/icons/map/brac_' + locations[i]["BracIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker4, 'mouseover', (function (marker4, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "ব্র্যাক অভ্যন্তরীন" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Staff Work From Home: " + locations[i]["StaffWorkFromHome"] +
-                                    "<br/>" + "Staff Affected: " + locations[i]["StaffAffected"] +
-                                    "<br/>" + "Brac Financial Loss: " + locations[i]["BracFinancialLoss"] +
-                                    "<br/>" + "Staff Male Reach: " + locations[i]["StaffMaleReach"] +
-                                    "<br/>" + "Staff Female Reach: " + locations[i]["StaffFemaleReach"]);
-
-                                infowindow.open(map, marker4);
-                            }
-                        })(marker4, i));
-
-                        google.maps.event.addListener(marker3, 'click', (function (marker4, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker4.getPosition());
-                            }
-                        })(marker4, i));
-                    }
-                }
-                else {
-                        marker4 = new google.maps.Marker({
-                            position: new google.maps.LatLng(locations[i]["Latitude"] + 0.06, locations[i]["Longitude"] + 0.07),
-                            map: map
-                        });
-
-                        marker4.setIcon('@baseUrl/Content/img/icons/map/brac_' + locations[i]["BracIndex"] + '.svg')
-
-                        google.maps.event.addListener(marker4, 'mouseover', (function (marker4, i) {
-                            return function () {
-
-                                infowindow.setContent(
-                                    "" + locations[i]["DistrictName"] +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "ব্র্যাক অভ্যন্তরীন" +
-                                    "<br/>" + "-------------------------------------" +
-                                    "<br/>" + "Staff Work From Home: " + locations[i]["StaffWorkFromHome"] +
-                                    "<br/>" + "Staff Affected: " + locations[i]["StaffAffected"] +
-                                    "<br/>" + "Brac Financial Loss: " + locations[i]["BracFinancialLoss"] +
-                                    "<br/>" + "Staff Male Reach: " + locations[i]["StaffMaleReach"] +
-                                    "<br/>" + "Staff Female Reach: " + locations[i]["StaffFemaleReach"]);
-
-                                infowindow.open(map, marker4);
-                            }
-                        })(marker4, i));
-
-                        google.maps.event.addListener(marker3, 'click', (function (marker4, i) {
-                            return function () {
-                                map.setZoom(10);
-                                map.setCenter(marker4.getPosition());
-                            }
-                        })(marker4, i));
-                }
-            }
+            alert('No data found');
         }
+
+        function MapInit(locations) {
+
+            
+
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 7,
+                    center: new google.maps.LatLng(locations[0]["Latitude"], locations[0]["Longitude"]),
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                });
+
+                var infowindow = new google.maps.InfoWindow();
+
+                var marker, marker2, marker3, i;
+
+
+                for (i = 0; i < locations.length; i++) {
+
+                    var isPeopleChecked = document.getElementById("isPeople").checked;
+                    var isHealthChecked = document.getElementById("isHealth").checked;
+                    var isGovtSupportChecked = document.getElementById("isGovtSupport").checked;
+                    var isBracChecked = document.getElementById("isBrac").checked;
+                    var priorityType = $('#ContentTypeId2').val();
+
+                    if (isPeopleChecked) {
+
+                        if (priorityType > 0) {
+
+                            if (priorityType == locations[i]["PeopleIndex"]) {
+
+                                marker = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i]["Latitude"], locations[i]["Longitude"]),
+                                    map: map
+                                });
+
+                                marker.setIcon('@baseUrl/Content/img/icons/map/people_' + locations[i]["PeopleIndex"] + '.svg')
+
+                                google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                                    return function () {
+
+                                        infowindow.setContent(
+                                            "" + locations[i]["DistrictName"] +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "জনসংখ্যা" +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
+                                            "<br/>" + "Population : " + locations[i]["Population"]);
+                                        infowindow.open(map, marker);
+                                    }
+                                })(marker, i));
+
+                                google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                    return function () {
+                                        map.setZoom(10);
+                                        map.setCenter(marker.getPosition());
+                                    }
+                                })(marker, i));
+
+                            }
+                        }
+                        else {
+
+                            marker = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i]["Latitude"], locations[i]["Longitude"]),
+                                map: map
+                            });
+
+                            marker.setIcon('@baseUrl/Content/img/icons/map/people_' + locations[i]["PeopleIndex"] + '.svg')
+
+                            google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+                                return function () {
+
+                                    infowindow.setContent(
+                                        "" + locations[i]["DistrictName"] +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "জনসংখ্যা" +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "Total Met: " + locations[i]["SummerizedData_ReachCount"] +
+                                        "<br/>" + "Population : " + locations[i]["Population"]);
+                                    infowindow.open(map, marker);
+                                }
+                            })(marker, i));
+
+                            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+                                return function () {
+                                    map.setZoom(10);
+                                    map.setCenter(marker.getPosition());
+                                }
+                            })(marker, i));
+                        }
+
+
+
+                    }
+
+                    if (isHealthChecked) {
+
+                        if (priorityType > 0) {
+
+                            if (priorityType == locations[i]["HealthIndex"]) {
+
+                                marker2 = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i]["Latitude"] + 0.02, locations[i]["Longitude"] + 0.03),
+                                    map: map
+                                });
+
+                                marker2.setIcon('@baseUrl/Content/img/icons/map/health_' + locations[i]["HealthIndex"] + '.svg')
+
+                                google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
+                                    return function () {
+
+                                        infowindow.setContent(
+                                            "" + locations[i]["DistrictName"] +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "স্বাস্থ্যগত তথ্য" +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
+                                            "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
+                                            "<br/>" + "Female: " + locations[i]["DetailData_FemaleCount"] +
+                                            "<br/>" + "Male Percent: " + locations[i]["DetailData_MalePercent"] +
+                                            "<br/>" + "Female Percent: " + locations[i]["DetailData_FemalePercent"] +
+                                            "<br/>" + "Hospital Count : " + locations[i]["HospitalCount"] +
+                                            "<br/>" + "Bed Count: " + locations[i]["BedCount"] +
+                                            "<br/>" + "Total Quarantine: " + locations[i]["TotalQuarantine"] +
+                                            "<br/>" + "Total Released: " + locations[i]["TotalReleased"] +
+                                            "<br/>" + "Current Quarantine: " + locations[i]["CurrentQuarantine"] +
+                                            "<br/>" + "Total Do Test On: " + locations[i]["TotalDoTestOn"] +
+                                            "<br/>" + "Total Death: " + locations[i]["TotalDeath"]);
+                                        infowindow.open(map, marker2);
+                                    }
+                                })(marker2, i));
+
+                                google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
+                                    return function () {
+                                        map.setZoom(10);
+                                        map.setCenter(marker2.getPosition());
+                                    }
+                                })(marker2, i));
+                            }
+                        }
+                        else {
+                            marker2 = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i]["Latitude"] + 0.02, locations[i]["Longitude"] + 0.03),
+                                map: map
+                            });
+
+                            marker2.setIcon('@baseUrl/Content/img/icons/map/health_' + locations[i]["HealthIndex"] + '.svg')
+
+                            google.maps.event.addListener(marker2, 'mouseover', (function (marker2, i) {
+                                return function () {
+
+                                    infowindow.setContent(
+                                        "" + locations[i]["DistrictName"] +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "স্বাস্থ্যগত তথ্য" +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "Total Count : " + locations[i]["DetailData_TotalCount"] +
+                                        "<br/>" + "Male: " + locations[i]["DetailData_MaleCount"] +
+                                        "<br/>" + "Female: " + locations[i]["DetailData_FemaleCount"] +
+                                        "<br/>" + "Male Percent: " + locations[i]["DetailData_MalePercent"] +
+                                        "<br/>" + "Female Percent: " + locations[i]["DetailData_FemalePercent"] +
+                                        "<br/>" + "Hospital Count : " + locations[i]["HospitalCount"] +
+                                        "<br/>" + "Bed Count: " + locations[i]["BedCount"] +
+                                        "<br/>" + "Total Quarantine: " + locations[i]["TotalQuarantine"] +
+                                        "<br/>" + "Total Released: " + locations[i]["TotalReleased"] +
+                                        "<br/>" + "Current Quarantine: " + locations[i]["CurrentQuarantine"] +
+                                        "<br/>" + "Total Do Test On: " + locations[i]["TotalDoTestOn"] +
+                                        "<br/>" + "Total Death: " + locations[i]["TotalDeath"]);
+                                    infowindow.open(map, marker2);
+                                }
+                            })(marker2, i));
+
+                            google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
+                                return function () {
+                                    map.setZoom(10);
+                                    map.setCenter(marker2.getPosition());
+                                }
+                            })(marker2, i));
+                        }
+                    }
+
+                    if (isGovtSupportChecked) {
+
+                        if (priorityType > 0) {
+
+                            if (priorityType == locations[i]["SupportIndex"]) {
+
+                                marker3 = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i]["Latitude"] + 0.04, locations[i]["Longitude"] + 0.05),
+                                    map: map
+                                });
+
+                                marker3.setIcon('@baseUrl/Content/img/icons/map/relief_' + locations[i]["SupportIndex"] + '.svg')
+
+                                google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
+                                    return function () {
+
+                                        infowindow.setContent(
+                                            "" + locations[i]["DistrictName"] +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "মানবিক সহায়তা" +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
+                                            "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
+                                            "<br/>" + "Planned Dal: " + locations[i]["PlannedDal"] +
+                                            "<br/>" + "Planned Money: " + locations[i]["PlannedMoney"] +
+                                            "<br/>" + "Total Rice: " + locations[i]["TotalRice"] +
+                                            "<br/>" + "Total Potato: " + locations[i]["TotalPotato"] +
+                                            "<br/>" + "Total Dal: " + locations[i]["TotalDal"] +
+                                            "<br/>" + "Total Money: " + locations[i]["TotalMoney"] +
+                                            "<br/>" + "Total Relief Family: " + locations[i]["TotalReliefFamily"]);
+
+                                        infowindow.open(map, marker3);
+                                    }
+                                })(marker3, i));
+
+                                google.maps.event.addListener(marker3, 'click', (function (marker3, i) {
+                                    return function () {
+                                        map.setZoom(10);
+                                        map.setCenter(marker3.getPosition());
+                                    }
+                                })(marker3, i));
+                            }
+                        }
+                        else {
+                            marker3 = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i]["Latitude"] + 0.04, locations[i]["Longitude"] + 0.05),
+                                map: map
+                            });
+
+                            marker3.setIcon('@baseUrl/Content/img/icons/map/relief_' + locations[i]["SupportIndex"] + '.svg')
+
+                            google.maps.event.addListener(marker3, 'mouseover', (function (marker3, i) {
+                                return function () {
+
+                                    infowindow.setContent(
+                                        "" + locations[i]["DistrictName"] +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "মানবিক সহায়তা" +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "Planned Rice: " + locations[i]["PlannedRice"] +
+                                        "<br/>" + "Planned Potato: " + locations[i]["PlannedPotato"] +
+                                        "<br/>" + "Planned Dal: " + locations[i]["PlannedDal"] +
+                                        "<br/>" + "Planned Money: " + locations[i]["PlannedMoney"] +
+                                        "<br/>" + "Total Rice: " + locations[i]["TotalRice"] +
+                                        "<br/>" + "Total Potato: " + locations[i]["TotalPotato"] +
+                                        "<br/>" + "Total Dal: " + locations[i]["TotalDal"] +
+                                        "<br/>" + "Total Money: " + locations[i]["TotalMoney"] +
+                                        "<br/>" + "Total Relief Family: " + locations[i]["TotalReliefFamily"]);
+
+                                    infowindow.open(map, marker3);
+                                }
+                            })(marker3, i));
+
+                            google.maps.event.addListener(marker3, 'click', (function (marker3, i) {
+                                return function () {
+                                    map.setZoom(10);
+                                    map.setCenter(marker3.getPosition());
+                                }
+                            })(marker3, i));
+                        }
+                    }
+
+                    if (isBracChecked) {
+
+
+                        if (priorityType > 0) {
+
+                            if (priorityType == locations[i]["BracIndex"]) {
+
+                                marker4 = new google.maps.Marker({
+                                    position: new google.maps.LatLng(locations[i]["Latitude"] + 0.06, locations[i]["Longitude"] + 0.07),
+                                    map: map
+                                });
+
+                                marker4.setIcon('@baseUrl/Content/img/icons/map/brac_' + locations[i]["BracIndex"] + '.svg')
+
+                                google.maps.event.addListener(marker4, 'mouseover', (function (marker4, i) {
+                                    return function () {
+
+                                        infowindow.setContent(
+                                            "" + locations[i]["DistrictName"] +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "ব্র্যাক অভ্যন্তরীন" +
+                                            "<br/>" + "-------------------------------------" +
+                                            "<br/>" + "Staff Work From Home: " + locations[i]["StaffWorkFromHome"] +
+                                            "<br/>" + "Staff Affected: " + locations[i]["StaffAffected"] +
+                                            "<br/>" + "Brac Financial Loss: " + locations[i]["BracFinancialLoss"] +
+                                            "<br/>" + "Staff Male Reach: " + locations[i]["StaffMaleReach"] +
+                                            "<br/>" + "Staff Female Reach: " + locations[i]["StaffFemaleReach"]);
+
+                                        infowindow.open(map, marker4);
+                                    }
+                                })(marker4, i));
+
+                                google.maps.event.addListener(marker4, 'click', (function (marker4, i) {
+                                    return function () {
+                                        map.setZoom(10);
+                                        map.setCenter(marker4.getPosition());
+                                    }
+                                })(marker4, i));
+                            }
+                        }
+                        else {
+                            marker4 = new google.maps.Marker({
+                                position: new google.maps.LatLng(locations[i]["Latitude"] + 0.06, locations[i]["Longitude"] + 0.07),
+                                map: map
+                            });
+
+                            marker4.setIcon('@baseUrl/Content/img/icons/map/brac_' + locations[i]["BracIndex"] + '.svg')
+
+                            google.maps.event.addListener(marker4, 'mouseover', (function (marker4, i) {
+                                return function () {
+
+                                    infowindow.setContent(
+                                        "" + locations[i]["DistrictName"] +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "ব্র্যাক অভ্যন্তরীন" +
+                                        "<br/>" + "-------------------------------------" +
+                                        "<br/>" + "Staff Work From Home: " + locations[i]["StaffWorkFromHome"] +
+                                        "<br/>" + "Staff Affected: " + locations[i]["StaffAffected"] +
+                                        "<br/>" + "Brac Financial Loss: " + locations[i]["BracFinancialLoss"] +
+                                        "<br/>" + "Staff Male Reach: " + locations[i]["StaffMaleReach"] +
+                                        "<br/>" + "Staff Female Reach: " + locations[i]["StaffFemaleReach"]);
+
+                                    infowindow.open(map, marker4);
+                                }
+                            })(marker4, i));
+
+                            google.maps.event.addListener(marker4, 'click', (function (marker4, i) {
+                                return function () {
+                                    map.setZoom(10);
+                                    map.setCenter(marker4.getPosition());
+                                }
+                            })(marker4, i));
+                        }
+                    }
+
+                }
     }
 
     </script>

@@ -1,0 +1,213 @@
+﻿@model AppProj.Web.Models.DashboardModel
+@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    string act = "";
+}
+
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li>
+                <h2 class="textPrimary">
+                    BRAC COVID-19 Activities
+                </h2>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="row-fluid">
+
+    <div class="span12">
+
+        <div class="row-fluid">
+
+            <div class="span6">
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>People Reach By Activity</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Activity</th>
+                                            <th>Male</th>
+                                            <th>Female</th>
+                                            <th>Boy</th>
+                                            <th>Girl</th>
+                                            <th>PWD</th>
+                                            <th>HHS</th>
+                                            <th>Pg.W</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.BepDataSummeryModelReaches)
+                                        {
+                                            <tr>
+                                                <td>@row.Activity</td>
+                                                <td>@row.Male</td>
+                                                <td>@row.Female</td>
+                                                <td>@row.Boy</td>
+                                                <td>@row.Girl</td>
+                                                <td>@row.PWD</td>
+                                                <td>@row.HHS</td>
+                                                <td>@row.Pregnant</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>BRAC Prepareness Status</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Distribute</th>
+                                            <th>Male Staff</th>
+                                            <th>Female Staff</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.BepDataSummeryModelMaterials)
+                                        {
+                                            <tr>
+                                                <td>@row.Item</td>
+                                                <td>@row.Qnt</td>
+                                                <td>@row.ExpQnt</td>
+                                                <td>@row.Male</td>
+                                                <td>@row.Female</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div><!-- Mid panel -->
+
+            <div class="span6">
+            
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/shopping_basket.png" class="utopia-widget-icon">
+                                <span>People Reach by Activities and Distributed Items</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Quantity</th>
+                                            <th>Reach</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.BepDataSummeryModelMaterialDistributions)
+                                        {
+                                            if (act != row.Activity)
+                                            {
+                                                <tr>
+                                                    <td colspan="3" class="alert alert-info">@row.Activity</td>
+                                                </tr>
+
+                                                act = row.Activity;
+                                            }
+                                            <tr>
+                                                <td>@row.Item</td>
+                                                <td>@row.Qnt</td>
+                                                <td>@row.Reach</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                
+                
+
+            </div><!-- Right panel -->
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<!-- Body end -->
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/js/jquery.sparkline.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            
+        });
+
+
+
+    </script>
+}

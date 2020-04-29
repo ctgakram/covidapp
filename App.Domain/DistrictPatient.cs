@@ -12,17 +12,15 @@ namespace AppProj.Domain
     using System;
     using System.Collections.Generic;
     
-    public partial class MapSummary
+    public partial class DistrictPatient
     {
         public int Id { get; set; }
-        public Nullable<int> ProgramId { get; set; }
-        public Nullable<int> DivisionId { get; set; }
         public Nullable<int> DistrictId { get; set; }
-        public Nullable<int> SummerizedData_ReachCount { get; set; }
-        public Nullable<int> DetailData_TotalCount { get; set; }
-        public Nullable<int> DetailData_MaleCount { get; set; }
-        public Nullable<int> DetailData_FemaleCount { get; set; }
-        public Nullable<decimal> DetailData_MalePercent { get; set; }
-        public Nullable<decimal> DetailData_FemalePercent { get; set; }
+        public System.DateTime Date { get; set; }
+        public int DiffWithYes { get; set; }
+        public int TillPatientCount { get; set; }
+        public string NameCode { get; set; }
+    
+        public virtual StandingData StandingData { get; set; }
     }
 }

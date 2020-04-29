@@ -13,6 +13,7 @@ namespace AppProj.Web.Models
         public int SuspectFemale { get; set; }
         public int SuspectApp { get; set; }
         public string Districts { get; set; }
+        
 
         public DashboardModelBDC DashboardModelBDCs { get; set; }
         public DashboardModelHnpp DashboardModelHnpps { get; set; }
@@ -32,6 +33,7 @@ namespace AppProj.Web.Models
     }
     public class DashboardModelBDC
     {
+        public int Patient { get; set; }
         public int Hospital { get; set; }
         public int Bed { get; set; }
         public int Qrn { get; set; }

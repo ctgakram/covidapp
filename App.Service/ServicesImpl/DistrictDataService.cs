@@ -1,6 +1,7 @@
 ﻿using AppProj.Data.Infrastructure;
 using AppProj.Data.Repositories;
 using AppProj.Domain;
+using AppProj.Domain.ModelExt;
 using AppProj.Service.Services;
 using System;
 using System.Collections.Generic;
@@ -14,15 +15,18 @@ namespace AppProj.Service.ServicesImpl
     {
         readonly IDistrictDataRepository disRepository;
         readonly IDistrictSummeryRepository sumRepository;
+        readonly IDistrictPatientRepository patientRepository;
         readonly IUnitOfWork unitOfWork;
 
         public DistrictDataService(
               IDistrictDataRepository disRepository
             , IDistrictSummeryRepository sumRepository
+            , IDistrictPatientRepository patientRepository
             , IUnitOfWork unitOfWork)
         {
             this.disRepository = disRepository;
             this.sumRepository = sumRepository;
+            this.patientRepository = patientRepository;
             this.unitOfWork = unitOfWork;
         }
 
@@ -85,6 +89,24 @@ namespace AppProj.Service.ServicesImpl
         {
             return sumRepository.GetAll();
         }
+
+        public string GetTopDistricts(int take)
+        {
+            var model = sumRepository.GetAll()
+                .OrderByDescending(c => c.PatientCount)
+               .Take(take)
+               .Skip(0);
+
+            return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
+        }
+
+        public IEnumerable<CountModel> GetLastPatientCount(int take)
+        {
+            DateTime dt = DateTime.Now.AddDays(-take);
+            return patientRepository.GetMany(c=> c.Date>= dt)
+               .GroupBy(l => l.Date.ToString("dd MMM"))
+               .Select(c => new CountModel { Name = c.Key, Count = c.Sum(d => d.TillPatientCount) });
+        }
         public void Update(DistrictData disEntity, DistrictSummery sumEntity)
         {
             sumEntity.LastUpdateTime = DateTime.Now;
@@ -108,6 +130,20 @@ namespace AppProj.Service.ServicesImpl
             }
         }
 
+        public IEnumerable<DistrictPatient> GetPatient(DateTime date)
+        {
+            return patientRepository.GetMany(c => c.Date == date);
+        }
+
+        public void AddPatient(DistrictPatient entity)
+        {
+            patientRepository.Add(entity);
+        }
+
+        public void UpdatePatient(DistrictPatient entity)
+        {
+            patientRepository.Update(entity);
+        }
 
     }
 }
