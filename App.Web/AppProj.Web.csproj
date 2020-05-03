@@ -3524,6 +3524,7 @@
     <Content Include="Views\Main\WorldMap.cshtml" />
     <Content Include="Views\MapSummary\Index.cshtml" />
     <Content Include="Views\Main\BracDashboard.cshtml" />
+    <None Include="Views\DistrictSubmission\IndexBrac.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

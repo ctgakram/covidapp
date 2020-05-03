@@ -580,6 +580,7 @@ namespace AppProj.Web.Controllers
         {
             int count = 0;
             bool visible = UserRole.Check("ALL_PROGRAM_DATA", SessionHelper.Role);
+            DateTime dt = DateTime.Parse("4/11/2020");
 
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
@@ -681,7 +682,7 @@ namespace AppProj.Web.Controllers
                        ,new GridButtonModel[]
                             {
                                  new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\""
-                                 , V = (visible && c.Id>0)}
+                                 , V = (visible && c.Id>0 && c.Date>dt)}
                             }
             }).ToArray();
 

@@ -70,6 +70,9 @@ namespace AppProj.Domain
         public Nullable<int> BracFoodDistribution { get; set; }
         public string DistrictCode { get; set; }
         public Nullable<int> PatientCount { get; set; }
+        public int TotalBracPatient { get; set; }
+        public int TotalBracReleased { get; set; }
+        public int TotalBracQurantine { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
