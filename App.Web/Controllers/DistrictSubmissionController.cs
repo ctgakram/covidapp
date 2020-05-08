@@ -276,6 +276,12 @@ namespace AppProj.Web.Controllers
                         //TotalDal = g.Sum(c => c.TotalDal)
                         ,
                         TotalMoney = g.Sum(c => c.TotalMoney)
+                        ,
+                        OtherPatientCount = g.Sum(c => c.OtherPatientCount)
+                       ,
+                        BreathingPatientCount = g.Sum(c => c.BreathingPatientCount)
+                       ,
+                        MaternalCount = g.Sum(c => c.MaternalCount)
                         //,
                         //TotalPotato = g.Sum(c => c.TotalPotato)
                         //,
@@ -320,6 +326,9 @@ namespace AppProj.Web.Controllers
                        ,c.TotalReleased
                        ,c.TotalDeath
                        ,c.TotalDoTestOn
+                       ,c.OtherPatientCount
+                       ,c.BreathingPatientCount
+                       ,c.MaternalCount
                        ,c.TotalBracPatient
                        ,c.TotalBracReleased
                        ,c.TotalBracQurantine
