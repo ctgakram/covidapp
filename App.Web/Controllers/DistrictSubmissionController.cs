@@ -19,17 +19,20 @@ namespace AppProj.Web.Controllers
         readonly IStandingDataService standingDataService;
         readonly IDistrictDataService disDataService;
         readonly IDistrictQuestionService districtQuestionService;
+        readonly IDistrictByUserProfileService districtByUserProfileService;
         readonly IUnitOfWork unitOfWork;
 
         public DistrictSubmissionController(IUnitOfWork unitOfWork,
             IDistrictDataService disDataService, 
             IStandingDataService standingDataService,
-            IDistrictQuestionService districtQuestionService)
+            IDistrictQuestionService districtQuestionService,
+            IDistrictByUserProfileService districtByUserProfileService)
         {
             this.standingDataService = standingDataService;
             this.disDataService = disDataService;
             this.unitOfWork = unitOfWork;
             this.districtQuestionService = districtQuestionService;
+            this.districtByUserProfileService = districtByUserProfileService;
         }
 
         public ActionResult Index()
@@ -726,13 +729,15 @@ namespace AppProj.Web.Controllers
         {
             DistrictSubmitSubModel up = new DistrictSubmitSubModel();
 
-            up.Divisions= standingDataService.GetDivisions().Where(r => r.IsActive).ToSelectList(null, "Id", "Name");
+            //up.Divisions= standingDataService.GetDivisions().Where(r => r.IsActive).ToSelectList(null, "Id", "Name");
 
-            int d = int.Parse(up.Divisions.FirstOrDefault().Value) ;
+            //int d = int.Parse(up.Divisions.FirstOrDefault().Value) ;
 
-            up.Districts=standingDataService.GetDistricts(d).Where(r => r.IsActive).ToSelectList(d, "Id", "Name");
+            //up.Districts=standingDataService.GetDistricts(d).Where(r => r.IsActive).ToSelectList(d, "Id", "Name");
 
-            up.DivisionId = d;
+            up.Districts =  districtByUserProfileService.GetByUser(SessionHelper.UserId).Select(c=> new {c.DistrictId,c.StandingData.Name }).ToSelectList(null, "DistrictId", "Name");
+
+            //up.DivisionId = d;
             up.Date = DateTime.Now;
 
             
@@ -764,10 +769,14 @@ namespace AppProj.Web.Controllers
             }
 
             up.Date = model.Date;
-            up.DivisionName = standingDataService.GetDataById(model.DivisionId).Name;
-
+           
             var dis = standingDataService.GetDataById(model.DistrictId);
             up.DistrictName = dis.Name;
+
+            up.DivisionId = dis.ParentId.Value;
+            up.DivisionName = standingDataService.GetDataById(up.DivisionId).Name;
+
+
             up.DistrictTypeValue = dis.IntValue ?? 0;
             var districtQuesitonsIds = districtQuestionService.GetDistrictQuestions(model.DistrictId).Take(2).ToList();
             if (districtQuesitonsIds!=null)

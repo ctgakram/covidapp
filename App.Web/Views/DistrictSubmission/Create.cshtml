@@ -14,7 +14,7 @@
 {
     @Html.ValidationSummary(true)    
 <table class="table-striped">
-    <tr>
+    @*<tr>
         <td class="title">
             বিভাগ
         </td>
@@ -22,7 +22,7 @@
             @Html.DropDownListFor(model => model.DivisionId, Model.Divisions)
             @Html.ValidationMessageFor(model => model.DivisionId)
         </td>
-    </tr>
+    </tr>*@
     <tr>
         <td class="title">
             জেলা
@@ -56,20 +56,20 @@
     $(document).ready(function () {
 
         $("#save-submit").click(function () {
-            
+           
         });
 
-        $('#DivisionId').change(function (event) {
-            LoadUpazialSearch($('#DivisionId').val());
-        });
+        //$('#DivisionId').change(function (event) {
+        //    LoadUpazialSearch($('#DivisionId').val());
+        //});
 
-        window.LoadUpazialSearch = function (areaId) {
+        @*window.LoadUpazialSearch = function (areaId) {
                 var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
             LoadDropDownListWithCall('DistrictId'
                     , url
                     , null
                     , null);
-        }
+        }*@
 
         $('#Date').datepicker({
             format: "dd M, yyyy",
