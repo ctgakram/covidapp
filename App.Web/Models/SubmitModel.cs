@@ -14,22 +14,24 @@ namespace AppProj.Web.Models
         public int SourceId { get; set; }
         public int DistrictId { get; set; }
         public int UpazillaId { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int ReachCount { get; set; }
         public string Description { get; set; }
+        [Required(ErrorMessage = "(তারিখ অবশ্যই দিন)")]
         public System.DateTime Date { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
+        [Required(ErrorMessage = "নাম অবশ্যই দিন")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Gender is required")]
+        [Required(ErrorMessage = "লিঙ্গ অবশ্যই দিন")]
         public Nullable<int> GenderId { get; set; }
 
-        [Required(ErrorMessage ="Age is required")]
+        [Required(ErrorMessage = "বয়স অবশ্যই দিন")]
         public Nullable<int> Age { get; set; }
 
         [Required]
         [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{5})$",
-                   ErrorMessage = "Entered phone format is not valid.")]
+                   ErrorMessage = "সঠিক ফোন নম্বর দিন")]
         public string Phone { get; set; }
 
         public bool IsFever { get; set; }
@@ -39,17 +41,29 @@ namespace AppProj.Web.Models
                 
         public string CollectedBy { get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int RiskBySS { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int RiskBySK { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int RiskByPK { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int RiskByPA { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int RiskByAM { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int CaseCnt { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int BracMeeting { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int BracParticipant { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int GovtMeeting { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int GovtParticipant { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int Leaflet { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int Sticker { get; set; }
 
         public IEnumerable<SelectListItem> Sources { get; set; }
@@ -64,6 +78,7 @@ namespace AppProj.Web.Models
     {
         public int Id { get; set; }
         public string Src { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int Count { get; set; }
         public string CollectedBy { get; set; }
     }

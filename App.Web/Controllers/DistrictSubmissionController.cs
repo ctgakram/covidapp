@@ -276,6 +276,12 @@ namespace AppProj.Web.Controllers
                         //TotalDal = g.Sum(c => c.TotalDal)
                         ,
                         TotalMoney = g.Sum(c => c.TotalMoney)
+                        ,
+                        OtherPatientCount = g.Sum(c => c.OtherPatientCount)
+                       ,
+                        BreathingPatientCount = g.Sum(c => c.BreathingPatientCount)
+                       ,
+                        MaternalCount = g.Sum(c => c.MaternalCount)
                         //,
                         //TotalPotato = g.Sum(c => c.TotalPotato)
                         //,
@@ -294,6 +300,12 @@ namespace AppProj.Web.Controllers
                         //PlannedPotato = g.Sum(c => c.PlannedPotato)
                         ,
                         PlannedRice = g.Sum(c => c.PlannedRice)
+                        ,
+                        TotalBracPatient = g.Sum(c => c.TotalBracPatient)
+                        ,
+                        TotalBracReleased = g.Sum(c => c.TotalBracReleased)
+                        ,
+                        TotalBracQurantine = g.Sum(c => c.TotalBracQurantine)
                         ,
                         InsertedById = -1
                         ,
@@ -314,6 +326,12 @@ namespace AppProj.Web.Controllers
                        ,c.TotalReleased
                        ,c.TotalDeath
                        ,c.TotalDoTestOn
+                       ,c.OtherPatientCount
+                       ,c.BreathingPatientCount
+                       ,c.MaternalCount
+                       ,c.TotalBracPatient
+                       ,c.TotalBracReleased
+                       ,c.TotalBracQurantine
                        ,c.PlannedRice
                        //,c.PlannedDal
                        //,c.PlannedPotato
@@ -528,11 +546,164 @@ namespace AppProj.Web.Controllers
                        ,c.Money
                        ,c.ReliefPerson
                        ,c.ReliefRemarks
+
                        //,c.Onion
                        //,c.Salt
                        //,c.Oil
                        //,c.Soap
                        //,c.UserProfile.UserName
+                //,new GridButtonModel[]
+                //    {
+                //         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\"", V = visible}
+
+                //    }
+            }).ToArray();
+
+
+            JQueryDataTable js = new JQueryDataTable();
+            js.sEcho = ec;
+            js.iTotalDisplayRecords = count.ToString();
+            js.iTotalRecords = js.iTotalDisplayRecords;
+            js.aaData = obj;
+
+            return Json(js, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult IndexBrac()
+        {
+            SearchModel up = new SearchModel();
+
+            var source = standingDataService.GetDivisions().Where(r => r.IsActive);
+            up.ContentTypes1 = source.ToSelectList(null, "Id", "Name");
+
+            var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
+            up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
+
+            up.FromDate = DateTime.Now;
+            up.ToDate = DateTime.Now;
+
+            return View(up);
+        }
+
+        public JsonResult DataGridBrac()
+        {
+
+            bool visible = UserRole.Check("DISTRICT", SessionHelper.Role);
+
+            int ec = int.Parse(Request.QueryString["sEcho"]);
+            int take = int.Parse(Request.QueryString["iDisplayLength"]);
+            int skip = int.Parse(Request.QueryString["iDisplayStart"]);
+            //bool isSum = bool.Parse(Request.QueryString["isSum"]);
+
+            if (take == -1) { take = 1000000000; skip = 0; }
+
+            int? divId = null;
+
+            try
+            {
+                divId = Convert.ToInt32(Request.QueryString["ContentTypeId1"]);
+            }
+            catch { }
+
+            int? disId = null;
+
+            try
+            {
+                disId = Convert.ToInt32(Request.QueryString["ContentTypeId2"]);
+            }
+            catch { }
+
+
+            DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
+            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+
+            int count = 0;
+            List<DistrictData> dataList = disDataService.Get(divId, disId, FromDate, ToDate, skip, take, out count).ToList();
+
+            //List<DistrictData> dl = new List<DistrictData>();
+            /*
+            if (skip<=0 && dataList.Count()>0)
+            {
+                IEnumerable<DistrictData> dataListSum = disDataService.Get(divId, disId, FromDate, ToDate, skip, 1000000000, out count);
+
+                DistrictData tot = dataListSum.GroupBy(q => 1)
+                    .Select(g => new DistrictData
+                    {
+                        Id = 0
+                        ,
+                        Date = ToDate
+                        ,
+                        StandingData = new StandingData { Name = "<span style=\"color:#ff6a00; font-size:14px;\">Total</span>" }
+                        ,
+                        DivisionId = -1
+                        ,
+                        StandingData1 = new StandingData { Name = " " }
+                        ,
+                        DistrictId = -1
+                        ,
+                        NewQuarantine = g.Sum(c => c.NewQuarantine)
+                        ,
+                        Death = g.Sum(c => c.Death)
+                        ,
+                        DoTestOn = g.Sum(c => c.DoTestOn)
+                        ,
+                        ReleasedQuarantine = g.Sum(c => c.ReleasedQuarantine)
+                        //,
+                        //TillCurrentQuarantine = g.Sum(c => c.TillCurrentQuarantine)
+                        //,
+                        //TillDeath = g.Sum(c => c.TillDeath)
+                        //,
+                        //TillDoTestOn = g.Sum(c => c.TillDoTestOn)
+                        //,
+                        //TillQuarantine = g.Sum(c => c.TillQuarantine)
+                        //,
+                        //TillReleasedQuarantine = g.Sum(c => c.TillReleasedQuarantine)
+                        ,                        
+                        ReliefFamily = g.Sum(c => c.ReliefFamily)
+                       //,
+                       // ReliefPerson = g.Sum(c => c.ReliefPerson)
+                       ,
+                        Rice = g.Sum(c => c.Rice)
+                       ,
+                        Dal = g.Sum(c => c.Dal)
+                       ,
+                        Potato = g.Sum(c => c.Potato)
+                       ,
+                        Money = g.Sum(c => c.Money)
+                       //,
+                       // Onion = g.Sum(c => c.Onion)
+                       //,
+                       // Salt = g.Sum(c => c.Salt)
+                       //,
+                       // Oil = g.Sum(c => c.Oil)
+                       //,
+                       // Soap = g.Sum(c => c.Soap)
+                        ,
+                        InsertedById = -1
+                        ,
+                        UserProfile = new UserProfile { UserName = "" }
+                    }
+                    ).Single();
+
+                dataList.Insert(0, tot);
+            }
+            */
+            
+
+            var obj = (from c in dataList
+                       select new object[] {
+                       c.StandingData.Name
+                       ,c.StandingData1.Name
+                       ,String.Format("{0:dd MMM, yyyy}", c.Date)
+
+                       ,c.BracPatient
+                       ,c.BracReleased
+                       ,c.BracQurantine
+
+                       ,c.TillBracPatient
+                       ,c.TillBracReleased
+                       ,c.TillBracQurantine
+
                 //,new GridButtonModel[]
                 //    {
                 //         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\"", V = visible}
@@ -655,6 +826,10 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + model.Potato;
                 entityDisSum.TotalMoney = entityDisSum.TotalMoney + model.Money;
 
+                entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + model.BracPatient;
+                entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + model.BracReleased;
+                entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + model.BracQurantine;
+                
                 //entityDisSum.TotalOil = entityDisSum.TotalOil + model.Oil;
                 //entityDisSum.TotalSoap = entityDisSum.TotalSoap + model.Soap;
                 //entityDisSum.TotalOnion = entityDisSum.TotalOnion + model.Onion;
@@ -673,6 +848,10 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalDal = entityDisSum.TotalDal + (model.Dal- entityDis.Dal);
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + (model.Potato- entityDis.Potato);
                 entityDisSum.TotalMoney = entityDisSum.TotalMoney + (model.Money- entityDis.Money);
+
+                entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + (model.BracPatient - entityDis.BracPatient);
+                entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + (model.BracReleased - entityDis.BracReleased);
+                entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + (model.BracQurantine - entityDis.BracQurantine);
 
                 //entityDisSum.TotalOil = entityDisSum.TotalOil + (model.Oil- entityDis.TotalOil);
                 //entityDisSum.TotalSoap = entityDisSum.TotalSoap +( model.Soap- entityDis.TotalSoap);

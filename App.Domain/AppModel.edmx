@@ -160,6 +160,12 @@
           <Property Name="Answer1" Type="nvarchar(max)" />
           <Property Name="Question2Id" Type="int" />
           <Property Name="Answer2" Type="nvarchar(max)" />
+          <Property Name="BracPatient" Type="int" Nullable="false" />
+          <Property Name="BracReleased" Type="int" Nullable="false" />
+          <Property Name="BracQurantine" Type="int" Nullable="false" />
+          <Property Name="TillBracPatient" Type="int" Nullable="false" />
+          <Property Name="TillBracReleased" Type="int" Nullable="false" />
+          <Property Name="TillBracQurantine" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DistrictPatients">
           <Key>
@@ -244,6 +250,9 @@
           <Property Name="BracFoodDistribution" Type="int" />
           <Property Name="DistrictCode" Type="nvarchar(max)" />
           <Property Name="PatientCount" Type="int" />
+          <Property Name="TotalBracPatient" Type="int" Nullable="false" />
+          <Property Name="TotalBracReleased" Type="int" Nullable="false" />
+          <Property Name="TotalBracQurantine" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Features">
           <Key>
@@ -1080,6 +1089,8 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
         </Function>
         <Function Name="GetCSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SP_GenerateMapSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SprDemad" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SprJob" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SprMailSend" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="SprProjectsUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ProjectId" Type="int" Mode="In" />
@@ -1717,6 +1728,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
+          <FunctionImport Name="SprDemad" />
+          <FunctionImport Name="SprJob" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -2041,6 +2054,12 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DistrictData_StandingDatas2" FromRole="DistrictData" ToRole="StandingData" />
           <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DistrictData_StandingDatas3" FromRole="DistrictData" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DistrictData_UserProfiles" FromRole="DistrictData" ToRole="UserProfile" />
+          <Property Name="BracPatient" Type="Int32" Nullable="false" />
+          <Property Name="BracReleased" Type="Int32" Nullable="false" />
+          <Property Name="BracQurantine" Type="Int32" Nullable="false" />
+          <Property Name="TillBracPatient" Type="Int32" Nullable="false" />
+          <Property Name="TillBracReleased" Type="Int32" Nullable="false" />
+          <Property Name="TillBracQurantine" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DistrictPatient">
           <Key>
@@ -2131,6 +2150,9 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DistrictSummery_StandingDatas" FromRole="DistrictSummery" ToRole="StandingData" />
           <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DistrictSummery_StandingDatas1" FromRole="DistrictSummery" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DistrictSummery_UserProfiles" FromRole="DistrictSummery" ToRole="UserProfile" />
+          <Property Name="TotalBracPatient" Type="Int32" Nullable="false" />
+          <Property Name="TotalBracReleased" Type="Int32" Nullable="false" />
+          <Property Name="TotalBracQurantine" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -3195,6 +3217,12 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DistrictDatas">
             <EntityTypeMapping TypeName="AppModel.DistrictData">
               <MappingFragment StoreEntitySet="DistrictData">
+                <ScalarProperty Name="TillBracQurantine" ColumnName="TillBracQurantine" />
+                <ScalarProperty Name="TillBracReleased" ColumnName="TillBracReleased" />
+                <ScalarProperty Name="TillBracPatient" ColumnName="TillBracPatient" />
+                <ScalarProperty Name="BracQurantine" ColumnName="BracQurantine" />
+                <ScalarProperty Name="BracReleased" ColumnName="BracReleased" />
+                <ScalarProperty Name="BracPatient" ColumnName="BracPatient" />
                 <ScalarProperty Name="Answer2" ColumnName="Answer2" />
                 <ScalarProperty Name="Question2Id" ColumnName="Question2Id" />
                 <ScalarProperty Name="Answer1" ColumnName="Answer1" />
@@ -3272,6 +3300,9 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DistrictSummeries">
             <EntityTypeMapping TypeName="AppModel.DistrictSummery">
               <MappingFragment StoreEntitySet="DistrictSummery">
+                <ScalarProperty Name="TotalBracQurantine" ColumnName="TotalBracQurantine" />
+                <ScalarProperty Name="TotalBracReleased" ColumnName="TotalBracReleased" />
+                <ScalarProperty Name="TotalBracPatient" ColumnName="TotalBracPatient" />
                 <ScalarProperty Name="PatientCount" ColumnName="PatientCount" />
                 <ScalarProperty Name="DistrictCode" ColumnName="DistrictCode" />
                 <ScalarProperty Name="BracFoodDistribution" ColumnName="BracFoodDistribution" />
@@ -3495,6 +3526,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SprDemad" FunctionName="AppModel.Store.SprDemad" />
+          <FunctionImportMapping FunctionImportName="SprJob" FunctionName="AppModel.Store.SprJob" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

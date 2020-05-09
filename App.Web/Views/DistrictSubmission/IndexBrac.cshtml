@@ -14,11 +14,13 @@
     };
 }
 
+
+
 <div class="row-fluid">
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> বি.ডি.সি. - জেলার বর্তমান অবস্থা</h2>
+				<h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> বি.ডি.সি. - জেলার ব্র্যাক কর্মীদের তথ্য</h2>
             </li>
         </ul>
 
@@ -46,6 +48,16 @@
                         </div>
                     </div>
                 </fieldset>
+                <fieldset>
+                    <div class="control-group ">
+                        <label class="control-label" for="FromDate">সার্চের শুরুর তারিখ:</label>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+
+                        </div>
+                    </div>
+
+                </fieldset>
 
             </div>
             <div class="span3 utopia-form-freeSpace">
@@ -56,10 +68,28 @@
 
                     </div>
                 </fieldset>
+                <fieldset>
+                    <div class="control-group ">
+                        <label class="control-label" for="ToDate">সার্চের শেষ তারিখ:</label>
+
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+
+                        </div>
+                    </div>
+
+                </fieldset>
 
             </div>
             <div class="span3 utopia-form-freeSpace">
-
+                <fieldset>
+                    <div class="control-group ">
+                        <label class="control-label" for="ContentTypeId3">  &nbsp; </label>
+                        <div class="controls">
+                            &nbsp;
+                        </div>
+                    </div>
+                </fieldset>
                 <fieldset>
                     <div class="control-group ">
                         <label class="control-label" for="select01">
@@ -80,6 +110,21 @@
                             &nbsp;
                         </label>
                         <div class="controls">
+                            &nbsp;
+                            @if (UserRole.Check("DISTRICT", SessionHelper.Role))
+                            {
+                                @Ajax.ActionLink("তথ্য প্রদান ও পরিবর্তন", "Create", "DistrictSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-primary pull-right" })
+                            }
+                        </div>
+                    </div>
+
+                </fieldset>
+                <fieldset>
+                    <div class="control-group">
+                        <label class="control-label" for="select01">
+                            &nbsp;
+                        </label>
+                        <div class="controls">
                             <a id="prn" href="#" class="btn pull-right"><i class="icon icon-print"></i> Print</a>
                             <a id="exp" href="#" class="btn pull-right"><i class="icon icon-download"></i> Export</a>
 
@@ -91,15 +136,12 @@
     </div>
 </section>
 
-<table id="gridTable" class="table table-striped table-bordered fixed_headers">
+<table id="gridTable" class="table table-striped table-bordered fixed_headers" style="width:100%;">
     <thead>
         <tr>
-            <th colspan="2">এলাকা</th>
-            <th colspan="7">Covid-19 তথ্য</th>
-            <th colspan="3">অন্নান্য রোগীর তথ্য </th>
-            <th colspan="3">ব্র্যাক কর্মীর তথ্য</th>
-            <th colspan="2">মানবিক সহায়তা বরাদ্দ</th>
-            <th colspan="4">মানবিক সহায়তা বিতরণ</th>
+            <th colspan="3">এরিয়া </th>
+            <th colspan="3">ব্র্যাক কর্মীদের দিনের তথ্য</th>
+            <th colspan="3">ব্র্যাক কর্মীদের আজ পর্যন্ত তথ্য</th>
         </tr>
         <tr>
             <th>
@@ -109,51 +151,33 @@
                 জেলা
             </th>
             <th>
-                হাসপাতালের সংখ্যা
+                তারিখ
             </th>
-            <th>
-                আইসোলেশন বেড সংখ্যা
-            </th>
-            <th>
-                এখন কোয়ারেন্টাইনে আছেন
-            </th>
-            <th>
-                মোট কোয়ারেন্টাইন
-            </th>
-            <th>
-                মোট রিলিজড
-            </th>
-            <th>
-                মোট মৃত্যু
-            </th>
-            <th>
-                মোট Covid-19 টেস্ট করা হয়েছে
-            </th>
-            <th>
-                অন্যান্য রোগী
-            </th>
-            <th>
-                শ্বাস-কষ্ট সংক্রান্ত রোগী
-            </th>
-            <th>
-                প্রসূতি স্বাস্থ্য সেবা
-            </th>
-            <th>
-                মোট আক্রান্তের সংখ্যা
-            </th>
-            <th>
-                মোট সুস্থ হওয়ার সংখ্যা
-            </th>
-            <th>
-                মোট কোয়ারেন্টাইনে গেছেন
-            </th>
-            <th> চাল (মেঃটন) </th>
-            <th> টাকা </th>
-            <th> চাল (মেঃটন) </th>
-            <th> চাল বিতরণ পরিবার </th>
-            <th> টাকা </th>
-            <th> টাকা বিতরণ পরিবার </th>
 
+            <th>
+                নতুন আক্রান্তের সংখ্যা
+            </th>
+            <th>
+                আজকের সুস্থ হওয়ার সংখ্যা
+            </th>
+            <th>
+                আজ নতুন করে কোয়ারেন্টাইনে গেছেন
+            </th>
+
+            <th>
+                আজ পর্যন্ত আক্রান্তের সংখ্যা
+            </th>
+            <th>
+                আজ পর্যন্ত সুস্থ হওয়ার সংখ্যা
+            </th>
+            <th>
+                আজ পর্যন্ত কোয়ারেন্টাইনে গেছেন
+            </th>
+
+            @*@if (UserRole.Check("DISTRICT", SessionHelper.Role))
+                {
+                    <th></th>
+                }*@
         </tr>
     </thead>
 </table>
@@ -170,12 +194,20 @@
             tableToExcel('gridTable', 'Export Name');
         });
 
+            DatePicker('FromDate', 'dd MMM, yyyy');
+            DatePicker('ToDate', 'dd MMM, yyyy');
 
             $(".ddl").change(function () {
                 $('#gridTable').dataTable().fnDraw();
             });
 
         $("#dateSearchButton").click(function () {
+            $("#isSum").val(false);
+            $('#gridTable').dataTable().fnDraw();
+        });
+
+        $("#dateSearchButtonSum").click(function () {
+            $("#isSum").val(true);
             $('#gridTable').dataTable().fnDraw();
         });
 
@@ -207,7 +239,8 @@
                 'ContentTypeId1': 'ContentTypeId1',
                 'ContentTypeId2': 'ContentTypeId2',
                 'FromDate': 'FromDate',
-                'ToDate': 'ToDate'
+                'ToDate': 'ToDate',
+                'isSum': 'isSum'
             }
             var btns = {
                 //9: false //column number : is button group
@@ -215,9 +248,9 @@
 
             /*data grid initializer*/
             DataTableBinder($("#gridTable")   //table object
-                , '@Url.Content("~/DistrictSubmission/DataGridSum")'  //json data url
-                , [64] //record size
-                , false //show all with row size
+                , '@Url.Content("~/DistrictSubmission/DataGridBrac")'  //json data url
+                , [64, 128, 256, 1024] //record size
+                , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns
             , true

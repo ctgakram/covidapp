@@ -11,6 +11,7 @@ namespace AppProj.Web.Models
     {        
         public int SumId { get; set; }
         public int DetailId { get; set; }
+        [Required(ErrorMessage = "(তারিখ অবশ্যই দিন)")]
         public DateTime Date { get; set; }
 
         public int DivisionId { get; set; }
@@ -19,22 +20,44 @@ namespace AppProj.Web.Models
         public int DistrictId { get; set; }
         public string DistrictName { get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int HospitalCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int BedCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int IcuCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int OtherPatientCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int BreathingPatientCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int MaternalCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal PlannedRice { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal PlannedPotato { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal PlannedDal { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal PlannedMoney { get; set; }
         public string RemarksSum{ get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int NewQuarantine { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int ReleasedQuarantine { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int DoTestOn { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int Death { get; set; }
+
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
+        public int BracPatient { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
+        public int BracReleased { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
+        public int BracQurantine { get; set; }
+
 
         public string LocalAdminMeasure { get; set; }
         public string Demand { get; set; }
@@ -46,16 +69,25 @@ namespace AppProj.Web.Models
         public string BracDo { get; set; }
         public string RemarksDetail { get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int MemberCount { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int MemberUpazillaCount { get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int DistrictTypeValue { get; set; }
 
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int ReliefFamily { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int ReliefPerson { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal Rice { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal Dal { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public decimal Potato { get; set; }
+        [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int Money { get; set; }
         //public decimal Onion { get; set; }
         //public decimal Salt { get; set; }
@@ -75,6 +107,7 @@ namespace AppProj.Web.Models
     {
         public int DivisionId { get; set; }
         public int DistrictId { get; set; }
+        [Required(ErrorMessage = "(তারিখ অবশ্যই দিন)")]
         public DateTime Date { get; set; }
 
         public IEnumerable<SelectListItem> Divisions { get; set; }

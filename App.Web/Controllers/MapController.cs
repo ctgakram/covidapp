@@ -70,7 +70,7 @@ namespace AppProj.Web.Controllers
                     IndexRelief = c.SupportIndex ?? 0
                 }
                 ,
-                Index = ((c.HealthIndex ?? 0) + (c.PeopleIndex ?? 0) + (c.SupportIndex ?? 0))
+                Index = ((c.HealthIndex ?? 0) + (c.PeopleIndex ?? 0) + (c.SupportIndex ?? 0))/3
             }).ToList();
 
 
@@ -106,8 +106,8 @@ namespace AppProj.Web.Controllers
                 //IEnumerable<DistrictPatient> dp = districtDataService.GetPatient(dt);
 
                 var dis  = standingDataService.GetDistricts().ToList();
-                
-                foreach(var row in dataObjects.features)
+                DateTime inDt= DateTime.Now.Date.AddDays(-1);
+                foreach (var row in dataObjects.features)
                 {
                     DistrictPatient entity = new DistrictPatient();
                     int i = 0;
@@ -125,8 +125,8 @@ namespace AppProj.Web.Controllers
                     }
 
                     entity.NameCode = row.attributes.district_city_eng;
-                    entity.Date = DateTime.Now.Date;
-                    
+                    entity.Date = inDt;
+
                     //int.TryParse(row.attributes.cases,out i);
                     entity.TillPatientCount = row.attributes.cases;
 

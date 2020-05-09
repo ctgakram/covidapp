@@ -438,5 +438,15 @@ namespace AppProj.Domain
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GenerateMapSummary_Result>("SP_GenerateMapSummary");
         }
+    
+        public virtual int SprDemad()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SprDemad");
+        }
+    
+        public virtual int SprJob()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SprJob");
+        }
     }
 }

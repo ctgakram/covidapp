@@ -3581,6 +3581,7 @@
     <Content Include="Views\Main\WorldMap.cshtml" />
     <Content Include="Views\MapSummary\Index.cshtml" />
     <Content Include="Views\Main\BracDashboard.cshtml" />
+    <None Include="Views\DistrictSubmission\IndexBrac.cshtml" />
     <Content Include="Views\Shared\_LayoutGeneral.cshtml" />
     <Content Include="Views\Main\Dashboard - Copy.cshtml" />
     <Content Include="Content\src\fonts\HelveticaNeue-regular.ttf" />

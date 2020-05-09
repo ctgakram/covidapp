@@ -60,6 +60,12 @@ namespace AppProj.Domain
         public string Answer1 { get; set; }
         public Nullable<int> Question2Id { get; set; }
         public string Answer2 { get; set; }
+        public int BracPatient { get; set; }
+        public int BracReleased { get; set; }
+        public int BracQurantine { get; set; }
+        public int TillBracPatient { get; set; }
+        public int TillBracReleased { get; set; }
+        public int TillBracQurantine { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
