@@ -41,7 +41,7 @@ namespace AppProj.Web.Controllers
             var data = standingDataService.GetByType(StandingDataTypes.TreeActivity)
                 .OrderBy(c => c.IntValue)
                 .ToList();
-                
+
             return View(data);
         }
 
@@ -73,7 +73,7 @@ namespace AppProj.Web.Controllers
             model.SuspectApp = detDataService.GetAppCount();
             model.Reach = sumDataService.GetReachCount();
             model.Districts = disDataService.GetTopDistricts(5);
-
+            model.mapdatas = getsampledata();
             model.DashboardModelBDCs = disDataService.GetSummery()
                         .GroupBy(q => 1)
                         .Select(g => new DashboardModelBDC
@@ -127,7 +127,7 @@ namespace AppProj.Web.Controllers
         public ActionResult BracDashboard()
         {
             DashboardModel model = new DashboardModel();
-                        
+
             model.BepDataSummeryModelReaches = bepDataService.GetReachForDashboard();
             model.BepDataSummeryModelMaterials = bepDataService.GetMaterialForDashboard();
             model.BepDataSummeryModelMaterialDistributions = bepDataService.GetDistributionForDashboard();
@@ -250,8 +250,8 @@ namespace AppProj.Web.Controllers
         {
             var data = standingDataService.GetByType(StandingDataTypes.TreeActivity)
                 .Where(c => c.IsActive)
-                .OrderBy(c=>c.IntValue)
-                .Select(c=> new { c.Name})
+                .OrderBy(c => c.IntValue)
+                .Select(c => new { c.Name })
                 .ToList();
 
             var data2 = standingDataService.GetByType(StandingDataTypes.TreeMessage)
@@ -435,5 +435,30 @@ namespace AppProj.Web.Controllers
             return Json(chartData, JsonRequestBehavior.AllowGet);
         }
         */
+
+        public List<mapdata> getsampledata()
+        {
+            var output = new List<mapdata>
+            {
+                new mapdata
+                {
+                    color = "orange",
+                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", "dhaka,khulna,rajshahi,jamalpur,dinajpur")
+                },
+                new mapdata
+                {
+                    color = "red",
+                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", "mymensingh,habiganj,patuakhali")
+                },
+                new mapdata
+                {
+                    color = "green",
+                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", "chottogram,pabna,gazipur")
+                }
+            };
+
+            return output;
+        }
+
     }
 }

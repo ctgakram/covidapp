@@ -1,188 +1,35 @@
-﻿@model AppProj.Web.Models.DashboardModel
-@{
-    ViewBag.Title = "COVID Response";
-    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
-    string act = "";
-}
-@{
+﻿<div class="btn-group map-dropdown">
+    <p data-toggle="dropdown" class="select-menu-label">
+        <span class="legend-wrapper d-flex align-items-center">
+            <span class="map-legend orange"></span>
+            <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
+        </span>
+        <img class="ml-4 carret" src="/Content/src/images/svg/arrow-down-color.svg" alt="arrow-down">
+    </p>
 
-    int PercentOfFemale = (Model.SuspectFemale * 100) / Model.Suspect;
-    int PercentOfMale = 100 - PercentOfFemale;
-
-    int TotalReliefGovt = Model.DashboardModelBDCs.DisRiceFamily + Model.DashboardModelBDCs.DisMoneyFamily;
-    int ReliefFoodPercentageGovt = (Model.DashboardModelBDCs.DisRiceFamily * 100) / TotalReliefGovt;
-    int ReliefMoneyPercentageGovt = (Model.DashboardModelBDCs.DisMoneyFamily * 100) / TotalReliefGovt;
-}
-
-<div class="row">
-    <div class="col-lg-4">
-        <div class="box-shadow">
-            <section class="bar-section">
-                <div class="patient-number-box">
-                    <img src="@Url.Content("~/Content/src/images/svg/patient-male.svg")" alt="Male">
-                    <div class="ratio-section">
-                        <p>BRAC SK’s হতে প্রাপ্ত সম্ভাব্য রোগীর সংখ্যা</p>
-                        <strong class="text-bracify">@Model.Suspect</strong>
-                        <div class="number-bar">
-                            <div class="male" style="width: @PercentOfMale.ToString()%">
-                                <span class="nb-data-text"><span>@(Model.Suspect - Model.SuspectFemale)</span> পুরুষ</span>
-                            </div>
-                            <div class="female" style="width: @PercentOfFemale.ToString()%">
-                                <span class="nb-data-text"><span>@Model.SuspectFemale</span> নারী</span>
-                            </div>
-                        </div>
-                    </div>
-                    <img src="@Url.Content("~/Content/src/images/svg/patient-female.svg")" alt="Female">
-                </div>
-            </section>
-            <section class="horizontal-wrapper">
-                <div class="img-number-text-item horizontal">
-                    <img src="@Url.Content("~/Content/src/images/svg/interview.svg")" alt="Interview">
-                    <div class="number-text">
-                        <strong>@Model.Reach</strong>
-                        <p>মোট সাক্ষাতকার নেয়া হয়েছে</p>
-                    </div>
-                </div>
-                <div class="img-number-text-item horizontal">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/coronarodh-app.svg")" alt="App">
-                    <div class="number-text">
-                        <strong>@Model.SuspectApp</strong>
-                        <p><span class="text-bracify">করোনারোধ App</span> থেকে প্রাপ্ত</p>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <div class="meeting-box box-shadow mt-4">
-            <div class="meeting-box-item mb-4">
-                <img src="@Url.Content("~/Content/src/images/svg/meeting-brac.svg")" alt="">
-                <p>ব্র্যাক সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingBrac</strong> টি</p>
-            </div>
-            <div class="meeting-box-item">
-                <img src="@Url.Content("~/Content/src/images/svg/meeting-gov.svg")" alt="">
-                <p>সরকারী সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingGovt</strong> টি</p>
-            </div>
-        </div>
-        <div class="relief-summary-box box-shadow mt-4 mb-3">
-            <div class="table-box-title">
-                <h5>Relief Summery</h5>
-                <div class="food-cash">
-                    <p class="food">
-                        <img src="@Url.Content("~/Content/src/images/svg/relief_1.svg")" alt="Relief">
-                        <span>Food</span>
-                    </p>
-                    <p class="cash">
-                        <i class="fa fa-money-bill"></i>
-                        <span>Cash</span>
-                    </p>
-
-                </div>
-            </div>
-            <div class="relief-brac relief-wrapper mb-4">
-                <img class="relief-logo" width="55" src="@Url.Content("~/Content/src/images/svg/brac-logo.svg")" alt="Brac">
-                <div class="bar food">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.797 13.736">
-                        <defs>
-                            <style>
-                                .a {
-                                    fill: #fff;
-                                }
-                            </style>
-                        </defs>
-                        <g transform="translate(0)"><path class="a" d="M-518.583,361.286a.1.1,0,0,1-.026-.134,2.913,2.913,0,0,0,.1-.28,6.552,6.552,0,0,0,.224-1.914c0-.228-.006-.458-.02-.686-.026-.435-.063-.869-.116-1.3-.086-.7-.2-1.4-.348-2.1a.36.36,0,0,1,.111-.384,1.463,1.463,0,0,0,.446-1.1,1.889,1.889,0,0,0-.124-.541c-.143-.446-.295-.89-.428-1.34a.741.741,0,0,0-.36-.443,2.509,2.509,0,0,0-.585-.241,8.871,8.871,0,0,0-1.543-.279.554.554,0,0,1-.313-.117c-.464-.378-.931-.752-1.406-1.118a1.055,1.055,0,0,0-1.305.03c-.451.367-.9.73-1.351,1.1a.465.465,0,0,1-.257.106,8.915,8.915,0,0,0-1.591.3,1.953,1.953,0,0,0-.674.318.446.446,0,0,0-.185.257,3.393,3.393,0,0,1-.111.39c-.117.356-.209.72-.343,1.069a1.51,1.51,0,0,0-.123.557,1.521,1.521,0,0,0,.484,1.1.109.109,0,0,1,.033.115c-.043.2-.086.4-.123.607-.137.74-.251,1.482-.324,2.228-.042.428-.073.863-.086,1.3a9,9,0,0,0,.038,1.114,4.542,4.542,0,0,0,.289,1.3.068.068,0,0,1-.02.092.989.989,0,0,0-.277.352.606.606,0,0,0-.07.57.607.607,0,0,0,.436.373,1.682,1.682,0,0,0,.487.086c.247.013.494,0,.741.009.558.022,1.114.063,1.671.094q.935.054,1.872.06c.625,0,1.249-.012,1.872-.043.3-.015.606-.028.908-.051.526-.039,1.052-.06,1.594-.072.063,0,.14.005.215,0a1.451,1.451,0,0,0,.695-.183.536.536,0,0,0,.251-.563A1.134,1.134,0,0,0-518.583,361.286Zm-1.825-10.105a5.015,5.015,0,0,1,.818.218,1.435,1.435,0,0,1,.241.115c.045.027.047.057,0,.086a1.8,1.8,0,0,1-.422.2.086.086,0,0,1-.086-.018l-.747-.595a.174.174,0,0,1-.021-.03.7.7,0,0,1,.217.03Zm-5-.264,1.417-1.153a.564.564,0,0,1,.767-.009l1.935,1.534q.407.323.812.65l.033.029,0,.024a17.123,17.123,0,0,1-6.236,0c-.009-.032,0-.039.012-.047Zm-2.38.6a2.13,2.13,0,0,1,.567-.222,5.9,5.9,0,0,1,.664-.145.041.041,0,0,1,.042.006l-.317.257c-.138.112-.278.224-.414.343a.14.14,0,0,1-.159.031,1.8,1.8,0,0,1-.386-.181c-.049-.031-.046-.054,0-.084Zm2.471,9.152q-.335.306-.669.614a.189.189,0,0,1-.116.059.138.138,0,0,1-.126-.086.123.123,0,0,1,.024-.149l.257-.257c.165-.154.333-.3.5-.46.058-.057.094-.054.147.006C-525.178,360.544-525.176,360.542-525.316,360.669Zm.152-.622a2.075,2.075,0,0,1-.36-1.023,1,1,0,0,1,.338-.739,2.191,2.191,0,0,1,.462-.343c.05-.028.1-.039.128.021a1.68,1.68,0,0,1,.274,1.052,1.365,1.365,0,0,1-.414.756,2.483,2.483,0,0,1-.326.284c-.039.031-.072.038-.1-.008Zm2.4,0a1.68,1.68,0,0,1-.746.686.738.738,0,0,1-.318.06,1.37,1.37,0,0,1-.636-.165,2.736,2.736,0,0,1-.4-.243c-.046-.033-.053-.063-.019-.107a1.733,1.733,0,0,1,.888-.666,1.122,1.122,0,0,1,.711.065,2.075,2.075,0,0,1,.478.257c.046.027.078.053.04.111Zm-1.4-2.1a.893.893,0,0,1,.287-.508,1.742,1.742,0,0,1,.365-.267c.046-.027.086-.033.118.024a1.694,1.694,0,0,1,.233.746.926.926,0,0,1-.324.676,2,2,0,0,1-.333.243.086.086,0,0,1-.075.018.086.086,0,0,1-.059-.049,1.372,1.372,0,0,1-.21-.886Zm2.271.972a1.419,1.419,0,0,1-.632.557.666.666,0,0,1-.32.045,1.531,1.531,0,0,1-.746-.29.066.066,0,0,1-.04-.049.066.066,0,0,1,.019-.06,1.626,1.626,0,0,1,.5-.5.848.848,0,0,1,.686-.064,1.7,1.7,0,0,1,.5.246c.048.032.065.064.031.114Zm-1.147-1.682a.8.8,0,0,1,.375-.623c.238-.178.252-.171.359.105a.835.835,0,0,1,.016.721,1.186,1.186,0,0,1-.465.448.061.061,0,0,1-.057.013.061.061,0,0,1-.042-.041,1.371,1.371,0,0,1-.183-.625Zm1.8.848a.846.846,0,0,1-.583.364,1.2,1.2,0,0,1-.705-.23c-.056-.037-.039-.077-.009-.119a.838.838,0,0,1,.548-.442.837.837,0,0,1,.692.133c.2.107.207.123.061.294Zm.244-1.154a.661.661,0,0,1-.428.367,1.513,1.513,0,0,1-.418.055c-.074,0-.11-.027-.108-.108a1.216,1.216,0,0,1,.116-.506.679.679,0,0,1,.514-.368c.086-.018.179-.023.269-.034v.008h.1c.05,0,.07.028.068.079a1.331,1.331,0,0,1-.109.507Zm1.134-2.344c-.5.119-.994.226-1.5.3-.428.062-.857.11-1.291.134-.3.017-.606.031-.909.029a15.417,15.417,0,0,1-1.77-.105,14.993,14.993,0,0,1-2.071-.394,1.326,1.326,0,0,1-.912-.708.827.827,0,0,1-.047-.661c.122-.343.23-.686.338-1.028.027-.086.031-.086.11-.045a4.4,4.4,0,0,0,1.2.391,13.02,13.02,0,0,0,1.726.232c.31.023.62.039.931.05s.6.013.9.006c.461-.011.921-.036,1.381-.086a11.842,11.842,0,0,0,1.644-.265,3.728,3.728,0,0,0,.927-.327c.062-.034.086-.025.105.043.105.343.22.686.335,1.028a.915.915,0,0,1-.218.923,1.558,1.558,0,0,1-.872.486Z" transform="translate(529.006 -349.098)" /><path class="a" d="M-387.188,400.2a.183.183,0,0,0,.138-.054.184.184,0,0,0,.053-.139.189.189,0,0,0-.054-.134.188.188,0,0,0-.133-.056.2.2,0,0,0-.2.195A.2.2,0,0,0-387.188,400.2Z" transform="translate(393.916 -397.48)" /><path class="a" d="M-412.1,367.68a.184.184,0,0,0,.137-.056.184.184,0,0,0,.052-.139.192.192,0,0,0-.19-.189.2.2,0,0,0-.194.19A.194.194,0,0,0-412.1,367.68Z" transform="translate(417.681 -366.459)" /><path class="a" d="M-398.57,380.6a.193.193,0,0,0,.189-.19.2.2,0,0,0-.194-.194.193.193,0,0,0-.188.192.184.184,0,0,0,.054.139A.184.184,0,0,0-398.57,380.6Z" transform="translate(404.775 -378.787)" /><path class="a" d="M-451.927,400.2a.187.187,0,0,0,.132-.06.186.186,0,0,0,.05-.136.193.193,0,0,0-.191-.188.2.2,0,0,0-.192.189.194.194,0,0,0,.059.14A.194.194,0,0,0-451.927,400.2Z" transform="translate(455.68 -397.479)" /><path class="a" d="M-437.977,387.536a.193.193,0,0,0,.137-.056.193.193,0,0,0,.057-.136.187.187,0,0,0-.052-.135.187.187,0,0,0-.133-.057.194.194,0,0,0-.138.055.194.194,0,0,0-.059.136A.194.194,0,0,0-437.977,387.536Z" transform="translate(442.36 -385.402)" /><path class="a" d="M-435.2,403.073a.194.194,0,0,0,.188.192.183.183,0,0,0,.139-.05.182.182,0,0,0,.056-.137.191.191,0,0,0-.055-.137.191.191,0,0,0-.137-.057.2.2,0,0,0-.191.19Z" transform="translate(439.531 -400.406)" /><path class="a" d="M-371.09,400.2a.184.184,0,0,0,.134-.054.184.184,0,0,0,.054-.134.186.186,0,0,0-.052-.139.186.186,0,0,0-.137-.057.182.182,0,0,0-.134.054.181.181,0,0,0-.052.135.182.182,0,0,0,.05.139A.181.181,0,0,0-371.09,400.2Z" transform="translate(378.556 -397.479)" /></g>
-                    </svg>
-                    <div class="visual">
-                        <div class="progress-color" style="width: 20%;">
-
-                        </div>
-                        <span class="number">0</span>
-                    </div>
-                </div>
-                <div class="bar cash">
-                    <i class="fa fa-money-bill"></i>
-                    <div class="visual">
-                        <div class="progress-color" style="width: 50%;">
-
-                        </div>
-                        <span class="number">0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="relief-gov relief-wrapper">
-                <img class="relief-logo" width="25" src="@Url.Content("~/Content/src/images/svg/gov-logo-2x.png")" alt="Government">
-                <div class="bar food">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10.797 13.736">
-                        <defs>
-                            <style>
-                                .a {
-                                    fill: #fff;
-                                }
-                            </style>
-                        </defs>
-                        <g transform="translate(0)"><path class="a" d="M-518.583,361.286a.1.1,0,0,1-.026-.134,2.913,2.913,0,0,0,.1-.28,6.552,6.552,0,0,0,.224-1.914c0-.228-.006-.458-.02-.686-.026-.435-.063-.869-.116-1.3-.086-.7-.2-1.4-.348-2.1a.36.36,0,0,1,.111-.384,1.463,1.463,0,0,0,.446-1.1,1.889,1.889,0,0,0-.124-.541c-.143-.446-.295-.89-.428-1.34a.741.741,0,0,0-.36-.443,2.509,2.509,0,0,0-.585-.241,8.871,8.871,0,0,0-1.543-.279.554.554,0,0,1-.313-.117c-.464-.378-.931-.752-1.406-1.118a1.055,1.055,0,0,0-1.305.03c-.451.367-.9.73-1.351,1.1a.465.465,0,0,1-.257.106,8.915,8.915,0,0,0-1.591.3,1.953,1.953,0,0,0-.674.318.446.446,0,0,0-.185.257,3.393,3.393,0,0,1-.111.39c-.117.356-.209.72-.343,1.069a1.51,1.51,0,0,0-.123.557,1.521,1.521,0,0,0,.484,1.1.109.109,0,0,1,.033.115c-.043.2-.086.4-.123.607-.137.74-.251,1.482-.324,2.228-.042.428-.073.863-.086,1.3a9,9,0,0,0,.038,1.114,4.542,4.542,0,0,0,.289,1.3.068.068,0,0,1-.02.092.989.989,0,0,0-.277.352.606.606,0,0,0-.07.57.607.607,0,0,0,.436.373,1.682,1.682,0,0,0,.487.086c.247.013.494,0,.741.009.558.022,1.114.063,1.671.094q.935.054,1.872.06c.625,0,1.249-.012,1.872-.043.3-.015.606-.028.908-.051.526-.039,1.052-.06,1.594-.072.063,0,.14.005.215,0a1.451,1.451,0,0,0,.695-.183.536.536,0,0,0,.251-.563A1.134,1.134,0,0,0-518.583,361.286Zm-1.825-10.105a5.015,5.015,0,0,1,.818.218,1.435,1.435,0,0,1,.241.115c.045.027.047.057,0,.086a1.8,1.8,0,0,1-.422.2.086.086,0,0,1-.086-.018l-.747-.595a.174.174,0,0,1-.021-.03.7.7,0,0,1,.217.03Zm-5-.264,1.417-1.153a.564.564,0,0,1,.767-.009l1.935,1.534q.407.323.812.65l.033.029,0,.024a17.123,17.123,0,0,1-6.236,0c-.009-.032,0-.039.012-.047Zm-2.38.6a2.13,2.13,0,0,1,.567-.222,5.9,5.9,0,0,1,.664-.145.041.041,0,0,1,.042.006l-.317.257c-.138.112-.278.224-.414.343a.14.14,0,0,1-.159.031,1.8,1.8,0,0,1-.386-.181c-.049-.031-.046-.054,0-.084Zm2.471,9.152q-.335.306-.669.614a.189.189,0,0,1-.116.059.138.138,0,0,1-.126-.086.123.123,0,0,1,.024-.149l.257-.257c.165-.154.333-.3.5-.46.058-.057.094-.054.147.006C-525.178,360.544-525.176,360.542-525.316,360.669Zm.152-.622a2.075,2.075,0,0,1-.36-1.023,1,1,0,0,1,.338-.739,2.191,2.191,0,0,1,.462-.343c.05-.028.1-.039.128.021a1.68,1.68,0,0,1,.274,1.052,1.365,1.365,0,0,1-.414.756,2.483,2.483,0,0,1-.326.284c-.039.031-.072.038-.1-.008Zm2.4,0a1.68,1.68,0,0,1-.746.686.738.738,0,0,1-.318.06,1.37,1.37,0,0,1-.636-.165,2.736,2.736,0,0,1-.4-.243c-.046-.033-.053-.063-.019-.107a1.733,1.733,0,0,1,.888-.666,1.122,1.122,0,0,1,.711.065,2.075,2.075,0,0,1,.478.257c.046.027.078.053.04.111Zm-1.4-2.1a.893.893,0,0,1,.287-.508,1.742,1.742,0,0,1,.365-.267c.046-.027.086-.033.118.024a1.694,1.694,0,0,1,.233.746.926.926,0,0,1-.324.676,2,2,0,0,1-.333.243.086.086,0,0,1-.075.018.086.086,0,0,1-.059-.049,1.372,1.372,0,0,1-.21-.886Zm2.271.972a1.419,1.419,0,0,1-.632.557.666.666,0,0,1-.32.045,1.531,1.531,0,0,1-.746-.29.066.066,0,0,1-.04-.049.066.066,0,0,1,.019-.06,1.626,1.626,0,0,1,.5-.5.848.848,0,0,1,.686-.064,1.7,1.7,0,0,1,.5.246c.048.032.065.064.031.114Zm-1.147-1.682a.8.8,0,0,1,.375-.623c.238-.178.252-.171.359.105a.835.835,0,0,1,.016.721,1.186,1.186,0,0,1-.465.448.061.061,0,0,1-.057.013.061.061,0,0,1-.042-.041,1.371,1.371,0,0,1-.183-.625Zm1.8.848a.846.846,0,0,1-.583.364,1.2,1.2,0,0,1-.705-.23c-.056-.037-.039-.077-.009-.119a.838.838,0,0,1,.548-.442.837.837,0,0,1,.692.133c.2.107.207.123.061.294Zm.244-1.154a.661.661,0,0,1-.428.367,1.513,1.513,0,0,1-.418.055c-.074,0-.11-.027-.108-.108a1.216,1.216,0,0,1,.116-.506.679.679,0,0,1,.514-.368c.086-.018.179-.023.269-.034v.008h.1c.05,0,.07.028.068.079a1.331,1.331,0,0,1-.109.507Zm1.134-2.344c-.5.119-.994.226-1.5.3-.428.062-.857.11-1.291.134-.3.017-.606.031-.909.029a15.417,15.417,0,0,1-1.77-.105,14.993,14.993,0,0,1-2.071-.394,1.326,1.326,0,0,1-.912-.708.827.827,0,0,1-.047-.661c.122-.343.23-.686.338-1.028.027-.086.031-.086.11-.045a4.4,4.4,0,0,0,1.2.391,13.02,13.02,0,0,0,1.726.232c.31.023.62.039.931.05s.6.013.9.006c.461-.011.921-.036,1.381-.086a11.842,11.842,0,0,0,1.644-.265,3.728,3.728,0,0,0,.927-.327c.062-.034.086-.025.105.043.105.343.22.686.335,1.028a.915.915,0,0,1-.218.923,1.558,1.558,0,0,1-.872.486Z" transform="translate(529.006 -349.098)" /><path class="a" d="M-387.188,400.2a.183.183,0,0,0,.138-.054.184.184,0,0,0,.053-.139.189.189,0,0,0-.054-.134.188.188,0,0,0-.133-.056.2.2,0,0,0-.2.195A.2.2,0,0,0-387.188,400.2Z" transform="translate(393.916 -397.48)" /><path class="a" d="M-412.1,367.68a.184.184,0,0,0,.137-.056.184.184,0,0,0,.052-.139.192.192,0,0,0-.19-.189.2.2,0,0,0-.194.19A.194.194,0,0,0-412.1,367.68Z" transform="translate(417.681 -366.459)" /><path class="a" d="M-398.57,380.6a.193.193,0,0,0,.189-.19.2.2,0,0,0-.194-.194.193.193,0,0,0-.188.192.184.184,0,0,0,.054.139A.184.184,0,0,0-398.57,380.6Z" transform="translate(404.775 -378.787)" /><path class="a" d="M-451.927,400.2a.187.187,0,0,0,.132-.06.186.186,0,0,0,.05-.136.193.193,0,0,0-.191-.188.2.2,0,0,0-.192.189.194.194,0,0,0,.059.14A.194.194,0,0,0-451.927,400.2Z" transform="translate(455.68 -397.479)" /><path class="a" d="M-437.977,387.536a.193.193,0,0,0,.137-.056.193.193,0,0,0,.057-.136.187.187,0,0,0-.052-.135.187.187,0,0,0-.133-.057.194.194,0,0,0-.138.055.194.194,0,0,0-.059.136A.194.194,0,0,0-437.977,387.536Z" transform="translate(442.36 -385.402)" /><path class="a" d="M-435.2,403.073a.194.194,0,0,0,.188.192.183.183,0,0,0,.139-.05.182.182,0,0,0,.056-.137.191.191,0,0,0-.055-.137.191.191,0,0,0-.137-.057.2.2,0,0,0-.191.19Z" transform="translate(439.531 -400.406)" /><path class="a" d="M-371.09,400.2a.184.184,0,0,0,.134-.054.184.184,0,0,0,.054-.134.186.186,0,0,0-.052-.139.186.186,0,0,0-.137-.057.182.182,0,0,0-.134.054.181.181,0,0,0-.052.135.182.182,0,0,0,.05.139A.181.181,0,0,0-371.09,400.2Z" transform="translate(378.556 -397.479)" /></g>
-                    </svg>
-                    <div class="visual">
-                        <div class="progress-color" style="width: @ReliefFoodPercentageGovt.ToString()%;">
-
-                        </div>
-                        <span class="number">@Model.DashboardModelBDCs.DisRiceFamily</span>
-                    </div>
-                </div>
-                <div class="bar cash">
-                    <i class="fa fa-money-bill"></i>
-                    <div class="visual">
-                        <div class="progress-color" style="width: @ReliefMoneyPercentageGovt.ToString()%;">
-
-                        </div>
-                        <span class="number">@Model.DashboardModelBDCs.DisMoneyFamily</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="map" class="col-lg-4 position-relative">
-        <div class="btn-group map-dropdown">
-            <p data-toggle="dropdown" class="select-menu-label">
-                <span class="legend-wrapper d-flex align-items-center">
-                    <span class="map-legend orange"></span>
-                    <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
-                </span>
-                <img class="ml-4 carret" src="/Content/src/images/svg/arrow-down-color.svg" )" alt="arrow-down">
-            </p>
-
-            <ul class="city-list-from-map"></ul>
-            <ul class="dropdown-menu select-menu">
-                @foreach (var item in Model.mapdatas)
-                {
-                    <li class="dropdown-item" id="top-affected-cities" data-color="@item.color" data-city="@item.keyelement.Value">
-                        <span class="legend-wrapper">
-                            <span class="map-legend @item.color"></span>
-                            <span>@item.keyelement.Key</span>
-                        </span>
-                    </li>
-                }
-
-
-                @*<li class="dropdown-item" id="top-affected-cities" data-color="orange" data-city="dhaka,khulna,rajshahi">
-                        <span class="legend-wrapper">
-                            <span class="map-legend orange"></span>
-                            <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
-                        </span>
-                    </li>
-                    <li class="dropdown-item" id="quarantine-heatmap" data-color="red" data-city="mymensingh,habiganj,patuakhali">
-                        <span class="legend-wrapper">
-                            <span class="map-legend red"></span>
-                            <span>Covid-19 quarantine heatmap</span>
-                        </span>
-                    </li>
-                    <li class="dropdown-item" id="relief-map" data-color="green" data-city="chottogram,pabna,gazipur">
-                        <span class="legend-wrapper">
-                            <span class="map-legend green"></span>
-                            <span>Relief Distributed Map</span>
-                        </span>
-                    </li>*@
-            </ul>
-        </div>
-        <svg class="d-block" id="bangladesh_svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1530.748 2138" enable-background="new 0 0 1530.748 2138" xml:space="preserve">
+    <ul class="city-list-from-map"></ul>
+    <ul class="dropdown-menu select-menu">
+        <li class="dropdown-item" id="top-affected-cities" data-color="orange" data-city="dhaka,khulna,rajshahi">
+            <span class="legend-wrapper">
+                <span class="map-legend orange"></span>
+                <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
+            </span>
+        </li>
+        <li class="dropdown-item" id="quarantine-heatmap" data-color="red" data-city="mymensingh,habiganj,patuakhali">
+            <span class="legend-wrapper">
+                <span class="map-legend red"></span>
+                <span>Covid-19 quarantine heatmap</span>
+            </span>
+        </li>
+        <li class="dropdown-item" id="relief-map" data-color="green" data-city="chottogram,pabna,gazipur">
+            <span class="legend-wrapper">
+                <span class="map-legend green"></span>
+                <span>Relief Distributed Map</span>
+            </span>
+        </li>
+    </ul>
+</div>
+<svg class="d-block" id="bangladesh_svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1530.748 2138" enable-background="new 0 0 1530.748 2138" xml:space="preserve">
 <g id="layer2">
                     </g>
 <g id="layer1">
@@ -395,109 +242,3 @@
                         </g>
                     </g>
                 </svg>
-    </div>
-    <div class="col-lg-4">
-        <div class="overview-box-wrapper box-shadow">
-            <h6 class="header-title text-center">Awareness Campaign by BRAC</h6>
-            <div class="overview-box">
-                <div class="img-number-text-item">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/leaflet.svg")" alt="Leaflet">
-                    <strong>@Model.DashboardModelHnpps.Leaflet</strong>
-                    <p>
-                        <span>লিফলেট বিতরণ</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img src="@Url.Content("~/Content/src/images/svg/sticker.svg")" alt="Sticker">
-                    <strong>@Model.DashboardModelHnpps.Sticker</strong>
-                    <p>
-                        <span>স্টিকার বিতরণ</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/festoon.svg")" alt="Leaflet">
-                    <strong>0</strong>
-                    <p>
-                        <span>ফেস্টুন</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img src="@Url.Content("~/Content/src/images/svg/miking.svg")" alt="Sticker">
-                    <strong>0</strong>
-                    <p>
-                        <span>মাইকিং</span>
-                    </p>
-                </div>
-            </div>
-            <a href="#" class="view-in-deatils">View in deatils</a>
-        </div>
-        <div class="overview-box-wrapper box-shadow">
-            <h6 class="header-title text-center">Hygiene Kits and PPE distribution by BRAC</h6>
-            <div class="overview-box">
-                <div class="img-number-text-item">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/sanitizer.svg")" alt="Sanitizer">
-                    <strong>0</strong>
-                    <p>
-                        <span>Sanitizer and hand wash</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/gloves.svg")" alt="Gloves">
-                    <strong>0</strong>
-                    <p>
-                        <span>Hand gloves</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/surgical-dress.svg")" alt="Surgical Dress">
-                    <strong>0</strong>
-                    <p>
-                        <span>Surgical Apron</span>
-                    </p>
-                </div>
-                <div class="img-number-text-item">
-                    <img src="@Url.Content("~/Content/src/images/svg/mask.svg")" alt="Mask">
-                    <strong>0</strong>
-                    <p>
-                        <span>Mask</span>
-                    </p>
-                </div>
-            </div>
-            <a href="#" class="view-in-deatils">View in deatils</a>
-        </div>
-        <div class="report-box box-shadow">
-            <h6 class="table-box-title">
-                <span>
-                    <img class="mr-2 carret" src="@Url.Content("~/Content/src/images/svg/report.svg")" alt="arrow-down">
-                    <strong>Report</strong>
-                </span>
-            </h6>
-            <div id="divrptcnt" class="reports">
-                @*<a href="@Url.Content("~/Content/src/images/svg/report.svg")" class="report-item">
-                        <span class="report-title">Latest in Covid 19 Response from BRAC in Bangladesh</span>
-                        <strong class="download">Download</strong>
-                    </a>
-                    <a href="@Url.Content("~/Content/Message/External COVID-19 Sitrep_16 April 2020.pdf")" class="report-item" target="_blank">
-                        <span class="report-title">করোনাভাইরাস (কোভিড-১৯) এর বর্তমান পরিস্থিতিতে মাঠ পর্যায়ের কর্মীদের জন্য নির্দেশনা</span>
-                        <strong class="download">Download</strong>
-                    </a>*@
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Body end -->
-
-@section scripts{
-
-    $(document).ready(function () {
-    var rpt = '';
-    $("#divrptcnt").empty();
-    $.each(jsonTopMenuData.msg, function (index, element) {
-    rpt += element.Name;
-    });
-    $("#divrptcnt").html(rpt);
-    });
-
-
-}
