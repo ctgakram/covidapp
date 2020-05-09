@@ -23,6 +23,8 @@ namespace AppProj.Web.Models
         public DashboardModelBDC DashboardModelBDCs { get; set; }
         public DashboardModelHnpp DashboardModelHnpps { get; set; }
 
+        public BepDataSummeryModelFixedMaterial DashboardModelBracs { get; set; }
+
         public List<BepDataSummeryModelReach> BepDataSummeryModelReaches = new List<BepDataSummeryModelReach>();
         public List<BepDataSummeryModelMaterial> BepDataSummeryModelMaterials = new List<BepDataSummeryModelMaterial>();
         public List<BepDataSummeryModelMaterial> BepDataSummeryModelMaterialDistributions = new List<BepDataSummeryModelMaterial>();
@@ -36,6 +38,7 @@ namespace AppProj.Web.Models
         public int MeetingBrac { get; set; }
         public int MeetingGovt { get; set; }
     }
+
     public class DashboardModelBDC
     {
         public int Patient { get; set; }
@@ -53,7 +56,10 @@ namespace AppProj.Web.Models
         public decimal DisMoney { get; set; }
         public int DisMoneyFamily { get; set; }
 
+        public decimal BracFood { get; set; }
+        public decimal BracMoney { get; set; }
     }
+
 
     public class mapdata
     {

@@ -260,6 +260,7 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleFeatureController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
+    <Compile Include="Controllers\StandingViewController.cs" />
     <Compile Include="Controllers\SummerySubmissionController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UserProfileController.cs" />
@@ -3592,6 +3593,7 @@
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff2" />
     <Content Include="Content\src\images\svg\desktop.ini" />
     <Content Include="Content\src\images\svg\tabular data\desktop.ini" />
+    <Content Include="Views\StandingView\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

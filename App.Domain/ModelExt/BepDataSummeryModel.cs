@@ -30,4 +30,16 @@ namespace AppProj.Domain.ModelExt
 
     }
 
+    public class BepDataSummeryModelFixedMaterial
+    {
+        public int Festun { get; set; }
+        public int Miking { get; set; }
+
+        public int Sanitizer { get; set; }
+        public int Gloves { get; set; }
+        public int Aproan { get; set; }
+        public int Mask { get; set; }
+
+    }
+
 }

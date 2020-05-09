@@ -107,6 +107,28 @@ namespace AppProj.Service.ServicesImpl
                .GroupBy(l => l.Date.ToString("dd MMM"))
                .Select(c => new CountModel { Name = c.Key, Count = c.Sum(d => d.TillPatientCount) });
         }
+
+        public string GetTopDistrictsQurantine(int take)
+        {
+            var model = sumRepository.GetAll()
+                .OrderByDescending(c => c.CurrentQuarantine)
+               .Take(take)
+               .Skip(0);
+
+            return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
+        }
+
+        public string GetTopDistrictsRelief(int take)
+        {
+            var model = sumRepository.GetAll()
+                .OrderByDescending(c => (c.TotalReliefFamily + c.TotalReliefPerson))
+               .Take(take)
+               .Skip(0);
+
+            return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
+        }
+
+
         public void Update(DistrictData disEntity, DistrictSummery sumEntity)
         {
             sumEntity.LastUpdateTime = DateTime.Now;

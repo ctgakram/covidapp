@@ -424,5 +424,28 @@ namespace AppProj.Service.ServicesImpl
 
             return model;
         }
+
+        public BepDataSummeryModelFixedMaterial GetDistributionFixedMaterialForDashboard()
+        {
+            BepDataSummeryModelFixedMaterial model = detailRepository
+                .GetAll().GroupBy(q => 1 == 1)
+                .Select(g => new BepDataSummeryModelFixedMaterial
+                {
+                    Festun = g.Where(c => c.ItemId == 860600).Sum(c => c.Quantity)
+                    ,
+                    Aproan = g.Where(c => c.ItemId == 860692).Sum(c => c.Quantity)
+                     ,
+                    Gloves = g.Where(c => c.ItemId == 860573).Sum(c => c.Quantity)
+                    ,
+                    Mask = g.Where(c => c.ItemId == 860571).Sum(c => c.Quantity)
+                    ,
+                    Miking = g.Where(c => c.ItemId == 860687).Sum(c => c.Quantity)
+                    ,
+                    Sanitizer = g.Where(c => c.ItemId == 860572).Sum(c => c.Quantity)
+                }
+                ).Single();
+
+            return model;
+        }
     }
 }

@@ -27,7 +27,6 @@ namespace AppProj.Web.Controllers
             , IHnppDataService hnppDataService, IBepDataService bepDataService
             )
         {
-
             this.standingDataService = standingDataService;
             this.disDataService = disDataService;
             this.sumDataService = sumDataService;
@@ -72,8 +71,9 @@ namespace AppProj.Web.Controllers
             model.SuspectFemale = detDataService.GetCountFemale();
             model.SuspectApp = detDataService.GetAppCount();
             model.Reach = sumDataService.GetReachCount();
-            model.Districts = disDataService.GetTopDistricts(5);
+            
             model.mapdatas = getsampledata();
+
             model.DashboardModelBDCs = disDataService.GetSummery()
                         .GroupBy(q => 1)
                         .Select(g => new DashboardModelBDC
@@ -105,6 +105,11 @@ namespace AppProj.Web.Controllers
                             PlanRice = g.Sum(c => c.PlannedRice)
                             ,
                             PlanMoney = g.Sum(c => c.PlannedMoney)
+                            ,
+                            BracFood = g.Sum(c => c.BracFoodDistribution??0)
+                            ,
+                            BracMoney = g.Sum(c => c.BracMoneyDistribution??0)
+
 
                         }).Single();
 
@@ -120,6 +125,8 @@ namespace AppProj.Web.Controllers
                           ,
                           Sticker = g.Sum(c => c.Sticker)
                       }).Single();
+
+            model.DashboardModelBracs = bepDataService.GetDistributionFixedMaterialForDashboard();
 
             return View(model);
         }
@@ -443,17 +450,17 @@ namespace AppProj.Web.Controllers
                 new mapdata
                 {
                     color = "orange",
-                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", "dhaka,khulna,rajshahi,jamalpur,dinajpur")
+                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", disDataService.GetTopDistricts(5))
                 },
                 new mapdata
                 {
                     color = "red",
-                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", "mymensingh,habiganj,patuakhali")
+                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", disDataService.GetTopDistrictsQurantine(5))
                 },
                 new mapdata
                 {
                     color = "green",
-                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", "chottogram,pabna,gazipur")
+                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", disDataService.GetTopDistrictsRelief(5))
                 }
             };
 

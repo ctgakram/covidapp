@@ -41,6 +41,7 @@ namespace AppProj.Service.Services
         List<BepDataSummeryModelReach> GetReachForDashboard();
         List<BepDataSummeryModelMaterial> GetMaterialForDashboard();
         List<BepDataSummeryModelMaterial> GetDistributionForDashboard();
+        BepDataSummeryModelFixedMaterial GetDistributionFixedMaterialForDashboard();
 
     }
 }
