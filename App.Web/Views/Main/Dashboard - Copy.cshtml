@@ -1,0 +1,325 @@
+﻿@model AppProj.Web.Models.DashboardModel
+@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    string act = "";
+}
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+<div class="row-fluid">
+
+    <!--Chart Icons -->
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/group.png">
+            </div>
+            <div class="utopia-chart-heading" id="td2">@Model.Reach</div>
+            <div class="utopia-chart-desc">ব্র্যাক স্টাফ কর্তৃক মোট সাক্ষাত নেয়া হয়েছে</div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/emoticon_sleeping.png">
+            </div>
+            <div class="utopia-chart-heading" id="td1">@Model.Suspect</div>
+            <div class="utopia-chart-desc">BRAC SK তথ্য অনুসারে  সম্ভাব্য রোগীর সংখ্যা</div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/burn_dvd.png">
+            </div>
+            <div class="utopia-chart-heading" id="td8">@Model.DashboardModelBDCs.Patient</div>
+            <div class="utopia-chart-desc">corona.gov.bd হতে প্রাপ্ত রোগীর সংখ্যা </div>
+        </div>
+    </div>
+
+    <div class="span3">
+        <div class="utopia-chart-legend">
+            <div class="utopia-chart-icon">
+                <img src="~/content/img/icons2/game_control.png">
+            </div>
+            <div class="utopia-chart-heading" id="td11">@Model.SuspectApp</div>
+            <div class="utopia-chart-desc">করোনারোধ App থেকে  প্রাপ্ত  সম্ভাব্য রোগীর সংখ্যা</div>
+        </div>
+    </div>
+
+    <!--Chart Icons End -->
+</div>
+
+<div class="row-fluid">
+
+    <div class="span12">
+
+        <div class="row-fluid">
+
+            <div class="span6">
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/bg-gov.png" class="utopia-widget-icon">
+                                <span>সরকারি হিসেবে দেশের সার্বিক অবস্থা</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>হাসপাতালের সংখ্যা</td>
+                                            <td id="tdd1">@Model.DashboardModelBDCs.Hospital</td>
+                                        </tr>
+                                        <tr>
+                                            <td>আইসোলেশন বেড সংখ্যা</td>
+                                            <td id="tdd4">@Model.DashboardModelBDCs.Bed</td>
+                                        </tr>
+                                        <tr>
+                                            <td>বর্তমান হোম কোয়ারান্টিন</td>
+                                            <td id="tdd2">@Model.DashboardModelBDCs.QrnCurrent</td>
+                                        </tr>
+                                        <tr>
+                                            <td>হোম কোয়ারান্টিন শেষ হয়েছে</td>
+                                            <td id="tdd3">@Model.DashboardModelBDCs.QrnReleased</td>
+                                        </tr>
+                                        <tr>
+                                            <td>এই পর্যন্ত মোট কোরানটিন</td>
+                                            <td id="tdd3">@Model.DashboardModelBDCs.Qrn</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Covid-19 টেস্ট করা হয়েছে</td>
+                                            <td id="tdd6">@Model.DashboardModelBDCs.Test</td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট মৃত্যু</td>
+                                            <td id="tdd5">@Model.DashboardModelBDCs.Death</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/bg-gov.png" class="utopia-widget-icon">
+                                <span>সরকারের সামাজিক নিরাপত্তা তথ্য</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+
+                                    <tbody>
+                                        <tr>
+                                            <td>মোট বরাদ্দ চালের পরিমাণ (মেঃটন)</td>
+                                            <td id="plR">@Model.DashboardModelBDCs.PlanRice</td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট বরাদ্দ নগদ অর্থের পরিমাণ (টাকা)</td>
+                                            <td id="plM">@Model.DashboardModelBDCs.PlanMoney</td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট চাল বিতরণ (মেঃটন)</td>
+                                            <td id="tdr7">@Model.DashboardModelBDCs.DisRice</td>
+                                        </tr>
+                                        <tr>
+                                            <td>চাল প্রাপ্ত পরিবার</td>
+                                            <td id="tdr5">@Model.DashboardModelBDCs.DisRiceFamily</td>
+                                        </tr>
+                                        <tr>
+                                            <td>মোট নগদ অর্থ বিতরণ (টাকা)</td>
+                                            <td id="tdr10">@Model.DashboardModelBDCs.DisMoney</td>
+                                        </tr>
+                                        <tr>
+                                            <td>নগদ অর্থ প্রাপ্ত পরিবার </td>
+                                            <td id="tdr6">@Model.DashboardModelBDCs.DisMoneyFamily</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div><!-- Mid panel -->
+
+            <div class="span6">
+
+                <div class="row-fluid">
+
+                    <div class="span12">
+                        <div class="alert alert-block">
+                            <h2>আক্রান্ত শীর্ষ ৫ জেলা</h2>
+                            <h3 id="td10">@Model.Districts</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+                <br />
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="alert alert-success">
+                            স্বাস্থ্য বিষয়ক ব্র্যাক সমন্বয় মিটিং করা হয়েছে মোট <strong><span id="tdh2" style="font-size:24px;">@Model.DashboardModelHnpps.MeetingBrac</span></strong> টি
+                        </div>
+                        <div class="alert alert-success">
+                            স্বাস্থ্য বিষয়ক সরকারী সমন্বয় মিটিং করা হয়েছে মোট <strong><span id="tdh1" style="font-size:24px;">@Model.DashboardModelHnpps.MeetingGovt</span> </strong> টি
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-icon">
+                                <img src="~/content/img/icons2/mail.png">
+                            </div>
+                            <div class="utopia-chart-heading" id="tdh3">@Model.DashboardModelHnpps.Leaflet</div>
+                            <div class="utopia-chart-desc">লিফলেট বিতরণ</div>
+                        </div>
+                    </div>
+
+                    <div class="span6">
+                        <div class="utopia-chart-legend">
+                            <div class="utopia-chart-icon">
+                                <img src="~/content/img/icons2/notepad.png">
+                            </div>
+                            <div class="utopia-chart-heading" id="tdh4">@Model.DashboardModelHnpps.Sticker</div>
+                            <div class="utopia-chart-desc">স্টিকার বিতরণ</div>
+                        </div>
+                    </div>
+                </div>
+
+                <br />
+
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="row-fluid">
+                            <div class="span6">
+                                <div class="utopia-chart-legend">
+                                    <div class="utopia-chart-sparkline" id="utopia-sparkline-type1"><canvas style="display: inline-block; width: 48px; height: 48px; vertical-align: top;" width="48" height="48"></canvas></div>
+                                    <div class="utopia-chart-heading">চাল </div>
+                                    <div class="utopia-chart-desc"><span style="color:#0000ff">অবশিষ্ট বরাদ্দ</span> ও <span style="color:#ff0000">মোট বিতরণ</span></div>
+                                </div>
+                            </div>
+                            <div class="span6">
+                                <div class="utopia-chart-legend">
+                                    <div class="utopia-chart-sparkline" id="utopia-sparkline-type2"><canvas style="display: inline-block; width: 48px; height: 48px; vertical-align: top;" width="48" height="48"></canvas></div>
+                                    <div class="utopia-chart-heading">নগদ অর্থ</div>
+                                    <div class="utopia-chart-desc"><span style="color:#0000ff">অবশিষ্ট বরাদ্দ</span> ও <span style="color:#ff0000">মোট বিতরণ</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- Right panel -->
+
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<div class="row-fluid">
+    <div class="span12">
+
+        <section class="utopia-widget">
+            <div class="utopia-widget-title">
+                <img src="~/Content/img/icons2/corona.png" class="utopia-widget-icon">
+                <span>বিগত ১৫ দিনের করোনা রোগীর পরিসংখ্যান </span>
+                <span style="font-size:12px; padding-top:10px;"><a href="~/Main/GisMap" style="padding-left:10px;">view details</a></span>
+            </div>
+
+            <div class="utopia-widget-content">
+
+                <div id="barchart" style="width: 100%; height: 300px;"></div>
+
+            </div>
+            <p>
+                <small style="padding-left:10px;">Source :  করোনা ইনফো</small>
+                <a href="https://corona.gov.bd/" target="_blank" class="pull-right" style="margin-right:20px;"> powered by Ministry of Health & Family Welfare, Government of the People's Republic of Bangladesh</a>
+            </p>
+        </section>
+    </div>
+</div>
+
+<!-- Body end -->
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/js/jquery.sparkline.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            google.charts.load('current', { 'packages': ['corechart'] });
+
+            google.charts.setOnLoadCallback(barChart);
+            function barChart() {
+
+                var jsonData = $.ajax({
+                    url: '@Url.Content("~/Analytics/PatientCountBar")',
+                    dataType: "json",
+                    async: false
+                }).responseText;
+
+                var jdata = JSON.parse(jsonData);
+                var data = google.visualization.arrayToDataTable(jdata);
+
+                var options = {
+                    title: '',
+                    is3D: true,
+                };
+
+                var chart = new google.visualization.ColumnChart(document.getElementById('barchart'));
+
+                chart.draw(data, options);
+            }
+
+            $("#utopia-sparkline-type1").sparkline([@(Model.DashboardModelBDCs.PlanRice - Model.DashboardModelBDCs.DisRice), @Model.DashboardModelBDCs.DisRice], { type: "pie", height: 48 });
+            $("#utopia-sparkline-type2").sparkline([@(Model.DashboardModelBDCs.PlanMoney-Model.DashboardModelBDCs.DisMoney), @Model.DashboardModelBDCs.DisMoney], { type: "pie", height: 48 });
+
+        });
+
+
+
+    </script>
+}

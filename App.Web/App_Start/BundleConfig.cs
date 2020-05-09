@@ -52,7 +52,9 @@ namespace AppProj.Web
                         "~/Scripts/printThis.js",
                         "~/Scripts/exportExcell.js"
                         ));
-
+            bundles.Add(new ScriptBundle("~/bundles/bracjs").Include(
+                       "~/Scripts/brac/app.js"
+                       ));
             /*bundles.Add(new ScriptBundle("~/bundles/jquery-validation").Include(                        
                         "~/Scripts/jquery.validate*"
                         ));            */
@@ -84,7 +86,11 @@ namespace AppProj.Web
                 //"~/Content/bootstrap-datatable.css",
                         "~/Content/bootstrap-datepicker.css"
                         ));
-
+            bundles.Add(new StyleBundle("~/Content/brac").Include(
+                        "~/Content/css/brac/bundle.css",
+                         "~/Content/css/brac/bundle.css"
+                        ));
+            
             //BundleTable.EnableOptimizations = true;
         }
     }

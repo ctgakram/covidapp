@@ -101,12 +101,7 @@ namespace AppProj.Web.Controllers
 
                 //Process for normal authentication
                 var objSsoManager = new SSOManager();
-                //var objSso = objSsoManager.GetSSO(encriptData);
-                var objSso = new SSOClient.Model.SSO();
-                objSso.authenticated = true;
-                objSso.fullname = "abc";
-                objSso.name = "158010";
-
+                var objSso = objSsoManager.GetSSO(encriptData);
                 //SMSC.Models.SMSCContext _contex = new Models.SMSCContext();
                 if (objSso.authenticated == true)
                 {
