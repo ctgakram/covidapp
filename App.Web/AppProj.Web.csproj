@@ -2640,6 +2640,8 @@
     <Content Include="Content\color\javascripts\SCF.ui\starbar.js" />
     <Content Include="Content\color\javascripts\vendor\PIE.htc" />
     <Content Include="Content\css\alerts.css" />
+    <Content Include="Content\css\brac\site.css" />
+    <Content Include="Content\css\brac\bundle.css" />
     <Content Include="Content\css\calendarPicker.css" />
     <Content Include="Content\css\chosen.css" />
     <Content Include="Content\css\colorpicker.css" />
@@ -3302,6 +3304,7 @@
     <Content Include="Content\img\video-js.png" />
     <Content Include="Content\logo\1.png" />
     <Content Include="Content\logo\brac_logo.png" />
+    <Content Include="Content\src\template\map.html" />
     <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -3316,6 +3319,7 @@
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\brac\app.js" />
     <Content Include="Scripts\conditional.js" />
     <Content Include="Scripts\custom.datatable.js" />
     <Content Include="Scripts\custom.imagegrid.js" />
@@ -3327,6 +3331,7 @@
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\crsmarttag.jsp" />
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\preview.jsp" />
     <Content Include="Content\Message\External COVID-19 Sitrep_16 April 2020.pdf" />
+    <Content Include="Content\css\brac\bundle.css.map" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\exportExcell.js" />
@@ -3432,6 +3437,58 @@
     <Content Include="Scripts\printThis.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.svg" />
+    <Content Include="Content\src\images\brac-logo.svg" />
+    <Content Include="Content\src\images\person.jpg" />
+    <Content Include="Content\src\images\svg\activities.svg" />
+    <Content Include="Content\src\images\svg\arrow-down-color.svg" />
+    <Content Include="Content\src\images\svg\arrow-down.svg" />
+    <Content Include="Content\src\images\svg\bd-covid.svg" />
+    <Content Include="Content\src\images\svg\bd-map.svg" />
+    <Content Include="Content\src\images\svg\brac-logo-black.svg" />
+    <Content Include="Content\src\images\svg\brac-logo.svg" />
+    <Content Include="Content\src\images\svg\cash.svg" />
+    <Content Include="Content\src\images\svg\chartvies.svg" />
+    <Content Include="Content\src\images\svg\coronarodh-app.svg" />
+    <Content Include="Content\src\images\svg\counts.svg" />
+    <Content Include="Content\src\images\svg\female-patient.svg" />
+    <Content Include="Content\src\images\svg\festoon.svg" />
+    <Content Include="Content\src\images\svg\gloves.svg" />
+    <Content Include="Content\src\images\svg\gov-logo-2x.png" />
+    <Content Include="Content\src\images\svg\gov.png" />
+    <Content Include="Content\src\images\svg\interview.svg" />
+    <Content Include="Content\src\images\svg\leaflet.svg" />
+    <Content Include="Content\src\images\svg\mask.svg" />
+    <Content Include="Content\src\images\svg\meating-gov.png" />
+    <Content Include="Content\src\images\svg\meeting-brac.svg" />
+    <Content Include="Content\src\images\svg\meeting-gov.svg" />
+    <Content Include="Content\src\images\svg\message.svg" />
+    <Content Include="Content\src\images\svg\miking.svg" />
+    <Content Include="Content\src\images\svg\patient-female.svg" />
+    <Content Include="Content\src\images\svg\patient-male.svg" />
+    <Content Include="Content\src\images\svg\patient.svg" />
+    <Content Include="Content\src\images\svg\profile.svg" />
+    <Content Include="Content\src\images\svg\relief_1.svg" />
+    <Content Include="Content\src\images\svg\report.svg" />
+    <Content Include="Content\src\images\svg\sanitizer.svg" />
+    <Content Include="Content\src\images\svg\sign_out.svg" />
+    <Content Include="Content\src\images\svg\sticker.svg" />
+    <Content Include="Content\src\images\svg\surgical-dress.svg" />
+    <Content Include="Content\src\images\svg\tabular data\bdc-info.svg" />
+    <Content Include="Content\src\images\svg\tabular data\brac-health.svg" />
+    <Content Include="Content\src\images\svg\tabular data\calendar.svg" />
+    <Content Include="Content\src\images\svg\tabular data\coronarodh-app.svg" />
+    <Content Include="Content\src\images\svg\tabular data\export.svg" />
+    <Content Include="Content\src\images\svg\tabular data\filter.svg" />
+    <Content Include="Content\src\images\svg\tabular data\paitent.svg" />
+    <Content Include="Content\src\images\svg\tabular data\print.svg" />
+    <Content Include="Content\src\images\svg\tabular data\program-data.svg" />
+    <Content Include="Content\src\images\svg\tabular data\search.svg" />
+    <Content Include="Content\src\images\svg\tabular data\total-interview.svg" />
+    <Content Include="Content\src\images\svg\tabular-data.svg" />
+    <Content Include="Content\src\images\svg\unknown.svg" />
+    <Content Include="Content\src\images\svg\world-covid-color.svg" />
+    <Content Include="Content\src\images\svg\world-covid.svg" />
     <Content Include="Views\Shared\_LayoutPartial.cshtml">
       <SubType>Code</SubType>
     </Content>
@@ -3476,7 +3533,7 @@
     <Content Include="Views\UserProfile\Districts.cshtml" />
     <Content Include="Views\Main\PartialMap.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Shared\_LayoutGeneral.cshtml" />
+    <Content Include="Views\Shared\_LayoutBrac.cshtml" />
     <Content Include="Views\Standing\Index.cshtml" />
     <Content Include="Views\Standing\Create.cshtml" />
     <Content Include="Views\Standing\Save.cshtml" />
@@ -3525,6 +3582,16 @@
     <Content Include="Views\MapSummary\Index.cshtml" />
     <Content Include="Views\Main\BracDashboard.cshtml" />
     <None Include="Views\DistrictSubmission\IndexBrac.cshtml" />
+    <Content Include="Views\Shared\_LayoutGeneral.cshtml" />
+    <Content Include="Views\Main\Dashboard - Copy.cshtml" />
+    <Content Include="Content\src\fonts\HelveticaNeue-regular.ttf" />
+    <Content Include="Content\src\fonts\HelveticaNeueBold.ttf" />
+    <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.eot" />
+    <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.ttf" />
+    <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff" />
+    <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff2" />
+    <Content Include="Content\src\images\svg\desktop.ini" />
+    <Content Include="Content\src\images\svg\tabular data\desktop.ini" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

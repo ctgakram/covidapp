@@ -8,12 +8,17 @@ namespace AppProj.Web.Models
 {
     public class DashboardModel
     {
+        public DashboardModel()
+        {
+            mapdatas = new List<mapdata>();
+        }
         public int Reach { get; set; }
         public int Suspect { get; set; }
         public int SuspectFemale { get; set; }
         public int SuspectApp { get; set; }
         public string Districts { get; set; }
-        
+        public List<mapdata> mapdatas { get; set; }
+
 
         public DashboardModelBDC DashboardModelBDCs { get; set; }
         public DashboardModelHnpp DashboardModelHnpps { get; set; }
@@ -50,6 +55,14 @@ namespace AppProj.Web.Models
 
     }
 
+    public class mapdata
+    {
+        public mapdata() {
+
+        }
+        public KeyValuePair<string,string> keyelement { get; set; }
+        public string color { get; set; }
+    }
     
 
 }
