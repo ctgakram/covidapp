@@ -450,17 +450,17 @@ namespace AppProj.Web.Controllers
                 new mapdata
                 {
                     color = "orange",
-                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", disDataService.GetTopDistricts(5))
+                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", "dhaka,narayanganj,gazipur,kishoreganj,narshindi")//disDataService.GetTopDistricts(5))
                 },
                 new mapdata
                 {
                     color = "red",
-                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", disDataService.GetTopDistrictsQurantine(5))
+                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", "mymensingh,habiganj,patuakhali")//disDataService.GetTopDistrictsQurantine(5))
                 },
                 new mapdata
                 {
                     color = "green",
-                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", disDataService.GetTopDistrictsRelief(5))
+                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", "chottogram,pabna,gazipur")//disDataService.GetTopDistrictsRelief(5))
                 }
             };
 
