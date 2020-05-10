@@ -71,7 +71,7 @@ namespace AppProj.Web.Controllers
             model.SuspectFemale = detDataService.GetCountFemale();
             model.SuspectApp = detDataService.GetAppCount();
             model.Reach = sumDataService.GetReachCount();
-            
+
             model.mapdatas = getsampledata();
 
             model.DashboardModelBDCs = disDataService.GetSummery()
@@ -106,9 +106,9 @@ namespace AppProj.Web.Controllers
                             ,
                             PlanMoney = g.Sum(c => c.PlannedMoney)
                             ,
-                            BracFood = g.Sum(c => c.BracFoodDistribution??0)
+                            BracFood = g.Sum(c => c.BracFoodDistribution ?? 0)
                             ,
-                            BracMoney = g.Sum(c => c.BracMoneyDistribution??0)
+                            BracMoney = g.Sum(c => c.BracMoneyDistribution ?? 0)
 
 
                         }).Single();
@@ -450,21 +450,28 @@ namespace AppProj.Web.Controllers
                 new mapdata
                 {
                     color = "orange",
-                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", "dhaka,narayanganj,gazipur,kishoreganj,narshindi")//disDataService.GetTopDistricts(5))
+                    keyelement = new KeyValuePair<string, string>("সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা", formatdistrict(disDataService.GetTopDistricts(5)))// "dhaka,narayanganj,gazipur,kishoreganj,narshindi"
                 },
                 new mapdata
                 {
                     color = "red",
-                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", "mymensingh,habiganj,patuakhali")//disDataService.GetTopDistrictsQurantine(5))
+                    keyelement = new KeyValuePair<string, string>("Covid-19 quarantine heatmap", formatdistrict(disDataService.GetTopDistrictsQurantine(5)))// "mymensingh,habiganj,patuakhali"
                 },
                 new mapdata
                 {
                     color = "green",
-                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", "chottogram,pabna,gazipur")//disDataService.GetTopDistrictsRelief(5))
+                    keyelement = new KeyValuePair<string, string>("Relief Distributed Map", formatdistrict(disDataService.GetTopDistrictsRelief(5)))// "chottogram,pabna,gazipur"
                 }
             };
 
             return output;
+        }
+        public string formatdistrict(string p_districts)
+        {
+            var output = string.Empty;
+            output = p_districts.ToLower().Trim().Replace("cox's bazar", "coxs_bazar").Replace("chapai nababganj", "chapai_nababganj").Replace(" ","");
+            return output;
+
         }
 
     }
