@@ -11127,5 +11127,14 @@ body {
     display: block;
     margin: 10px 0; } }
 
+.dropdown-menu.show {
+    display: block;
+    min-width: 400px;
+    padding: 10px;
+}
+
+    .dropdown-menu.show h6 {
+        padding-left: 0px;
+    }
 
 /*# sourceMappingURL=bundle.css.map*/
