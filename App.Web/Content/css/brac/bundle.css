@@ -12311,9 +12311,9 @@ body {
     padding: 10px;
 }
 
-    .dropdown-menu.show h6 {
+    /*.dropdown-menu.show h6 {
         padding-left: 0px;
-    }
+    }*/
 
 #divactivities > li {
     display: block;
@@ -12329,8 +12329,13 @@ body {
     border-bottom: 1px solid #e6e4e5;
     font-size: 12px;
 }
-.dropdown-menu.show h6 {
-    padding-left: 0px;
-}
 
+@media screen and (max-width: 991px) {
+    .img-number-text-item img {
+        width: 100px;
+        margin-left: auto;
+        margin-right: auto;
+        min-height: 110px !important;
+    }
+}
 /*# sourceMappingURL=bundle.css.map*/
