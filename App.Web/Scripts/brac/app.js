@@ -39893,7 +39893,7 @@ $(document).ready(function () {
   if ($("#bangladesh_svg").length > 0) {
     var current_map = $("#top-affected-cities");
     var legend_color = $(current_map).attr("data-color");
-    var locations = $(current_map).attr("data-city").toLowerCase().split(",");
+    var locations = $(current_map).attr("data-city").toLowerCase().replace(/_/g, " ").replace("coxs", "cox's").split(",");
     var locations_filtered = $(current_map).attr("data-city").toLowerCase().replace(/ /g, "_").replace(/'/g, "").split(",");
     var location_id = locations_filtered.map(function (val, index) {
       return "#" + val + "_id";
@@ -39923,7 +39923,7 @@ $(".select-menu li").on("click", function () {
   // $('[data-toggle="tooltip"]').tooltip('hide');
   var legend_color = $(this).attr("data-color");
   var selText = $(this).find(".legend-wrapper").html();
-  var locations = $(this).attr("data-city").toLowerCase().split(",");
+  var locations = $(this).attr("data-city").toLowerCase().replace(/_/g, " ").replace("coxs", "cox's").split(",");
   var locations_filt = $(this).attr("data-city").toLowerCase().replace(/ /g, "_").replace(/'/g, "").split(",");
   var location_id = locations_filt.map(function (val, index) {
     return "#" + val + "_id";
@@ -52906,4 +52906,4 @@ function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "functi
 /***/ })
 
 /******/ });
-//# sourceMappingURL=app.5ac844d5.js.map
+//# sourceMappingURL=app.dc3caef2.js.map
