@@ -3,7 +3,9 @@
     min-width: 400px;
     padding: 10px;
     z-index: 100000;
+    margin-right:25px;
 }
+
 #divactivities > li {
     display: block;
     width: 100%;
@@ -17,4 +19,27 @@
     border: 0;
     border-bottom: 1px solid #e6e4e5;
     font-size: 12px;
+}
+
+#divactivities li .msg {
+    /*color: #D10D74;*/
+}
+
+    #divactivities li .msg a {
+        text-decoration: none;
+        color: #D10D74;
+    }
+
+#divactivities.dropdown-menu {
+    box-shadow: 0px 6px 15px #222;
+}
+
+.brac-link {
+    color: #D10D74;
+}
+
+@media screen and (min-width: 992px) {
+    #bullentin {
+        width: 600px !important;
+    }
 }
