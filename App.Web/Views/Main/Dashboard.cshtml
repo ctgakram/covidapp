@@ -36,7 +36,7 @@
                         <strong class="text-bracify">@Model.Suspect</strong>
                         <div class="number-bar">
                             <div class="male" style="width: @PercentOfMale.ToString()%">
-                                <span class="nb-data-text"><span>@(Model.Suspect - Model.SuspectFemale)</span> M</span>
+                                <span class="nb-data-text">M <span>@(Model.Suspect - Model.SuspectFemale)</span></span>
                             </div>
                             <div class="female" style="width: @PercentOfFemale.ToString()%">
                                 <span class="nb-data-text"><span>@Model.SuspectFemale</span> F</span>
@@ -51,14 +51,14 @@
                     <img src="@Url.Content("~/Content/src/images/svg/interview.svg")" alt="Interview">
                     <div class="number-text">
                         <strong>@Model.Reach</strong>
-                        <p>Programme Participants Oriented</p>
+                        <p>Programme <br /> Participants Oriented</p>
                     </div>
                 </div>
                 <div class="img-number-text-item horizontal">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/coronarodh-app.svg")" alt="App">
                     <div class="number-text">
                         <strong>@Model.SuspectApp</strong>
-                        <p><span class="text-bracify">Probable cases detected from CoronaRodh App</span></span></p>
+                        <p><span class="">Probable cases detected <br> from  <a class="brac-link" target="_blank" href="https://coronarodh.brac.net/">CoronaRodh App</a></span></p>
                     </div>
                 </div>
             </section>
@@ -133,7 +133,7 @@
                         @*<div class="progress-color" style="width: @ReliefFoodPercentageGovt.ToString()%;">
 
                         </div>*@
-                        <span class="number">@Model.DashboardModelBDCs.DisRice ton rice</span>
+                        <span class="number">@Model.DashboardModelBDCs.DisRice tonne rice</span>
                     </div>
                 </div>
                 <div class="bar cash">
@@ -243,7 +243,7 @@
             <p data-toggle="dropdown" class="select-menu-label">
                 <span class="legend-wrapper d-flex align-items-center">
                     <span class="map-legend orange"></span>
-                    <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
+                    <span>Top 5 Districts - Probable cases in programme participants</span>
                 </span>
                 <img class="ml-4 carret" src="/Content/src/images/svg/arrow-down-color.svg" )" alt="arrow-down">
             </p>
