@@ -21,6 +21,8 @@ namespace AppProj.Service.Services
 
         string GetTopDistrictsQurantine(int take);
         string GetTopDistrictsRelief(int take);
+        string GetTopDistrictsBracReliefMoney(int take);
+        string GetTopDistrictsBracReliefFood(int take);
 
         IEnumerable<DistrictPatient> GetPatient(DateTime date);
         void AddPatient(DistrictPatient entity);

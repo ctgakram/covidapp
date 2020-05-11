@@ -61,7 +61,11 @@ namespace AppProj.Web.Controllers
             else if (id == StandingDataTypes.RestrictionsOnProgramImplementation)
             {
                 ViewBag.Title = "Is there any national/ local restriction on program implementation?";
-            }            
+            }
+            else if (id == StandingDataTypes.TreeMessage)
+            {
+                ViewBag.Title = "COVID Circular";
+            }
             else
             {
                 return View("Error");

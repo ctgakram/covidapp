@@ -88,7 +88,7 @@ namespace AppProj.Web
                         ));
             bundles.Add(new StyleBundle("~/Content/brac").Include(
                         "~/Content/css/brac/bundle.css",
-                         "~/Content/css/brac/bundle.css"
+                         "~/Content/css/brac/site.css"
                         ));
             
             //BundleTable.EnableOptimizations = true;
