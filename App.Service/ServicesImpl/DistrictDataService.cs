@@ -128,6 +128,26 @@ namespace AppProj.Service.ServicesImpl
             return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
         }
 
+        public string GetTopDistrictsBracReliefMoney(int take)
+        {
+            var model = sumRepository.GetAll()
+                .OrderByDescending(c => (c.BracMoneyDistribution))
+               .Take(take)
+               .Skip(0);
+
+            return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
+        }
+
+        public string GetTopDistrictsBracReliefFood(int take)
+        {
+            var model = sumRepository.GetAll()
+                .OrderByDescending(c => (c.BracFoodDistribution))
+               .Take(take)
+               .Skip(0);
+
+            return string.Join(", ", model.Select(c => c.StandingData1.Name).ToArray());
+        }
+
 
         public void Update(DistrictData disEntity, DistrictSummery sumEntity)
         {
