@@ -38,6 +38,10 @@
     color: #D10D74;
 }
 
+    a.brac-link:hover {
+        color: #D10D74;
+    }    
+
 @media screen and (min-width: 992px) {
     #bullentin {
         width: 600px !important;
