@@ -10,15 +10,86 @@
     int PercentOfFemale = (Model.SuspectFemale * 100) / Model.Suspect;
     int PercentOfMale = 100 - PercentOfFemale;
 
+    //int ReliefFoodGovt = Convert.ToInt32(Model.DashboardModelBDCs.DisRice);
+    //int ReliefMoneyGovt = Convert.ToInt32(Model.DashboardModelBDCs.DisMoney);
+    //int ReliefFoodBRAC = Convert.ToInt32(Model.DashboardModelBDCs.BracFood);
+    //int ReliefMoneyBRAC = Convert.ToInt32(Model.DashboardModelBDCs.BracMoney);
+
     // Ratio for Govt Relief
-    int TotalReliefGovt = Model.DashboardModelBDCs.DisRiceFamily + Model.DashboardModelBDCs.DisMoneyFamily;
-    int ReliefFoodPercentageGovt = (Model.DashboardModelBDCs.DisRiceFamily * 100) / TotalReliefGovt;
-    int ReliefMoneyPercentageGovt = 100 - ReliefFoodPercentageGovt;
+    //int TotalReliefGovt = Model.DashboardModelBDCs.DisRiceFamily + Model.DashboardModelBDCs.DisMoneyFamily;
+    //int ReliefFoodPercentageGovt = (Model.DashboardModelBDCs.DisRiceFamily * 100) / TotalReliefGovt;
+    //int ReliefMoneyPercentageGovt = 100 - ReliefFoodPercentageGovt;
 
     //Ratio for BRAC Relief
-    decimal TotalReliefBRAC = Model.DashboardModelBDCs.BracFood + Model.DashboardModelBDCs.BracMoney;
-    int ReliefFoodPercentageBRAC = Convert.ToInt32((Model.DashboardModelBDCs.BracFood * 100) / TotalReliefBRAC);
-    int ReliefMoneyPercentageBRAC = 100 - ReliefFoodPercentageBRAC;
+    //decimal TotalReliefBRAC = Model.DashboardModelBDCs.BracFood + Model.DashboardModelBDCs.BracMoney;
+    //int ReliefFoodPercentageBRAC = Convert.ToInt32((Model.DashboardModelBDCs.BracFood * 100) / TotalReliefBRAC);
+    //int ReliefMoneyPercentageBRAC = 100 - ReliefFoodPercentageBRAC;
+
+}
+@helper  AddComaInNumber(string strNumber)
+{
+    string[] pointSeperateNumber = strNumber.Split('.');
+    string strReturnNumber = string.Empty;
+    var strSeperated = new List<string>();
+    int count = 0;
+    for (int i = pointSeperateNumber[0].Length - 1; i > -1; i--)
+    {
+        if (count < 3)
+        {
+            strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+        }
+        else if (count < 5)
+        {
+            if (count == 3)
+            {
+                strSeperated.Add(",");
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+            else
+            {
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+        }
+        else if (count < 7)
+        {
+            if (count == 5)
+            {
+                strSeperated.Add(",");
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+            else
+            {
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+        }
+        else
+        {
+            if (count == 7)
+            {
+                strSeperated.Add(",");
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+            else
+            {
+                strSeperated.Add(pointSeperateNumber[0].Substring(i, 1));
+            }
+        }
+
+        count++;
+
+    }
+
+    for (int j = strSeperated.Count; j > 0; j--)
+    {
+        strReturnNumber += strSeperated[j - 1];
+    }
+    if(pointSeperateNumber.Count() > 1) {
+            strReturnNumber = strReturnNumber + "." + pointSeperateNumber[1];
+    }
+
+    @strReturnNumber
+    //return strReturnNumber;
+
 }
 <style>
     text {
@@ -33,13 +104,13 @@
                     <img src="@Url.Content("~/Content/src/images/svg/patient-male.svg")" alt="Male">
                     <div class="ratio-section">
                         <p>Probable cases in programme participants – HNPP Data</p>
-                        <strong class="text-bracify">@Model.Suspect</strong>
+                        <strong class="text-bracify">@AddComaInNumber(Model.Suspect.ToString())</strong>
                         <div class="number-bar">
                             <div class="male" style="width: @PercentOfMale.ToString()%">
-                                <span class="nb-data-text">M <span>@(Model.Suspect - Model.SuspectFemale)</span></span>
+                                <span class="nb-data-text">M <span>@AddComaInNumber((Model.Suspect - Model.SuspectFemale).ToString())</span></span>
                             </div>
                             <div class="female" style="width: @PercentOfFemale.ToString()%">
-                                <span class="nb-data-text"><span>@Model.SuspectFemale</span> F</span>
+                                <span class="nb-data-text"><span>@AddComaInNumber(Model.SuspectFemale.ToString())</span> F</span>
                             </div>
                         </div>
                     </div>
@@ -50,29 +121,29 @@
                 <div class="img-number-text-item horizontal">
                     <img src="@Url.Content("~/Content/src/images/svg/interview.svg")" alt="Interview">
                     <div class="number-text">
-                        <strong>@Model.Reach</strong>
+                        <strong>@AddComaInNumber(Model.Reach.ToString())</strong>
                         <p>Programme <br /> Participants Oriented</p>
                     </div>
                 </div>
                 <div class="img-number-text-item horizontal">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/coronarodh-app.svg")" alt="App">
                     <div class="number-text">
-                        <strong>@Model.SuspectApp</strong>
+                        <strong>@AddComaInNumber(Model.SuspectApp.ToString())</strong>
                         <p><span class="">Probable cases detected <br> from  <a class="brac-link" target="_blank" href="https://coronarodh.brac.net/">CoronaRodh App</a></span></p>
                     </div>
                 </div>
             </section>
         </div>
         @*<div class="meeting-box box-shadow mt-4">
-            <div class="meeting-box-item mb-4">
-                <img src="@Url.Content("~/Content/src/images/svg/meeting-brac.svg")" alt="">
-                <p>ব্র্যাক সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingBrac</strong> টি</p>
-            </div>
-            <div class="meeting-box-item">
-                <img src="@Url.Content("~/Content/src/images/svg/meeting-gov.svg")" alt="">
-                <p>সরকারী সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingGovt</strong> টি</p>
-            </div>
-        </div>*@
+                <div class="meeting-box-item mb-4">
+                    <img src="@Url.Content("~/Content/src/images/svg/meeting-brac.svg")" alt="">
+                    <p>ব্র্যাক সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingBrac</strong> টি</p>
+                </div>
+                <div class="meeting-box-item">
+                    <img src="@Url.Content("~/Content/src/images/svg/meeting-gov.svg")" alt="">
+                    <p>সরকারী সমন্বয় মোট মিটিং করা হয়েছে <strong>@Model.DashboardModelHnpps.MeetingGovt</strong> টি</p>
+                </div>
+            </div>*@
         <div class="relief-summary-box box-shadow mt-4 mb-3">
             <div class="table-box-title">
                 <h5>Relief Summary</h5>
@@ -103,16 +174,16 @@
                     </svg>
                     <div class="visual">
                         @*<div class="progress-color" style="width: @ReliefFoodPercentageBRAC.ToString()%;">
-                        </div>*@
-                        <span class="number">@Model.DashboardModelBDCs.BracFood food packs</span>
+                            </div>*@
+                        <span class="number">@AddComaInNumber(Math.Floor(Model.DashboardModelBDCs.BracFood).ToString()) food packs</span>
                     </div>
                 </div>
                 <div class="bar cash">
                     <i class="fa fa-money-bill"></i>
                     <div class="visual">
                         @*<div class="progress-color" style="width: @ReliefMoneyPercentageBRAC.ToString()%;">
-                        </div>*@
-                        <span class="number">@Model.DashboardModelBDCs.BracMoney BDT</span>
+                            </div>*@
+                        <span class="number">@AddComaInNumber(Math.Floor(Model.DashboardModelBDCs.BracMoney).ToString()) BDT</span>
                     </div>
                 </div>
             </div>
@@ -132,8 +203,8 @@
                     <div class="visual">
                         @*<div class="progress-color" style="width: @ReliefFoodPercentageGovt.ToString()%;">
 
-                        </div>*@
-                        <span class="number">@Model.DashboardModelBDCs.DisRice tonne rice</span>
+                            </div>*@
+                        <span class="number">@AddComaInNumber(Math.Floor(Model.DashboardModelBDCs.DisRice).ToString()) tonne rice</span>
                     </div>
                 </div>
                 <div class="bar cash">
@@ -141,8 +212,8 @@
                     <div class="visual">
                         @*<div class="progress-color" style="width: @ReliefMoneyPercentageGovt.ToString()%;">
 
-                        </div>*@
-                        <span class="number">@Model.DashboardModelBDCs.DisMoney BDT</span>
+                            </div>*@
+                        <span class="number">@AddComaInNumber(Math.Floor(Model.DashboardModelBDCs.DisMoney).ToString()) BDT</span>
                     </div>
                 </div>
             </div>
@@ -155,28 +226,28 @@
             <div class="overview-box">
                 <div class="img-number-text-item">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/leaflet.svg")" alt="Leaflet">
-                    <strong>@Model.DashboardModelHnpps.Leaflet</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelHnpps.Leaflet.ToString())</strong>
                     <p>
                         <span>Leaflets</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img src="@Url.Content("~/Content/src/images/svg/sticker.svg")" alt="Sticker">
-                    <strong>@Model.DashboardModelHnpps.Sticker</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelHnpps.Sticker.ToString())</strong>
                     <p>
                         <span>Stickers</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/festoon.svg")" alt="Leaflet">
-                    <strong>@Model.DashboardModelBracs.Festun</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Festun.ToString())</strong>
                     <p>
                         <span>Festoon</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img src="@Url.Content("~/Content/src/images/svg/miking.svg")" alt="Sticker">
-                    <strong>@Model.DashboardModelBracs.Miking</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Miking.ToString())</strong>
                     <p>
                         <span>Miking</span>
                     </p>
@@ -189,28 +260,28 @@
             <div class="overview-box">
                 <div class="img-number-text-item">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/sanitizer.svg")" alt="Sanitizer">
-                    <strong>@Model.DashboardModelBracs.Sanitizer</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Sanitizer.ToString())</strong>
                     <p>
                         <span>Sanitizer and hand wash</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/gloves.svg")" alt="Gloves">
-                    <strong>@Model.DashboardModelBracs.Gloves</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Gloves.ToString())</strong>
                     <p>
                         <span>Hand gloves</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img class="sm-34" src="@Url.Content("~/Content/src/images/svg/surgical-dress.svg")" alt="Surgical Dress">
-                    <strong>@Model.DashboardModelBracs.Aproan</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Aproan.ToString())</strong>
                     <p>
                         <span>Surgical Apron</span>
                     </p>
                 </div>
                 <div class="img-number-text-item">
                     <img src="@Url.Content("~/Content/src/images/svg/mask.svg")" alt="Mask">
-                    <strong>@Model.DashboardModelBracs.Mask</strong>
+                    <strong>@AddComaInNumber(Model.DashboardModelBracs.Mask.ToString())</strong>
                     <p>
                         <span>Mask</span>
                     </p>
