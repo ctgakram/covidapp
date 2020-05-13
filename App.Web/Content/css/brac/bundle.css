@@ -12915,20 +12915,7 @@ div.dtr-bs-modal table.table tr:first-child td {
     font-style: normal;
 }
 
-@font-face {
-    font-family: 'HelveticaNeue';
-    src: url(src/fonts/HelveticaNeueBold.ttf) format("truetype");
-    font-weight: bold;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'OriyaSangamMN';
-    src: url(src/fonts/oriya-sangam/OriyaSangamMN.eot);
-    /* IE9 Compat Modes */
-    src: url(src/fonts/oriya-sangam/OriyaSangamMN.eot?#iefix) format("embedded-opentype"), url(src/fonts/oriya-sangam/OriyaSangamMN.woff2) format("woff2"), url(src/fonts/oriya-sangam/OriyaSangamMN.woff) format("woff"), url(src/fonts/oriya-sangam/OriyaSangamMN.ttf) format("truetype"), url(src/fonts/oriya-sangam/OriyaSangamMN.svg#svgFontName) format("svg");
-    /* Legacy iOS */
-}
 
 html, body {
     min-height: 100%;
