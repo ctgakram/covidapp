@@ -34,92 +34,112 @@
 
                         <ul>
                             @*<li><a class="dashboard smronju" href="~/Main/Dashboard" title="Dashboard"><span>ড্যাশবোর্ড</span></a></li>*@
-                            <li><a class="tables" href="~/SummerySubmission/Index" title="Total reach"><span>মোট পরিদর্শন</span></a>
-                            <li><a class="widgets smronju" href="~/DetailSubmission/Index" title="Suspected patients"><span>সম্ভাব্য রোগী</span></a></li>
-                            <li><a class="wizard-form smronju" href="~/HnppSubmission/Index" title="HNPP Data"><span>ব্র্যাক হেলথ</span></a></li>
                             <li>
-                                <a class="editor" href="javascript:void(0)" title="Program data"><span>প্রোগ্রাম ডাটা</span></a>
-                                <ul class="dropdown">
-                                    <li><a class="simple smronju" href="~/BepSubmission/Index" title="Data entry"><span>ডাটা এন্ট্রি</span></a></li>
-                                    <li><a class="wizard-form smronju" href="~/BepSubmission/IndexItem" title="Total counts"><span>মোট তথ্য</span></a></li>
-                                    <li><a class="grid" href="~/BepSubmission/IndexCount" title="Detail counts"><span>বিস্তারিত তথ্য</span></a></li>
-                                </ul>
-                            </li>
-
-                            <li>
-                                <a class="list" href="javascript:void(0)" title="Data by BDC"><span>বি.ডি.সি. তথ্য</span></a>
-                                <ul class="dropdown">
-                                    <li><a class="tables" href="~/DistrictSubmission/Index" title="Comments from district"><span>জেলার মন্তব্য</span></a>
-                                    <li><a class="widgets smronju" href="~/DistrictSubmission/IndexReleif" title="District daily update"><span>জেলার প্রতিদিনের তথ্য</span></a></li>
-                                    <li><a class="widgets smronju" href="~/DistrictSubmission/IndexBrac" title="District daily update"><span>ব্র্যাক কর্মীদের তথ্য</span></a></li>
-                                    <li><a class="elements" href="~/DistrictSubmission/IndexSum" title="Current status of district"><span>জেলার বর্তমান অবস্থা</span></a></li>
-                                </ul>
-                            </li>
-                            <li><a class="icons" href="~/DetailSubmission/IndexApp" title="Coronarodh App"><span>করোনারোধ</span></a></li>
-                            @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
-                            {
+                                <a class="tables" href="~/DoctorPole/Index" title="Total reach"><span>My Health</span></a>
+                                @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role)
+                                    || UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                                {
                                 <li>
-                                    <a class="charts" href="javascript:void(0)" title="Standing Data"><span>Standing Data</span></a>
+                                    <a class="editor" href="javascript:void(0)" title="Program data"><span>Doctors Pool</span></a>
                                     <ul class="dropdown">
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.TreeMessage" title="Restrictions"><span>COVID Circular</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Activities" title="Activities"><span>Activities</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Programs" title="Programs"><span>Programs</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.HowProgramsAffected" title="Impacted/Affected"><span>Impacted/Affected</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationMaterial" title="Communication Materials"><span>Comm Materials</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationChannel" title="Communication Channels"><span>Comm Channels</span></a></li>
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.MaterialsOrItems" title="Materials"><span>Materials</span></a></li>                                        
-                                        <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.RestrictionsOnProgramImplementation" title="Restrictions"><span>Restrictions</span></a></li>
-                                        
+                                        @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
+                                        {
+                                            <li><a class="simple smronju" href="~/DoctorPole/HrIndex" title="Data entry"><span>By HR</span></a></li>
+                                        }
+                                        @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                                        {
+                                            <li><a class="simple smronju" href="~/DoctorPole/FollowupIndex" title="Data entry"><span>Followup</span></a></li>
+                                        }
+                                        <li><a class="wizard-form smronju" href="~/DoctorPole/ReportIndex" title="HNPP Data"><span>Report</span></a></li>
                                     </ul>
                                 </li>
                             }
-
-                            @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
-                            {
-                                <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
-                            }
-
-                            @if (UserRole.Check("USER", SessionHelper.Role)
-                               || UserRole.Check("ROLE", SessionHelper.Role))
-                            {
+                                <li><a class="tables" href="~/SummerySubmission/Index" title="Total reach"><span>মোট পরিদর্শন</span></a>
+                                <li><a class="widgets smronju" href="~/DetailSubmission/Index" title="Suspected patients"><span>সম্ভাব্য রোগী</span></a></li>
+                                <li><a class="wizard-form smronju" href="~/HnppSubmission/Index" title="HNPP Data"><span>ব্র্যাক হেলথ</span></a></li>
                                 <li>
-                                    <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
+                                    <a class="editor" href="javascript:void(0)" title="Program data"><span>প্রোগ্রাম ডাটা</span></a>
                                     <ul class="dropdown">
-                                        @if (UserRole.Check("USER", SessionHelper.Role))
-                                        {
-                                            <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
-                                        }
-
-                                        @if (UserRole.Check("ROLE", SessionHelper.Role))
-                                        {
-                                            <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
-                                        }
+                                        <li><a class="simple smronju" href="~/BepSubmission/Index" title="Data entry"><span>ডাটা এন্ট্রি</span></a></li>
+                                        <li><a class="wizard-form smronju" href="~/BepSubmission/IndexItem" title="Total counts"><span>মোট তথ্য</span></a></li>
+                                        <li><a class="grid" href="~/BepSubmission/IndexCount" title="Detail counts"><span>বিস্তারিত তথ্য</span></a></li>
                                     </ul>
                                 </li>
-                            }
-                        </ul>
+
+                                <li>
+                                    <a class="list" href="javascript:void(0)" title="Data by BDC"><span>বি.ডি.সি. তথ্য</span></a>
+                                    <ul class="dropdown">
+                                        <li><a class="tables" href="~/DistrictSubmission/Index" title="Comments from district"><span>জেলার মন্তব্য</span></a>
+                                        <li><a class="widgets smronju" href="~/DistrictSubmission/IndexReleif" title="District daily update"><span>জেলার প্রতিদিনের তথ্য</span></a></li>
+                                        <li><a class="widgets smronju" href="~/DistrictSubmission/IndexBrac" title="District daily update"><span>ব্র্যাক কর্মীদের তথ্য</span></a></li>
+                                        <li><a class="elements" href="~/DistrictSubmission/IndexSum" title="Current status of district"><span>জেলার বর্তমান অবস্থা</span></a></li>
+                                    </ul>
+                                </li>
+                                <li><a class="icons" href="~/DetailSubmission/IndexApp" title="Coronarodh App"><span>করোনারোধ</span></a></li>
+                                @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
+                                {
+                                    <li>
+                                        <a class="charts" href="javascript:void(0)" title="Standing Data"><span>Standing Data</span></a>
+                                        <ul class="dropdown">
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.TreeMessage" title="Restrictions"><span>COVID Circular</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Activities" title="Activities"><span>Activities</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.Programs" title="Programs"><span>Programs</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.HowProgramsAffected" title="Impacted/Affected"><span>Impacted/Affected</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationMaterial" title="Communication Materials"><span>Comm Materials</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.CommunicationChannel" title="Communication Channels"><span>Comm Channels</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.MaterialsOrItems" title="Materials"><span>Materials</span></a></li>
+                                            <li><a class="charts" href="~/Standing/Index/@StandingDataTypes.RestrictionsOnProgramImplementation" title="Restrictions"><span>Restrictions</span></a></li>
+
+                                        </ul>
+                                    </li>
+                                }
+
+                                @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
+                                {
+                                    <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
+                                }
+
+                                @if (UserRole.Check("USER", SessionHelper.Role)
+                                   || UserRole.Check("ROLE", SessionHelper.Role))
+                                {
+                                    <li>
+                                        <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
+                                        <ul class="dropdown">
+                                            @if (UserRole.Check("USER", SessionHelper.Role))
+                                            {
+                                                <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
+                                            }
+
+                                            @if (UserRole.Check("ROLE", SessionHelper.Role))
+                                            {
+                                                <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                            </ul>
+
+                        </div>
 
                     </div>
+                </div>
 
+                <div id="MainBody" class="span10 body-container">
+                    @RenderBody()
                 </div>
             </div>
 
-            <div id="MainBody" class="span10 body-container">
-                @RenderBody()
-            </div>
         </div>
 
-    </div>
+        @Html.Partial("_ModalPartial")
 
-    @Html.Partial("_ModalPartial")
+        <!-- Placed at the end of the document so the pages load faster -->
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/utopia")
 
-    <!-- Placed at the end of the document so the pages load faster -->
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/utopia")
+        @RenderSection("scripts", required: false)
 
-    @RenderSection("scripts", required: false)
-
-    <script type="text/javascript">
+        <script type="text/javascript">
 
         $(document).ready(function () {
 
@@ -129,7 +149,7 @@
 
         });
 
-    </script>
-</body>
+        </script>
+    </body>
 </html>
 

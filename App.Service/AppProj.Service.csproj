@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="ServicesImpl\DoctorsPoleService.cs" />
     <Compile Include="ServicesImpl\MapSummaryService.cs" />
     <Compile Include="ServicesImpl\ProgramByUserProfileService.cs" />
     <Compile Include="ServicesImpl\DistrictByUserProfileService.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="ServicesImpl\SummerizedDataService.cs" />
     <Compile Include="ServicesImpl\UserLoginLogService.cs" />
     <Compile Include="ServicesImpl\UserProfileService.cs" />
+    <Compile Include="Services\IDoctorsPoleService.cs" />
     <Compile Include="Services\IMapSummaryService.cs" />
     <Compile Include="Services\IProgramByUserProfileService.cs" />
     <Compile Include="Services\IDistrictByUserProfileService.cs" />

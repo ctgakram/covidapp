@@ -48,12 +48,12 @@ namespace AppProj.Web.Controllers
 
             //temp
 
-            //if (IsAuthorised("154211"))
-            //{
-            //    //SessionHelper.IsGuest = true;
-            //    return Redirect("~/" + SessionHelper.DefaultPage);
-            //}
-            //return Redirect("~/Main/Dashboard");
+            if (IsAuthorised("154211"))
+            {
+                //SessionHelper.IsGuest = true;
+                return Redirect("~/" + SessionHelper.DefaultPage);
+            }
+            return Redirect("~/Main/Dashboard");
             //860538 source, 860539 dis, 860540 upz
 
 
@@ -167,6 +167,8 @@ namespace AppProj.Web.Controllers
 
             FormsAuthentication.SetAuthCookie(pin, true);
             var identity = new GenericIdentity(pin);
+
+            SessionHelper.PIN = pin;
 
             if (login == null)
             {

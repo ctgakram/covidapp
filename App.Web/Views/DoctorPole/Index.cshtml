@@ -1,0 +1,30 @@
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.SearchModel
+@{
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('All Program Data')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+</html>

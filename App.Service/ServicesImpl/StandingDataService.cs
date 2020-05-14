@@ -27,7 +27,7 @@ namespace AppProj.Service.ServicesImpl
         public IEnumerable<StandingData> GetUpazilla(int disId)
         {
             return serviceRepository
-                .GetMany(c => c.Type == "UPZ" && c.ParentId==disId && c.IsActive)
+                .GetMany(c => c.Type == "UPZ" && c.ParentId==disId)
                 .OrderBy(d=> d.Name);
         }
 
@@ -38,18 +38,36 @@ namespace AppProj.Service.ServicesImpl
                 .OrderBy(d => d.Name);
         }
 
+        public StandingData GetSource(string txt)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "SRC" && c.Name == txt);
+        }
+
         public IEnumerable<StandingData> GetGender()
         {
             return serviceRepository
-                .GetMany(c => c.Type == "GEN" && c.IsActive)
+                .GetMany(c => c.Type == "GEN")
                 .OrderBy(d => d.Name);
+        }
+
+        public StandingData GetGender(string txt)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "GEN" && c.Name == txt);
         }
 
         public IEnumerable<StandingData> GetDistricts()
         {
             return serviceRepository
-                .GetMany(c => c.Type == "DIS" && c.IsActive)
+                .GetMany(c => c.Type == "DIS" )
                 .OrderBy(d => d.Name);
+        }
+
+        public StandingData GetDistricts(string txt)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "DIS" && c.Name == txt);
         }
 
         public IEnumerable<StandingData> GetDistricts(int divId)

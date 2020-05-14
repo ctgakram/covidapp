@@ -379,6 +379,13 @@ namespace AppProj.Web.Controllers
 
         public JsonResult GetProfileByPin(string pinId)
         {
+            var dataObjects = ApiCaller.GetEmployeeByPIN(pinId);
+            if (dataObjects.Count() > 0)
+            {
+                return Json(dataObjects.FirstOrDefault(), JsonRequestBehavior.AllowGet);
+            }
+            return null;
+
             /*
             StaffInfoSoapClient st = new StaffInfoSoapClient();
 
@@ -391,10 +398,11 @@ namespace AppProj.Web.Controllers
                     return Json(profile.FirstOrDefault(), JsonRequestBehavior.AllowGet);
                 }
             */
-
+            /*
+            //http://api.brac.net/v1/staffs?Key=d65808a7-699f-4d5c-88ee-01951e675cf2&fields=StaffName,EmailID,MobileNo,dateofbirth,sex,projectname,branchname,districtname&q=pin=154211
 
             string URL = "http://api.brac.net/v1/staffs";
-            string urlParameters = "?Key=d65808a7-699f-4d5c-88ee-01951e675cf2&fields=StaffName,EmailID&q=pin=" + pinId;
+            string urlParameters = "?Key=d65808a7-699f-4d5c-88ee-01951e675cf2&fields=StaffName,EmailID,MobileNo,dateofbirth,sex,projectname,branchname,districtname&q=pin=" + pinId;
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(URL);
@@ -412,7 +420,7 @@ namespace AppProj.Web.Controllers
                 var dataString = response.Content.ReadAsAsync<string>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
                 var dataObjects = JsonConvert.DeserializeObject<IEnumerable<StaffProfile>>(dataString);
 
-
+                //var dataObjects = ApiCaller.GetEmployee(pinId);
                 if (dataObjects.Count() > 0)
                 {
                     client.Dispose();
@@ -422,7 +430,7 @@ namespace AppProj.Web.Controllers
 
             client.Dispose();
             return Json(null, JsonRequestBehavior.AllowGet);
-
+            */
 
         }
 

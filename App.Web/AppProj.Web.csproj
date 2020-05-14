@@ -248,6 +248,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BepSubmissionController.cs" />
+    <Compile Include="Controllers\DoctorPoleController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DistrictSubmissionController.cs" />
@@ -269,6 +270,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ActionLinkHelper.cs" />
+    <Compile Include="Helpers\ApiCaller.cs" />
     <Compile Include="Helpers\EncryptionHelper.cs" />
     <Compile Include="Helpers\GeneralHelper.cs" />
     <Compile Include="Helpers\DateTimeHelper.cs" />
@@ -286,6 +288,7 @@
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\CoronaGov.cs" />
     <Compile Include="Models\DashboardModel.cs" />
+    <Compile Include="Models\DoctorsPoleModel.cs" />
     <Compile Include="Models\Fund.cs" />
     <Compile Include="Models\MailModel.cs" />
     <Compile Include="Models\QuestionDistrictModel.cs" />
@@ -3595,6 +3598,15 @@
     <Content Include="Content\src\images\svg\desktop.ini" />
     <Content Include="Content\src\images\svg\tabular data\desktop.ini" />
     <Content Include="Views\StandingView\Index.cshtml" />
+    <Content Include="Views\DoctorPole\Index.cshtml" />
+    <Content Include="Views\DoctorPole\HrIndex.cshtml" />
+    <Content Include="Views\DoctorPole\Create.cshtml" />
+    <Content Include="Views\DoctorPole\CreateDetail.cshtml" />
+    <Content Include="Views\DoctorPole\Save.cshtml" />
+    <Content Include="Views\DoctorPole\Followup.cshtml" />
+    <Content Include="Views\DoctorPole\FollowupSave.cshtml" />
+    <Content Include="Views\DoctorPole\FollowupIndex.cshtml" />
+    <Content Include="Views\DoctorPole\ReportIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

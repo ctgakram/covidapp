@@ -75,6 +75,8 @@ namespace AppProj.Web
                 .RegisterType<IStandingDataPcRelationRepository, StandingDataPcRelationRepository>(new HttpContextLifetimeManager<IStandingDataPcRelationRepository>())
                 .RegisterType<IBERDataPeopleWiseQuantityRepository, BERDataPeopleWiseQuantityRepository>(new HttpContextLifetimeManager<IBERDataPeopleWiseQuantityRepository>())
                 .RegisterType<IMapSummaryRepository, MapSummaryRepository>(new HttpContextLifetimeManager<IMapSummaryRepository>())
+                .RegisterType<IDoctorsPolesRepository, DoctorsPolesRepository>(new HttpContextLifetimeManager<IDoctorsPolesRepository>())
+                .RegisterType<IDoctorsPoleVisitRepository, DoctorsPoleVisitRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitRepository>())
 
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
@@ -93,6 +95,7 @@ namespace AppProj.Web
                 .RegisterType<IProgramByUserProfileService, ProgramByUserProfileService>(new HttpContextLifetimeManager<IProgramByUserProfileService>())
                 .RegisterType<IDistrictQuestionService, DistrictQuestionService>(new HttpContextLifetimeManager<IDistrictQuestionService>())
                 .RegisterType<IMapSummaryService, MapSummaryService>(new HttpContextLifetimeManager<IMapSummaryService>())
+                .RegisterType<IDoctorsPoleService, DoctorsPoleService>(new HttpContextLifetimeManager<IDoctorsPoleService>())
 
             ;
 
@@ -240,6 +243,12 @@ namespace AppProj.Web
             set { SetInSession("unit_id", value); }
         }
 
+        public static string PIN
+        {
+            get { return GetFromSession<string>("pin"); }
+            set { SetInSession("pin", value); }
+        }
+
         public static int UserId
         {
             get { return GetFromSession<int>("id"); }
@@ -306,6 +315,47 @@ namespace AppProj.Web
         {
             HttpContext.Current.Session[key] = value;
         }
+    }
+
+    public static class DoctorsPoleDataInputBy
+    {
+        public static string Hrd
+        {
+            get { return "HRD"; }
+        }
+
+        public static string Doctor
+        {
+            get { return "DOC"; }
+        }
+    }
+
+    public static class DoctorsPoleDataStatus
+    {
+        public static int Suspected
+        {
+            //get { return 861701; }
+            get { return 861700; }
+        }
+
+        public static int Positive
+        {
+            //get { return 861702; }
+            get { return 861701; }
+        }
+
+        public static int Negetive
+        {
+            //get { return 861703; }
+            get { return 861702; }
+        }
+
+        public static int Resolved
+        {
+            //get { return 861704; }
+            get { return 861703; }
+        }
+
     }
 
     #endregion
@@ -380,6 +430,31 @@ namespace AppProj.Web
         public static string RestrictionsOnProgramImplementation
         {
             get { return "RES"; }
+        }
+
+        public static string Doctor_EffectedPerson
+        {
+            get { return "DEP"; }
+        }
+
+        public static string Doctor_Status
+        {
+            get { return "DST"; }
+        }
+
+        public static string Doctor_CoMorbidity
+        {
+            get { return "DCM"; }
+        }
+
+        public static string Doctor_TestResult
+        {
+            get { return "DTR"; }
+        }
+
+        public static string Doctor_AdmissionType
+        {
+            get { return "DAT"; }
         }
 
 

@@ -1,0 +1,73 @@
+﻿@model AppProj.Web.Models.DoctorsPoleShortModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Save')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+@using (Ajax.BeginForm("CreateDetail", "DoctorPole", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+<table class="table table-striped table-bordered fixed_headers">
+    <tr>
+        <td class="title">
+            Staff PIN
+        </td>
+        <td class="control">
+            @Html.TextBoxFor(model => model.PIN_)
+            @Html.ValidationMessageFor(model => model.PIN_)
+        </td>
+    </tr>
+    <tr>
+        <td class="title">
+            OR Staff Mobile No (if can't say PIN)
+        </td>
+        <td class="control">
+            @Html.TextBoxFor(model => model.MobileNo_)
+            @Html.ValidationMessageFor(model => model.MobileNo_)
+        </td>
+    </tr>    
+    <tr>
+        <td class="control">
+            <p>
+                <input id="save-submit" type="submit" value="Next" class="btn btn-primary" />
+            </p>
+        </td>
+    </tr>
+</table>
+
+}
+<script type="text/javascript">
+    ValidatateForm("form0");
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+
+        });
+
+        //$('#DivisionId').change(function (event) {
+        //    LoadUpazialSearch($('#DivisionId').val());
+        //});
+
+        @*window.LoadUpazialSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('DistrictId'
+                    , url
+                    , null
+                    , null);
+        }*@
+
+        $('#Date').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+    });
+</script>

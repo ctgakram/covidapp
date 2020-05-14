@@ -89,6 +89,12 @@
     <Compile Include="DistrictSummery.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DoctorsPole.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsPoleVisit.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Feature.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>

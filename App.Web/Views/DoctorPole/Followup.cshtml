@@ -1,0 +1,551 @@
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.DoctorsPoleVisitModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Suspected Patient')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+@using (Ajax.BeginForm("FollowupSave", "DoctorPole", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.DoctorPoleId)
+
+
+    <button type="button" class="collapsible">@Model.DoctorsPole.Name</button><div class="content">
+        <table class="table-striped table-bordered" style="width:100%">
+            <tr>
+                <td>PIN</td>
+                <td>@Model.DoctorsPole.PIN</td>
+                <td>Mobile No</td>
+                <td>@Model.DoctorsPole.MobileNo</td>
+                <td>Gender</td>
+                <td>@Model.DoctorsPole.StandingData.Name</td>
+            </tr>
+            <tr>
+                <td>Program</td>
+                <td>@Model.DoctorsPole.StandingData1.Name</td>
+                <td>Area Office</td>
+                <td>@Model.DoctorsPole.AreaOffice</td>
+                <td>Who is Effect</td>
+                <td>@Model.DoctorsPole.StandingData4.Name</td>
+            </tr>
+            <tr>
+                <td>Division</td>
+                <td>@Model.DoctorsPole.StandingData2.Name</td>
+                <td>District</td>
+                <td>@Model.DoctorsPole.StandingData3.Name</td>
+                <td>HR Comment</td>
+                <td>@Model.DoctorsPole.CommentByHR</td>
+            </tr>
+        </table>
+    </div>
+    <table class="table table-striped table-bordered fixed_headers">
+        <tr>
+
+            <td class="title">
+                Any Travel
+
+            </td>
+            <td class="title">
+                Travel within country?
+
+
+            </td>
+            <td class="title">
+                Travel outside country?
+            </td>
+            <td class="title">
+                Contact history
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                @Model.DoctorsPole.IsFever)
+            </td>
+            <td class="title">
+                @Model.DoctorsPole.IsTravelCountry
+            </td>
+            <td class="title">
+                @Model.DoctorsPole.IsTravelAbroad
+            </td>
+            <td class="title">
+                @Model.DoctorsPole.IsContract
+            </td>
+        </tr>
+    </table>
+    
+    <h3 style="padding-top:10px;">Previous Followups</h3>
+    foreach (var v in Model.DoctorsPoleVisits)
+    {
+        <button type="button" class="collapsible">@v.EntryTime</button><div class="content">
+            <table class="table-striped table-bordered" style="width:100%">
+                <tr>
+                    <td colspan="5">
+                        Symptoms collected by Call Center
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Is Fever
+                    </td>
+                    <td>
+                        Dry cough
+
+                    </td>
+                    <td>
+                        Sore throat
+
+                    </td>
+                    <td>
+                        Breathlessness
+
+                    </td>
+                    <td>
+                        Others
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @v.IsFever
+                    </td>
+                    <td>
+                        @v.IsDryCough
+                    </td>
+                    <td>
+                        @v.IsSoreThroat
+                    </td>
+                    <td>
+                        @v.IsBreathing
+                    </td>
+                    <td>
+                        @v.OtherSymptoms
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="5">
+                        Advice
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Conservative treatment
+
+                    </td>
+                    <td>
+                        Quarentine
+
+
+                    </td>
+                    <td>
+                        Home Isolation
+
+
+                    </td>
+                    <td>
+                        Referred to Hospital
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @v.AdvConTreat
+                    </td>
+                    <td>
+                        @v.AdvQurentine
+                    </td>
+                    <td>
+                        @v.AdvHomeIsolation
+                    </td>
+                    <td>
+                        @v.AdvReferHospital
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        Antibiotic Tahen?
+                    </td>
+                    <td colspan="3">
+                        @v.IsAntibioticTaken
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Status
+                    </td>
+                    <td>
+                        @{var s = v.StandingData == null ? "" : v.StandingData.Name;}
+                        @s
+                    </td>
+                    <td>
+                        Comments
+                    </td>
+                    <td>
+                        @v.Comments
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Co-morbidity for suspected case
+                    </td>
+                    <td>
+                        Sample taken date
+                    </td>
+                    <td>
+                        Test Result
+                    </td>
+                    <td>
+                        Test Result Date
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @{var c = v.StandingData1 == null ? "" : v.StandingData1.Name;}
+                        @c
+                    </td>
+                    <td>
+                        @v.SampleTakenDate
+                    </td>
+                    <td>
+                        @{var t = v.StandingData2 == null ? "" : v.StandingData2.Name;}
+                        @t
+                    </td>
+                    <td>
+                        @v.TestResultDate
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Admitted at hospital or Home isolation
+                    </td>
+                    <td>
+                        Name of Hospital
+                    </td>
+                    <td>
+                        Date of Hospital Admission
+                    </td>
+                    <td>
+                        Attendant Name
+                    </td>
+                    <td>
+                        Attendant Phone Number
+                    </td>
+                    <td>
+                        Discharge Date
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.AdmittedTypeId)
+                    </td>
+                    <td>
+                        @v.HospitalName
+                    </td>
+                    <td>
+                        @v.AdmissionDate
+                    </td>
+                    <td>
+                        @v.AlternateName
+                    </td>
+                    <td>
+                        @v.AlternatePhoneNo
+                    </td>
+                    <td>
+                        @v.DischargeDate
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    }
+
+    <h3 style="padding-top:10px;">Today's Followup</h3>
+    <div style="width:100%">
+        <table class="table-striped table-bordered" style="width:100%">
+            <tr>
+                <td colspan="5">
+                    Symptoms collected by Call Center
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Is Fever
+                </td>
+                <td>
+                    Dry cough
+
+                </td>
+                <td>
+                    Sore throat
+
+                </td>
+                <td>
+                    Breathlessness
+
+                </td>
+                <td>
+                    Others
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsFever)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsDryCough)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsSoreThroat)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.IsBreathing)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.OtherSymptoms)
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="5">
+                    Advice
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Conservative treatment
+
+                </td>
+                <td>
+                    Quarentine
+
+
+                </td>
+                <td>
+                    Home Isolation
+
+
+                </td>
+                <td>
+                    Referred to Hospital
+
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.CheckBoxFor(model => model.AdvConTreat)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.AdvQurentine)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.AdvHomeIsolation)
+                </td>
+                <td>
+                    @Html.CheckBoxFor(model => model.AdvReferHospital)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    Antibiotic Tahen?
+                </td>
+                <td colspan="3">
+                    @Html.CheckBoxFor(model => model.IsAntibioticTaken)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Status
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.StatusId, Model.StatusList, "Not Applicable Now")
+                    @Html.ValidationMessageFor(model => model.StatusId)
+                </td>
+                <td>
+                    Comments
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.Comments)
+                    @Html.ValidationMessageFor(model => model.Comments)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Co-morbidity for suspected case
+                </td>
+                <td>
+                    Sample taken date
+                </td>
+                <td>
+                    Test Result
+                </td>
+                <td>
+                    Test Result Date
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.CoMorbidityId, Model.CoMobiList, "Not Applicable Now")
+                    @Html.ValidationMessageFor(model => model.CoMorbidityId)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.SampleTakenDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.SampleTakenDate)
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.TestResultId, Model.TestResultList, "Not Applicable Now")
+                    @Html.ValidationMessageFor(model => model.TestResultId)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.TestResultDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.TestResultDate)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Admitted at hospital or Home isolation
+                </td>
+                <td>
+                    Name of Hospital
+                </td>
+                <td>
+                    Date of Hospital Admission
+                </td>
+                <td>
+                    Attendant Name
+                </td>
+                <td>
+                    Attendant Phone Number
+                </td>
+                <td>
+                    Discharge Date
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(model => model.AdmittedTypeId, Model.AdminTypeList, "Not Applicable Now")
+                    @Html.ValidationMessageFor(model => model.AdmittedTypeId)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.HospitalName)
+                    @Html.ValidationMessageFor(model => model.HospitalName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.AdmissionDate)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.AlternateName)
+                    @Html.ValidationMessageFor(model => model.AlternateName)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.ValidationMessageFor(model => model.DischargeDate)
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control" colspan="4">
+                    <p>
+                        Followup after <select id="FollowupAfterDays" name="FollowupAfterDays">
+                            <option value="3">3 Days</option>
+                            <option value="5">5 Days</option>
+                            <option value="7">7 Days</option>
+                            <option value="10">10 Days</option>
+                            <option value="12">12 Days</option>
+                            <option value="14">14 Days</option>
+                        </select>
+                        <input id="save-submit" type="submit" value="Submit to Doctor" class="btn btn-primary" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+<script type="text/javascript">
+    ValidatateForm("form0");
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+
+            if (!confirm("Do you want to Save?")) {
+                return false;
+            }
+
+        });
+
+        $('#DivisionId').change(function (event) {
+            LoadDistrictSearch($('#DivisionId').val());
+        });
+
+        window.LoadDistrictSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('DistrictId'
+                    , url
+                    , null
+                    , null);
+        }
+
+        $('#SampleTakenDate').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+        $('#TestResultDate').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+        $('#AdmissionDate').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+        $('#DischargeDate').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    ValidatateForm("form0");
+
+    $(document).ready(function () {
+
+
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+
+</script>
+

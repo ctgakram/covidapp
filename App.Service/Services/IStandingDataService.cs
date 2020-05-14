@@ -11,8 +11,11 @@ namespace AppProj.Service.Services
     {
         IEnumerable<StandingData> GetUpazilla(int disId);        
         IEnumerable<StandingData> GetSource();
+        StandingData GetSource(string txt);
         IEnumerable<StandingData> GetGender();
+        StandingData GetGender(string txt);
         IEnumerable<StandingData> GetDistricts();
+        StandingData GetDistricts(string txt);
         IEnumerable<StandingData> GetDistricts(int divId);
         IEnumerable<StandingData> GetDivisions();
         IEnumerable<StandingData> GetRestrictions();
