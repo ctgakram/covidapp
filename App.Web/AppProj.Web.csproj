@@ -3598,6 +3598,7 @@
     <Content Include="Views\StandingView\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Main\Index - Copy.cshtml" />
+    <Content Include="Views\Shared\_leftmenu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
