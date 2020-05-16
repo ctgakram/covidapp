@@ -56,8 +56,8 @@
                                 </ul>
                             </li>
                             <li><a class="icons" href="~/DetailSubmission/IndexApp" title="Coronarodh App"><span>করোনারোধ</span></a></li>
-                            @if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
-                            {
+                            @*@if (UserRole.Check("ALL_PROGRAM", SessionHelper.Role))
+                            {*@
                                 <li>
                                     <a class="charts" href="javascript:void(0)" title="Standing Data"><span>Standing Data</span></a>
                                     <ul class="dropdown">
@@ -72,31 +72,31 @@
                                         
                                     </ul>
                                 </li>
-                            }
+                            @*}*@
 
-                            @if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
-                            {
+                            @*@if (UserRole.Check("BDC_ADMIN", SessionHelper.Role))
+                            {*@
                                 <li><a class="chat" href="~/Standing/DistQuestion" title="BDC Questions"><span>BDC Questions</span></a></li>
-                            }
+                            @*}*@
 
-                            @if (UserRole.Check("USER", SessionHelper.Role)
+                            @*@if (UserRole.Check("USER", SessionHelper.Role)
                                || UserRole.Check("ROLE", SessionHelper.Role))
-                            {
+                            {*@
                                 <li>
                                     <a class="gallery" href="javascript:void(0)" title="Adminstration"><span>অ্যাডমিনিস্ট্রেশন</span></a>
                                     <ul class="dropdown">
-                                        @if (UserRole.Check("USER", SessionHelper.Role))
-                                        {
+                                        @*@if (UserRole.Check("USER", SessionHelper.Role))
+                                        {*@
                                             <li><a class="grid" href="~/UserProfile/Index" title="Users"><span>Users</span></a></li>
-                                        }
+                                        @*}*@
 
-                                        @if (UserRole.Check("ROLE", SessionHelper.Role))
-                                        {
+                                        @*@if (UserRole.Check("ROLE", SessionHelper.Role))
+                                        {*@
                                             <li><a class="error" href="~/Role/Index" title="Roles"><span>Roles</span></a></li>
-                                        }
+                                        @*}*@
                                     </ul>
                                 </li>
-                            }
+                            @*}*@
                         </ul>
 
                     </div>

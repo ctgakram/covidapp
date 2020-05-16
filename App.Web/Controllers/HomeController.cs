@@ -45,7 +45,7 @@ namespace AppProj.Web.Controllers
         {
 
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-
+            
             //temp
 
             //if (IsAuthorised("154211"))

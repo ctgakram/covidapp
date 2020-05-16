@@ -3321,6 +3321,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\brac\app.js" />
+    <Content Include="Scripts\brac\site.js" />
     <Content Include="Scripts\conditional.js" />
     <Content Include="Scripts\custom.datatable.js" />
     <Content Include="Scripts\custom.imagegrid.js" />
@@ -3595,6 +3596,8 @@
     <Content Include="Content\src\images\svg\desktop.ini" />
     <Content Include="Content\src\images\svg\tabular data\desktop.ini" />
     <Content Include="Views\StandingView\Index.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Main\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
