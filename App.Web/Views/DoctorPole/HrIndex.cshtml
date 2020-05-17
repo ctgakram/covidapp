@@ -8,7 +8,7 @@
         HttpMethod = "POST",
         UpdateTargetId = "dialog1Body",
         InsertionMode = InsertionMode.Replace,
-        OnSuccess = "openDialog1('Suspected Staff')",
+        OnSuccess = "openDialog1('Followup')",
         LoadingElementId = "loading",
         OnFailure = "failure"
     };
@@ -18,7 +18,7 @@
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> Suspected Patients by HR</h2>
+                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;">Suspected Patients by HR</h2>
             </li>
         </ul>
 
@@ -112,7 +112,7 @@
                             &nbsp;
                             @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
                             {
-                                @Ajax.ActionLink("Add New", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-primary pull-right" })
+                                @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-danger pull-right" })
                             }
                         </div>
                     </div>

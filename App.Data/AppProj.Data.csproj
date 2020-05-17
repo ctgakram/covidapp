@@ -57,7 +57,9 @@
     <Compile Include="RepositoriesImpl\BERDataItemWiseQuantityRepository.cs" />
     <Compile Include="RepositoriesImpl\BERDataPeopleWiseQuantityRepository.cs" />
     <Compile Include="RepositoriesImpl\DistrictPatientRepository.cs" />
+    <Compile Include="RepositoriesImpl\DoctorPoleStatusesRepository.cs" />
     <Compile Include="RepositoriesImpl\DoctorsPolesRepository.cs" />
+    <Compile Include="RepositoriesImpl\DoctorsPoleVisitDetailRepository.cs" />
     <Compile Include="RepositoriesImpl\DoctorsPoleVisitRepository.cs" />
     <Compile Include="RepositoriesImpl\MapSummaryRepository.cs" />
     <Compile Include="RepositoriesImpl\StandingDataPcRelationRepository.cs" />
@@ -81,7 +83,9 @@
     <Compile Include="Repositories\IBERDataItemWiseQuantityRepository.cs" />
     <Compile Include="Repositories\IBERDataPeopleWiseQuantityRepository.cs" />
     <Compile Include="Repositories\IDistrictPatientRepository.cs" />
+    <Compile Include="Repositories\IDoctorPoleStatusesRepository.cs" />
     <Compile Include="Repositories\IDoctorsPolesRepository.cs" />
+    <Compile Include="Repositories\IDoctorsPoleVisitDetailRepository.cs" />
     <Compile Include="Repositories\IDoctorsPoleVisitRepository.cs" />
     <Compile Include="Repositories\IMapSummaryRepository.cs" />
     <Compile Include="Repositories\IStandingDataPcRelationRepository.cs" />

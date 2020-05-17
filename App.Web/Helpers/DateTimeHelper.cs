@@ -11,6 +11,17 @@ namespace AppProj.Web.Helpers
         {
             //return TimeZoneInfo.ConvertTimeFromUtc(utcTime, SessionHelper.TimeZone);
             return utcTime;
-        }      
+        }
+
+        public static string ToDateString(this DateTime? dt)
+        {
+            return dt == null ? "" : dt.Value.ToString("dd MMM, yyyy");
+        }
+
+        public static string ToDateTimeString(this DateTime? dt)
+        {
+            //return TimeZoneInfo.ConvertTimeFromUtc(utcTime, SessionHelper.TimeZone);
+            return dt == null ? "" : dt.Value.ToString("dd MMM, yyyy hh:mm");
+        }
     }
 }

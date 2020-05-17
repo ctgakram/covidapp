@@ -18,7 +18,7 @@
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> Followup by Doctor</h2>
+                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> Follow-Up</h2>
             </li>
         </ul>
 
@@ -46,17 +46,18 @@
                         </div>
                     </div>
                 </fieldset>
-                @*<fieldset>
-                    <div class="control-group ">
-                        <label class="control-label" for="FromDate">From Date:</label>
-                        <div class="controls">
-                            @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
+                <fieldset>
+                        <div class="control-group ">
+                            <label class="control-label" for="FromDate">&nbsp;</label>
+                            <div class="controls">
+                                @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                                {
+                                    @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-danger" })
+                                }
+                            </div>
                         </div>
-                    </div>
 
-                </fieldset>*@
-
+                    </fieldset>
             </div>
             <div class="span3 utopia-form-freeSpace">
                 <fieldset>
@@ -67,16 +68,16 @@
                     </div>
                 </fieldset>
                 @*<fieldset>
-                    <div class="control-group ">
-                        <label class="control-label" for="ToDate">To Date:</label>
+                        <div class="control-group ">
+                            <label class="control-label" for="ToDate">To Date:</label>
 
-                        <div class="controls">
-                            @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
 
+                            </div>
                         </div>
-                    </div>
 
-                </fieldset>*@
+                    </fieldset>*@
 
             </div>
             <div class="span3 utopia-form-freeSpace">
@@ -90,16 +91,16 @@
                     </div>
                 </fieldset>
                 @*<fieldset>
-                    <div class="control-group ">
-                        <label class="control-label" for="select01">
-                            &nbsp;
-                        </label>
-                        <div class="controls">
-                            <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Search </a>
+                        <div class="control-group ">
+                            <label class="control-label" for="select01">
+                                &nbsp;
+                            </label>
+                            <div class="controls">
+                                <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Search </a>
+                            </div>
                         </div>
-                    </div>
 
-                </fieldset>*@
+                    </fieldset>*@
 
             </div>
             <div class="span3 utopia-form-freeSpace">
@@ -109,11 +110,15 @@
                             &nbsp;
                         </label>
                         <div class="controls">
-                            &nbsp;
-                            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                            @for (int i = 0; i < Model.StatusList.Count(); i++)
                             {
-                                @Ajax.ActionLink("Add New", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-primary pull-right" })
+                                @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:20px; margin-right:5px;", @class = "statusChk" })
+                                @Html.DisplayFor(model => model.StatusList[i].Text)
+                                @Html.HiddenFor(model => model.StatusList[i].Value)
+                                @Html.HiddenFor(model => model.StatusList[i].Text)
+                                <br />
                             }
+                            <input type="hidden" id="StatusIds" value="" />
                         </div>
                     </div>
 
@@ -124,6 +129,7 @@
                             &nbsp;
                         </label>
                         <div class="controls">
+                            <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Search </a>
                             <a id="prn" href="#" class="btn pull-right"><i class="icon icon-print"></i> Print</a>
                             <a id="exp" href="#" class="btn pull-right"><i class="icon icon-download"></i> Export</a>
 
@@ -174,7 +180,8 @@
             <th>
                 Data Entered by
             </th>
-            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
+                || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
             {
                 <th></th>
             }
@@ -194,68 +201,75 @@
             tableToExcel('gridTable', 'Export Name');
         });
 
-            DatePicker('FromDate', 'dd MMM, yyyy');
-            DatePicker('ToDate', 'dd MMM, yyyy');
+            //DatePicker('FromDate', 'dd MMM, yyyy');
+            //DatePicker('ToDate', 'dd MMM, yyyy');
 
-            $(".ddl").change(function () {
-                $('#gridTable').dataTable().fnDraw();
-            });
+        $(".ddl").change(function () {
+            GetStatus();
+            $('#gridTable').dataTable().fnDraw();
+        });
 
         $("#dateSearchButton").click(function () {
             //$("#onlyPatient").val(false);
+            GetStatus();
             $('#gridTable').dataTable().fnDraw();
         });
 
-        $("#dateSearchButton2").click(function () {
-            //$("#onlyPatient").val(true);
-            $('#gridTable').dataTable().fnDraw();
-        });
-
-            $('#ContentTypeId2').change(function (event) {
-                LoadUpazialSearch($('#ContentTypeId2').val());
+        function GetStatus() {
+            var stid = '';
+            $('.statusChk:checkbox:checked').each(function () {
+                var res = '#' + this.id.replace("Selected", "Value");
+                stid = stid + $(res).val() + ',';
             });
+            $("#StatusIds").val(stid);
+        }
 
-            @*$('#ContentTypeId2').change(function (event) {
-                LoadPointSearch($('#ContentTypeId2').val());
-            });*@
-
-            window.LoadUpazialSearch = function (areaId) {
-                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
-                LoadDropDownListWithCall('ContentTypeId3'
-                    , url
-                    , 'All District'
-                    , null);
-            }
-
-            @*window.LoadPointSearch = function (locationId) {
-                var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
-                LoadDropDownListWithCall('ContentTypeId3'
-                    , url
-                    , null
-                    , null);
-            }*@
-
-            var addPost = {
-                'ContentTypeId1': 'ContentTypeId1',
-                'ContentTypeId2': 'ContentTypeId2',
-                'ContentTypeId3': 'ContentTypeId3'
-                //'FromDate': 'FromDate',
-                //'ToDate': 'ToDate'
-            }
-            var btns = {
-                12: false //column number : is button group
-            };
-
-            /*data grid initializer*/
-            DataTableBinder($("#gridTable")   //table object
-                , '@Url.Content("~/DoctorPole/FollowupDataGrid")'  //json data url
-                , [200, 1000] //record size
-                , true //show all with row size
-            , addPost  //additional parameters at query string
-            , btns   //buttons are at these columns
-            , true
-            );
-
+        $('#ContentTypeId2').change(function (event) {
+            LoadUpazialSearch($('#ContentTypeId2').val());
         });
+
+        @*$('#ContentTypeId2').change(function (event) {
+            LoadPointSearch($('#ContentTypeId2').val());
+        });*@
+
+        window.LoadUpazialSearch = function (areaId) {
+            var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('ContentTypeId3'
+                , url
+                , 'All District'
+                , null);
+        }
+
+        @*window.LoadPointSearch = function (locationId) {
+            var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
+            LoadDropDownListWithCall('ContentTypeId3'
+                , url
+                , null
+                , null);
+        }*@
+
+        var addPost = {
+            'ContentTypeId1': 'ContentTypeId1',
+            'ContentTypeId2': 'ContentTypeId2',
+            'ContentTypeId3': 'ContentTypeId3',
+            'StatusIds': 'StatusIds'
+            //'FromDate': 'FromDate',
+            //'ToDate': 'ToDate'
+        }
+        var btns = {
+            12: false //column number : is button group
+        };
+
+        /*data grid initializer*/
+        DataTableBinder($("#gridTable")   //table object
+            , '@Url.Content("~/DoctorPole/FollowupDataGrid")'  //json data url
+            , [200, 1000] //record size
+            , true //show all with row size
+        , addPost  //additional parameters at query string
+        , btns   //buttons are at these columns
+        , true
+        );
+
+    });
     </script>
 }

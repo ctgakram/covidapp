@@ -30,6 +30,8 @@ namespace AppProj.Web.Models
         public int RadioButtonId { get; set; }
         public List<RadioButtonHelper> RadioButton { get; set; }
 
+        public List<SelectListItem> StatusList { get; set; }
+
         [Display(Name = "From Date")]
         public Nullable<DateTime> FromDate { get; set; }
 
@@ -37,6 +39,7 @@ namespace AppProj.Web.Models
         public Nullable<DateTime> ToDate { get; set; }
 
         public string Code { get; set; }
+        public string SearchText { get; set; }
 
         public bool IsPostBack { get; set; }
     }

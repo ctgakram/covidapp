@@ -44,6 +44,19 @@ namespace AppProj.Service.ServicesImpl
                 .Get(c => c.Type == "SRC" && c.Name == txt);
         }
 
+        public IEnumerable<StandingData> GetProject()
+        {
+            return serviceRepository
+                .GetMany(c => c.Type == "PRJ" && c.IsActive)
+                .OrderBy(d => d.Name);
+        }
+
+        public StandingData GetProject(string txt)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "PRJ" && c.Name == txt);
+        }
+
         public IEnumerable<StandingData> GetGender()
         {
             return serviceRepository

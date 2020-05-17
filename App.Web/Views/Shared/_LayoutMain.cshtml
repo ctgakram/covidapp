@@ -37,20 +37,23 @@
                             <li>
                                 <a class="tables" href="~/DoctorPole/Index" title="Total reach"><span>My Health</span></a>
                                 @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role)
-                                    || UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                                    || UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
+                                    || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
                                 {
                                 <li>
-                                    <a class="editor" href="javascript:void(0)" title="Program data"><span>Doctors Pool</span></a>
+                                    <a class="editor" href="javascript:void(0)" title="Program data"><span>Telemedicine</span></a>
                                     <ul class="dropdown">
                                         @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
                                         {
-                                            <li><a class="simple smronju" href="~/DoctorPole/HrIndex" title="Data entry"><span>By HR</span></a></li>
+                                            <li><a class="simple smronju" href="~/DoctorPole/HrIndex" title="Data entry"><span>HRD Call</span></a></li>
                                         }
-                                        @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                                        @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
+                                            || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
                                         {
                                             <li><a class="simple smronju" href="~/DoctorPole/FollowupIndex" title="Data entry"><span>Followup</span></a></li>
                                         }
-                                        <li><a class="wizard-form smronju" href="~/DoctorPole/ReportIndex" title="HNPP Data"><span>Report</span></a></li>
+                                        <li><a class="wizard-form smronju" href="~/DoctorPole/ReportIndex" title="HNPP Data"><span>All Profiles</span></a></li>
+                                        <li><a class="wizard-form smronju" href="~/DoctorPole/Dashboard" title="HNPP Data"><span>Dashboard</span></a></li>
                                     </ul>
                                 </li>
                             }

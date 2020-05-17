@@ -43,7 +43,7 @@ namespace AppProj.Web.Models
         public Nullable<bool> AdvHomeIsolation { get; set; }
         public Nullable<bool> AdvReferHospital { get; set; }
         public Nullable<bool> IsAntibioticTaken { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
         public string Comments { get; set; }
         public Nullable<int> CoMorbidityId { get; set; }
         public Nullable<System.DateTime> SampleTakenDate { get; set; }
@@ -62,6 +62,7 @@ namespace AppProj.Web.Models
         public int EntryById { get; set; }
         public System.DateTime EntryTime { get; set; }
         public Nullable<int> Age { get; set; }
+        public string StaffName { get; set; }
 
         public string ProgramName { get; set; }
         public string DivisionName { get; set; }
@@ -102,7 +103,7 @@ namespace AppProj.Web.Models
         public bool AdvHomeIsolation { get; set; }
         public bool AdvReferHospital { get; set; }
         public bool IsAntibioticTaken { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
         public string Comments { get; set; }
         public Nullable<int> CoMorbidityId { get; set; }
         public Nullable<System.DateTime> SampleTakenDate { get; set; }
@@ -118,13 +119,14 @@ namespace AppProj.Web.Models
         public System.DateTime EntryTime { get; set; }
         public Nullable<int> LastUpdateById { get; set; }
         public Nullable<System.DateTime> LastUpdateTime { get; set; }
-
+        
         public int FollowupAfterDays { get; set; }
 
         public IEnumerable<SelectListItem> AdminTypeList { get; set; }
         public IEnumerable<SelectListItem> TestResultList { get; set; }
-        public IEnumerable<SelectListItem> CoMobiList { get; set; }
+        public List<SelectListItem> CoMobiList { get; set; }
         public IEnumerable<SelectListItem> StatusList { get; set; }
+
 
         public DoctorsPole DoctorsPole { get; set; }
         public List<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }

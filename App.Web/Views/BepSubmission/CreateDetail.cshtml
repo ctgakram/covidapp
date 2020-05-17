@@ -248,7 +248,7 @@
 
             curId = Model.BEPResponseActivityModels[i].ActivityId;
 
-            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity</th><th>Reach</th></tr>")
+            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity</th><th>People Reach</th></tr>")
         }
 
         for (int j = 0; j < Model.BEPResponseActivityModels[i].BEPDetailModels.Count; j++)
@@ -336,7 +336,7 @@
             </td>
         </tr>
         <tr>
-            <td>HHs</td>
+            <td>House Holds</td>
             <td>
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6NewReach, new { @style = "width:100px;" })
             </td>

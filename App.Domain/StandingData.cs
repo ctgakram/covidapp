@@ -56,6 +56,7 @@ namespace AppProj.Domain
             this.DoctorsPoles6 = new HashSet<DoctorsPole>();
             this.DoctorsPoles7 = new HashSet<DoctorsPole>();
             this.DoctorsPoles8 = new HashSet<DoctorsPole>();
+            this.DoctorsPoleVisitDetails = new HashSet<DoctorsPoleVisitDetail>();
             this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits1 = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits2 = new HashSet<DoctorsPoleVisit>();
@@ -68,6 +69,7 @@ namespace AppProj.Domain
             this.SummerizedDatas = new HashSet<SummerizedData>();
             this.SummerizedDatas1 = new HashSet<SummerizedData>();
             this.SummerizedDatas2 = new HashSet<SummerizedData>();
+            this.DoctorPoleStatuses = new HashSet<DoctorPoleStatus>();
         }
     
         public int Id { get; set; }
@@ -122,6 +124,7 @@ namespace AppProj.Domain
         public virtual ICollection<DoctorsPole> DoctorsPoles6 { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles7 { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles8 { get; set; }
+        public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits1 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits2 { get; set; }
@@ -134,5 +137,6 @@ namespace AppProj.Domain
         public virtual ICollection<SummerizedData> SummerizedDatas { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas1 { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas2 { get; set; }
+        public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
     }
 }

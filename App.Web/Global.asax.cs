@@ -77,6 +77,8 @@ namespace AppProj.Web
                 .RegisterType<IMapSummaryRepository, MapSummaryRepository>(new HttpContextLifetimeManager<IMapSummaryRepository>())
                 .RegisterType<IDoctorsPolesRepository, DoctorsPolesRepository>(new HttpContextLifetimeManager<IDoctorsPolesRepository>())
                 .RegisterType<IDoctorsPoleVisitRepository, DoctorsPoleVisitRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitRepository>())
+                .RegisterType<IDoctorsPoleVisitDetailRepository, DoctorsPoleVisitDetailRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitDetailRepository>())
+                .RegisterType<IDoctorPoleStatusesRepository, DoctorPoleStatusesRepository>(new HttpContextLifetimeManager<IDoctorPoleStatusesRepository>())
 
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
@@ -402,6 +404,11 @@ namespace AppProj.Web
             get { return "SRC"; }
         }
 
+        public static string Projects
+        {
+            get { return "PRJ"; }
+        }
+
         public static string HowProgramsAffected
         {
             get { return "IMP"; }
@@ -457,8 +464,15 @@ namespace AppProj.Web
             get { return "DAT"; }
         }
 
+        public static class DoctorsPoleVisitVetailRelationType
+        {
+            public static string CoMorbidity
+            {
+                get { return "COM"; }
+            }
+        }
 
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+            public static IEnumerable<TSource> DistinctBy<TSource, TKey>
         (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();

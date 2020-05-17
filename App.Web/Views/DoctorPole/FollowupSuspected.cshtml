@@ -13,7 +13,7 @@
     };
 
 }
-@using (Ajax.BeginForm("FollowupSave", "DoctorPole", ajaxOpt))
+@using (Ajax.BeginForm("FollowupSuspectedSave", "DoctorPole", ajaxOpt))
 {
     @Html.ValidationSummary(true)
 
@@ -173,47 +173,6 @@
     <h3 style="padding-top:10px; color:#ff6a00">Today's Followup</h3>
     <div style="width:100%">
         <table class="table table-striped table-bordered fixed_headers" style="width:100%">
-
-            <tr>
-                <td colspan="2" style="color:#c15305">
-                    Symptoms collected by Call Center
-                </td>
-                <td style="color:#c15305">
-                    Advices
-                </td>
-                <td style="color:#c15305">
-                    Treatment
-                </td>
-            </tr>
-            <tr>
-                <th>
-                    @Html.CheckBoxFor(model => model.IsFever) Fever
-                    <br />
-                    @Html.CheckBoxFor(model => model.IsDryCough) Dry cough
-                    <br />
-                    @Html.CheckBoxFor(model => model.IsSoreThroat) Sore throat
-                    <br />
-                    @Html.CheckBoxFor(model => model.IsBreathing) Breathlessness
-                </th>
-                <th>
-                    Others
-                    <br />
-                    @Html.TextAreaFor(model => model.OtherSymptoms)
-                </th>
-                <th>
-                    @Html.CheckBoxFor(model => model.AdvConTreat) Conservative treatment
-                    <br />
-                    @Html.CheckBoxFor(model => model.AdvQurentine) Quarentine
-                    <br />
-                    @Html.CheckBoxFor(model => model.AdvHomeIsolation) Home Isolation
-                    <br />
-                    @Html.CheckBoxFor(model => model.AdvReferHospital) Referred to Hospital
-                </th>
-                <th>
-                    @Html.CheckBoxFor(model => model.IsAntibioticTaken)
-                    Antibiotic Taken
-                </th>
-            </tr>
             <tr>
                 <th>
                     Status
@@ -225,74 +184,9 @@
                     @Html.TextAreaFor(model => model.Comments)
                     @Html.ValidationMessageFor(model => model.Comments)
                 </th>
-                <th colspan="2">
-                    Co-morbidity for suspected cases:
-                    <br />
-                    @for (int i = 0; i < Model.CoMobiList.Count(); i++)
-                    {
-                        @Html.CheckBoxFor(model => model.CoMobiList[i].Selected, new { @style = "margin-left:20px; margin-right:5px;" })
-                        @Html.DisplayFor(model => model.CoMobiList[i].Text)
-                        @Html.HiddenFor(model => model.CoMobiList[i].Value)
-                        @Html.HiddenFor(model => model.CoMobiList[i].Text)
-                    }
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    Sample taken date
-                    @Html.TextBoxFor(model => model.SampleTakenDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.SampleTakenDate)
-                </th>
-                <th>
-                    Test Result
-                    @Html.DropDownListFor(model => model.TestResultId, Model.TestResultList, "Not Applicable Now")
-                    @Html.ValidationMessageFor(model => model.TestResultId)
-                </th>
-                <th colspan="2">
-                    Test Result Date
-                    @Html.TextBoxFor(model => model.TestResultDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.TestResultDate)
-                </th>
-            </tr>
-
-            <tr>
-                <th>
-                    Admitted at
-                    @Html.DropDownListFor(model => model.AdmittedTypeId, Model.AdminTypeList, "Not Applicable Now")
-                    @Html.ValidationMessageFor(model => model.AdmittedTypeId)
-                </th>
-                <th>
-                    Hospital Name
-                    @Html.TextBoxFor(model => model.HospitalName)
-                    @Html.ValidationMessageFor(model => model.HospitalName)
-                </th>
-                <th>
-                    Admission Date
-                    @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.AdmissionDate)
-                </th>
-                <th>
-                    Discharge Date
-                    @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.DischargeDate)
-                </th>
-            </tr>
-
-            <tr>
-                <th>
-                    Attendant Name
-                    @Html.TextBoxFor(model => model.AlternateName)
-                    @Html.ValidationMessageFor(model => model.AlternateName)
-                </th>
-                <th>
-                    Phone Number
-                    @Html.TextBoxFor(model => model.AlternatePhoneNo)
-                    @Html.ValidationMessageFor(model => model.AlternatePhoneNo)
-                </th>
                 <th>
                     Next Followup
                     <select id="FollowupAfterDays" name="FollowupAfterDays">
-                        <option value="-1">No followup needed</option>
                         <option value="0">Today</option>
                         <option value="3">After 3 Days</option>
                         <option value="5">After 5 Days</option>
@@ -322,7 +216,7 @@
 
         });
 
-        $('#DivisionId').change(function (event) {
+        @*$('#DivisionId').change(function (event) {
             LoadDistrictSearch($('#DivisionId').val());
         });
 
@@ -357,7 +251,7 @@
             autoclose: true,
             endDate: '+0d',
             startDate: null
-        });
+        });*@
 
     });
 </script>

@@ -8,7 +8,7 @@
         HttpMethod = "POST",
         UpdateTargetId = "dialog1Body",
         InsertionMode = InsertionMode.Replace,
-        OnSuccess = "openDialog1('Suspected Staff')",
+        OnSuccess = "openDialog1('Followup')",
         LoadingElementId = "loading",
         OnFailure = "failure"
     };
@@ -18,7 +18,7 @@
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> Followup & Report</h2>
+                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;">All Profiles</h2>
             </li>
         </ul>
 
@@ -48,13 +48,26 @@
                 </fieldset>
                 <fieldset>
                     <div class="control-group ">
+                        Date by: <input type="radio" id="follow" name="rdoDateType" value="L" checked="checked"> Last Follow-Up
+                        <input type="radio" id="entry" name="rdoDateType" value="N"> Next Folloe-Up
+                        <input type="radio" id="entry" name="rdoDateType" value="E"> Enrollment
+                        <input type="hidden" id="dateType" value="L" />
+                    </div>
+                    <div class="control-group ">
                         <label class="control-label" for="FromDate">From Date:</label>
                         <div class="controls">
                             @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
 
                         </div>
                     </div>
+                    <div class="control-group ">
+                        <label class="control-label" for="ToDate">To Date:</label>
 
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+
+                        </div>
+                    </div>
                 </fieldset>
 
             </div>
@@ -68,11 +81,18 @@
                 </fieldset>
                 <fieldset>
                     <div class="control-group ">
-                        <label class="control-label" for="ToDate">To Date:</label>
+                        <label class="control-label" for="ToDate">Status:</label>
 
                         <div class="controls">
-                            @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
+                            @for (int i = 0; i < Model.StatusList.Count(); i++)
+                            {
+                                @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:20px; margin-right:5px;", @class = "statusChk" })
+                                @Html.DisplayFor(model => model.StatusList[i].Text)
+                                @Html.HiddenFor(model => model.StatusList[i].Value)
+                                @Html.HiddenFor(model => model.StatusList[i].Text)
+                                <br />
+                            }
+                            <input type="hidden" id="StatusIds" value="" />
                         </div>
                     </div>
 
@@ -106,14 +126,10 @@
                 <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="select01">
-                            &nbsp;
+                            Search By PIN / Mobile No
                         </label>
                         <div class="controls">
-                            &nbsp;
-                            @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
-                            {
-                                @Ajax.ActionLink("Add New", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-primary pull-right" })
-                            }
+                            @Html.TextBoxFor(model => model.SearchText)
                         </div>
                     </div>
 
@@ -174,7 +190,8 @@
             <th>
                 Data Entered by
             </th>
-            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
+                || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
             {
                 <th></th>
             }
@@ -194,68 +211,86 @@
             tableToExcel('gridTable', 'Export Name');
         });
 
-            DatePicker('FromDate', 'dd MMM, yyyy');
-            DatePicker('ToDate', 'dd MMM, yyyy');
+        DatePicker('FromDate', 'dd MMM, yyyy');
+        DatePicker('ToDate', 'dd MMM, yyyy');
 
-            $(".ddl").change(function () {
-                $('#gridTable').dataTable().fnDraw();
-            });
-
-        $("#dateSearchButton").click(function () {
-            //$("#onlyPatient").val(false);
+        $(".ddl").change(function () {
+            GetStatus();
             $('#gridTable').dataTable().fnDraw();
         });
+
+        $("#dateSearchButton").click(function () {
+            GetStatus();
+            $('#gridTable').dataTable().fnDraw();
+        });
+
+        function GetStatus() {
+            var stid = '';
+            $('.statusChk:checkbox:checked').each(function () {
+                var res = '#' + this.id.replace("Selected", "Value");
+                stid = stid + $(res).val() + ',';
+            });
+            $("#StatusIds").val(stid);
+        }
 
         $("#dateSearchButton2").click(function () {
             //$("#onlyPatient").val(true);
             $('#gridTable').dataTable().fnDraw();
         });
 
-            $('#ContentTypeId2').change(function (event) {
-                LoadUpazialSearch($('#ContentTypeId2').val());
-            });
-
-            @*$('#ContentTypeId2').change(function (event) {
-                LoadPointSearch($('#ContentTypeId2').val());
-            });*@
-
-            window.LoadUpazialSearch = function (areaId) {
-                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
-                LoadDropDownListWithCall('ContentTypeId3'
-                    , url
-                    , 'All District'
-                    , null);
-            }
-
-            @*window.LoadPointSearch = function (locationId) {
-                var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
-                LoadDropDownListWithCall('ContentTypeId3'
-                    , url
-                    , null
-                    , null);
-            }*@
-
-            var addPost = {
-                'ContentTypeId1': 'ContentTypeId1',
-                'ContentTypeId2': 'ContentTypeId2',
-                'ContentTypeId3': 'ContentTypeId3',
-                'FromDate': 'FromDate',
-                'ToDate': 'ToDate'
-            }
-            var btns = {
-                12: false //column number : is button group
-            };
-
-            /*data grid initializer*/
-            DataTableBinder($("#gridTable")   //table object
-                , '@Url.Content("~/DoctorPole/ReportDataGrid")'  //json data url
-                , [50, 100, 200, 1000] //record size
-                , true //show all with row size
-            , addPost  //additional parameters at query string
-            , btns   //buttons are at these columns
-            , true
-            );
-
+        $('#ContentTypeId2').change(function (event) {
+            LoadUpazialSearch($('#ContentTypeId2').val());
         });
+
+        @*$('#ContentTypeId2').change(function (event) {
+            LoadPointSearch($('#ContentTypeId2').val());
+        });*@
+
+        window.LoadUpazialSearch = function (areaId) {
+            var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+            LoadDropDownListWithCall('ContentTypeId3'
+                , url
+                , 'All District'
+                , null);
+        }
+
+        @*window.LoadPointSearch = function (locationId) {
+            var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
+            LoadDropDownListWithCall('ContentTypeId3'
+                , url
+                , null
+                , null);
+        }*@
+
+        $('input[type=radio][name=rdoDateType]').change(function () {
+            $("#dateType").val(this.value);
+        });
+
+
+        var addPost = {
+            'ContentTypeId1': 'ContentTypeId1',
+            'ContentTypeId2': 'ContentTypeId2',
+            'ContentTypeId3': 'ContentTypeId3',
+            'FromDate': 'FromDate',
+            'ToDate': 'ToDate',
+            'SearchText': 'SearchText',
+            'dateType': 'dateType',
+            'StatusIds': 'StatusIds'
+        }
+        var btns = {
+            12: false //column number : is button group
+        };
+
+        /*data grid initializer*/
+        DataTableBinder($("#gridTable")   //table object
+            , '@Url.Content("~/DoctorPole/ReportDataGrid")'  //json data url
+            , [50, 100, 200, 1000] //record size
+            , true //show all with row size
+        , addPost  //additional parameters at query string
+        , btns   //buttons are at these columns
+        , true
+        );
+
+    });
     </script>
 }

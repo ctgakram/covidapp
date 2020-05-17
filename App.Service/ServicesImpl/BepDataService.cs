@@ -224,6 +224,14 @@ namespace AppProj.Service.ServicesImpl
                     Cat6NewReach = g.Sum(c => c.Cat6NewReach)
                     ,
                     Cat6OldReach = g.Sum(c => c.Cat6OldReach)
+                    ,
+                    Cat7NewReach = g.Sum(c => c.Cat7NewReach)
+                    ,
+                    Cat7OldReach = g.Sum(c => c.Cat7OldReach)
+                    ,
+                    Cat8NewReach = g.Sum(c => c.Cat8NewReach)
+                    ,
+                    Cat8OldReach = g.Sum(c => c.Cat8OldReach)
 
                 }
                 ).OrderBy(o => o.Activity);

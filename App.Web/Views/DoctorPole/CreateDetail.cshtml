@@ -7,7 +7,7 @@
         HttpMethod = "POST",
         UpdateTargetId = "dialog1Body",
         InsertionMode = InsertionMode.Replace,
-        OnSuccess = "openDialog1('Suspected Patient')",
+        OnSuccess = "openDialog1('Followup')",
         LoadingElementId = "loading",
         OnFailure = "failure"
     };
@@ -19,151 +19,68 @@
     {
         @Html.HiddenFor(m => m.Id)
     }
-    <table class="table table-striped table-bordered fixed_headers">
+    @Html.HiddenFor(m => m.StaffName)
+    <table>
         <tr>
-            <td>
-                <table class="table-striped">
+            <td style="width:50%; vertical-align:top;">
+                <h3>@Html.DisplayFor(m=> m.StaffName)</h3>
+                <table class="table table-striped table-bordered fixed_headers">                    
                     <tr>
-                        <td class="title">
+                        <td>
+                            PIN
+                            @Html.TextBoxFor(model => model.PIN)
+                            @Html.ValidationMessageFor(model => model.PIN)
                             Program
-                        </td>
-                        <td class="control">
                             @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList)
                             @Html.ValidationMessageFor(model => model.ProgramId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
                             Division
-                        </td>
-                        <td class="control">
                             @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList)
                             @Html.ValidationMessageFor(model => model.DivisionId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
                             District
-                        </td>
-                        <td class="control">
                             @Html.DropDownListFor(model => model.DistrictId, Model.DistrictList)
                             @Html.ValidationMessageFor(model => model.DistrictId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            Who is Effected
-                        </td>
-                        <td class="control">
-                            @Html.DropDownListFor(model => model.EffectedPersonId, Model.EffectedPersonList)
-                            @Html.ValidationMessageFor(model => model.EffectedPersonId)
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td class="title">
                             Area Office
-                        </td>
-                        <td class="control">
                             @Html.TextBoxFor(model => model.AreaOffice)
                             @Html.ValidationMessageFor(model => model.AreaOffice)
                         </td>
-                    </tr>
-                    <tr>
-
-                        <td class="title">
-                            PIN
-                        </td>
-                        <td class="control">
-                            @Html.TextBoxFor(model => model.PIN)
-                            @Html.ValidationMessageFor(model => model.PIN)
-                        </td>
-                    </tr>
-                    <tr>
-
-                        <td class="title">
-                            Name
-                        </td>
-                        <td class="control">
+                        <td>
+                            Who is Effected
+                            @Html.DropDownListFor(model => model.EffectedPersonId, Model.EffectedPersonList)
+                            @Html.ValidationMessageFor(model => model.EffectedPersonId)
+                            Patient Name
                             @Html.TextBoxFor(model => model.Name)
                             @Html.ValidationMessageFor(model => model.Name)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            Mobile No
-                        </td>
-                        <td class="control">
-                            @Html.TextBoxFor(model => model.MobileNo)
-                            @Html.ValidationMessageFor(model => model.MobileNo)
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="title">
-                            Sex
-                        </td>
-                        <td class="control">
+                            Patient Sex
                             @Html.DropDownListFor(model => model.GenderId, Model.GenderList)
                             @Html.ValidationMessageFor(model => model.GenderId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            Age
-                        </td>
-                        <td class="control">
+                            Patient Mobile No
+                            @Html.TextBoxFor(model => model.MobileNo)
+                            @Html.ValidationMessageFor(model => model.MobileNo)
+                            Patient Age
                             @Html.TextBoxFor(model => model.Age)
                             @Html.ValidationMessageFor(model => model.Age)
                         </td>
                     </tr>
                     <tr>
-                        <td class="title">
-                            Comment
+                        <td>
+                            Case History
+                            <br />
+                            @Html.CheckBoxFor(model => model.IsTravel) Any Travel
+                            <br />
+                            @Html.CheckBoxFor(model => model.IsTravelCountry) Travel within country
+                            <br />
+                            @Html.CheckBoxFor(model => model.IsTravelAbroad) Travel outside country
+                            <br />
+                            @Html.CheckBoxFor(model => model.IsContract) Contact history
                         </td>
-                        <td class="control">
-                            @Html.TextBoxFor(model => model.CommentByHR)
+                        <td>
+                            Comment
+                            @Html.TextAreaFor(model => model.CommentByHR)
                             @Html.ValidationMessageFor(model => model.CommentByHR)
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="4">
-                            Case History
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            Any Travel
-
-                        </td>
-                        <td class="title">
-                            Travel within country?
-
-
-                        </td>
-                        <td class="title">
-                            Travel outside country?
-                        </td>
-                        <td class="title">
-                            Contact history
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            @Html.CheckBoxFor(model => model.IsTravel)
-                        </td>
-                        <td class="title">
-                            @Html.CheckBoxFor(model => model.IsTravelCountry)
-                        </td>
-                        <td class="title">
-                            @Html.CheckBoxFor(model => model.IsTravelAbroad)
-                        </td>
-                        <td class="title">
-                            @Html.CheckBoxFor(model => model.IsContract)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="control">
+                        <td colspan="2">
                             <p>
                                 <input id="save-submit" type="submit" value="Save New Case" class="btn btn-primary" />
                             </p>
@@ -172,34 +89,39 @@
                 </table>
             </td>
             <td style="vertical-align:top;padding-left:10px;">
-                <h3>Existing Data of this Staff</h3>
+                <h3>Existing Patients of this Staff</h3>
                 @if (Model.ExistingData != null)
                 {
                     <table class="table table-striped table-bordered fixed_headers">
                         <tr>
-                            <th>Name</th>
-                            <th>Age</th>
-                            <th>Gender</th>
                             <th>Who is effected</th>
+                            <th>Name</th>
+                            @*<th>Age</th>
+                                <th>Gender</th>*@
                             <th>Entry Date</th>
+                            <th>Status</th>
                             @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
                             {
-                                <td>Action</td>
+                                <th>Action</th>
                             }
                         </tr>
 
                         @foreach (var v in Model.ExistingData)
                         {
                             <tr>
-                                <td>@v.Name</td>
-                                <td>@v.Age</td>
-                                <td>@v.StandingData.Name</td>
                                 <td>@v.StandingData4.Name</td>
+                                <td>@v.Name</td>
+                                @*<td>@v.Age</td>
+                                    <td>@v.StandingData.Name</td>*@
                                 <td>@v.EntryTime.ToString("dd MM, yyyy")</td>
+                                <td>
+                                    @{var vs = v.StandingData5 == null ? "" : v.StandingData5.Name;}
+                                    @vs
+                                </td>
                                 @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
                                 {
                                     <td>
-                                        @Ajax.ActionLink("Followup", "Followup", "DoctorPole", new { id = v.Id }, ajaxOpt, new { @class = "" })
+                                        @Ajax.ActionLink("Continue", "Followup", "DoctorPole", new { id = v.Id }, ajaxOpt, new { @class = "" })
                                     </td>
                                 }
                             </tr>

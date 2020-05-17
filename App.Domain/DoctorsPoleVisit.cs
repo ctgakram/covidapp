@@ -14,6 +14,11 @@ namespace AppProj.Domain
     
     public partial class DoctorsPoleVisit
     {
+        public DoctorsPoleVisit()
+        {
+            this.DoctorsPoleVisitDetails = new HashSet<DoctorsPoleVisitDetail>();
+        }
+    
         public int Id { get; set; }
         public int DoctorPoleId { get; set; }
         public bool IsFever { get; set; }
@@ -27,7 +32,7 @@ namespace AppProj.Domain
         public Nullable<bool> AdvHomeIsolation { get; set; }
         public Nullable<bool> AdvReferHospital { get; set; }
         public Nullable<bool> IsAntibioticTaken { get; set; }
-        public Nullable<int> StatusId { get; set; }
+        public int StatusId { get; set; }
         public string Comments { get; set; }
         public Nullable<int> CoMorbidityId { get; set; }
         public Nullable<System.DateTime> SampleTakenDate { get; set; }
@@ -43,8 +48,10 @@ namespace AppProj.Domain
         public System.DateTime EntryTime { get; set; }
         public Nullable<int> LastUpdateById { get; set; }
         public Nullable<System.DateTime> LastUpdateTime { get; set; }
+        public string CoMorbidities { get; set; }
     
         public virtual DoctorsPole DoctorsPole { get; set; }
+        public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
         public virtual StandingData StandingData2 { get; set; }

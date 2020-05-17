@@ -249,6 +249,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BepSubmissionController.cs" />
     <Compile Include="Controllers\DoctorPoleController.cs" />
+    <Compile Include="Controllers\DoctorPoleDashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DistrictSubmissionController.cs" />
@@ -3607,6 +3608,8 @@
     <Content Include="Views\DoctorPole\FollowupSave.cshtml" />
     <Content Include="Views\DoctorPole\FollowupIndex.cshtml" />
     <Content Include="Views\DoctorPole\ReportIndex.cshtml" />
+    <Content Include="Views\DoctorPole\FollowupSuspected.cshtml" />
+    <Content Include="Views\DoctorPole\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
