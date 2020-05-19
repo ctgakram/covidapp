@@ -54,6 +54,7 @@
     <Compile Include="Infrastructure\RepositoryBase.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesImpl\ReportRepository.cs" />
     <Compile Include="RepositoriesImpl\BERDataItemWiseQuantityRepository.cs" />
     <Compile Include="RepositoriesImpl\BERDataPeopleWiseQuantityRepository.cs" />
     <Compile Include="RepositoriesImpl\DistrictPatientRepository.cs" />
@@ -80,6 +81,7 @@
     <Compile Include="RepositoriesImpl\SummerizedDataRepository.cs" />
     <Compile Include="RepositoriesImpl\UserLoginLogRepository.cs" />
     <Compile Include="RepositoriesImpl\UserProfileRepository.cs" />
+    <Compile Include="Repositories\IReportRepository.cs" />
     <Compile Include="Repositories\IBERDataItemWiseQuantityRepository.cs" />
     <Compile Include="Repositories\IBERDataPeopleWiseQuantityRepository.cs" />
     <Compile Include="Repositories\IDistrictPatientRepository.cs" />

@@ -258,6 +258,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MapSummaryController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleFeatureController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
@@ -303,6 +304,7 @@
     <Compile Include="Models\SubmitModel.cs" />
     <Compile Include="Models\UserProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\StringGenerator.cs" />
     <Compile Include="ViewModels\GridButtonModel.cs" />
     <Compile Include="ViewModels\ImageGridModel.cs" />
     <Compile Include="ViewModels\JQueryDataTable.cs" />
@@ -3308,6 +3310,7 @@
     <Content Include="Content\img\video-js.png" />
     <Content Include="Content\logo\1.png" />
     <Content Include="Content\logo\brac_logo.png" />
+    <Content Include="Content\src\images\svg\folder_open.svg" />
     <Content Include="Content\src\images\svg\left-arrow.svg" />
     <Content Include="Content\src\images\svg\relief.svg" />
     <Content Include="Content\src\images\svg\right-arrow.svg" />
@@ -3543,7 +3546,7 @@
     <Content Include="Views\UserProfile\Districts.cshtml" />
     <Content Include="Views\Main\PartialMap.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Shared\_LayoutBrac.cshtml" />
+    <Content Include="Views\Shared\_LayoutBrac_bak.cshtml" />
     <Content Include="Views\Standing\Index.cshtml" />
     <Content Include="Views\Standing\Create.cshtml" />
     <Content Include="Views\Standing\Save.cshtml" />
@@ -3613,6 +3616,8 @@
     <Content Include="Views\DoctorPole\ReportIndex.cshtml" />
     <Content Include="Views\DoctorPole\FollowupSuspected.cshtml" />
     <Content Include="Views\DoctorPole\Dashboard.cshtml" />
+    <Content Include="Views\Report\Index.cshtml" />
+    <Content Include="Views\Shared\_LayoutBrac.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -3661,7 +3666,7 @@
           <AutoAssignPort>False</AutoAssignPort>
           <DevelopmentServerPort>8527</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:1954/</IISUrl>
+          <IISUrl>http://localhost:1953/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>http://localhost:1953/</CustomServerUrl>

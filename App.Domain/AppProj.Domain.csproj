@@ -71,6 +71,9 @@
     <Compile Include="BERDataPeopleWiseQuantity.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Content.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetailData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
@@ -173,6 +176,7 @@
     <Compile Include="UserProfile.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ReportVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

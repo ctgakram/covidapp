@@ -1,0 +1,61 @@
+﻿@model  AppProj.Domain.ViewModel.ReportVM
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+}
+<h2 class="page-header-title text-bracify">Circulars & SitReps</h2>
+<div class="row" id="report-accordion">
+    <div class="col-lg-3 pl-0">
+        <div id="rpttypes" class="tab-triggers">
+
+            @foreach (var rtype in Model.ReportTypes)
+            {
+                if (rtype.Total > 0)
+                {
+                    <div class="tab-item" data-toggle="collapse" id="@("rpt"+rtype.TypeId)">
+                        <p>@rtype.TypeName</p>
+                        <small class="new-post">@rtype.Total new reports has been posted</small>
+                        <small class="hover-total-count r-active">Total @rtype.Total Circulars</small>
+                        <!-- after seen you can add the "seen" class with "count-badge" to vanish Circular count badge  -->
+                        <!-- like this : <span class="count-badge seen">2</span> -->
+                        <span class="count-badge">@rtype.Total</span>
+                    </div>
+                }
+
+            }
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="tabs-content-wrapper tab-content">
+            <div class="collapse show tabs-anchor-list" id="reports" data-parent="#report-accordion">
+                @foreach (var report in Model.SelectedReports.OrderBy(x => x.ContentType))
+                {
+                    <a target="_blank" class="@("rpt"+report.ContentType) hidden" href="@report.Blob">
+                        <span class="report-title">
+                            @report.Name
+                        </span>
+                        <span class="publish-date">
+                            @AppProj.Web.Utility.StringGenerator.DateTimeToString(report.CreatedOn, false)
+                        </span>
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".long-nav-items-wrapper a").removeClass("active");
+            $("#reports a").addClass("hidden");
+            $('#@("reports .rpt"+Model.ReportTypeId)').removeClass("hidden");
+            $('#rpt1').addClass("r-active");
+            $("#rpttypes > div").click(function () {
+                $("#reports a").addClass("hidden");
+                $("#reports ." + $(this).attr("id")).removeClass("hidden");
+                $("#rpttypes > div").removeClass("r-active");
+                $(this).addClass("r-active");
+            });
+        });
+    </script>
+}

@@ -1,4 +1,4 @@
-@font-face {
+/*@font-face {
     font-family: 'HelveticaNeue';
     src: url(../Content/src/fonts/HelveticaNeueBold.ttf) format("truetype");
     font-weight: bold;
@@ -8,10 +8,10 @@
 @font-face {
     font-family: 'OriyaSangamMN';
     src: url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.eot);
-    /* IE9 Compat Modes */
+    
     src: url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.eot?#iefix) format("embedded-opentype"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.woff2) format("woff2"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.woff) format("woff"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.ttf) format("truetype"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.svg#svgFontName) format("svg");
-    /* Legacy iOS */
-}
+    
+}*/
 
 .dropdown-menu.show {
     display: block;
@@ -29,20 +29,24 @@
     left: -3px;
 }
 
-#divactivities > li {
-    display: block;
-    width: 100%;
-    padding: 0.25rem 1.5rem;
-    clear: both;
-    font-weight: 400;
-    color: #212529;
-    text-align: inherit;
-    white-space: nowrap;
-    background-color: transparent;
-    border: 0;
-    border-bottom: 1px solid #e6e4e5;
-    font-size: 12px;
+#divmessages ul {
+    padding-left: 0px;
 }
+
+    #divactivities > li, #divmessages ul > li {
+        display: block;
+        width: 100%;
+        padding: 0.25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #212529;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        border-bottom: 1px solid #e6e4e5;
+        font-size: 12px;
+    }
 
 #bullentin {
     border-right: 2px solid #D10D74;
@@ -52,7 +56,7 @@
     /*color: #D10D74;*/
 }
 
-    #divactivities li .msg a {
+    #divactivities li .msg a, #divmessages ul li div a {
         text-decoration: none;
         color: #D10D74;
     }
@@ -152,3 +156,38 @@ a.brac-link:hover {
         left: 30%;
     }
 }
+
+.st0 {
+    fill: none;
+}
+
+.st1 {
+    fill: #2C2C2C;
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+
+
+.tab-triggers .tab-item.r-active {
+    -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.24);
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.24);
+}
+
+    .tab-triggers .tab-item.r-active .hover-total-count {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+    }
+
+.view-all-msg:hover {
+    color: #D10D74 !important;
+}
+
+
+
+

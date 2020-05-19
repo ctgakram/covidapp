@@ -13235,11 +13235,11 @@ body {
         opacity: 0;
     }
 
-    .notification-dd.show .activity-svg .st1 {
-        fill: #007161 !important;
+    .notification-dd.show .activity-svg path {
+        fill: #D10D74 !important;
     }
 
-    .notification-dd.show .message-svg .message-path {
+    .notification-dd.show .message-svg path {
         fill: #D10D74 !important;
     }
 
@@ -13247,14 +13247,9 @@ body {
         -webkit-transition: opacity 0.3s ease-in-out;
         transition: opacity 0.3s ease-in-out;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: -5px;
+        right: -6px;
     }
-
-        .notification-dd .corner.msg {
-            top: -5px;
-            right: -6px;
-        }
 
     .notification-dd .notification-icon {
         width: 31px;
@@ -13621,6 +13616,13 @@ div.dataTables_wrapper div.dataTables_info {
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+}
+
+.page-header-title {
+    font-size: 22px;
+    display: block;
+    margin: 15px 0;
+    font-weight: 700;
 }
 
 .flatpickr-calendar {
@@ -15370,6 +15372,128 @@ span.flatpickr-weekday {
         font-size: 12px;
         color: #2C2C2C;
         line-height: 1;
+    }
+
+.activity-list {
+    list-style: none;
+    padding: 0;
+}
+
+    .activity-list li {
+        padding: 15px 0;
+        border-top: 1px solid #ebebeb;
+        border-bottom: 1px solid #ebebeb;
+    }
+
+.tab-triggers .tab-item {
+    position: relative;
+    background: #FFFFFF;
+    -webkit-box-shadow: 0px 6px 15px #0000000F;
+    box-shadow: 0px 6px 15px #0000000F;
+    border-radius: 10px;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    -webkit-transition: -webkit-box-shadow 0.3s ease-in-out;
+    transition: -webkit-box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.3s ease-in-out, -webkit-box-shadow 0.3s ease-in-out;
+}
+
+    .tab-triggers .tab-item:hover {
+        -webkit-box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.24);
+        box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.24);
+    }
+
+        .tab-triggers .tab-item:hover .hover-total-count {
+            opacity: 1;
+            visibility: visible;
+            z-index: 1;
+        }
+
+    .tab-triggers .tab-item p, .tab-triggers .tab-item small {
+        display: block;
+    }
+
+    .tab-triggers .tab-item p {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+
+    .tab-triggers .tab-item small {
+        font-size: 12px;
+    }
+
+    .tab-triggers .tab-item .hover-total-count {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: -1px;
+        padding: 10px 15px;
+        background: #D10D74;
+        border-bottom-left-radius: 10px;
+        color: white;
+        border-bottom-right-radius: 10px;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        -webkit-transition: all 0.3s ease-in-out;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .tab-triggers .tab-item .count-badge {
+        display: block;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        border-radius: 50%;
+        background-color: #D10D74;
+        color: white;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+
+        .tab-triggers .tab-item .count-badge.seen {
+            display: none;
+        }
+
+.tabs-content-wrapper .tabs-anchor-list a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    text-decoration: none;
+    width: 100%;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    background: #FAFAFA;
+    border-radius: 10px;
+    padding: 15px 10px;
+    margin-bottom: 5px;
+}
+
+    .tabs-content-wrapper .tabs-anchor-list a:hover {
+        background-color: #D10D74;
+    }
+
+        .tabs-content-wrapper .tabs-anchor-list a:hover .report-title, .tabs-content-wrapper .tabs-anchor-list a:hover .publish-date {
+            color: white;
+        }
+
+    .tabs-content-wrapper .tabs-anchor-list a .report-title {
+        font-size: 16px;
+        color: #D10D74;
+    }
+
+    .tabs-content-wrapper .tabs-anchor-list a .publish-date {
+        font-size: 13px;
+        color: #707070;
     }
 
 @media screen and (max-width: 991px) {

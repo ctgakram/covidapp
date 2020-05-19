@@ -5,19 +5,8 @@
     <title>COVID-19 Response</title>
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <meta name="viewport" content="width=device-width" />
-    @*@Styles.Render("~/Content/brac")*@
+    @Styles.Render("~/Content/brac")
 
-    <link href="~/Content/css/brac/bundle.css" rel="stylesheet" />
-    <link href="~/Content/css/brac/site.css" rel="stylesheet" />
-
-    <style type="text/css">
-        .st0 {
-        fill: none;
-        }
-        .st1 {
-        fill: #2C2C2C;
-        }
-    </style>
 </head>
 @using AppProj.Web.Controllers;
 @using AppProj.Web;
@@ -41,6 +30,30 @@
         </div>
 
         <div class="topbar-dropdowns">
+
+            <div class="dropdown notification-dd">
+                <span id="spnmessagetop" class="count-badge red corner msg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
+
+                <img src="@Url.Content("~/Content/src/images/svg/folder_open.svg")" class="message-svg notification-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" />
+
+                <div id="divmessages" class="dropdown-menu dropdown-menu-right datatree-menu">
+                    <h6 class="dropdown-header d-flex align-items-center justify-content-between">
+                        <span>
+                            <span class="mr-3">Circulars</span>
+                            <span id="spnmessage" class="count-badge red"></span>
+                        </span>
+                        <a class="view-all-msg" href="#">View all</a>
+                    </h6>
+                    <a class="dropdown-item" href="#">
+                        Some notification
+                    </a>
+                    <a class="dropdown-item" href="#">
+                        Some other notification Some other notification
+                    </a>
+                </div>
+            </div>
+
+
             <div class="dropdown notification-dd">
                 <span id="spnactivitiestop" class="count-badge green corner dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">4</span>
                 <!-- <img src="src/images/svg/activities.svg" class="notification-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" alt="Activities"> -->
@@ -57,25 +70,6 @@
                     </a>
                 </div>
             </div>
-            @*<div class="dropdown notification-dd">
-                <span id="spnmessagetop" class="count-badge red corner msg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">4</span>
-                <svg class="message-svg notification-icon dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" xmlns="http://www.w3.org/2000/svg" width="24.854" height="20.171" viewBox="0 0 24.854 20.171"><g transform="translate(-1215.288 -26.72)" fill="none"><path d="M1236.558,33.513c-1.9,1.317-3.817,2.634-5.707,3.963-.794.548-2.134,1.671-3.122,1.671h-.025c-.988,0-2.331-1.123-3.123-1.671-1.889-1.329-3.8-2.646-5.694-3.963-.866-.585-2.1-1.963-2.1-3.074a1.978,1.978,0,0,1,1.953-2.219h17.952a1.963,1.963,0,0,1,1.95,1.951A4.405,4.405,0,0,1,1236.558,33.513Zm2.085,9.927a1.955,1.955,0,0,1-1.95,1.951H1218.74a1.957,1.957,0,0,1-1.953-1.951V33.756a6.825,6.825,0,0,0,1.232,1.062c2.025,1.379,4.074,2.756,6.061,4.207a6.683,6.683,0,0,0,3.623,1.683h.025a6.674,6.674,0,0,0,3.621-1.683c1.989-1.439,4.038-2.828,6.074-4.207a7.125,7.125,0,0,0,1.219-1.062Z" stroke="none" /><path class="message-path" d="M 1218.740478515625 28.22000122070312 C 1217.435546875 28.22000122070312 1216.787963867188 29.24468231201172 1216.787963867188 30.43877029418945 C 1216.787963867188 31.54952239990234 1218.020263671875 32.92805099487305 1218.886596679688 33.51280212402344 C 1220.776123046875 34.82985305786133 1222.691528320312 36.14691162109375 1224.580932617188 37.47624969482422 C 1225.37353515625 38.02412033081055 1226.716552734375 39.14715957641602 1227.704223632812 39.14715957641602 L 1227.715209960938 39.14715957641602 L 1227.728881835938 39.14715957641602 C 1228.716674804688 39.14715957641602 1230.057006835938 38.02412033081055 1230.850830078125 37.47624969482422 C 1232.740234375 36.14691162109375 1234.654296875 34.82985305786133 1236.5576171875 33.51280212402344 C 1237.63134765625 32.7681999206543 1238.642456054688 31.53586196899414 1238.642456054688 30.17098236083984 C 1238.642456054688 29.09712219238281 1237.753051757812 28.22000122070312 1236.69287109375 28.22000122070312 L 1218.740478515625 28.22000122070312 M 1216.787963867188 33.7559928894043 L 1216.787963867188 43.43988037109375 C 1216.787963867188 44.51374053955078 1217.666625976562 45.39086151123047 1218.740478515625 45.39086151123047 L 1236.69287109375 45.39086151123047 C 1237.765258789062 45.39086151123047 1238.642456054688 44.51374053955078 1238.642456054688 43.43988037109375 L 1238.642456054688 33.7559928894043 C 1238.277587890625 34.15903091430664 1237.8623046875 34.51288986206055 1237.423706054688 34.81756210327148 C 1235.387939453125 36.19609069824219 1233.338623046875 37.58555221557617 1231.349487304688 39.02420043945312 C 1230.324829101562 39.78110122680664 1229.058227539062 40.70741271972656 1227.728881835938 40.70741271972656 L 1227.715209960938 40.70741271972656 L 1227.704223632812 40.70741271972656 C 1226.375 40.70741271972656 1225.105712890625 39.78110122680664 1224.080932617188 39.02420043945312 C 1222.094482421875 37.57326126098633 1220.045166015625 36.19609069824219 1218.020263671875 34.81756210327148 C 1217.569458007812 34.51288986206055 1217.154296875 34.15903091430664 1216.787963867188 33.7559928894043 M 1218.740478515625 26.72000122070312 L 1236.69287109375 26.72000122070312 C 1238.496215820312 26.72000122070312 1239.980712890625 28.11162567138672 1240.130126953125 29.87767791748047 L 1240.142456054688 29.86404037475586 L 1240.142456054688 30.17098236083984 L 1240.142456054688 33.7559928894043 L 1240.142456054688 43.43988037109375 C 1240.142456054688 45.3427619934082 1238.594970703125 46.89086151123047 1236.69287109375 46.89086151123047 L 1218.740478515625 46.89086151123047 C 1216.836791992188 46.89086151123047 1215.287963867188 45.3427619934082 1215.287963867188 43.43988037109375 L 1215.287963867188 33.7559928894043 L 1215.287963867188 29.8756103515625 L 1215.318481445312 29.90913009643555 C 1215.405517578125 29.16096115112305 1215.677124023438 28.47658920288086 1216.1044921875 27.94338226318359 C 1216.736938476562 27.15447235107422 1217.673095703125 26.72000122070312 1218.740478515625 26.72000122070312 Z" stroke="none" fill="#2c2c2c" /></g></svg>
-                <div class="dropdown-menu dropdown-menu-right datatree-menu">
-                    <h6 class="dropdown-header d-flex align-items-center justify-content-between">
-                        <span>
-                            <span class="mr-3">Messages</span>
-                            <span id="spnmessage" class="count-badge red">4</span>
-                        </span>
-                        <a class="view-all-msg" href="#">View all</a>
-                    </h6>
-                    <a class="dropdown-item" href="#">
-                        Some notification
-                    </a>
-                    <a class="dropdown-item" href="#">
-                        Some other notification Some other notification
-                    </a>
-                </div>
-            </div>*@
             <div class="dropdown user-dd">
                 <div class="user-profile-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <img class="profile-picture" src="@Url.Content("~/Content/img/icons/user.png")" alt="" />
@@ -108,7 +102,7 @@
                     <span class="long-nav-toggler">☰</span>
                 </div>
                 <div class="long-nav-items-wrapper col-lg-9">
-                    <a href="@Url.Content("~/Main/Dashboard")" class="active long-nav-item" target="_blank">
+                    <a id="dboard" href="@Url.Content("~/Main/Dashboard")" class="active long-nav-item" target="_blank">
                         <svg xmlns="http://www.w3.org/2000/svg" width="29.994" height="30" viewBox="0 0 29.994 30"><g transform="translate(650.722 356.96)"><path d="M-580.534-295.983a9.23,9.23,0,0,1-9.383,9.272,9.267,9.267,0,0,1-9.145-9.3,9.233,9.233,0,0,1,9.262-9.224A9.23,9.23,0,0,1-580.534-295.983Zm-9.25-2.35c-.716,0-1.431-.007-2.147,0a.856.856,0,0,0-.94.844.888.888,0,0,0,.948.9q2.147.016,4.294,0a.864.864,0,0,0,.91-.882.833.833,0,0,0-.919-.856C-588.352-298.34-589.068-298.332-589.784-298.333Zm0,4.748c.69,0,1.379,0,2.069,0,.625,0,.994-.328,1-.864s-.357-.87-.983-.873q-2.088-.008-4.176,0a.879.879,0,0,0-.985.879.879.879,0,0,0,.971.858C-591.188-293.58-590.486-293.585-589.784-293.585Z" transform="translate(-40.194 -40.249)" fill="#fff" /><path d="M-638.082-350.616c0,1.945-.01,3.89.008,5.834,0,.394-.126.5-.506.5-3.877-.012-7.754-.007-11.631-.008-.507,0-.509,0-.509-.516q0-4.529,0-9.059a3.023,3.023,0,0,1,3.071-3.063q4.529-.006,9.059,0c.5,0,.506,0,.507.518Q-638.081-353.514-638.082-350.616Zm-5.423-1.674c0-.141,0-.281,0-.422a.883.883,0,0,0-.875-.962.871.871,0,0,0-.91.926c-.017.306-.012.614,0,.921,0,.226-.088.328-.318.322-.307-.007-.614-.012-.92,0a.872.872,0,0,0-.93.906.881.881,0,0,0,.957.879,7.307,7.307,0,0,0,.767,0c.325-.025.475.083.448.43a5.443,5.443,0,0,0,.007.882.857.857,0,0,0,.931.86.857.857,0,0,0,.845-.906c.013-.306.012-.614,0-.921-.008-.244.09-.35.338-.342.319.009.64.013.959-.005a.849.849,0,0,0,.872-.838.853.853,0,0,0-.818-.931,5.107,5.107,0,0,0-.575-.015C-643.593-351.517-643.5-351.4-643.5-352.29Z" transform="translate(0 -0.022)" fill="#fff" /><path d="M-585.935-351.127c0-1.778.008-3.556-.007-5.334,0-.385.124-.5.51-.5,3.044.014,6.089,0,9.133.01a3.023,3.023,0,0,1,3.04,3.018c.014,2.724.005,5.449,0,8.174,0,.124.047.286-.065.361-.143.1-.259-.053-.372-.123a10.858,10.858,0,0,0-6.537-1.7,10.693,10.693,0,0,0-5.169,1.653c-.136.086-.286.268-.435.194-.179-.089-.1-.323-.1-.5Q-585.939-348.5-585.935-351.127Zm6.3,1.389c.729,0,1.459.013,2.188,0a.891.891,0,0,0,.929-.876.872.872,0,0,0-.9-.9c-1.445-.02-2.891-.014-4.337,0a.851.851,0,0,0-.845.555.888.888,0,0,0,.9,1.221C-581.013-349.726-580.322-349.738-579.631-349.738Z" transform="translate(-50.397 0)" fill="#fff" /><path d="M-644.887-292.124q2.667,0,5.334,0c.147,0,.345-.057.418.1.059.131-.088.255-.161.371a10.834,10.834,0,0,0-1.693,6.462,10.82,10.82,0,0,0,1.686,5.277c.073.115.221.234.154.37-.079.163-.274.093-.418.093q-4.01.005-8.02,0a3.034,3.034,0,0,1-3.129-3.125q0-4.509,0-9.018c0-.531,0-.535.534-.536Q-647.534-292.126-644.887-292.124Zm2.926,4.745a.809.809,0,0,0-.491-.734.839.839,0,0,0-.964.132,9.219,9.219,0,0,0-.708.7c-.186.2-.337.231-.531.01s-.409-.422-.624-.623a.862.862,0,0,0-1.266-.036.87.87,0,0,0,.015,1.269c.206.227.423.445.649.651.182.166.194.3.008.473-.234.217-.46.444-.676.678a.86.86,0,0,0-.044,1.237.855.855,0,0,0,1.267.018c.249-.22.483-.457.711-.7.161-.171.289-.158.446.006a10.073,10.073,0,0,0,.74.722.844.844,0,0,0,1.235-.054.863.863,0,0,0-.028-1.21c-.216-.235-.442-.462-.677-.678-.19-.175-.214-.318-.007-.5.229-.2.438-.429.653-.647A.955.955,0,0,0-641.96-287.379Z" transform="translate(-0.004 -50.441)" fill="#fff" /></g></svg>
                         <p>
                             <span>Current</span>
@@ -153,6 +147,7 @@
                         <p>
                             <span>Tabular</span>
                             <span>Data</span>
+
                         </p>
                     </a>
                 </div>
@@ -169,41 +164,50 @@
     @*@Scripts.Render("~/bundles/bracjs")*@
     <script src="~/Scripts/brac/app.js">
     </script>
-    <script type="text/javascript">
+    <script>
         var jsonTopMenuData
         $(document).ready(function () {
-        LoadMenuTopBRAC("@Url.Action("MenuData", "Main")");
+            LoadMenuTopBRAC("@Url.Action("MenuData", "Main")");
         });
         function LoadMenuTopBRAC(url) {
-        var jsonTopMenuText = $.ajax({
-        url: url,
-        dataType: "json",
-        async: false
-        }).responseText;
+            var jsonTopMenuText = $.ajax({
+                url: url,
+                dataType: "json",
+                async: false
+            }).responseText;
 
-        jsonTopMenuData = JSON.parse(jsonTopMenuText);
+            jsonTopMenuData = JSON.parse(jsonTopMenuText);
 
-        $("#spnactivities").empty();
-        $("#spnactivities").html(jsonTopMenuData.act.length);
-        $("#spnmessage").empty();
-        $("#spnmessage").html(jsonTopMenuData.msg.length);
+            $("#spnactivities").empty();
+            $("#spnactivities").html(jsonTopMenuData.act.length);
+            $("#spnmessage").empty();
+            $("#spnmessage").html(jsonTopMenuData.msg.length);
 
-        $("#spnactivitiestop").empty();
-        $("#spnactivitiestop").html(jsonTopMenuData.act.length);
-        $("#spnmessagetop").empty();
-        $("#spnmessagetop").html(jsonTopMenuData.msg.length);
+            $("#spnactivitiestop").empty();
+            $("#spnactivitiestop").html(jsonTopMenuData.act.length);
+            $("#spnmessagetop").empty();
+            $("#spnmessagetop").html(jsonTopMenuData.msg.length);
 
-        $("#divactivities").empty();
-        var item = '<h6 class="dropdown-header d-flex align-items-center"><span class="mr-3">Activities</span> <span id="spnactivities" class="count-badge green">'+jsonTopMenuData.act.length+'</span></h6>';
+            $("#divactivities").empty();
+            $("#divmessages").empty();
+            var actitem = '<h6 class="dropdown-header d-flex align-items-center"><span class="mr-3">Activities</span> <span id="spnactivities" class="count-badge green">' + jsonTopMenuData.act.length + '</span></h6>';
+            var rptitem = '<h6 class="dropdown-header d-flex align-items-center justify-content-between"><span><span class="mr-3">Circulars & SitReps</span><span id="spnmessage" class="count-badge red">' + jsonTopMenuData.msg.length + '</span></span><a class="view-all-msg" href="@Url.Action("Index","Report")">View all</a></h6>';
 
-        $.each(jsonTopMenuData.act, function (index, element) {
-        item += element.Name;
-        });
-        $("#divactivities").html(item);
 
+            $.each(jsonTopMenuData.act, function (index, element) {
+                actitem += element.Name;
+            });
+            $("#divactivities").html(actitem);
+
+            $.each(jsonTopMenuData.msg, function (index, element) {
+                var baseurl = '@Url.Content("~")';
+                rptitem += '<li><div class="msg"><a target="_blank" href="'+baseurl+element.Blob+'" class="brac-link" >' + element.Name + '</a></div></li>';
+            });
+            $("#divmessages").html('<ul>' + rptitem + '</ul>');
         }
-        @RenderSection("scripts", required: false)
+
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 
