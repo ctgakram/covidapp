@@ -79,6 +79,20 @@
           <Property Name="Cat8NewReach" Type="int" Nullable="false" />
           <Property Name="Cat8OldReach" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Name="ContentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ContentType" Type="int" />
+          <Property Name="Blob" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="EffectiveFrom" Type="datetime" />
+          <Property Name="EffectiveTo" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedBy" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="DetailData">
           <Key>
             <PropertyRef Name="Id" />
@@ -1540,6 +1554,7 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           <EntitySet Name="BEPData" EntityType="Self.BEPData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BERDataItemWiseQuantity" EntityType="Self.BERDataItemWiseQuantity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BERDataPeopleWiseQuantity" EntityType="Self.BERDataPeopleWiseQuantity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Content" EntityType="Self.Content" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetailData" EntityType="Self.DetailData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DistrictByUserProfiles" EntityType="Self.DistrictByUserProfiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DistrictData" EntityType="Self.DistrictData" Schema="dbo" store:Type="Tables" />
@@ -2037,12 +2052,14 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySet Name="BEPDatas" EntityType="AppModel.BEPData" />
           <EntitySet Name="BERDataItemWiseQuantities" EntityType="AppModel.BERDataItemWiseQuantity" />
           <EntitySet Name="BERDataPeopleWiseQuantities" EntityType="AppModel.BERDataPeopleWiseQuantity" />
+          <EntitySet Name="Contents" EntityType="AppModel.Content" />
           <EntitySet Name="DetailDatas" EntityType="AppModel.DetailData" />
           <EntitySet Name="DistrictByUserProfiles" EntityType="AppModel.DistrictByUserProfile" />
           <EntitySet Name="DistrictDatas" EntityType="AppModel.DistrictData" />
           <EntitySet Name="DistrictPatients" EntityType="AppModel.DistrictPatient" />
           <EntitySet Name="DistrictQuestions" EntityType="AppModel.DistrictQuestion" />
           <EntitySet Name="DistrictSummeries" EntityType="AppModel.DistrictSummery" />
+          <EntitySet Name="DoctorPoleStatuses" EntityType="AppModel.DoctorPoleStatus" />
           <EntitySet Name="DoctorsPoles" EntityType="AppModel.DoctorsPole" />
           <EntitySet Name="DoctorsPoleVisitDetails" EntityType="AppModel.DoctorsPoleVisitDetail" />
           <EntitySet Name="DoctorsPoleVisits" EntityType="AppModel.DoctorsPoleVisit" />
@@ -2056,6 +2073,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySet Name="StandingDataPcRelations" EntityType="AppModel.StandingDataPcRelation" />
           <EntitySet Name="StandingDatas" EntityType="AppModel.StandingData" />
           <EntitySet Name="SummerizedDatas" EntityType="AppModel.SummerizedData" />
+          <EntitySet Name="UserAccessLogs" EntityType="AppModel.UserAccessLog" />
           <EntitySet Name="UserLoginLogs" EntityType="AppModel.UserLoginLog" />
           <EntitySet Name="UserProfiles" EntityType="AppModel.UserProfile" />
           <EntitySet Name="QryRoleFeatures" EntityType="AppModel.QryRoleFeature" />
@@ -2223,11 +2241,23 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="DistrictSummery" EntitySet="DistrictSummeries" />
           </AssociationSet>
+          <AssociationSet Name="FK_DoctorPoleStatuses_DoctorsPoles" Association="AppModel.FK_DoctorPoleStatuses_DoctorsPoles">
+            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
+            <End Role="DoctorPoleStatus" EntitySet="DoctorPoleStatuses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorPoleStatuses_StandingDatas" Association="AppModel.FK_DoctorPoleStatuses_StandingDatas">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DoctorPoleStatus" EntitySet="DoctorPoleStatuses" />
+          </AssociationSet>
           <AssociationSet Name="FK_DoctorsPoles_StandingDatas" Association="AppModel.FK_DoctorsPoles_StandingDatas">
             <End Role="StandingData" EntitySet="StandingDatas" />
             <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
           </AssociationSet>
           <AssociationSet Name="FK_DoctorsPoles_StandingDatas1" Association="AppModel.FK_DoctorsPoles_StandingDatas1">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorsPoles_StandingDatas10" Association="AppModel.FK_DoctorsPoles_StandingDatas10">
             <End Role="StandingData" EntitySet="StandingDatas" />
             <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
           </AssociationSet>
@@ -2248,6 +2278,10 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
           </AssociationSet>
           <AssociationSet Name="FK_DoctorsPoles_StandingDatas6" Association="AppModel.FK_DoctorsPoles_StandingDatas6">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorsPoles_StandingDatas7" Association="AppModel.FK_DoctorsPoles_StandingDatas7">
             <End Role="StandingData" EntitySet="StandingDatas" />
             <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
           </AssociationSet>
@@ -2292,6 +2326,14 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
           </AssociationSet>
           <AssociationSet Name="FK_DoctorsPoleVisits_StandingDatas3" Association="AppModel.FK_DoctorsPoleVisits_StandingDatas3">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorsPoleVisits_StandingDatas4" Association="AppModel.FK_DoctorsPoleVisits_StandingDatas4">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DoctorsPoleVisits_StandingDatas5" Association="AppModel.FK_DoctorsPoleVisits_StandingDatas5">
             <End Role="StandingData" EntitySet="StandingDatas" />
             <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
           </AssociationSet>
@@ -2363,32 +2405,10 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
-          <EntitySet Name="DoctorPoleStatuses" EntityType="AppModel.DoctorPoleStatus" />
-          <AssociationSet Name="FK_DoctorPoleStatuses_DoctorsPoles" Association="AppModel.FK_DoctorPoleStatuses_DoctorsPoles">
-            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
-            <End Role="DoctorPoleStatus" EntitySet="DoctorPoleStatuses" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoctorPoleStatuses_StandingDatas" Association="AppModel.FK_DoctorPoleStatuses_StandingDatas">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="DoctorPoleStatus" EntitySet="DoctorPoleStatuses" />
-          </AssociationSet>
-          <EntitySet Name="UserAccessLogs" EntityType="AppModel.UserAccessLog" />
-          <AssociationSet Name="FK_DoctorsPoles_StandingDatas10" Association="AppModel.FK_DoctorsPoles_StandingDatas10">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoctorsPoles_StandingDatas7" Association="AppModel.FK_DoctorsPoles_StandingDatas7">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="DoctorsPole" EntitySet="DoctorsPoles" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoctorsPoleVisits_StandingDatas4" Association="AppModel.FK_DoctorsPoleVisits_StandingDatas4">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DoctorsPoleVisits_StandingDatas5" Association="AppModel.FK_DoctorsPoleVisits_StandingDatas5">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="DoctorsPoleVisit" EntitySet="DoctorsPoleVisits" />
-          </AssociationSet>
+          <FunctionImport Name="GetCSV1" />
+          <FunctionImport Name="SP_GenerateMapSummary1" ReturnType="Collection(AppModel.SP_GenerateMapSummary1_Result)" />
+          <FunctionImport Name="SprDemad1" />
+          <FunctionImport Name="SprJob1" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -2619,6 +2639,20 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas4" FromRole="BERDataPeopleWiseQuantity" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_UserProfiles" FromRole="BERDataPeopleWiseQuantity" ToRole="UserProfile" />
         </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ContentId" />
+          </Key>
+          <Property Name="ContentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ContentType" Type="Int32" />
+          <Property Name="Blob" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="DetailData">
           <Key>
             <PropertyRef Name="Id" />
@@ -2813,6 +2847,16 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DistrictSummery_StandingDatas1" FromRole="DistrictSummery" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DistrictSummery_UserProfiles" FromRole="DistrictSummery" ToRole="UserProfile" />
         </EntityType>
+        <EntityType Name="DoctorPoleStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoctorPoleId" Type="Int32" Nullable="false" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DoctorsPole" Relationship="AppModel.FK_DoctorPoleStatuses_DoctorsPoles" FromRole="DoctorPoleStatus" ToRole="DoctorsPole" />
+          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorPoleStatuses_StandingDatas" FromRole="DoctorPoleStatus" ToRole="StandingData" />
+        </EntityType>
         <EntityType Name="DoctorsPole">
           <Key>
             <PropertyRef Name="Id" />
@@ -2867,19 +2911,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="CoMorbidities" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="StaffName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="LastFollowupDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorsPoles_StandingDatas" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DoctorsPoles_StandingDatas1" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DoctorsPoles_StandingDatas2" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DoctorsPoles_StandingDatas3" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_DoctorsPoles_StandingDatas4" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData5" Relationship="AppModel.FK_DoctorsPoles_StandingDatas5" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData6" Relationship="AppModel.FK_DoctorsPoles_StandingDatas6" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData7" Relationship="AppModel.FK_DoctorsPoles_StandingDatas8" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData8" Relationship="AppModel.FK_DoctorsPoles_StandingDatas9" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DoctorsPoles_UserProfiles" FromRole="DoctorsPole" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoles_UserProfiles1" FromRole="DoctorsPole" ToRole="UserProfile" />
-          <NavigationProperty Name="DoctorsPoleVisits" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorsPoleVisit" />
-          <NavigationProperty Name="DoctorPoleStatuses" Relationship="AppModel.FK_DoctorPoleStatuses_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorPoleStatus" />
           <Property Name="Designation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="SampleTakenDate1" Type="DateTime" Precision="0" />
           <Property Name="TestResultId1" Type="Int32" />
@@ -2887,8 +2918,21 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="SampleTakenDate2" Type="DateTime" Precision="0" />
           <Property Name="TestResultId2" Type="Int32" />
           <Property Name="TestResultDate2" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="StandingData21" Relationship="AppModel.FK_DoctorsPoles_StandingDatas10" FromRole="DoctorsPole" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData81" Relationship="AppModel.FK_DoctorsPoles_StandingDatas7" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="DoctorPoleStatuses" Relationship="AppModel.FK_DoctorPoleStatuses_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorPoleStatus" />
+          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorsPoles_StandingDatas" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DoctorsPoles_StandingDatas1" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DoctorsPoles_StandingDatas10" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DoctorsPoles_StandingDatas2" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_DoctorsPoles_StandingDatas3" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData5" Relationship="AppModel.FK_DoctorsPoles_StandingDatas4" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData6" Relationship="AppModel.FK_DoctorsPoles_StandingDatas5" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData7" Relationship="AppModel.FK_DoctorsPoles_StandingDatas6" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData8" Relationship="AppModel.FK_DoctorsPoles_StandingDatas7" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData9" Relationship="AppModel.FK_DoctorsPoles_StandingDatas8" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData10" Relationship="AppModel.FK_DoctorsPoles_StandingDatas9" FromRole="DoctorsPole" ToRole="StandingData" />
+          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DoctorsPoles_UserProfiles" FromRole="DoctorsPole" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoles_UserProfiles1" FromRole="DoctorsPole" ToRole="UserProfile" />
+          <NavigationProperty Name="DoctorsPoleVisits" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorsPoleVisit" />
         </EntityType>
         <EntityType Name="DoctorsPoleVisitDetail">
           <Key>
@@ -2935,22 +2979,22 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="LastUpdateById" Type="Int32" />
           <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
           <Property Name="CoMorbidities" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="DoctorsPole" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPoleVisit" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoleVisitDetails" Relationship="AppModel.FK_DoctorsPoleVisitDetails_DoctorsPoleVisits" FromRole="DoctorsPoleVisit" ToRole="DoctorsPoleVisitDetail" />
-          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas1" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas2" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas3" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
-          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
-          <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles1" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
           <Property Name="SampleTakenDate1" Type="DateTime" Precision="0" />
           <Property Name="TestResultId1" Type="Int32" />
           <Property Name="TestResultDate1" Type="DateTime" Precision="0" />
           <Property Name="SampleTakenDate2" Type="DateTime" Precision="0" />
           <Property Name="TestResultId2" Type="Int32" />
           <Property Name="TestResultDate2" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DoctorsPole" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPoleVisit" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoleVisitDetails" Relationship="AppModel.FK_DoctorsPoleVisitDetails_DoctorsPoleVisits" FromRole="DoctorsPoleVisit" ToRole="DoctorsPoleVisitDetail" />
+          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas1" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas2" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas3" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
           <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas4" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
           <NavigationProperty Name="StandingData5" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas5" FromRole="DoctorsPoleVisit" ToRole="StandingData" />
+          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles1" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -3102,20 +3146,25 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="DistrictQuestions1" Relationship="AppModel.FK_DistrictQuestions_StandingDatas1" FromRole="StandingData" ToRole="DistrictQuestion" />
           <NavigationProperty Name="DistrictSummeries" Relationship="AppModel.FK_DistrictSummery_StandingDatas" FromRole="StandingData" ToRole="DistrictSummery" />
           <NavigationProperty Name="DistrictSummeries1" Relationship="AppModel.FK_DistrictSummery_StandingDatas1" FromRole="StandingData" ToRole="DistrictSummery" />
+          <NavigationProperty Name="DoctorPoleStatuses" Relationship="AppModel.FK_DoctorPoleStatuses_StandingDatas" FromRole="StandingData" ToRole="DoctorPoleStatus" />
           <NavigationProperty Name="DoctorsPoles" Relationship="AppModel.FK_DoctorsPoles_StandingDatas" FromRole="StandingData" ToRole="DoctorsPole" />
           <NavigationProperty Name="DoctorsPoles1" Relationship="AppModel.FK_DoctorsPoles_StandingDatas1" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles2" Relationship="AppModel.FK_DoctorsPoles_StandingDatas2" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles3" Relationship="AppModel.FK_DoctorsPoles_StandingDatas3" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles4" Relationship="AppModel.FK_DoctorsPoles_StandingDatas4" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles5" Relationship="AppModel.FK_DoctorsPoles_StandingDatas5" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles6" Relationship="AppModel.FK_DoctorsPoles_StandingDatas6" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles7" Relationship="AppModel.FK_DoctorsPoles_StandingDatas8" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles8" Relationship="AppModel.FK_DoctorsPoles_StandingDatas9" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles2" Relationship="AppModel.FK_DoctorsPoles_StandingDatas10" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles3" Relationship="AppModel.FK_DoctorsPoles_StandingDatas2" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles4" Relationship="AppModel.FK_DoctorsPoles_StandingDatas3" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles5" Relationship="AppModel.FK_DoctorsPoles_StandingDatas4" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles6" Relationship="AppModel.FK_DoctorsPoles_StandingDatas5" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles7" Relationship="AppModel.FK_DoctorsPoles_StandingDatas6" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles8" Relationship="AppModel.FK_DoctorsPoles_StandingDatas7" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles9" Relationship="AppModel.FK_DoctorsPoles_StandingDatas8" FromRole="StandingData" ToRole="DoctorsPole" />
+          <NavigationProperty Name="DoctorsPoles10" Relationship="AppModel.FK_DoctorsPoles_StandingDatas9" FromRole="StandingData" ToRole="DoctorsPole" />
           <NavigationProperty Name="DoctorsPoleVisitDetails" Relationship="AppModel.FK_DoctorsPoleVisitDetails_StandingDatas" FromRole="StandingData" ToRole="DoctorsPoleVisitDetail" />
           <NavigationProperty Name="DoctorsPoleVisits" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
           <NavigationProperty Name="DoctorsPoleVisits1" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas1" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
           <NavigationProperty Name="DoctorsPoleVisits2" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas2" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
           <NavigationProperty Name="DoctorsPoleVisits3" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas3" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
+          <NavigationProperty Name="DoctorsPoleVisits4" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas4" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
+          <NavigationProperty Name="DoctorsPoleVisits5" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas5" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
           <NavigationProperty Name="HnppDatas" Relationship="AppModel.FK_HnppData_StandingDatas1" FromRole="StandingData" ToRole="HnppData" />
           <NavigationProperty Name="HnppDatas1" Relationship="AppModel.FK_HnppData_StandingDatas2" FromRole="StandingData" ToRole="HnppData" />
           <NavigationProperty Name="ProgramByUserProfiles" Relationship="AppModel.FK_ProgramByUserProfiles_StandingDatas" FromRole="StandingData" ToRole="ProgramByUserProfile" />
@@ -3124,11 +3173,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_StandingDatas" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas1" Relationship="AppModel.FK_SummerizedData_StandingDatas1" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas2" Relationship="AppModel.FK_SummerizedData_StandingDatas2" FromRole="StandingData" ToRole="SummerizedData" />
-          <NavigationProperty Name="DoctorPoleStatuses" Relationship="AppModel.FK_DoctorPoleStatuses_StandingDatas" FromRole="StandingData" ToRole="DoctorPoleStatus" />
-          <NavigationProperty Name="DoctorsPoles21" Relationship="AppModel.FK_DoctorsPoles_StandingDatas10" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoles81" Relationship="AppModel.FK_DoctorsPoles_StandingDatas7" FromRole="StandingData" ToRole="DoctorsPole" />
-          <NavigationProperty Name="DoctorsPoleVisits4" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas4" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
-          <NavigationProperty Name="DoctorsPoleVisits5" Relationship="AppModel.FK_DoctorsPoleVisits_StandingDatas5" FromRole="StandingData" ToRole="DoctorsPoleVisit" />
         </EntityType>
         <EntityType Name="SummerizedData">
           <Key>
@@ -3147,6 +3191,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_SummerizedData_StandingDatas1" FromRole="SummerizedData" ToRole="StandingData" />
           <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_SummerizedData_StandingDatas2" FromRole="SummerizedData" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_SummerizedData_UserProfiles" FromRole="SummerizedData" ToRole="UserProfile" />
+        </EntityType>
+        <EntityType Name="UserAccessLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Module" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccessTime" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="UserLoginLog">
           <Key>
@@ -3688,6 +3741,30 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_DoctorPoleStatuses_DoctorsPoles">
+          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="1" />
+          <End Type="AppModel.DoctorPoleStatus" Role="DoctorPoleStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DoctorsPole">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorPoleStatus">
+              <PropertyRef Name="DoctorPoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorPoleStatuses_StandingDatas">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.DoctorPoleStatus" Role="DoctorPoleStatus" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorPoleStatus">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_DoctorsPoles_StandingDatas">
           <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
           <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="*" />
@@ -3709,6 +3786,18 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Principal>
             <Dependent Role="DoctorsPole">
               <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorsPoles_StandingDatas10">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
+          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorsPole">
+              <PropertyRef Name="TestResultId2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3769,6 +3858,18 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Principal>
             <Dependent Role="DoctorsPole">
               <PropertyRef Name="CoMorbidityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorsPoles_StandingDatas7">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
+          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorsPole">
+              <PropertyRef Name="TestResultId1" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3901,6 +4002,30 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Principal>
             <Dependent Role="DoctorsPoleVisit">
               <PropertyRef Name="AdmittedTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorsPoleVisits_StandingDatas4">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
+          <End Type="AppModel.DoctorsPoleVisit" Role="DoctorsPoleVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorsPoleVisit">
+              <PropertyRef Name="TestResultId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DoctorsPoleVisits_StandingDatas5">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
+          <End Type="AppModel.DoctorsPoleVisit" Role="DoctorsPoleVisit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DoctorsPoleVisit">
+              <PropertyRef Name="TestResultId2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4108,97 +4233,18 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="DoctorPoleStatus">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="DoctorPoleId" Type="Int32" Nullable="false" />
-          <Property Name="StatusId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DoctorsPole" Relationship="AppModel.FK_DoctorPoleStatuses_DoctorsPoles" FromRole="DoctorPoleStatus" ToRole="DoctorsPole" />
-          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DoctorPoleStatuses_StandingDatas" FromRole="DoctorPoleStatus" ToRole="StandingData" />
-        </EntityType>
-        <Association Name="FK_DoctorPoleStatuses_DoctorsPoles">
-          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="1" />
-          <End Type="AppModel.DoctorPoleStatus" Role="DoctorPoleStatus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DoctorsPole">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorPoleStatus">
-              <PropertyRef Name="DoctorPoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoctorPoleStatuses_StandingDatas">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.DoctorPoleStatus" Role="DoctorPoleStatus" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorPoleStatus">
-              <PropertyRef Name="StatusId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="UserAccessLog">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Module" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="AccessTime" Type="DateTime" Nullable="false" Precision="3" />
-        </EntityType>
-        <Association Name="FK_DoctorsPoles_StandingDatas10">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
-          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorsPole">
-              <PropertyRef Name="TestResultId2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoctorsPoles_StandingDatas7">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
-          <End Type="AppModel.DoctorsPole" Role="DoctorsPole" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorsPole">
-              <PropertyRef Name="TestResultId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoctorsPoleVisits_StandingDatas4">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
-          <End Type="AppModel.DoctorsPoleVisit" Role="DoctorsPoleVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorsPoleVisit">
-              <PropertyRef Name="TestResultId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DoctorsPoleVisits_StandingDatas5">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="0..1" />
-          <End Type="AppModel.DoctorsPoleVisit" Role="DoctorsPoleVisit" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="DoctorsPoleVisit">
-              <PropertyRef Name="TestResultId2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <ComplexType Name="SP_GenerateMapSummary1_Result">
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="ProgramId" Nullable="true" />
+          <Property Type="Int32" Name="DivisionId" Nullable="true" />
+          <Property Type="Int32" Name="DistrictId" Nullable="true" />
+          <Property Type="Int32" Name="SummerizedData_ReachCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_TotalCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_MaleCount" Nullable="true" />
+          <Property Type="Int32" Name="DetailData_FemaleCount" Nullable="true" />
+          <Property Type="Decimal" Name="DetailData_MalePercent" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="DetailData_FemalePercent" Nullable="true" Precision="18" Scale="0" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4217,47 +4263,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="GetCSV" FunctionName="AppModel.Store.GetCSV" />
-          <FunctionImportMapping FunctionImportName="SP_GenerateMapSummary" FunctionName="AppModel.Store.SP_GenerateMapSummary">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="AppModel.SP_GenerateMapSummary_Result">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="SummerizedData_ReachCount" ColumnName="SummerizedData_ReachCount" />
-                <ScalarProperty Name="DetailData_TotalCount" ColumnName="DetailData_TotalCount" />
-                <ScalarProperty Name="DetailData_MaleCount" ColumnName="DetailData_MaleCount" />
-                <ScalarProperty Name="DetailData_FemaleCount" ColumnName="DetailData_FemaleCount" />
-                <ScalarProperty Name="DetailData_MalePercent" ColumnName="DetailData_MalePercent" />
-                <ScalarProperty Name="DetailData_FemalePercent" ColumnName="DetailData_FemalePercent" />
-                <ScalarProperty Name="PeopleIndex" ColumnName="PeopleIndex" />
-                <ScalarProperty Name="HealthIndex" ColumnName="HealthIndex" />
-                <ScalarProperty Name="SupportIndex" ColumnName="SupportIndex" />
-                <ScalarProperty Name="Population" ColumnName="Population" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="HospitalCount" ColumnName="HospitalCount" />
-                <ScalarProperty Name="BedCount" ColumnName="BedCount" />
-                <ScalarProperty Name="TotalQuarantine" ColumnName="TotalQuarantine" />
-                <ScalarProperty Name="TotalReleased" ColumnName="TotalReleased" />
-                <ScalarProperty Name="CurrentQuarantine" ColumnName="CurrentQuarantine" />
-                <ScalarProperty Name="TotalDoTestOn" ColumnName="TotalDoTestOn" />
-                <ScalarProperty Name="TotalDeath" ColumnName="TotalDeath" />
-                <ScalarProperty Name="PlannedRice" ColumnName="PlannedRice" />
-                <ScalarProperty Name="PlannedPotato" ColumnName="PlannedPotato" />
-                <ScalarProperty Name="PlannedDal" ColumnName="PlannedDal" />
-                <ScalarProperty Name="PlannedMoney" ColumnName="PlannedMoney" />
-                <ScalarProperty Name="TotalRice" ColumnName="TotalRice" />
-                <ScalarProperty Name="TotalDal" ColumnName="TotalDal" />
-                <ScalarProperty Name="TotalPotato" ColumnName="TotalPotato" />
-                <ScalarProperty Name="TotalMoney" ColumnName="TotalMoney" />
-                <ScalarProperty Name="TotalReliefFamily" ColumnName="TotalReliefFamily" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="SprDemad" FunctionName="AppModel.Store.SprDemad" />
-          <FunctionImportMapping FunctionImportName="SprJob" FunctionName="AppModel.Store.SprJob" />
           <EntitySetMapping Name="BEPDatas">
             <EntityTypeMapping TypeName="AppModel.BEPData">
               <MappingFragment StoreEntitySet="BEPData">
@@ -4332,6 +4337,21 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="BEPDataId" ColumnName="BEPDataId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="AppModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
+                <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
+                <ScalarProperty Name="Blob" ColumnName="Blob" />
+                <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContentId" ColumnName="ContentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -4512,6 +4532,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="HospitalCount" ColumnName="HospitalCount" />
                 <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
                 <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoctorPoleStatuses">
+            <EntityTypeMapping TypeName="AppModel.DoctorPoleStatus">
+              <MappingFragment StoreEntitySet="DoctorPoleStatuses">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="DoctorPoleId" ColumnName="DoctorPoleId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -4761,6 +4790,16 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="UserAccessLogs">
+            <EntityTypeMapping TypeName="AppModel.UserAccessLog">
+              <MappingFragment StoreEntitySet="UserAccessLogs">
+                <ScalarProperty Name="AccessTime" ColumnName="AccessTime" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Module" ColumnName="Module" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UserLoginLogs">
             <EntityTypeMapping TypeName="AppModel.UserLoginLog">
               <MappingFragment StoreEntitySet="UserLoginLog">
@@ -4795,25 +4834,25 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DoctorPoleStatuses">
-            <EntityTypeMapping TypeName="AppModel.DoctorPoleStatus">
-              <MappingFragment StoreEntitySet="DoctorPoleStatuses">
-                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
-                <ScalarProperty Name="DoctorPoleId" ColumnName="DoctorPoleId" />
+          <FunctionImportMapping FunctionImportName="GetCSV1" FunctionName="AppModel.Store.GetCSV" />
+          <FunctionImportMapping FunctionImportName="SP_GenerateMapSummary1" FunctionName="AppModel.Store.SP_GenerateMapSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="AppModel.SP_GenerateMapSummary1_Result">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserAccessLogs">
-            <EntityTypeMapping TypeName="AppModel.UserAccessLog">
-              <MappingFragment StoreEntitySet="UserAccessLogs">
-                <ScalarProperty Name="AccessTime" ColumnName="AccessTime" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Module" ColumnName="Module" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="SummerizedData_ReachCount" ColumnName="SummerizedData_ReachCount" />
+                <ScalarProperty Name="DetailData_TotalCount" ColumnName="DetailData_TotalCount" />
+                <ScalarProperty Name="DetailData_MaleCount" ColumnName="DetailData_MaleCount" />
+                <ScalarProperty Name="DetailData_FemaleCount" ColumnName="DetailData_FemaleCount" />
+                <ScalarProperty Name="DetailData_MalePercent" ColumnName="DetailData_MalePercent" />
+                <ScalarProperty Name="DetailData_FemalePercent" ColumnName="DetailData_FemalePercent" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SprDemad1" FunctionName="AppModel.Store.SprDemad" />
+          <FunctionImportMapping FunctionImportName="SprJob1" FunctionName="AppModel.Store.SprJob" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

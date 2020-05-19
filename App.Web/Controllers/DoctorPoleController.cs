@@ -409,16 +409,16 @@ namespace AppProj.Web.Controllers
 
             var obj = (from c in dataList
                        select new object[] {c.StandingData1.Name
-                       ,c.StandingData2.Name
                        ,c.StandingData3.Name
+                       ,c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
                        , c.StandingData.Name
-                       , c.StandingData4.Name
-                       , c.StandingData5==null?"":c.StandingData5.Name
+                       , c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData5.Name
                        ,c.UserProfile.UserName
                 //,new GridButtonModel[]
                 //    {
@@ -739,16 +739,16 @@ namespace AppProj.Web.Controllers
 
             var obj = (from c in dataList
                        select new object[] {c.StandingData1.Name
-                       ,c.StandingData2.Name
                        ,c.StandingData3.Name
+                       ,c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
                        , c.StandingData.Name
-                       , c.StandingData4.Name
-                       , c.StandingData5==null?"":c.StandingData5.Name
+                       , c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData5.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {
@@ -854,16 +854,16 @@ namespace AppProj.Web.Controllers
             
             var obj = (from c in dataList
                        select new object[] {c.StandingData1.Name
-                       ,c.StandingData2.Name
                        ,c.StandingData3.Name
+                       ,c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
                        , c.StandingData.Name
-                       , c.StandingData4.Name
-                       , c.StandingData5==null?"":c.StandingData5.Name
+                       , c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData5.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {

@@ -57,7 +57,7 @@ namespace AppProj.Service.ServicesImpl
                 )
                 .OrderBy(c => c.StandingData.Name)
                 .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData2.Name)
+                .ThenBy(c => c.StandingData3.Name)
                 .ThenBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
@@ -93,7 +93,7 @@ namespace AppProj.Service.ServicesImpl
                     )
                     .OrderBy(c => c.StandingData.Name)
                     .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData2.Name)
+                    .ThenBy(c => c.StandingData3.Name)
                     .ThenBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
@@ -117,7 +117,7 @@ namespace AppProj.Service.ServicesImpl
                     )
                     .OrderBy(c => c.StandingData.Name)
                     .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData2.Name)
+                    .ThenBy(c => c.StandingData3.Name)
                     .ThenBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
@@ -145,7 +145,7 @@ namespace AppProj.Service.ServicesImpl
                 )
                 .OrderBy(c => c.StandingData.Name)
                 .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData2.Name)
+                .ThenBy(c => c.StandingData3.Name)
                 .ThenBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 

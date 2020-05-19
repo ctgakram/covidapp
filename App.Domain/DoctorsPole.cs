@@ -16,8 +16,8 @@ namespace AppProj.Domain
     {
         public DoctorsPole()
         {
-            this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
             this.DoctorPoleStatuses = new HashSet<DoctorPoleStatus>();
+            this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
         }
     
         public int Id { get; set; }
@@ -78,6 +78,7 @@ namespace AppProj.Domain
         public Nullable<int> TestResultId2 { get; set; }
         public Nullable<System.DateTime> TestResultDate2 { get; set; }
     
+        public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
         public virtual StandingData StandingData2 { get; set; }
@@ -87,11 +88,10 @@ namespace AppProj.Domain
         public virtual StandingData StandingData6 { get; set; }
         public virtual StandingData StandingData7 { get; set; }
         public virtual StandingData StandingData8 { get; set; }
+        public virtual StandingData StandingData9 { get; set; }
+        public virtual StandingData StandingData10 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual UserProfile UserProfile1 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
-        public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
-        public virtual StandingData StandingData21 { get; set; }
-        public virtual StandingData StandingData81 { get; set; }
     }
 }

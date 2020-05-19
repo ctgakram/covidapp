@@ -62,9 +62,9 @@ namespace AppProj.Domain
         public virtual StandingData StandingData1 { get; set; }
         public virtual StandingData StandingData2 { get; set; }
         public virtual StandingData StandingData3 { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
-        public virtual UserProfile UserProfile1 { get; set; }
         public virtual StandingData StandingData4 { get; set; }
         public virtual StandingData StandingData5 { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual UserProfile UserProfile1 { get; set; }
     }
 }

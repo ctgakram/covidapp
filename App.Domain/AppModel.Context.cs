@@ -31,12 +31,14 @@ namespace AppProj.Domain
         public DbSet<BEPData> BEPDatas { get; set; }
         public DbSet<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public DbSet<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
+        public DbSet<Content> Contents { get; set; }
         public DbSet<DetailData> DetailDatas { get; set; }
         public DbSet<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
         public DbSet<DistrictData> DistrictDatas { get; set; }
         public DbSet<DistrictPatient> DistrictPatients { get; set; }
         public DbSet<DistrictQuestion> DistrictQuestions { get; set; }
         public DbSet<DistrictSummery> DistrictSummeries { get; set; }
+        public DbSet<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
         public DbSet<DoctorsPole> DoctorsPoles { get; set; }
         public DbSet<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
         public DbSet<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
@@ -50,11 +52,10 @@ namespace AppProj.Domain
         public DbSet<StandingDataPcRelation> StandingDataPcRelations { get; set; }
         public DbSet<StandingData> StandingDatas { get; set; }
         public DbSet<SummerizedData> SummerizedDatas { get; set; }
+        public DbSet<UserAccessLog> UserAccessLogs { get; set; }
         public DbSet<UserLoginLog> UserLoginLogs { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
-        public DbSet<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
-        public DbSet<UserAccessLog> UserAccessLogs { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)
@@ -452,6 +453,26 @@ namespace AppProj.Domain
         public virtual int SprJob()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SprJob");
+        }
+    
+        public virtual int GetCSV1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("GetCSV1");
+        }
+    
+        public virtual ObjectResult<SP_GenerateMapSummary1_Result> SP_GenerateMapSummary1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GenerateMapSummary1_Result>("SP_GenerateMapSummary1");
+        }
+    
+        public virtual int SprDemad1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SprDemad1");
+        }
+    
+        public virtual int SprJob1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SprJob1");
         }
     }
 }
