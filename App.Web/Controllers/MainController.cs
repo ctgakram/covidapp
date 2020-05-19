@@ -19,16 +19,19 @@ namespace AppProj.Web.Controllers
         readonly ISummerizedDataService sumDataService;
         readonly IDetailDataService detDataService;
         readonly IDistrictDataService disDataService;
+        private readonly IReportService _reportService;
         readonly IHnppDataService hnppDataService;
         readonly IBepDataService bepDataService;
 
         public MainController(IDetailDataService detDataService, ISummerizedDataService sumDataService
             , IStandingDataService standingDataService, IDistrictDataService disDataService
+            , IReportService reportService
             , IHnppDataService hnppDataService, IBepDataService bepDataService
             )
         {
             this.standingDataService = standingDataService;
             this.disDataService = disDataService;
+            this._reportService = reportService;
             this.sumDataService = sumDataService;
             this.detDataService = detDataService;
             this.hnppDataService = hnppDataService;
@@ -261,12 +264,17 @@ namespace AppProj.Web.Controllers
                 .Select(c => new { c.Name })
                 .ToList();
 
-            var data2 = standingDataService.GetByType(StandingDataTypes.TreeMessage)
+            //var data2 = standingDataService.GetByType(StandingDataTypes.TreeMessage)
+            //    .Where(c => c.IsActive)
+            //    .OrderByDescending(c => c.IntValue)
+            //    .Select(c => new { c.Name })
+            //    .ToList();
+            var data2 = _reportService.GetReport().SelectedReports
                 .Where(c => c.IsActive)
-                .OrderByDescending(c => c.IntValue)
-                .Select(c => new { c.Name })
+                .OrderByDescending(c => c.CreatedOn)
+                .Take(5)
+                .Select(c => new { c.Name, c.Blob })
                 .ToList();
-
             var obj = new
             {
                 act = data
@@ -469,7 +477,7 @@ namespace AppProj.Web.Controllers
         public string formatdistrict(string p_districts)
         {
             var output = string.Empty;
-            output = p_districts.ToLower().Trim().Replace("cox's bazar", "coxs_bazar").Replace("chapai nababganj", "chapai_nababganj").Replace(" ","");
+            output = p_districts.ToLower().Trim().Replace("cox's bazar", "coxs_bazar").Replace("chapai nababganj", "chapai_nababganj").Replace(" ", "");
             return output;
 
         }

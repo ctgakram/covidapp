@@ -26,18 +26,21 @@ namespace AppProj.Web.Controllers
         IUserLoginLogService userLoginLogService;
         IRoleService roleService;
         IRoleFeatureService roleFeatureService;
+        private readonly IReportService _reportService;
         readonly IUnitOfWork unitOfWork;
 
         public HomeController(IUserProfileService userProfileService
             , IUserLoginLogService userLoginLogService
             , IRoleService roleService
             , IRoleFeatureService roleFeatureService
+            ,IReportService reportService
             , IUnitOfWork unitOfWork)
         {
             this.userProfileService = userProfileService;
             this.userLoginLogService = userLoginLogService;
             this.roleService = roleService;
             this.roleFeatureService = roleFeatureService;
+            this._reportService = reportService;
             this.unitOfWork = unitOfWork;
         }
 
@@ -56,6 +59,7 @@ namespace AppProj.Web.Controllers
             //return Redirect("~/Main/Dashboard");
             //860538 source, 860539 dis, 860540 upz
 
+            //var items = _reportService.GetReport();
 
             if (authCookie != null)
             {
