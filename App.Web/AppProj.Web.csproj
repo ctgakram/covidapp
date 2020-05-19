@@ -249,7 +249,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BepSubmissionController.cs" />
     <Compile Include="Controllers\DoctorPoleController.cs" />
-    <Compile Include="Controllers\DoctorPoleDashboardController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DistrictSubmissionController.cs" />

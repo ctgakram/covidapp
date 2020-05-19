@@ -151,9 +151,14 @@ namespace AppProj.Web.Controllers
         }
 
         [Authorize]
-        public JsonResult HeartBeat()
+        [HttpPost]
+        public void HeartBeat()
         {
-            return Json(true, JsonRequestBehavior.DenyGet);
+            //ActionExecutingContext filterContext = new ActionExecutingContext();
+
+            HttpContext.Session.Timeout = 20;
+            //return Json(true, JsonRequestBehavior.DenyGet);
+            //filterContext.Result = new RedirectResult("~/Home/Logout");
         }
 
         public ActionResult Error()

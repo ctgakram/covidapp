@@ -70,6 +70,13 @@ namespace AppProj.Domain
         public string CoMorbidities { get; set; }
         public string StaffName { get; set; }
         public Nullable<System.DateTime> LastFollowupDate { get; set; }
+        public string Designation { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate1 { get; set; }
+        public Nullable<int> TestResultId1 { get; set; }
+        public Nullable<System.DateTime> TestResultDate1 { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate2 { get; set; }
+        public Nullable<int> TestResultId2 { get; set; }
+        public Nullable<System.DateTime> TestResultDate2 { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
@@ -84,5 +91,7 @@ namespace AppProj.Domain
         public virtual UserProfile UserProfile1 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
         public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
+        public virtual StandingData StandingData21 { get; set; }
+        public virtual StandingData StandingData81 { get; set; }
     }
 }

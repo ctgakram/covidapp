@@ -164,6 +164,9 @@
     <Compile Include="SummerizedData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserAccessLog.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserLoginLog.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>

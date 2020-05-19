@@ -14,6 +14,7 @@ namespace AppProj.Web.Helpers
     {
         public string pin { get; set; }
         public string StaffName { get; set; }
+        public string Designationname { get; set; }
         public string EmailID { get; set; }
         public string MobileNo { get; set; }
         public Nullable<DateTime> dateofbirth { get; set; }

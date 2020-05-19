@@ -1,6 +1,7 @@
 ﻿using AppProj.Domain;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -10,6 +11,9 @@ namespace AppProj.Web.Models
     public class DoctorsPoleShortModel
     {
         public string PIN_ { get; set; }
+        
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{5})$",
+                   ErrorMessage = "Wrong mobile number has given")]
         public string MobileNo_ { get; set; }
     }
     public class DoctorsPoleModel
@@ -18,7 +22,11 @@ namespace AppProj.Web.Models
         public string PIN { get; set; }
         public string EntryByDept { get; set; }
         public Nullable<System.DateTime> FirstDoctorCallTime { get; set; }
+
+        [Required(ErrorMessage = "Required")]
         public string Name { get; set; }
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{5})$",
+                   ErrorMessage = "Wrong mobile number has given")]
         public string MobileNo { get; set; }
         public Nullable<System.DateTime> Dob { get; set; }
         public Nullable<int> GenderId { get; set; }
@@ -55,14 +63,22 @@ namespace AppProj.Web.Models
         public Nullable<System.DateTime> AdmissionDate { get; set; }
         public Nullable<System.DateTime> DischargeDate { get; set; }
         public string AlternatePhoneNo { get; set; }
-        public string AlternateName { get; set; }
-        public bool Is3rdDayFollowup { get; set; }
-        public bool Is7thDayFollowup { get; set; }
-        public bool Is14thDayFollowup { get; set; }
+        public string AlternateName { get; set; }        
         public int EntryById { get; set; }
         public System.DateTime EntryTime { get; set; }
-        public Nullable<int> Age { get; set; }
+
+        [Required(ErrorMessage = "Required")]
+        [Range(0, 120, ErrorMessage = "(age within 0 to 120)")]
+        public int Age { get; set; }
+
         public string StaffName { get; set; }
+        public string Designation { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate1 { get; set; }
+        public Nullable<int> TestResultId1 { get; set; }
+        public Nullable<System.DateTime> TestResultDate1 { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate2 { get; set; }
+        public Nullable<int> TestResultId2 { get; set; }
+        public Nullable<System.DateTime> TestResultDate2 { get; set; }
 
         public string ProgramName { get; set; }
         public string DivisionName { get; set; }
@@ -119,8 +135,16 @@ namespace AppProj.Web.Models
         public System.DateTime EntryTime { get; set; }
         public Nullable<int> LastUpdateById { get; set; }
         public Nullable<System.DateTime> LastUpdateTime { get; set; }
-        
-        public int FollowupAfterDays { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate1 { get; set; }
+        public Nullable<int> TestResultId1 { get; set; }
+        public Nullable<System.DateTime> TestResultDate1 { get; set; }
+        public Nullable<System.DateTime> SampleTakenDate2 { get; set; }
+        public Nullable<int> TestResultId2 { get; set; }
+        public Nullable<System.DateTime> TestResultDate2 { get; set; }
+
+        [Required]
+        public Nullable<int> FollowupAfterDays { get; set; }
+        public List<SelectListItem> FollowupAfterDaysList { get; set; }
 
         public IEnumerable<SelectListItem> AdminTypeList { get; set; }
         public IEnumerable<SelectListItem> TestResultList { get; set; }

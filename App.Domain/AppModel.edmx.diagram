@@ -109,6 +109,11 @@
         <EntityTypeShape EntityType="AppModel.DoctorPoleStatus" Width="1.5" PointX="14.25" PointY="51.625" />
         <AssociationConnector Association="AppModel.FK_DoctorPoleStatuses_DoctorsPoles" />
         <AssociationConnector Association="AppModel.FK_DoctorPoleStatuses_StandingDatas" />
+        <EntityTypeShape EntityType="AppModel.UserAccessLog" Width="1.5" PointX="5.375" PointY="0.75" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas10" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas7" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_StandingDatas4" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_StandingDatas5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

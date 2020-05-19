@@ -35,9 +35,9 @@ namespace AppProj.Service.ServicesImpl
             this.unitOfWork = unitOfWork;
         }
 
-        public IEnumerable<DoctorsPole> GetPersonal(string pin)
+        public IEnumerable<DoctorsPole> GetPersonal(string pinOrMobile)
         {
-            return repository.GetMany(c => c.PIN == pin);
+            return repository.GetMany(c => c.PIN == pinOrMobile || c.MobileNo == pinOrMobile);
         }
 
         public IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, string byDept, out int count)

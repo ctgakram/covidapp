@@ -174,10 +174,10 @@
             <th>
                 Data Entered by
             </th>
-            @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
+            @*@if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
             {
                 <th></th>
-            }
+            }*@
         </tr>
     </thead>
 </table>
@@ -243,7 +243,7 @@
                 'ToDate': 'ToDate'
             }
             var btns = {
-                12: false //column number : is button group
+                //12: false //column number : is button group
             };
 
             /*data grid initializer*/

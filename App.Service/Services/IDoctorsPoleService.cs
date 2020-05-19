@@ -10,7 +10,7 @@ namespace AppProj.Service.Services
 {
     public interface IDoctorsPoleService
     {
-        IEnumerable<DoctorsPole> GetPersonal(string pin);
+        IEnumerable<DoctorsPole> GetPersonal(string pinOrMobile);
         IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, string byDept , out int count);
         IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, string dateType, List<int> statusTypeIds, string txt, int skip, int take, out int count);
 

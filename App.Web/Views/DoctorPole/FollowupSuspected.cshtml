@@ -186,15 +186,8 @@
                 </th>
                 <th>
                     Next Followup
-                    <select id="FollowupAfterDays" name="FollowupAfterDays">
-                        <option value="0">Today</option>
-                        <option value="3">After 3 Days</option>
-                        <option value="5">After 5 Days</option>
-                        <option value="7">After 7 Days</option>
-                        <option value="10">After 10 Days</option>
-                        <option value="12">After 12 Days</option>
-                        <option value="14">After 14 Days</option>
-                    </select>
+                    @Html.DropDownListFor(model => model.FollowupAfterDays, Model.FollowupAfterDaysList, "Please select next follow up days")
+                    @Html.ValidationMessageFor(model => model.FollowupAfterDays)
                 </th>
                 <th>
                     <p> &nbsp; </p>

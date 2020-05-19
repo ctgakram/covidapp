@@ -70,6 +70,7 @@ namespace AppProj.Web.Controllers
         public ActionResult CreateDetail(DoctorsPoleShortModel mod)
         {
             DoctorsPoleModel model = new DoctorsPoleModel();
+            string srcTxt = "";
 
             model.PIN = ("" + mod.PIN_).Trim();
             model.MobileNo = ("" + mod.MobileNo_).Trim();
@@ -77,13 +78,15 @@ namespace AppProj.Web.Controllers
             IEnumerable<StaffProfile> dataObjects = null;
             StaffProfile staff = null;
 
-            if (model.PIN != "")
+            if (!String.IsNullOrEmpty(model.PIN))
             {
                 dataObjects = ApiCaller.GetEmployeeByPIN(model.PIN);
+                srcTxt = model.PIN;
             }
-            else if (model.MobileNo != "")
+            else if (!String.IsNullOrEmpty(model.MobileNo))
             {
                 dataObjects = ApiCaller.GetEmployeeByMobile(model.MobileNo);
+                srcTxt = model.MobileNo;
             }
 
 
@@ -110,6 +113,8 @@ namespace AppProj.Web.Controllers
                 var gen = standingDataService.GetGender().Where(r => r.IsActive);
                 model.GenderList = gen.ToSelectList(null, "Id", "Name");
 
+                model.ExistingData = service.GetPersonal(srcTxt).ToList();
+
                 model.IsFound = false;
             }
             else
@@ -117,6 +122,7 @@ namespace AppProj.Web.Controllers
                 model.Message = "";
                 model.PIN = staff.pin;
                 model.IsFound = true;
+                model.Designation = staff.Designationname;
 
                 model.ExistingData = service.GetPersonal(staff.pin).ToList();
 
@@ -414,12 +420,12 @@ namespace AppProj.Web.Controllers
                        , c.StandingData4.Name
                        , c.StandingData5==null?"":c.StandingData5.Name
                        ,c.UserProfile.UserName
-                ,new GridButtonModel[]
-                    {
-                         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\""
-                         , V = (visible && c.FirstDoctorCallTime==null)}
+                //,new GridButtonModel[]
+                //    {
+                //         //new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\""
+                //         //, V = (visible && c.FirstDoctorCallTime==null)}
 
-                    }
+                //    }
             }).ToArray();
 
 
@@ -477,6 +483,18 @@ namespace AppProj.Web.Controllers
 
             model.DoctorPoleId = id;
 
+            List<SelectListItem> lst = new List<SelectListItem>(); 
+            lst.Add(new SelectListItem { Text = "After 1 day", Value = "1" });
+            lst.Add(new SelectListItem { Text = "After 3 days", Value = "3" });
+            lst.Add(new SelectListItem { Text = "After 5 days", Value = "5" });
+            lst.Add(new SelectListItem { Text = "After 7 days", Value = "7" });
+            lst.Add(new SelectListItem { Text = "After 9 days", Value = "9" });
+            lst.Add(new SelectListItem { Text = "After 12 days", Value = "12" });
+            lst.Add(new SelectListItem { Text = "After 14 days", Value = "14" });
+            lst.Add(new SelectListItem { Text = "Today", Value = "0" });
+            lst.Add(new SelectListItem { Text = "No need any followup", Value = "-1" });
+            model.FollowupAfterDaysList = lst;
+
             return PartialView(model);
         }
 
@@ -494,7 +512,7 @@ namespace AppProj.Web.Controllers
             {
                 model.FollowupAfterDays = 36500;
             }
-            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays);
+            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays??0);
 
             ModelCopier.CopyModel(model, entity);
 
@@ -585,6 +603,18 @@ namespace AppProj.Web.Controllers
 
             model.DoctorPoleId = id;
 
+            List<SelectListItem> lst = new List<SelectListItem>();
+            lst.Add(new SelectListItem { Text = "Today", Value = "0" });
+            lst.Add(new SelectListItem { Text = "After 1 day", Value = "1" });
+            lst.Add(new SelectListItem { Text = "After 3 days", Value = "3" });
+            lst.Add(new SelectListItem { Text = "After 5 days", Value = "5" });
+            lst.Add(new SelectListItem { Text = "After 7 days", Value = "7" });
+            lst.Add(new SelectListItem { Text = "After 9 days", Value = "9" });
+            lst.Add(new SelectListItem { Text = "After 12 days", Value = "12" });
+            lst.Add(new SelectListItem { Text = "After 14 days", Value = "14" });
+            lst.Add(new SelectListItem { Text = "No Need to followup", Value = "-1" });
+            model.FollowupAfterDaysList = lst;
+
             return PartialView(model);
         }
 
@@ -601,7 +631,7 @@ namespace AppProj.Web.Controllers
                 model.FollowupAfterDays = 36500;
             }
 
-            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays);
+            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays??0);
 
             ModelCopier.CopyModel(model, entity);
 

@@ -54,6 +54,7 @@ namespace AppProj.Domain
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
         public DbSet<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
+        public DbSet<UserAccessLog> UserAccessLogs { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)

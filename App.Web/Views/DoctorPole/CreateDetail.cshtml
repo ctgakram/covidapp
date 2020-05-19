@@ -33,6 +33,9 @@
                             Program
                             @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList)
                             @Html.ValidationMessageFor(model => model.ProgramId)
+                            Designation
+                            @Html.TextBoxFor(model => model.Designation)
+                            @Html.ValidationMessageFor(model => model.Designation)
                             Division
                             @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList)
                             @Html.ValidationMessageFor(model => model.DivisionId)
@@ -80,7 +83,10 @@
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td>
+                            @Ajax.ActionLink("<< Back ", "Create", "DoctorPole", ajaxOpt, new { @class = "" })
+                        </td>
+                        <td>
                             <p>
                                 <input id="save-submit" type="submit" value="Save New Case" class="btn btn-primary" />
                             </p>
