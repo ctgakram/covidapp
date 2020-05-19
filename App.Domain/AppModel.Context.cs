@@ -31,6 +31,7 @@ namespace AppProj.Domain
         public DbSet<BEPData> BEPDatas { get; set; }
         public DbSet<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public DbSet<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
+        public DbSet<Content> Contents { get; set; }
         public DbSet<DetailData> DetailDatas { get; set; }
         public DbSet<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
         public DbSet<DistrictData> DistrictDatas { get; set; }

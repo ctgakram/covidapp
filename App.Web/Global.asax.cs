@@ -74,6 +74,7 @@ namespace AppProj.Web
                 .RegisterType<IDistrictQuestionRepository, DistrictQuestionRepository>(new HttpContextLifetimeManager<IDistrictQuestionRepository>())
                 .RegisterType<IStandingDataPcRelationRepository, StandingDataPcRelationRepository>(new HttpContextLifetimeManager<IStandingDataPcRelationRepository>())
                 .RegisterType<IBERDataPeopleWiseQuantityRepository, BERDataPeopleWiseQuantityRepository>(new HttpContextLifetimeManager<IBERDataPeopleWiseQuantityRepository>())
+                .RegisterType<IReportRepository, ReportRepository>(new HttpContextLifetimeManager<IReportRepository>())
                 .RegisterType<IMapSummaryRepository, MapSummaryRepository>(new HttpContextLifetimeManager<IMapSummaryRepository>())
 
 
@@ -92,6 +93,10 @@ namespace AppProj.Web
                 .RegisterType<IBepDataService, BepDataService>(new HttpContextLifetimeManager<IBepDataService>())
                 .RegisterType<IProgramByUserProfileService, ProgramByUserProfileService>(new HttpContextLifetimeManager<IProgramByUserProfileService>())
                 .RegisterType<IDistrictQuestionService, DistrictQuestionService>(new HttpContextLifetimeManager<IDistrictQuestionService>())
+
+                .RegisterType<IReportService, ReportService>(new HttpContextLifetimeManager<IReportService>())
+                
+
                 .RegisterType<IMapSummaryService, MapSummaryService>(new HttpContextLifetimeManager<IMapSummaryService>())
 
             ;
