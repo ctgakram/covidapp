@@ -3,8 +3,7 @@ var jsonTopMenuData;
 $(document).ready(function () {
     LoadMenuTopBRAC("../main/MenuData");
 });
-function LoadMenuTopBRAC(url)
-{
+function LoadMenuTopBRAC(url) {
     var jsonTopMenuText = $.ajax({
         url: url,
         dataType: "json",
@@ -33,3 +32,9 @@ function LoadMenuTopBRAC(url)
 
 }
 
+$(document).ready(function () {
+    $(".toggle-trigger").on("click", function () {
+        $(".dt-carret").toggleClass("active");
+        $(".tnav").slideToggle();
+    });
+});

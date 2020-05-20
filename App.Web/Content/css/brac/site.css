@@ -1,23 +1,23 @@
+/*
 @font-face {
     font-family: 'HelveticaNeue';
-    src: url(../../src/fonts/HelveticaNeueBold.ttf) format("truetype");
+    src: url(../Content/src/fonts/HelveticaNeueBold.ttf) format("truetype");
     font-weight: bold;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'OriyaSangamMN';
-    src: url(../../src/fonts/oriya-sangam/OriyaSangamMN.eot);
-    /* IE9 Compat Modes */
-    src: url(../../src/fonts/oriya-sangam/OriyaSangamMN.eot?#iefix) format("embedded-opentype"), url(../../src/fonts/oriya-sangam/OriyaSangamMN.woff2) format("woff2"), url(../../src/fonts/oriya-sangam/OriyaSangamMN.woff) format("woff"), url(../../src/fonts/oriya-sangam/OriyaSangamMN.ttf) format("truetype"), url(../../src/fonts/oriya-sangam/OriyaSangamMN.svg#svgFontName) format("svg");
-    /* Legacy iOS */
+    src: url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.eot);
+    src: url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.eot?#iefix) format("embedded-opentype"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.woff2) format("woff2"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.woff) format("woff"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.ttf) format("truetype"), url(../Content/src/fonts/oriya-sangam/OriyaSangamMN.svg#svgFontName) format("svg");
+    
 }
+*/
+
+
+
 .dropdown-menu.show {
     display: block;
-    min-width: 400px;
-    padding: 10px;
-    z-index: 100000;
-    margin-right: 25px;
 }
 
 .bullentin-item::before {
@@ -60,9 +60,7 @@
         color: #D10D74;
     }
 
-#divactivities.dropdown-menu {
-    box-shadow: 0px 6px 15px #222;
-}
+
 
 .brac-link {
     color: #D10D74;
@@ -72,11 +70,7 @@ a.brac-link:hover {
     color: #D10D74;
 }
 
-@media screen and (min-width: 992px) {
-    #bullentin {
-        width: 600px !important;
-    }
-}
+
 
 .releaf-summery {
     text-align: left;
@@ -128,9 +122,123 @@ a.brac-link:hover {
 }
 
 .box-shadow {
-    min-height: 220px;
-    margin-top:10px;
+    min-height: 250px;
 }
-.container-custom {
+/*.container-custom {
     width: 97%;
+}*/
+
+.icon-text-item.cash {
+    min-width: 100px;
 }
+
+.overview-box .img-number-text-item {
+    text-align: center;
+    width: 25%;
+    height: 100px;
+}
+
+@media screen and (min-width: 992px) {
+    #bullentin {
+        width: 600px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .box-shadow {
+        min-height: 350px !important;
+    }
+
+    .overview-box-wrapper.box-shadow.position-relative .view-in-deatils {
+        position: absolute;
+        bottom: 10px;
+        left: 30%;
+    }
+}
+
+.dataTables_wrapper.form-inline .row-fluid:last-child {
+    width: 100%;
+}
+
+    .dataTables_wrapper.form-inline .row-fluid:last-child .span5 {
+        display: none;
+    }
+
+    .dataTables_wrapper.form-inline .row-fluid:last-child .span7 {
+        margin-top: 20px;
+    }
+
+.dataTables_paginate.paging_bootstrap.pagination ul {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .dataTables_paginate.paging_bootstrap.pagination ul li a {
+        text-decoration: none;
+    }
+
+    .dataTables_paginate.paging_bootstrap.pagination ul li.prev a {
+        width: 80px;
+        border: 0px solid #fff;
+    }
+
+    .dataTables_paginate.paging_bootstrap.pagination ul li.next a {
+        width: 50px;
+        border: 0px solid #fff;
+    }
+
+    .dataTables_paginate.paging_bootstrap.pagination ul li.active a {
+        border-color: #D10D74;
+        background-color: #fff;
+        color: #D10D74;
+        border: 1px solid #D10D74;
+    }
+
+    .dataTables_paginate.paging_bootstrap.pagination ul li a {
+        padding: 0;
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        text-align: center;
+        font-size: 12px;
+        background-color: #fff;
+        border-color: #f4f5f5;
+        border-radius: 2px;
+        margin: 0 5px;
+        color: #2C2C2C;
+        position: relative;
+        display: block;
+        border: 1px solid #dee2e6;
+    }
+
+.table-filter-nav .filter-item {
+    height: 70px;
+}
+
+    .table-filter-nav .filter-item:last-child {
+        height: 40px;
+    }
+
+        .table-filter-nav .filter-item:last-child button {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+.datepicker {
+    padding-top: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-bottom: 4px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.dt_top {
+    padding-top: 0px;
+}
+
+    .dt_top > div:nth-child(2) {
+        text-align: right;
+    }

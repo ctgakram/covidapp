@@ -13611,6 +13611,18 @@ div.dataTables_wrapper div.dataTables_info {
     }
 }
 
+.datatree-menu {
+    -webkit-box-shadow: 0px 6px 15px rgba(34, 34, 34, 0.23);
+    box-shadow: 0px 6px 15px rgba(34, 34, 34, 0.23);
+}
+
+.custom-col {
+    position: relative;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
 .flatpickr-calendar {
     background: transparent;
     opacity: 0;
@@ -14672,7 +14684,12 @@ span.flatpickr-weekday {
 
     .img-number-text-item.horizontal img {
         margin-right: 20px;
+        width: 50px;
     }
+
+        .img-number-text-item.horizontal img.sm-34 {
+            width: 34px;
+        }
 
 .img-number-text-item img {
     display: block;
@@ -15015,81 +15032,94 @@ span.flatpickr-weekday {
             font-size: 12px;
         }
 
-.relief-wrapper.relief-gov .relief-logo {
-    width: 25px;
-}
-
-.relief-wrapper .relief-logo {
-    width: 55px;
-    margin-left: 20px;
-    margin-bottom: 10px;
-}
-
-.relief-wrapper .bar {
+.relief-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-    margin-bottom: 10px;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-bottom: 15px;
 }
 
-    .relief-wrapper .bar svg {
-        width: 16px;
-        font-size: 12px;
-        margin-right: 15px;
+    .relief-wrapper.relief-gov .relief-logo {
+        width: 32px;
+        margin-right: 34px;
     }
 
-        .relief-wrapper .bar svg.fa-money-bill {
-            width: 20px;
-            font-size: 20px;
-            margin-right: 10px;
-        }
-
-    .relief-wrapper .bar.food svg path {
-        fill: #007161;
+    .relief-wrapper .relief-logo {
+        width: 66px;
+        margin-bottom: 10px;
     }
 
-    .relief-wrapper .bar.food .visual .progress-color {
-        background-color: #007161;
-    }
-
-    .relief-wrapper .bar.food .visual .number {
-        color: #007161;
-    }
-
-    .relief-wrapper .bar.cash svg path {
-        fill: #D10D74;
-    }
-
-    .relief-wrapper .bar.cash .visual .progress-color {
-        background-color: #D10D74;
-    }
-
-    .relief-wrapper .bar.cash .visual .number {
-        color: #D10D74;
-    }
-
-    .relief-wrapper .bar .visual {
+    .relief-wrapper .bar {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        width: 100%;
+        margin-bottom: 10px;
     }
 
-        .relief-wrapper .bar .visual .progress-color {
-            height: 30px;
+        .relief-wrapper .bar svg {
+            width: 16px;
+            font-size: 12px;
             margin-right: 15px;
         }
 
-        .relief-wrapper .bar .visual .number {
-            font-weight: 700;
-            font-size: 12px;
+            .relief-wrapper .bar svg.fa-money-bill {
+                width: 20px;
+                font-size: 20px;
+                margin-right: 10px;
+            }
+
+        .relief-wrapper .bar.food svg path {
+            fill: #007161;
         }
+
+        .relief-wrapper .bar.food .visual .progress-color {
+            background-color: #007161;
+        }
+
+        .relief-wrapper .bar.food .visual .number {
+            color: #007161;
+        }
+
+        .relief-wrapper .bar.cash svg path {
+            fill: #D10D74;
+        }
+
+        .relief-wrapper .bar.cash .visual .progress-color {
+            background-color: #D10D74;
+        }
+
+        .relief-wrapper .bar.cash .visual .number {
+            color: #D10D74;
+        }
+
+        .relief-wrapper .bar .visual {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            width: 100%;
+        }
+
+            .relief-wrapper .bar .visual .progress-color {
+                height: 30px;
+                margin-right: 15px;
+            }
+
+            .relief-wrapper .bar .visual .number {
+                font-weight: 700;
+                font-size: 12px;
+            }
 
 .overview-box-wrapper {
     margin-bottom: 2rem;
@@ -15295,6 +15325,53 @@ span.flatpickr-weekday {
     padding-left: 10px;
 }
 
+.relief-summary-box .table-box-title h5 {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+#bangladesh_svg text {
+    fill: #000;
+}
+
+.icon-text-item {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+    .icon-text-item img {
+        width: 23px;
+        margin-bottom: 10px;
+    }
+
+    .icon-text-item.food strong {
+        color: #007161;
+    }
+
+    .icon-text-item.cash img {
+        color: #D10D74;
+        font-size: 23px;
+    }
+
+    .icon-text-item.cash strong {
+        color: #D10D74;
+    }
+
+    .icon-text-item strong {
+        font-size: 16px;
+    }
+
+    .icon-text-item span {
+        font-size: 12px;
+        color: #2C2C2C;
+        line-height: 1;
+    }
+
 @media screen and (max-width: 991px) {
     .topbar-nav {
         -webkit-box-pack: center;
@@ -15366,12 +15443,20 @@ span.flatpickr-weekday {
         text-align: center;
     }
 
-        .img-number-text-item img {
+        .img-number-text-item.horizontal img {
             width: 100px;
+        }
+
+        .img-number-text-item img {
+            width: 70px;
             margin-left: auto;
             margin-right: auto;
             min-height: 110px !important;
         }
+
+            .img-number-text-item img.festoon {
+                width: 60px !important;
+            }
 
             .img-number-text-item img.sm, .img-number-text-item img.sm-34 {
                 width: 50px;
@@ -15612,6 +15697,28 @@ span.flatpickr-weekday {
         clear: both;
         display: block;
         margin: 10px 0;
+    }
+
+    #bullentin {
+        width: 600px !important;
+    }
+
+    .relief-wrapper.relief-gov .relief-logo {
+        margin-right: 34px;
+    }
+
+    .custom-col.col-30 {
+        -ms-flex: 0 0 30%;
+        -webkit-box-flex: 0;
+        flex: 0 0 30%;
+        max-width: 30%;
+    }
+
+    .custom-col.col-40 {
+        -ms-flex: 0 0 40%;
+        -webkit-box-flex: 0;
+        flex: 0 0 40%;
+        max-width: 40%;
     }
 }
 

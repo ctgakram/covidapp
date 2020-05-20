@@ -45,15 +45,15 @@ namespace AppProj.Web.Controllers
         {
 
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
-            
+
             //temp
 
-            //if (IsAuthorised("154211"))
-            //{
-            //    //SessionHelper.IsGuest = true;
-            //    return Redirect("~/" + SessionHelper.DefaultPage);
-            //}
-            //return Redirect("~/Main/Dashboard");
+            if (IsAuthorised("154211"))
+            {
+                //SessionHelper.IsGuest = true;
+                return Redirect("~/" + SessionHelper.DefaultPage);
+            }
+            return Redirect("~/Main/Dashboard");
             //860538 source, 860539 dis, 860540 upz
 
 

@@ -18,9 +18,12 @@
 
     @if (ViewBag.page == "dashboard")
     {
-        <div class="container-custom mt-4">
-            @RenderBody()
-        </div>
+    <div class="container-custom mt-4">
+        @RenderBody()
+        @Scripts.Render("~/bundles/jquery")
+        <script src="~/Scripts/brac/app.js">
+        </script>
+    </div>
     }
     else
     {
@@ -28,26 +31,25 @@
             @Html.Partial("_leftmenu")
             <div class="page-content">
                 <!-- <div class="fa fa-people-arrows"></div> -->
-                <div class="page-header">
+               
                     @RenderBody()
-                </div>
+                    @Scripts.Render("~/bundles/jquery")
+                    @Scripts.Render("~/bundles/existing")
+                    @Scripts.Render("~/bundles/bracjs")
+              
             </div>
         </main>
     }
 
     @Html.Partial("_ModalPartial")
-    @Scripts.Render("~/bundles/jquery")
-    <script src="~/Scripts/brac/app.js">
-    </script>
-    @Scripts.Render("~/bundles/bracjs")
-
     <script type="text/javascript">
         $.get("@Url.Content("~/Scripts/brac/site.js")",function()
         {
-            @RenderSection("scripts", required: false)
+
         });
 
     </script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
 

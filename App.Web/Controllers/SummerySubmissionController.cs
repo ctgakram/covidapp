@@ -206,8 +206,8 @@ namespace AppProj.Web.Controllers
             }
             catch { }
 
-            DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
-            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+            DateTime FromDate =Convert.ToDateTime(Request.QueryString["FromDate"]);// Convert.ToDateTime("16 Apr, 2020");//
+            DateTime ToDate = DateTime.Now; //Convert.ToDateTime(Request.QueryString["ToDate"]);
 
             List<SummerizedData> dataList = sunDataService.Get(srcId, disId, upzId, FromDate, ToDate, skip, take, out count).ToList();
 
@@ -262,7 +262,7 @@ namespace AppProj.Web.Controllers
                        , c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\"", V = (visible && c.Id!=0) }
+                         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"brac-link\"", V = (visible && c.Id!=0) }// btn btn-mini btn-warning
                     }
             }).ToArray();
 

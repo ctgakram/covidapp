@@ -26,6 +26,24 @@ namespace AppProj.Web
                         "~/Scripts/printThis.js",
                         "~/Scripts/exportExcell.js"
                         ));
+            bundles.Add(new ScriptBundle("~/bundles/existing").Include(
+                         "~/Scripts/jquery.dataTables.js",
+                        "~/Scripts/bootstrap-datatable.js",
+                        "~/Scripts/jquery.unobtrusive*",
+                        "~/Scripts/custom.main.js",
+                        "~/Scripts/custom.imagegrid.js",
+                        "~/Scripts/custom.datatable.js",
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/js/jquery.cookie.js",
+                        "~/Scripts/bootstrap-datepicker.js",
+                        "~/Scripts/jquery.jqprint.0.3.js",
+                        "~/Scripts/jquery.validate*",
+                         "~/Scripts/js/header.js",
+                        "~/Scripts/js/sidebar.js",
+                        "~/Scripts/jquery-barcode.js",
+                        "~/Scripts/printThis.js",
+                        "~/Scripts/exportExcell.js"
+                        ));
             bundles.Add(new ScriptBundle("~/bundles/bracjs").Include(
                        //"~/Scripts/brac/app.js",
                        "~/Scripts/brac/site.js"
@@ -46,6 +64,8 @@ namespace AppProj.Web
                         ));
             bundles.Add(new StyleBundle("~/Content/brac").Include(
                         "~/Content/css/brac/bundle.css",
+                        "~/Content/typeahead.css",
+                        "~/Content/bootstrap-datepicker.css",
                          "~/Content/css/brac/site.css"
                         ));
 

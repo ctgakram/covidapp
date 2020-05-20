@@ -1,11 +1,11 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    Layout = "~/Views/Shared/_LayoutMain.cshtml";
     var ajaxOpt = new AjaxOptions
     {
         HttpMethod = "GET",
         UpdateTargetId = "dialog1Body",
         InsertionMode = InsertionMode.Replace,
-        OnSuccess = "openDialog1('Add/Edit')",
+        OnSuccess = "openDialog1('Create New Question')",
         LoadingElementId = "loading",
         OnFailure = "failure"
     };
@@ -16,10 +16,15 @@
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> List of @ViewBag.Title</h2>
+                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> @ViewBag.Title List</h2>
             </li>
         </ul>
 
+    </div>
+</div>
+<div class="row-fluid">
+    <div>
+        @Ajax.ActionLink("Add New Question", "CreateQuestion", "Standing", ajaxOpt, new { @class = "btn btn-primary pull-right" })
     </div>
 </div>
 
@@ -29,9 +34,11 @@
             <th>
                 @ViewBag.Title
             </th>
+
             <th>
                 Status
             </th>
+            <th style="width: 10%"></th>
         </tr>
     </thead>
 </table>
@@ -41,12 +48,12 @@
         $(document).ready(function () {
 
             var btns = {
-                
+                2: true //column number : is button group
             };
 
             /*data grid initializer*/
             DataTableBinder($("#gridTable")   //table object
-                , '@Url.Content("~/StandingView/DataGrid")'  //json data url
+                , '@Url.Content("~/Standing/DataGridQuestion")'  //json data url
             , [50, 100]  //record size
             , false //show all with row size
             , null  //additional parameters at query string

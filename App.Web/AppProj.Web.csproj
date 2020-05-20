@@ -257,6 +257,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MapController.cs" />
     <Compile Include="Controllers\MapSummaryController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\RoleFeatureController.cs" />
     <Compile Include="Controllers\StandingController.cs" />
@@ -3305,6 +3306,21 @@
     <Content Include="Content\img\video-js.png" />
     <Content Include="Content\logo\1.png" />
     <Content Include="Content\logo\brac_logo.png" />
+    <Content Include="Content\src\images\svg\left-arrow.svg" />
+    <Content Include="Content\src\images\svg\relief.svg" />
+    <Content Include="Content\src\images\svg\right-arrow.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\bdc-info.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\brac-health.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\calendar.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\coronarodh-app.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\export.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\filter.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\paitent.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\print.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\program-data.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\search.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\toggle.svg" />
+    <Content Include="Content\src\images\svg\tabular-data\total-interview.svg" />
     <Content Include="Content\src\template\map.html" />
     <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
@@ -3334,6 +3350,7 @@
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\preview.jsp" />
     <Content Include="Content\Message\External COVID-19 Sitrep_16 April 2020.pdf" />
     <Content Include="Content\css\brac\bundle.css.map" />
+    <Content Include="Content\src\images\svg\tabular-data\desktop.ini" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -3477,17 +3494,6 @@
     <Content Include="Content\src\images\svg\sign_out.svg" />
     <Content Include="Content\src\images\svg\sticker.svg" />
     <Content Include="Content\src\images\svg\surgical-dress.svg" />
-    <Content Include="Content\src\images\svg\tabular data\bdc-info.svg" />
-    <Content Include="Content\src\images\svg\tabular data\brac-health.svg" />
-    <Content Include="Content\src\images\svg\tabular data\calendar.svg" />
-    <Content Include="Content\src\images\svg\tabular data\coronarodh-app.svg" />
-    <Content Include="Content\src\images\svg\tabular data\export.svg" />
-    <Content Include="Content\src\images\svg\tabular data\filter.svg" />
-    <Content Include="Content\src\images\svg\tabular data\paitent.svg" />
-    <Content Include="Content\src\images\svg\tabular data\print.svg" />
-    <Content Include="Content\src\images\svg\tabular data\program-data.svg" />
-    <Content Include="Content\src\images\svg\tabular data\search.svg" />
-    <Content Include="Content\src\images\svg\tabular data\total-interview.svg" />
     <Content Include="Content\src\images\svg\tabular-data.svg" />
     <Content Include="Content\src\images\svg\unknown.svg" />
     <Content Include="Content\src\images\svg\world-covid-color.svg" />
@@ -3594,15 +3600,16 @@
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff" />
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff2" />
     <Content Include="Content\src\images\svg\desktop.ini" />
-    <Content Include="Content\src\images\svg\tabular data\desktop.ini" />
     <Content Include="Views\StandingView\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Main\Index - Copy.cshtml" />
     <Content Include="Views\Shared\_leftmenu.cshtml" />
+    <Content Include="Views\SummerySubmission\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\MeetingRoom\" />
+    <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
