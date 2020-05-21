@@ -74,7 +74,12 @@ namespace AppProj.Web
                 .RegisterType<IDistrictQuestionRepository, DistrictQuestionRepository>(new HttpContextLifetimeManager<IDistrictQuestionRepository>())
                 .RegisterType<IStandingDataPcRelationRepository, StandingDataPcRelationRepository>(new HttpContextLifetimeManager<IStandingDataPcRelationRepository>())
                 .RegisterType<IBERDataPeopleWiseQuantityRepository, BERDataPeopleWiseQuantityRepository>(new HttpContextLifetimeManager<IBERDataPeopleWiseQuantityRepository>())
+                .RegisterType<IReportRepository, ReportRepository>(new HttpContextLifetimeManager<IReportRepository>())
                 .RegisterType<IMapSummaryRepository, MapSummaryRepository>(new HttpContextLifetimeManager<IMapSummaryRepository>())
+                .RegisterType<IDoctorsPolesRepository, DoctorsPolesRepository>(new HttpContextLifetimeManager<IDoctorsPolesRepository>())
+                .RegisterType<IDoctorsPoleVisitRepository, DoctorsPoleVisitRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitRepository>())
+                .RegisterType<IDoctorsPoleVisitDetailRepository, DoctorsPoleVisitDetailRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitDetailRepository>())
+                .RegisterType<IDoctorPoleStatusesRepository, DoctorPoleStatusesRepository>(new HttpContextLifetimeManager<IDoctorPoleStatusesRepository>())
 
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
@@ -92,7 +97,12 @@ namespace AppProj.Web
                 .RegisterType<IBepDataService, BepDataService>(new HttpContextLifetimeManager<IBepDataService>())
                 .RegisterType<IProgramByUserProfileService, ProgramByUserProfileService>(new HttpContextLifetimeManager<IProgramByUserProfileService>())
                 .RegisterType<IDistrictQuestionService, DistrictQuestionService>(new HttpContextLifetimeManager<IDistrictQuestionService>())
+
+                .RegisterType<IReportService, ReportService>(new HttpContextLifetimeManager<IReportService>())
+                
+
                 .RegisterType<IMapSummaryService, MapSummaryService>(new HttpContextLifetimeManager<IMapSummaryService>())
+                .RegisterType<IDoctorsPoleService, DoctorsPoleService>(new HttpContextLifetimeManager<IDoctorsPoleService>())
 
             ;
 
@@ -240,6 +250,12 @@ namespace AppProj.Web
             set { SetInSession("unit_id", value); }
         }
 
+        public static string PIN
+        {
+            get { return GetFromSession<string>("pin"); }
+            set { SetInSession("pin", value); }
+        }
+
         public static int UserId
         {
             get { return GetFromSession<int>("id"); }
@@ -308,6 +324,47 @@ namespace AppProj.Web
         }
     }
 
+    public static class DoctorsPoleDataInputBy
+    {
+        public static string Hrd
+        {
+            get { return "HRD"; }
+        }
+
+        public static string Doctor
+        {
+            get { return "DOC"; }
+        }
+    }
+
+    public static class DoctorsPoleDataStatus
+    {
+        public static int Suspected
+        {
+            //get { return 861701; }
+            get { return 861700; }
+        }
+
+        public static int Positive
+        {
+            //get { return 861702; }
+            get { return 861701; }
+        }
+
+        public static int Negetive
+        {
+            //get { return 861703; }
+            get { return 861702; }
+        }
+
+        public static int Resolved
+        {
+            //get { return 861704; }
+            get { return 861703; }
+        }
+
+    }
+
     #endregion
 
     public static class ActivitiesDataType
@@ -352,6 +409,11 @@ namespace AppProj.Web
             get { return "SRC"; }
         }
 
+        public static string Projects
+        {
+            get { return "PRJ"; }
+        }
+
         public static string HowProgramsAffected
         {
             get { return "IMP"; }
@@ -382,8 +444,40 @@ namespace AppProj.Web
             get { return "RES"; }
         }
 
+        public static string Doctor_EffectedPerson
+        {
+            get { return "DEP"; }
+        }
 
-        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+        public static string Doctor_Status
+        {
+            get { return "DST"; }
+        }
+
+        public static string Doctor_CoMorbidity
+        {
+            get { return "DCM"; }
+        }
+
+        public static string Doctor_TestResult
+        {
+            get { return "DTR"; }
+        }
+
+        public static string Doctor_AdmissionType
+        {
+            get { return "DAT"; }
+        }
+
+        public static class DoctorsPoleVisitVetailRelationType
+        {
+            public static string CoMorbidity
+            {
+                get { return "COM"; }
+            }
+        }
+
+            public static IEnumerable<TSource> DistinctBy<TSource, TKey>
         (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();

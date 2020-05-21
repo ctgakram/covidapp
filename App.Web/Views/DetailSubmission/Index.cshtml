@@ -140,14 +140,6 @@
 
 <div class="page-header">
     <h2>সম্ভাব্য রোগীর তথ্য</h2>
-
-    <div class="filter-item">
-    
-        @if (UserRole.Check("DETAIL", SessionHelper.Role))
-        {
-            @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "DetailSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify search" })
-        }
-    </div>
     <div class="btn-group" role="group" aria-label="Basic example">
         <a id="exp" href="#" class="btn btn-blank btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="13.425" height="11.935" viewBox="0 0 13.425 11.935"> <path id="export" d="M8.951,2.842a.558.558,0,0,0-.163-.394L6.506.163A.559.559,0,0,0,6.11,0H5.967V2.984H8.951ZM13.31,7.18,11.079,4.932a.374.374,0,0,0-.639.263V6.713H8.949V8.205h1.492v1.52a.374.374,0,0,0,.639.263L13.31,7.739A.4.4,0,0,0,13.31,7.18Zm-8.834.653V7.086a.374.374,0,0,1,.373-.373h4.1V3.73H5.781a.561.561,0,0,1-.559-.559V0H.559A.558.558,0,0,0,0,.559V11.375a.558.558,0,0,0,.559.559H8.392a.558.558,0,0,0,.559-.559V8.205h-4.1A.374.374,0,0,1,4.476,7.832Z" fill="#d10d74" /></svg>
@@ -179,16 +171,16 @@
                 </div>
             </div>
             @*<div class="dataTables_length" id="gridTable_length">
-                    <label>
-                        Records per page
-                        <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </label>
-                </div>*@
+                <label>
+                    Records per page
+                    <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </label>
+            </div>*@
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
@@ -201,12 +193,12 @@
                 <div class="filter-item">
                     <label for="info_source">তথ্যের উৎস</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                <option data-select2-id="2">Communicable diseases</option>
-                <option>Communicable diseases</option>
-                <option>Communicable diseases</option>
-                <option>Communicable diseases</option>
-                <option>Communicable diseases</option>
-            </select>*@
+                        <option data-select2-id="2">Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                    </select>*@
                     @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
 
                 </div>
@@ -254,22 +246,27 @@
                 <input type="hidden" id="onlyPatient" value="false" />
                 <div class="filter-item">
                     <button id="dateSearchButton2" class="btn btn-bracify search">
-                        <span>শুধু সম্ভাব্য রোগী</span>
+                        <span>সম্ভাব্য রোগী</span>@*শুধু*@
                         @*<img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">*@
                     </button>
                 </div>
 
 
-               
+
                 @*<a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> সার্চ </a>
-        <a id="dateSearchButton2" class="btn btn-info"><i class="icon icon-search icon-white"></i> শুধু সম্ভাব্য রোগী</a>*@
+                <a id="dateSearchButton2" class="btn btn-info"><i class="icon icon-search icon-white"></i> শুধু সম্ভাব্য রোগী</a>*@
 
             </div>
         </div>
-
-        <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
+        <div class="custom-add">
+            @if (UserRole.Check("DETAIL", SessionHelper.Role))
+            {
+                @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "DetailSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+            }
+        </div>
+        <table id="gridTable" class="table table-borderless table-striped header-table table-alt add-new-btn">
             <thead class="thead-yellow">
-        
+
                 <tr>
                     <th>
                         তথ্যের উৎস
@@ -315,7 +312,7 @@
                         <th></th>
                     }
                 </tr>
-             
+
             </thead>
         </table>
 
@@ -405,7 +402,7 @@
             /*data grid initializer*/
             DataTableBinder($("#gridTable")   //table object
                 , '@Url.Content("~/DetailSubmission/DataGrid")'  //json data url
-                , [50, 100, 200, 1000] //record size
+                , [10,50, 100, 200, 1000] //record size
                 , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns

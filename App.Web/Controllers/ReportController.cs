@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppProj.Service.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,10 +11,15 @@ namespace AppProj.Web.Controllers
     {
         //
         // GET: /Report/
-
+        private readonly IReportService _reportService;
+        public ReportController(IReportService reportService)
+        {
+            _reportService = reportService;
+        }
         public ActionResult Index()
         {
-            return View();
+            var items = _reportService.GetReport();
+            return View(items);
         }
 
     }

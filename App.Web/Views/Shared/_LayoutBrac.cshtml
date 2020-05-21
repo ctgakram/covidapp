@@ -16,7 +16,7 @@
 
     @Html.Partial("_Header")
 
-    @if (ViewBag.page == "dashboard")
+    @if (ViewBag.page == "dashboard" || ViewBag.page == "report")
     {
     <div class="container-custom mt-4">
         @RenderBody()
@@ -35,7 +35,7 @@
                     @RenderBody()
                     @Scripts.Render("~/bundles/jquery")
                     @Scripts.Render("~/bundles/existing")
-                    @Scripts.Render("~/bundles/bracjs")
+                    @*@Scripts.Render("~/bundles/bracjs")*@
               
             </div>
         </main>

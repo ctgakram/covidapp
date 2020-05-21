@@ -280,7 +280,7 @@
             </div>
             <a target="_blank" href="~/Main/BracDashboard" class="view-in-deatils">View in deatils</a>
         </div>
-        <div class="report-box box-shadow">
+        @*<div class="report-box box-shadow">
             <h6 class="table-box-title">
                 <span>
                     <img class="mr-2 carret" src="@Url.Content("~/Content/src/images/svg/report.svg")" alt="arrow-down">
@@ -288,16 +288,9 @@
                 </span>
             </h6>
             <div id="divrptcnt" class="reports">
-                @*<a href="@Url.Content("~/Content/src/images/svg/report.svg")" class="report-item">
-                        <span class="report-title">Latest in Covid 19 Response from BRAC in Bangladesh</span>
-                        <strong class="download">Download</strong>
-                    </a>
-                    <a href="@Url.Content("~/Content/Message/External COVID-19 Sitrep_16 April 2020.pdf")" class="report-item" target="_blank">
-                        <span class="report-title">করোনাভাইরাস (কোভিড-১৯) এর বর্তমান পরিস্থিতিতে মাঠ পর্যায়ের কর্মীদের জন্য নির্দেশনা</span>
-                        <strong class="download">Download</strong>
-                    </a>*@
+              
             </div>
-        </div>
+        </div>*@
     </div>
 
     <div id="map" class="custom-col col-40 position-relative">
@@ -323,27 +316,9 @@
                 }
 
 
-                @*<li class="dropdown-item" id="top-affected-cities" data-color="orange" data-city="dhaka,khulna,rajshahi">
-                        <span class="legend-wrapper">
-                            <span class="map-legend orange"></span>
-                            <span>সম্ভাব্য আক্রান্ত শীর্ষ ৫ জেলা</span>
-                        </span>
-                    </li>
-                    <li class="dropdown-item" id="quarantine-heatmap" data-color="red" data-city="mymensingh,habiganj,patuakhali">
-                        <span class="legend-wrapper">
-                            <span class="map-legend red"></span>
-                            <span>Covid-19 quarantine heatmap</span>
-                        </span>
-                    </li>
-                    <li class="dropdown-item" id="relief-map" data-color="green" data-city="chottogram,pabna,gazipur">
-                        <span class="legend-wrapper">
-                            <span class="map-legend green"></span>
-                            <span>Relief Distributed Map</span>
-                        </span>
-                    </li>*@
             </ul>
         </div>
-        <svg class="d-block" id="bangladesh_svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1530.748 2138" enable-background="new 0 0 1530.748 2138" xml:space="preserve">
+        <svg class="d-block mt-4" id="bangladesh_svg" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" width="100%" height="100%" viewBox="0 0 1530.748 2138" enable-background="new 0 0 1530.748 2138" xml:space="preserve">
         <g id="layer2">
                     </g>
         <g id="layer1">
@@ -556,15 +531,15 @@
 <!-- Body end -->
 
 @section scripts{
-<script type="text/javascript" language="">
-    $(document).ready(function () {
-        var rpt = '';
-        $("#divrptcnt").empty();
-        $.each(jsonTopMenuData.msg, function (index, element) {
-            rpt += element.Name;
+    @*<script>
+        $(document).ready(function () {
+            var rpt = '';
+            $("#divrptcnt").empty();
+            $.each(jsonTopMenuData.msg, function (index, element) {
+                rpt += element.Name;
+            });
+            $("#divrptcnt").html(rpt);
         });
-        $("#divrptcnt").html(rpt);
-    });
-</script>
+    </script>*@
 
 }

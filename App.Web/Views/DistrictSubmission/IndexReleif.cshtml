@@ -376,7 +376,7 @@
             /*data grid initializer*/
             DataTableBinder($("#gridTable")   //table object
                 , '@Url.Content("~/DistrictSubmission/DataGridReleif")'  //json data url
-                , [64, 128, 256, 1024] //record size
+                , [16,32,64, 128, 256, 1024] //record size
                 , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns

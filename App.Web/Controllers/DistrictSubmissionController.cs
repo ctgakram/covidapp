@@ -126,7 +126,7 @@ namespace AppProj.Web.Controllers
 
             if (FromDate == ToDate && divId == null && disId == null)
             {
-                IEnumerable<StandingData> districts = standingDataService.GetDistricts();
+                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c=>c.IsActive);
 
                 List<int> all = districts.Select(c => c.Id).ToList();
                 List<int> used = dataList.Select(c => c.DistrictId).ToList();
@@ -489,7 +489,7 @@ namespace AppProj.Web.Controllers
             */
             if (FromDate == ToDate && divId == null && disId == null)
             {
-                IEnumerable<StandingData> districts = standingDataService.GetDistricts();
+                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c=>c.IsActive);
 
                 List<int> all = districts.Select(c => c.Id).ToList();
                 List<int> used = dataList.Select(c => c.DistrictId).ToList();

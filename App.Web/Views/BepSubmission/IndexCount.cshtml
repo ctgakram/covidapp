@@ -49,16 +49,16 @@
                 </div>
             </div>
             @*<div class="dataTables_length" id="gridTable_length">
-                <label>
-                    Records per page
-                    <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </label>
-            </div>*@
+                    <label>
+                        Records per page
+                        <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </label>
+                </div>*@
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
@@ -71,12 +71,12 @@
                 <div class="filter-item">
                     <label for="info_source">তথ্যের উৎস</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                        <option data-select2-id="2">Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                    </select>*@
+                            <option data-select2-id="2">Communicable diseases</option>
+                            <option>Communicable diseases</option>
+                            <option>Communicable diseases</option>
+                            <option>Communicable diseases</option>
+                            <option>Communicable diseases</option>
+                        </select>*@
 
                     @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Sources", new { @class = "searchable-dropdown form-control" })
 
@@ -129,7 +129,7 @@
                 </div>
 
                 @*<a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Material</a>
-                <a id="dateSearchButtonR" class="btn btn-info"><i class="icon icon-search icon-white"></i> Reach</a>*@
+                    <a id="dateSearchButtonR" class="btn btn-info"><i class="icon icon-search icon-white"></i> Reach</a>*@
                 <input type="hidden" id="isR" name="isR" value="false" />
                 <input type="hidden" id="isShow" name="isShow" value="false" />
 
@@ -154,102 +154,102 @@
 
 
         <div id="gridTableDiv">
-         
-                <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
-                    <thead class="thead-yellow">
-                        <tr>
-                            <th rowspan="2">Program</th>
-                            <th rowspan="2">Division</th>
-                            <th rowspan="2">District</th>
-                            <th rowspan="2">Material</th>
-                            <th colspan="4">Preparation</th>
-                            <th colspan="2">Distribution</th>
-                        </tr>
-                        <tr>
-                            <th>
-                                Quantity
-                            </th>
-                            <th>
-                                Distributed
-                            </th>
-                            <th>
-                                Male Staff Count
-                            </th>
-                            <th>
-                                Female Staff Count
-                            </th>
-                            <th>
-                                Quantity
-                            </th>
-                            <th>
-                                Reach Count
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
-</div>
+
+            <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
+                <thead class="thead-yellow">
+                    <tr>
+                        <th rowspan="2">Program</th>
+                        <th rowspan="2">Division</th>
+                        <th rowspan="2">District</th>
+                        <th rowspan="2">Material</th>
+                        <th colspan="4">Preparation</th>
+                        <th colspan="2">Distribution</th>
+                    </tr>
+                    <tr>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Distributed
+                        </th>
+                        <th>
+                            Male Staff Count
+                        </th>
+                        <th>
+                            Female Staff Count
+                        </th>
+                        <th>
+                            Quantity
+                        </th>
+                        <th>
+                            Reach Count
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
         <div id="gridTableDivR">
-       
-                <table id="gridTableR" class="table table-borderless table-striped header-table table-alt">
-                    <thead class="thead-yellow">
-                        <tr>
-                            <th rowspan="2">Program</th>
-                            <th rowspan="2">Division</th>
-                            <th rowspan="2">District</th>
-                            <th rowspan="2">
-                                Activity
-                            </th>
-                            <th colspan="2">
-                                All (Male/Female/Boy/Girl)
-                            </th>
-                            <th colspan="2">
-                                Male (18 and Above)
-                            </th>
-                            <th colspan="2">
-                                Female (18 and Above)
-                            </th>
-                            <th colspan="2">
-                                Boy (Less than 18)
-                            </th>
-                            <th colspan="2">
-                                Girl (Less than 18)
-                            </th>
-                            <th colspan="2">
-                                Ppl W Dis
-                            </th>
-                            <th colspan="2">
-                                HHs
-                            </th>
-                            <th colspan="2">
-                                Pregnant
-                            </th>
-                        </tr>
-                        <tr>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                            <th>New</th>
-                            <th>Old</th>
-                        </tr>
-                    </thead>
-                </table>
-</div>
+
+            <table id="gridTableR" class="table table-borderless table-striped header-table table-alt">
+                <thead class="thead-yellow">
+                    <tr>
+                        <th rowspan="2">Program</th>
+                        <th rowspan="2">Division</th>
+                        <th rowspan="2">District</th>
+                        <th rowspan="2">
+                            Activity
+                        </th>
+                        <th colspan="2">
+                            All (Male/Female/Boy/Girl)
+                        </th>
+                        <th colspan="2">
+                            Male (18 and Above)
+                        </th>
+                        <th colspan="2">
+                            Female (18 and Above)
+                        </th>
+                        <th colspan="2">
+                            Boy (Less than 18)
+                        </th>
+                        <th colspan="2">
+                            Girl (Less than 18)
+                        </th>
+                        <th colspan="2">
+                            Ppl W Dis
+                        </th>
+                        <th colspan="2">
+                            HHs
+                        </th>
+                        <th colspan="2">
+                            Pregnant
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                        <th>New</th>
+                        <th>Old</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
 
 
 
 
-       
+
 
 
 
@@ -351,7 +351,7 @@
             /*data grid initializer*/
         DataTableBinder($('#gridTable')   //table object
                 , '@Url.Content("~/BepSubmission/DataGridCount")'  //json data url
-                , [100, 200, 1000] //record size
+                , [10, 50,100, 200, 1000] //record size
                 , true //show all with row size
                 , addPost  //additional parameters at query string
                 , btns   //buttons are at these columns
@@ -361,7 +361,7 @@
         /*data grid initializer*/
         DataTableBinder($('#gridTableR')   //table object
             , '@Url.Content("~/BepSubmission/DataGridCount")'  //json data url
-            , [100, 200, 1000] //record size
+            , [10,50,100, 200, 1000] //record size
             , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns

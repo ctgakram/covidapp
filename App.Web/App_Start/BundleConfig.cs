@@ -27,7 +27,10 @@ namespace AppProj.Web
                         "~/Scripts/exportExcell.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/existing").Include(
-                         "~/Scripts/jquery.dataTables.js",
+                        //"~/Scripts/brac/bootstrap_4.4.1.js",
+                        //"~/Scripts/brac/popper.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/jquery.dataTables.js",
                         "~/Scripts/bootstrap-datatable.js",
                         "~/Scripts/jquery.unobtrusive*",
                         "~/Scripts/custom.main.js",
@@ -45,14 +48,16 @@ namespace AppProj.Web
                         "~/Scripts/exportExcell.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/bracjs").Include(
-                       //"~/Scripts/brac/app.js",
+                       //"~/Scripts/brac/app.js"
                        "~/Scripts/brac/site.js"
                        ));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js"
+                        //"~/Scripts/brac/jquery.js"
+                        ));
 
             bundles.Add(new StyleBundle("~/Content/styles").Include(
                         "~/Content/css/utopia-white.css",

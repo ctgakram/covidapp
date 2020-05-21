@@ -71,6 +71,9 @@
     <Compile Include="BERDataPeopleWiseQuantity.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Content.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DetailData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
@@ -89,6 +92,20 @@
     <Compile Include="DistrictSummery.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DoctorPoleStatus.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsPole.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsPoleVisit.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DoctorsPoleVisitDetail.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\ReportTypes.cs" />
+    <Compile Include="Enums\Utility.cs" />
     <Compile Include="Feature.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
@@ -101,6 +118,7 @@
     <Compile Include="ModelExt\BepDataSummeryModel.cs" />
     <Compile Include="ModelExt\BERDataItemWiseQuantityExt.cs" />
     <Compile Include="ModelExt\ChartModel.cs" />
+    <Compile Include="ModelExt\DoctorPoleDashboardModel.cs" />
     <Compile Include="ModelExt\MapModel.cs" />
     <Compile Include="ProgramByUserProfile.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
@@ -139,6 +157,9 @@
     <Compile Include="SprRptProductMatrix_Result.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SP_GenerateMapSummary1_Result.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SP_GenerateMapSummary_Result.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
@@ -151,12 +172,16 @@
     <Compile Include="SummerizedData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserAccessLog.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserLoginLog.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserProfile.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\ReportVM.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

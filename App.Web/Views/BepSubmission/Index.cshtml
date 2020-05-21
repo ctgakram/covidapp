@@ -20,13 +20,7 @@
     <h2>ডাটা এন্ট্রি</h2>
 
 
-    <div class="filter-item">
-
-        @if (UserRole.Check("ALL_PROGRAM_DATA", SessionHelper.Role))
-        {
-            @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "BepSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-primary pull-right" })
-        }
-    </div>
+    
     <div class="btn-group" role="group" aria-label="Basic example">
         <a id="exp" href="#" class="btn btn-blank btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="13.425" height="11.935" viewBox="0 0 13.425 11.935"> <path id="export" d="M8.951,2.842a.558.558,0,0,0-.163-.394L6.506.163A.559.559,0,0,0,6.11,0H5.967V2.984H8.951ZM13.31,7.18,11.079,4.932a.374.374,0,0,0-.639.263V6.713H8.949V8.205h1.492v1.52a.374.374,0,0,0,.639.263L13.31,7.739A.4.4,0,0,0,13.31,7.18Zm-8.834.653V7.086a.374.374,0,0,1,.373-.373h4.1V3.73H5.781a.561.561,0,0,1-.559-.559V0H.559A.558.558,0,0,0,0,.559V11.375a.558.558,0,0,0,.559.559H8.392a.558.558,0,0,0,.559-.559V8.205h-4.1A.374.374,0,0,1,4.476,7.832Z" fill="#d10d74" /></svg>
@@ -58,16 +52,16 @@
                 </div>
             </div>
             @*<div class="dataTables_length" id="gridTable_length">
-                    <label>
-                        Records per page
-                        <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </label>
-                </div>*@
+                <label>
+                    Records per page
+                    <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </label>
+            </div>*@
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
@@ -80,12 +74,12 @@
                 <div class="filter-item">
                     <label for="info_source">তথ্যের উৎস</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="2">Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                        </select>*@
+                        <option data-select2-id="2">Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                    </select>*@
                     @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
 
                 </div>
@@ -133,7 +127,13 @@
                 </div>
             </div>
         </div>
+        <div class="custom-add">
 
+            @if (UserRole.Check("ALL_PROGRAM_DATA", SessionHelper.Role))
+            {
+                @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "BepSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+            }
+        </div>
         <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
             <thead class="thead-yellow">
                 <tr>

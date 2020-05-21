@@ -1,0 +1,514 @@
+﻿@model AppProj.Domain.ModelExt.DoctorPoleDashboardModel
+@{
+    ViewBag.Title = "COVID Response";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    string act = "";
+}
+
+<div class="row-fluid">
+    <div class="span12">
+        <ul class="breadcrumb">
+            <li>
+                <h2 class="textPrimary">
+                    Telemedicine Dashboard
+                </h2>
+            </li>
+        </ul>
+
+    </div>
+</div>
+<div class="row-fluid">
+
+    <div class="span12">
+
+        <div class="row-fluid">
+
+            <div class="span4">
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>Program wise cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Program</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.ProgramWiseCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>District wise more than 2 Cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>District</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.DistrictWiseCases_MinVariable)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>Male-Female Ratio</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Sex</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.SexWiseCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>Age breakdown</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Age Range</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.AgeWiseCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div><!-- Mid panel -->
+
+            <div class="span4">
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <span>District wise cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>District</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.DistrictWiseCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="span4">
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>Total Figures</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+
+                                    <tbody>
+                                        <tr>
+                                            <th>Total Cases</th>
+                                            <td>@Model.TotalCases</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total Positive Cases</th>
+                                            <td>@Model.TotalPositive</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Current Positive Cases</th>
+                                            <td>@Model.CurrentPositive</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Negetive Cases</th>
+                                            <td>@Model.TotalNegetive</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Recovered</th>
+                                            <td>@Model.TotalResolved</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Test Pending</th>
+                                            <td>@Model.TotalTestPending</td>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Home Isolation</th>
+                                            <td>@Model.TotalHomeIsolation</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Hospital Admission</th>
+                                            <td>@Model.TotalHospitalized</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>Program wise positive cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Program</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.ProgramWiseCurrentPositiveCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>District wise positive cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>District</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.DistrictWiseCurrentPositiveCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>Male-Female ration of positive cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Sex</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.SexWiseCurrentPositiveCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <div class="span12">
+
+                        <section class="utopia-widget">
+                            <div class="utopia-widget-title">
+                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <span>Age breakdown of positive cases</span>
+                            </div>
+
+                            <div class="utopia-widget-content">
+
+                                <table class="table table-bordered">
+
+                                    <colgroup>
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                        <col class="utopia-col-1">
+                                        <col class="utopia-col-0">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Age Range</th>
+                                            <th>Count</th>
+                                            <th>%</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var row in Model.AgeWiseCurrentPositiveCases)
+                                        {
+                                            <tr>
+                                                <td>@row.Particular</td>
+                                                <td>@row.Value</td>
+                                                <td>@String.Format("{0:0.0}", row.Percent)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Body end -->
+
+@section scripts{
+    <script type="text/javascript" src="~/Scripts/js/jquery.sparkline.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+        });
+
+
+
+    </script>
+}
