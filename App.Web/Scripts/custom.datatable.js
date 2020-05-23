@@ -29,7 +29,6 @@ function DataTableBinder(obj, url, rowsPerPage, isEnableAllRows, additionalPostd
         "sAjaxSource": url,
         "bProcessing": true,
         "bServerSide": true,
-        "sPaginationType": "full_numbers",
         "sDom": "<'row-fluid'<'span7'l><'span5'f>r>t<'row-fluid'<'span5'i><'span7'p>>",
         "sPaginationType": "bootstrap",
         /*"aoColumnDefs": [

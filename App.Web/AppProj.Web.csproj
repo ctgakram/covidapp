@@ -2646,6 +2646,7 @@
     <Content Include="Content\color\javascripts\SCF.ui\starbar.js" />
     <Content Include="Content\color\javascripts\vendor\PIE.htc" />
     <Content Include="Content\css\alerts.css" />
+    <Content Include="Content\css\brac\bootstrap-legacy.css" />
     <Content Include="Content\css\brac\site.css" />
     <Content Include="Content\css\brac\bundle.css" />
     <Content Include="Content\css\calendarPicker.css" />
@@ -3342,6 +3343,10 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\brac\app.js" />
+    <Content Include="Scripts\brac\bootstrap_4.4.1.js" />
+    <Content Include="Scripts\brac\jquery.js" />
+    <Content Include="Scripts\brac\popper.js" />
+    <Content Include="Scripts\brac\site.js" />
     <Content Include="Scripts\conditional.js" />
     <Content Include="Scripts\custom.datatable.js" />
     <Content Include="Scripts\custom.imagegrid.js" />
@@ -3594,7 +3599,7 @@
     <Content Include="Views\Main\WorldMap.cshtml" />
     <Content Include="Views\MapSummary\Index.cshtml" />
     <Content Include="Views\Main\BracDashboard.cshtml" />
-    <None Include="Views\DistrictSubmission\IndexBrac.cshtml" />
+    <Content Include="Views\DistrictSubmission\IndexBrac.cshtml" />
     <Content Include="Views\Shared\_LayoutGeneral.cshtml" />
     <Content Include="Views\Main\Dashboard - Copy.cshtml" />
     <Content Include="Content\src\fonts\HelveticaNeue-regular.ttf" />
@@ -3618,6 +3623,14 @@
     <Content Include="Views\DoctorPole\Dashboard.cshtml" />
     <Content Include="Views\Report\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutBrac.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Main\Index - Copy.cshtml" />
+    <Content Include="Views\Shared\_leftmenu.cshtml" />
+    <Content Include="Views\SummerySubmission\Index - Copy.cshtml" />
+    <Content Include="Views\Standing\DistQuestion - Copy.cshtml" />
+    <Content Include="Views\Standing\Index - Copy.cshtml" />
+    <Content Include="Views\UserProfile\Index - Copy.cshtml" />
+    <Content Include="Views\Role\Index - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

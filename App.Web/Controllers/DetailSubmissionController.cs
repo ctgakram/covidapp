@@ -168,7 +168,7 @@ namespace AppProj.Web.Controllers
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\"", V = visible}
+                         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"brac-link\"", V = visible}
 
                     }
             }).ToArray();

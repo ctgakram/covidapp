@@ -103,8 +103,8 @@ namespace AppProj.Web.Controllers
                        select new object[] { c.RoleName, c.RoleDefaultPage.Name, c.IsActive?"Active":"Inactive"
                 ,new GridButtonModel[]
                     {
-                        new GridButtonModel{U=Url.Action("Edit",new {id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit Role", M="class=\"btn btn-info btn-mini\""}
-                        ,new GridButtonModel{U=Url.Action("Index","RoleFeature",new {roleId=c.Id}), T="Rights", M="class=\"btn btn-info btn-mini\"", A=false}
+                        new GridButtonModel{U=Url.Action("Edit",new {id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit Role", M="class=\"brac-link\""}
+                        ,new GridButtonModel{U=Url.Action("Index","RoleFeature",new {roleId=c.Id}), T="Rights", M="class=\brac-link\"", A=false}
                     }
             }).Skip(tke).Take(skp).ToArray();
 
