@@ -47,13 +47,19 @@ $(document).ready(function () {
         $(".tnav").slideToggle();
     });
     $(".dropdown").click(function () {
-       
+
         if ($(this).find(".dropdown-menu").hasClass("show") === true) {
             $(this).find(".dropdown-menu").removeClass("show");
-           
+
         } else {
             $(this).find(".dropdown-menu").addClass("show");
-           
+
         }
     });
+
+    $("div.sidebar-item").click(function () {
+        var target = $(this).attr("data-target");
+        $(target).slideToggle();
+    });
+    
 });

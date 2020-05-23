@@ -170,21 +170,10 @@
                     </svg>
                 </div>
             </div>
-            @*<div class="dataTables_length" id="gridTable_length">
-                <label>
-                    Records per page
-                    <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
-                        <option value="10">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                    </select>
-                </label>
-            </div>*@
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
-                    
+
                 </strong>
             </div>
         </div>
@@ -192,13 +181,6 @@
             <div class="table-filter-nav">
                 <div class="filter-item">
                     <label for="info_source">তথ্যের উৎস</label>
-                    @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="2">Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                        </select>*@
                     @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
 
                 </div>
@@ -246,35 +228,47 @@
                 </div>
             </div>
         </div>
+        <div class="custom-add">
+            @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+            {
+                @Ajax.ActionLink("নতুন তথ্য প্রদান", "CreateMulti", "SummerySubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+            }
+            <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
+                <thead class="thead-yellow">
+                    <tr>
+                        <th>
+                            তথ্যের উৎস
+                        </th>
+                        <th>
+                            জেলা
+                        </th>
+                        <th>
+                            উপজেলা
+                        </th>
+                        <th>
+                            তারিখ
+                        </th>
+                        <th>
+                            কতজনের সাক্ষাত নেয়া হয়েছে
+                        </th>
+                        <th>
+                            নিবন্ধনকারী
+                        </th>
+                        @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+                        {
+                            <th></th>
+                        }
+                    </tr>
+                </thead>
+            </table>
 
-        <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
-            <thead class="thead-yellow">
-                <tr>
-                    <th>
-                        তথ্যের উৎস
-                    </th>
-                    <th>
-                        জেলা
-                    </th>
-                    <th>
-                        উপজেলা
-                    </th>
-                    <th>
-                        তারিখ
-                    </th>
-                    <th>
-                        কতজনের সাক্ষাত নেয়া হয়েছে
-                    </th>
-                    <th>
-                        নিবন্ধনকারী
-                    </th>
-                    @if (UserRole.Check("SUMMERY", SessionHelper.Role))
-                    {
-                        <th></th>
-                    }
-                </tr>
-            </thead>
-        </table>
+
+
+
+
+
+        </div>
+
 
 
 
@@ -282,14 +276,6 @@
 
 
     </div>
-
-
-
-
-
-
-
-</div>
 
 
 

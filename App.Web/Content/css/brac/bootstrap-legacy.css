@@ -1,4 +1,6 @@
-﻿
+﻿.modal{
+    height:90%;
+}
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -21,7 +23,7 @@
 
 .modal {
     position: fixed;
-    top: 10%;
+    top: 5%;
     left: 50%;
     z-index: 1050;
     width: 800px;
@@ -57,22 +59,24 @@
 .modal-header {
     padding: 9px 15px;
     border-bottom: 1px solid #eee;
+    display:block;
 }
 
     .modal-header .close {
-        margin-top: 2px;
+        
     }
 
     .modal-header h3 {
         margin: 0;
         line-height: 30px;
+        font-size: 18px;
     }
 
 .modal-body {
     position: relative;
     max-height: 400px;
     padding: 15px;
-    overflow: visible;
+    overflow: auto;
 }
 
 .modal-form {
@@ -117,3 +121,6 @@
     .modal-footer .btn-block + .btn-block {
         margin-left: 0;
     }
+.modal-body .table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
+    background-color: #f9f9f9;
+}

@@ -63,7 +63,9 @@
         text-decoration: none;
         color: #D10D74;
     }
-
+.datepicker.dropdown-menu{
+    width:225px;
+}
 
 
 .brac-link {
@@ -72,9 +74,20 @@
 
 a.brac-link:hover {
     color: #D10D74;
+    margin-left: 10px;
 }
 
+a.report-item:hover {
+    color: #D10D74;
+}
 
+.report-title, .download {
+    color: #D10D74;
+}
+
+.download {
+    padding-left: 10px;
+}
 
 .releaf-summery {
     text-align: left;
@@ -305,17 +318,71 @@ a.brac-link:hover {
     position: absolute;
     right: 0;
 }
-.btn-bracify-add:hover {
-    color: white !important;
-    background-color: #D10D74;
+
+    .btn-bracify-add:hover {
+        color: white !important;
+        background-color: #D10D74;
+    }
+
+.custom-add {
+    position: relative;
 }
-.custom-add
-{
-    position:relative;
+
+.add-new-btn {
+    width: 100%;
 }
-.add-new-btn{
-    width:100%;
-}
+
 .dataTables_length {
-    
+}
+
+.sidebar {
+    height: auto;
+    min-height: 100vh;
+}
+
+.btn-group.open .dropdown-menu {
+    display: block !important;
+}
+
+.table-responsive.custom-action .btn-group .btn-info {
+    background-color: transparent;
+    border-color: transparent;
+    text-decoration: none;
+    color: #D10D74;
+}
+
+.btn-group .brac-link {
+    margin-right: 10px;
+}
+
+.circular {
+    color: #D10D74;
+    font-size: 14px;
+}
+
+.activities {
+    font-size: 14px;
+    color: #007161;
+}
+
+.notification-dd {
+    margin-right: 10px;
+}
+
+ul.dropdown-menu {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+    ul.dropdown-menu li a {
+        color: #D10D74;
+    }
+
+.dropdown-menu {
+    right: 5px;
+    left: auto;
+}
+
+.dataTables_length label select {
+    margin-right: 10px;
 }

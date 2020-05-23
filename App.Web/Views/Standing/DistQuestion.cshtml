@@ -16,14 +16,14 @@
 
 <div class="page-header">
     <h2>@ViewBag.Title List</h2>
-   
+
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive custom-action">
     <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
         <div class="dt_top">
-            
-            
+
+
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
@@ -32,18 +32,11 @@
             </div>
         </div>
         <div class="tnav" style="">
-            <div class="table-filter-nav">          
 
-              
-          
-                <div class="filter-item">
-                    <div>
-                        @Ajax.ActionLink("Add New Question", "CreateQuestion", "Standing", ajaxOpt, new { @class = "btn btn-primary pull-right" })
-                    </div>
-                </div>
-            </div>
         </div>
-
+        <div class="custom-add">
+            @Ajax.ActionLink("Add Question", "CreateQuestion", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+        </div>
         <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
             <thead class="thead-yellow">
                 <tr>
@@ -68,7 +61,7 @@
 
 
 @section scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
 
             var btns = {
@@ -86,5 +79,5 @@
             );
 
         });
-</script>
+    </script>
 }
