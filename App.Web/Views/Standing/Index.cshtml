@@ -65,21 +65,37 @@
 
 @section scripts{
 <script type="text/javascript">
-        $(document).ready(function () {
+    $(document).ready(function () {
 
-            var btns = {
-                2: true //column number : is button group
-            };
+        var btns = {
+            2: true //column number : is button group
+        };
 
-            /*data grid initializer*/
-            DataTableBinder($("#gridTable")   //table object
-                , '@Url.Content("~/Standing/DataGrid")'  //json data url
+        /*data grid initializer*/
+        DataTableBinder($("#gridTable")   //table object
+            , '@Url.Content("~/Standing/DataGrid")'  //json data url
             , [50, 100]  //record size
             , false //show all with row size
             , null  //additional parameters at query string
             , btns   //buttons are at these columns
             , true
-            );
+        );
+        $(".sidebar-item").removeClass("active");
+     
+
+        var id = window.location.href.toString();
+        var lastFive = id.substr(id.length - 3);
+
+        if ("TMS" == lastFive) {
+            $("#Cov_cer").addClass("active");
+        }
+        else if ("PNT" == lastFive) { $("#activeties").addClass("active"); }
+        else if ("SRC" == lastFive) { $("#prog").addClass("active"); }
+        else if ("IMP" == lastFive) { $("#Imp_aef").addClass("active"); }
+        else if ("CML" == lastFive) { $("#Com_mat").addClass("active"); }
+        else if ("CCL" == lastFive) { $("#Com_chal").addClass("active"); }
+        else if ("NME" == lastFive) { $("#Mats").addClass("active"); }
+        else if ("RES" == lastFive) { $("#Res").addClass("active"); }
 
         });
 </script>
