@@ -16,125 +16,7 @@
 
 
 
-@*<div class="row-fluid">
-        <div class="span12">
-            <ul class="breadcrumb">
-                <li>
-                    <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> বি.ডি.সি. - জেলার ব্র্যাক কর্মীদের তথ্য</h2>
-                </li>
-            </ul>
 
-        </div>
-    </div>*@
-
-@*<section id="formElement" class="utopia-widget utopia-form-box section">
-        <div class="utopia-widget-title">
-            <img src="~/Content/img/icons2/zoom_in.png" class="utopia-widget-icon">
-            <span class="muted">search elements</span>
-
-            <span class="textPrimary" id="iTotalRecords" style="float:right; padding-right:10px;">0</span>
-            <span class="textPrimary" style="float:right;">Total Records: </span>
-        </div>
-
-        <div class="row-fluid">
-            <div class="utopia-widget-content">
-                <div class="span3 utopia-form-freeSpace">
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="ContentTypeId1"> বিভাগ:</label>
-                            <div class="controls">
-                                @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "span12 ddl" })
-
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="FromDate">সার্চের শুরুর তারিখ:</label>
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
-                            </div>
-                        </div>
-
-                    </fieldset>
-
-                </div>
-                <div class="span3 utopia-form-freeSpace">
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="ContentTypeId2">জেলা :</label>
-                            @Html.DropDownListFor(model => model.ContentTypeId2, Model.ContentTypes2, "All Districts", new { @class = "span12 ddl" })
-
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="ToDate">সার্চের শেষ তারিখ:</label>
-
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
-                            </div>
-                        </div>
-
-                    </fieldset>
-
-                </div>
-                <div class="span3 utopia-form-freeSpace">
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="ContentTypeId3">  &nbsp; </label>
-                            <div class="controls">
-                                &nbsp;
-                            </div>
-                        </div>
-                    </fieldset>
-                    <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="select01">
-                                &nbsp;
-                            </label>
-                            <div class="controls">
-                                <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> সার্চ </a>
-                            </div>
-                        </div>
-
-                    </fieldset>
-
-                </div>
-                <div class="span3 utopia-form-freeSpace">
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="select01">
-                                &nbsp;
-                            </label>
-                            <div class="controls">
-                                &nbsp;
-                                @if (UserRole.Check("DISTRICT", SessionHelper.Role))
-                                {
-                                    @Ajax.ActionLink("তথ্য প্রদান ও পরিবর্তন", "Create", "DistrictSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-primary pull-right" })
-                                }
-                            </div>
-                        </div>
-
-                    </fieldset>
-                    <fieldset>
-                        <div class="control-group">
-                            <label class="control-label" for="select01">
-                                &nbsp;
-                            </label>
-                            <div class="controls">
-                                <a id="prn" href="#" class="btn pull-right"><i class="icon icon-print"></i> Print</a>
-                                <a id="exp" href="#" class="btn pull-right"><i class="icon icon-download"></i> Export</a>
-
-                            </div>
-                        </div>
-                    </fieldset>
-                </div>
-            </div>
-        </div>
-    </section>*@
 
 
 <div class="page-header">
@@ -210,9 +92,9 @@
                 </div>
 
                 @*<div class="filter-item">
-                    <label for="districts">উপজেলা</label>
-                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Upazillas", new { @class = "searchable-dropdown form-control" })
-                </div>*@
+                        <label for="districts">উপজেলা</label>
+                        @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Upazillas", new { @class = "searchable-dropdown form-control" })
+                    </div>*@
                 <div class="filter-item">
                     <label for="start_date">সার্চের শুরুর তারিখ</label>
                     <div class="input-group datepicker flatpickr">
@@ -292,11 +174,11 @@
                 </tr>
             </thead>
         </table>
-        </div>
     </div>
+</div>
 
-        @section scripts{
-            <script type="text/javascript">
+@section scripts{
+    <script type="text/javascript">
     $(document).ready(function () {
 
         $("#prn").click(function () {
@@ -328,10 +210,6 @@
                 LoadDistrictSearch($('#ContentTypeId1').val());
             });
 
-            @*$('#ContentTypeId2').change(function (event) {
-                LoadPointSearch($('#ContentTypeId2').val());
-            });*@
-
         window.LoadDistrictSearch = function (areaId) {
                 var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
                 LoadDropDownListWithCall('ContentTypeId2'
@@ -340,14 +218,7 @@
                     , null);
             }
 
-            @*window.LoadPointSearch = function (locationId) {
-                var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
-                LoadDropDownListWithCall('ContentTypeId3'
-                    , url
-                    , null
-                    , null);
-            }*@
-
+           
             var addPost = {
                 'ContentTypeId1': 'ContentTypeId1',
                 'ContentTypeId2': 'ContentTypeId2',
@@ -373,5 +244,5 @@
         $("#tebular").addClass("active");
         $("#bdc_info").css("display", "block");
         });
-            </script>
-        }
+    </script>
+}

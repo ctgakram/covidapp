@@ -29,7 +29,7 @@
                 </strong>
             </div>
         </div>
-        
+
 
         <div class="custom-add">
             @if (UserRole.Check("DETAIL", SessionHelper.Role))
@@ -45,8 +45,8 @@
                         @ViewBag.Title
                     </th>
                     @*<th>
-                        Details
-                    </th>*@
+                            Details
+                        </th>*@
                     <th>
                         Status
                     </th>
@@ -64,7 +64,7 @@
 
 
 @section scripts{
-<script type="text/javascript">
+    <script type="text/javascript">
     $(document).ready(function () {
 
         var btns = {
@@ -81,14 +81,12 @@
             , true
         );
         $(".sidebar-item").removeClass("active");
-     
+
 
         var id = window.location.href.toString();
         var lastFive = id.substr(id.length - 3);
 
-        if ("TMS" == lastFive) {
-            $("#Cov_cer").addClass("active");
-        }
+        if ("TMS" == lastFive) { $("#Cov_cer").addClass("active"); }
         else if ("PNT" == lastFive) { $("#activeties").addClass("active");}
         else if ("SRC" == lastFive) { $("#prog").addClass("active");}
         else if ("IMP" == lastFive) { $("#Imp_aef").addClass("active");}
@@ -96,8 +94,9 @@
         else if ("CCL" == lastFive) { $("#Com_chal").addClass("active");}
         else if ("NME" == lastFive) { $("#Mats").addClass("active"); }
         else if ("RES" == lastFive) { $("#Res").addClass("active"); }
+
          $("#tebular").addClass("active");
         $("#dataentry").css("display", "block");
         });
-</script>
+    </script>
 }

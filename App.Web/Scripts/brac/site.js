@@ -1,9 +1,11 @@
 ﻿var jsonTopMenuData;
 var baseurl = document.location.origin;
 $(document).ready(function () {
-    LoadMenuTopBRAC("../main/MenuData");
+    
+    LoadMenuTopBRAC(baseurl+"/main/MenuData");
 });
 function LoadMenuTopBRAC(url) {
+    
     var jsonTopMenuText = $.ajax({
         url: url,
         dataType: "json",
