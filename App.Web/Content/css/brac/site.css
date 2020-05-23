@@ -389,3 +389,8 @@ ul.dropdown-menu {
 .filter-item {
     max-width: 300px;
 }
+
+#gridTable table.dataTable td, table.dataTable th {
+    border: 1px solid #eee;
+    box-sizing: content-box;
+}

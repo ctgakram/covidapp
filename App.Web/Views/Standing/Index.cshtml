@@ -15,7 +15,7 @@
 }
 
 <div class="page-header">
-    <h2>List of @ViewBag.Title</h2>
+    <h2>Standing Data-List of @ViewBag.Title</h2>
 
 </div>
 
@@ -89,14 +89,15 @@
         if ("TMS" == lastFive) {
             $("#Cov_cer").addClass("active");
         }
-        else if ("PNT" == lastFive) { $("#activeties").addClass("active"); }
-        else if ("SRC" == lastFive) { $("#prog").addClass("active"); }
-        else if ("IMP" == lastFive) { $("#Imp_aef").addClass("active"); }
-        else if ("CML" == lastFive) { $("#Com_mat").addClass("active"); }
-        else if ("CCL" == lastFive) { $("#Com_chal").addClass("active"); }
+        else if ("PNT" == lastFive) { $("#activeties").addClass("active");}
+        else if ("SRC" == lastFive) { $("#prog").addClass("active");}
+        else if ("IMP" == lastFive) { $("#Imp_aef").addClass("active");}
+        else if ("CML" == lastFive) { $("#Com_mat").addClass("active");}
+        else if ("CCL" == lastFive) { $("#Com_chal").addClass("active");}
         else if ("NME" == lastFive) { $("#Mats").addClass("active"); }
         else if ("RES" == lastFive) { $("#Res").addClass("active"); }
-
+         $("#tebular").addClass("active");
+        $("#dataentry").css("display", "block");
         });
 </script>
 }
