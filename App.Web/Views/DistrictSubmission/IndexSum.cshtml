@@ -142,10 +142,10 @@
                 </strong>
             </div>
         </div>
-        <div class="tnav" style="">
+        <div class="tnav w-50">
             <div class="table-filter-nav">
                 <div class="filter-item">
-                    <label for="info_source">তথ্যের উৎস</label>
+                    <label for="info_source"> বিভাগ</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
                             <option data-select2-id="2">Communicable diseases</option>
                             <option>Communicable diseases</option>
@@ -163,15 +163,9 @@
 
 
                 </div>
-
                 @*<div class="filter-item">
-                    <label for="districts">উপজেলা</label>
-                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Upazillas", new { @class = "searchable-dropdown form-control" })
-                </div>*@
-                <div class="filter-item">
                     <label for="start_date">সার্চের শুরুর তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                        @*<input value="" autocomplete="off" id="start_date" name="start_date" type="hidden" class="form-control flatpickr-input" data-input=""><input class="input-group datepicker flatpickr form-control input" placeholder="" tabindex="0" type="text">*@
                         @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -183,7 +177,6 @@
                 <div class="filter-item">
                     <label for="end_date">সার্চের শেষ তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                        @*<input value="" autocomplete="off" id="end_date" name="end_date" type="hidden" class="form-control flatpickr-input" data-input=""><input class="input-group datepicker flatpickr form-control input" placeholder="" tabindex="0" type="text">*@
                         @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -191,7 +184,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="filter-item">
                     <button id="dateSearchButton" class="btn btn-bracify search">
                         <span>Search</span>

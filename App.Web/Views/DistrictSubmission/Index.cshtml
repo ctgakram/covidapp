@@ -169,16 +169,16 @@
                 </div>
             </div>
             @*<div class="dataTables_length" id="gridTable_length">
-                    <label>
-                        Records per page
-                        <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
-                            <option value="10">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
-                        </select>
-                    </label>
-                </div>*@
+                <label>
+                    Records per page
+                    <select name="gridTable_length" aria-controls="gridTable" class="custom-select custom-select-sm form-control form-control-sm">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </label>
+            </div>*@
             <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
                 Total Records
                 <strong id="iTotalRecords" class="text-bracify">
@@ -189,14 +189,14 @@
         <div class="tnav" style="">
             <div class="table-filter-nav">
                 <div class="filter-item">
-                    <label for="info_source">তথ্যের উৎস</label>
+                    <label for="info_source">বিভাগ</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                            <option data-select2-id="2">Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                            <option>Communicable diseases</option>
-                        </select>*@
+                        <option data-select2-id="2">Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                        <option>Communicable diseases</option>
+                    </select>*@
                     @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
 
                 </div>
@@ -244,8 +244,13 @@
                 </div>
             </div>
         </div>
-
-
+        <div class="custom-add">
+            &nbsp;
+            @if (UserRole.Check("DISTRICT", SessionHelper.Role))
+            {
+                @Ajax.ActionLink("তথ্য প্রদান ও পরিবর্তন", "Create", "DistrictSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+            }
+        </div>
 
         <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
             <thead class="thead-yellow">
@@ -254,17 +259,17 @@
                         ⇒বিভাগ<br />⇒জেলা<br />⇒তারিখ<br />⇒সদস্য
                     </th>
                     @*<th>
-                            কোয়ারেন্টাইন
-                        </th>
-                        <th>
-                            রিলিজ
-                        </th>
-                        <th>
-                            টেস্ট
-                        </th>
-                        <th>
-                            মৃত্যু
-                        </th>*@
+                        কোয়ারেন্টাইন
+                    </th>
+                    <th>
+                        রিলিজ
+                    </th>
+                    <th>
+                        টেস্ট
+                    </th>
+                    <th>
+                        মৃত্যু
+                    </th>*@
                     <th>
                         স্থানীয় প্রশাসন কী ব্যবস্থা গ্রহণ করেছে?
                     </th>
@@ -299,13 +304,13 @@
                         অতিরিক্ত প্রশ্ন 2
                     </th>
                     @*@if (UserRole.Check("DISTRICT", SessionHelper.Role))
-                        {
-                            <th></th>
-                        }*@
+                    {
+                        <th></th>
+                    }*@
                 </tr>
             </thead>
         </table>
-        </div>
+    </div>
     </div>
 
 
