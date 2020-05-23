@@ -73,27 +73,21 @@
             <div class="table-filter-nav">
                 <div class="filter-item">
                     <label for="info_source">তথ্যের উৎস</label>
-                    @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
-                        <option data-select2-id="2">Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                        <option>Communicable diseases</option>
-                    </select>*@
-                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
+                   
+                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Sources", new { @class = "searchable-dropdown form-control" })
 
                 </div>
 
                 <div class="filter-item">
                     <label for="filter_district">জেলা</label>
-                    @Html.DropDownListFor(model => model.ContentTypeId2, Model.ContentTypes2, "All Districts", new { @class = "searchable-dropdown form-control" })
+                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Districts", new { @class = "searchable-dropdown form-control" })
 
 
                 </div>
 
                 <div class="filter-item">
                     <label for="districts">উপজেলা</label>
-                    @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Upazillas", new { @class = "searchable-dropdown form-control" })
+                    @Html.DropDownListFor(model => model.ContentTypeId2, Model.ContentTypes2, "All Upazillas", new { @class = "searchable-dropdown form-control" })
                 </div>
                 <div class="filter-item">
                     <label for="start_date">সার্চের শুরুর তারিখ</label>

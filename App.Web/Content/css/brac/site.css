@@ -311,7 +311,7 @@ a.report-item:hover {
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
-    width: 110px;
+    min-width: 110px;
     border-radius: 5px;
     color: white;
     font-size: 12px;
@@ -385,4 +385,7 @@ ul.dropdown-menu {
 
 .dataTables_length label select {
     margin-right: 10px;
+}
+.filter-item {
+    max-width: 300px;
 }
