@@ -72,7 +72,7 @@
         <div class="tnav" style="">
             <div class="table-filter-nav">
                 <div class="filter-item">
-                    <label for="info_source">তথ্যের উৎস</label>
+                    <label for="info_source"> বিভাগ</label>
                     @*<select class="searchable-dropdown form-control select2-hidden-accessible" id="info_source" data-select2-id="info_source" tabindex="-1" aria-hidden="true">
                             <option data-select2-id="2">Communicable diseases</option>
                             <option>Communicable diseases</option>
@@ -80,7 +80,7 @@
                             <option>Communicable diseases</option>
                             <option>Communicable diseases</option>
                         </select>*@
-                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Sources", new { @class = "searchable-dropdown form-control" })
+                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "searchable-dropdown form-control" })
 
                 </div>
 
@@ -129,7 +129,7 @@
         </div>
 
 
-        <table id="gridTable" class="table table-borderless table-striped header-table table-alt">
+        <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
             <thead class="thead-yellow">
                 <tr>
                     <th colspan="3">এরিয়া </th>

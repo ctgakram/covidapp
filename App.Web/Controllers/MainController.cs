@@ -76,7 +76,7 @@ namespace AppProj.Web.Controllers
             model.Reach = sumDataService.GetReachCount();
 
             model.mapdatas = getsampledata();
-
+            model.lstSummeryStatus = disDataService.GetSummeryStatus(5);
             model.DashboardModelBDCs = disDataService.GetSummery()
                         .GroupBy(q => 1)
                         .Select(g => new DashboardModelBDC
