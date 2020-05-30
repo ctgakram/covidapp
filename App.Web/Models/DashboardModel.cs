@@ -1,4 +1,5 @@
 ﻿using AppProj.Domain.ModelExt;
+using AppProj.Domain.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace AppProj.Web.Models
         public int SuspectApp { get; set; }
         public string Districts { get; set; }
         public List<mapdata> mapdatas { get; set; }
-
+        public List<SummeryStatus> lstSummeryStatus { get; set; }
 
         public DashboardModelBDC DashboardModelBDCs { get; set; }
         public DashboardModelHnpp DashboardModelHnpps { get; set; }
@@ -28,7 +29,7 @@ namespace AppProj.Web.Models
         public List<BepDataSummeryModelReach> BepDataSummeryModelReaches = new List<BepDataSummeryModelReach>();
         public List<BepDataSummeryModelMaterial> BepDataSummeryModelMaterials = new List<BepDataSummeryModelMaterial>();
         public List<BepDataSummeryModelMaterial> BepDataSummeryModelMaterialDistributions = new List<BepDataSummeryModelMaterial>();
-        
+
     }
 
     public class DashboardModelHnpp
@@ -63,12 +64,13 @@ namespace AppProj.Web.Models
 
     public class mapdata
     {
-        public mapdata() {
+        public mapdata()
+        {
 
         }
-        public KeyValuePair<string,string> keyelement { get; set; }
+        public KeyValuePair<string, string> keyelement { get; set; }
         public string color { get; set; }
     }
-    
+
 
 }

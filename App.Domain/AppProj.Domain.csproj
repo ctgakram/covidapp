@@ -182,6 +182,7 @@
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\ReportVM.cs" />
+    <Compile Include="ViewModel\SummeryStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">

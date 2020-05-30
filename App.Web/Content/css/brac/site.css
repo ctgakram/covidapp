@@ -394,3 +394,32 @@ ul.dropdown-menu {
     border: 1px solid #eee;
     box-sizing: content-box;
 }
+.sidebar.in
+{
+    z-index:1000;
+}
+.fixed_headers {
+    overflow-y: auto;
+    height: 100px;
+}
+
+    .fixed_headers thead tr:nth-child(1) th {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 0;
+    }
+    .fixed_headers thead tr:nth-child(2) th {
+        position: sticky;
+        position: -webkit-sticky;
+        top: 45px;
+    }
+.thead-yellow th {
+    z-index: 10;
+}
+
+#map path[data-original-title] {
+    text-transform: capitalize;
+}
+.table-responsive {
+    display: initial;
+}
