@@ -207,7 +207,7 @@ namespace AppProj.Web.Controllers
             catch { }
 
             DateTime FromDate =Convert.ToDateTime(Request.QueryString["FromDate"]);// Convert.ToDateTime("16 Apr, 2020");//
-            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+            DateTime ToDate =Convert.ToDateTime(Request.QueryString["ToDate"]);
 
             List<SummerizedData> dataList = sunDataService.Get(srcId, disId, upzId, FromDate, ToDate, skip, take, out count).ToList();
 

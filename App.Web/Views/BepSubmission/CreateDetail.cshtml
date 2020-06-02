@@ -93,6 +93,9 @@
         <tr>
             <td class="title">
                 # of Coverage Upazilla
+                <span data-toggle="tooltip" data-placement="top" title="Number of upazilla’s covered by the program in this district<br>এই জেলায় প্রোগ্রামের আওতাভুক্ত উপজেলার সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.UpazilaCoverageCount)
@@ -102,6 +105,9 @@
         <tr>
             <td class="title">
                 Comment on Upazilla
+                <span data-toggle="tooltip" data-placement="top" title="Enter any comments or feedback on the upazilla<br>উপজেলাটি  সম্পর্কে আপনার কোনো মন্তব্য থাকলে তা  লিখুন">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.UpazillaRemarks)
@@ -159,7 +165,12 @@
         </tr>
     </table>
 
-    <h2>Preparedness</h2>
+    <h2>
+        Preparedness
+        <span data-toggle="tooltip" data-placement="top" title="The extent to which the program is prepared for the campaign<br>ক্যাম্পেইনটি সম্পন্ন করতে প্রোগ্রাম কতখানি  প্রস্তুত">
+            <img src="~/Content/tools.png" width="30" />
+        </span>
+    </h2>
     curId = 0;
     for (int i = 0; i < Model.BEPPreparenessActivityModels.Count; i++)
     {
@@ -172,7 +183,12 @@
 
             curId = Model.BEPPreparenessActivityModels[i].ActivityId;
 
-            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPPreparenessActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity/Taka</th><th>Distributed</th><th>Male Reach</th><th>Female Reach</th></tr>")
+            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPPreparenessActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity/Taka <span data-toggle='tooltip' data-placement='top' title='The amount of materials/taka provided<br>সরবারহকৃত উপকরণ/টাকার পরিমান'><img src='../Content/tools.png' width='30' /> </span> </th><th>Distributed  <span data-toggle='tooltip' data-placement='top' title='The amount of materials/taka distributed<br>বিতরণকৃত উপকরণ/টাকার পরিমান'><img src='../Content/tools.png' width='30' />  </span></th><th>Male Reach <span data-toggle='tooltip' data-placement='top' title='The number of male population reached in the campaign<br>এই ক্যাম্পেইনের মাধ্যমে মোট পুরুষদের কাছে পৌঁছানো গিয়েছে'><img src='../Content/tools.png' width='30' /></span></th><th>Female Reach <span data-toggle='tooltip' data-placement='top' title='The number of female population reached in the campaign<br>এই ক্যাম্পেইনের মাধ্যমে মোট মহিলাদের কাছে পৌঁছানো গিয়েছে'><img src='../Content/tools.png' width='30' /></span></th></tr>")
+
+
+
+
+
         }
         <tr>
             <td>
@@ -183,15 +199,19 @@
             </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new { @style = "width:100px;" })
+
             </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new { @style = "width:100px;" })
+
             </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new { @style = "width:100px;" })
+
             </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new { @style = "width:100px;" })
+
             </td>
         </tr>
 
@@ -226,6 +246,9 @@
         <tr>
             <td class="title">
                 Target
+                <span data-toggle="tooltip" data-placement="right" title="The number of staff we are planning to reach in this campaign.<br>এই ক্যাম্পেইনের মাধ্যমে যতজন কর্মীর কাছে পৌঁছানোর পরিকল্পনা রয়েছে তার সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.Target)
@@ -248,8 +271,12 @@
 
             curId = Model.BEPResponseActivityModels[i].ActivityId;
 
-            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity</th><th>People Reach</th></tr>")
+            @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity  <span data-toggle='tooltip' data-placement='top' title='The amount of materials distributed (e.g. sticker, poster, etc) or activities (e.g. phone calls, one-to-one discussion, miking, etc) by this program in this district.<br>এই জেলায় প্রোগ্রামের মাধ্যমে বিতরণকৃত ম্যাটেরিয়াল/ সামগ্রী (উদাঃ স্টিকার, পোস্টার ইত্যাদি) বা বিভিন্ন কার্যক্রমের (উদাঃ ফোন কল, আলোচনা, মাইকিং ইত্যাদি) পরিমাণ'><img src='../Content/tools.png' width='30' /></span></th><th>People Reach <span data-toggle='tooltip' data-placement='top' title='The number of individuals successfully reached as a result of material distribution or activities by this program in this district.<br>সামগ্রী বিতরণ এবং অন্যান্য কার্যক্রমের  মাধ্যমে এই জেলায় যতজন মানুষের কাছে প্রোগ্রাম পৌঁছতে পেরেছে  তার সংখ্যা '><img src='../Content/tools.png' width='30' /></span></th></tr>")
         }
+
+    
+
+
 
         for (int j = 0; j < Model.BEPResponseActivityModels[i].BEPDetailModels.Count; j++)
         {
@@ -262,9 +289,11 @@
                 </td>
                 <td>
                     @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Quantity, new { @style = "width:100px;" })
+
                 </td>
                 <td>
                     @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ReachCount, new { @style = "width:100px;" })
+                    
                 </td>
             </tr>
         }
@@ -276,12 +305,29 @@
         </tr>
         <tr>
             <th>People Type</th>
-            <th>New Reach</th>
-            <th>Old Reach</th>
+            <th>
+                New Reach
+                <span data-toggle="tooltip" data-placement="top" title="The number of unique individuals reached by the campaign by the program in this district.<br>এই ক্যাম্পেইনের মাধ্যমে প্রোগ্রাম এই জেলায় যতজন ইউনিক (যার কাছে প্রথমবার পৌঁছানো হয়েছে) ব্যক্তির কাছে পৌঁছতে পেরেছে তার সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+                
+            </th>
+            <th>
+                Old Reach
+                <span data-toggle="tooltip" data-placement="top" title="The number of individuals visited that were already visited before.<br>যতজন ব্যক্তির কাছে একাধিক বার পৌঁছানো হয়েছে তার সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </th>
+
             <th></th>
         </tr>
         <tr>
-            <td style="background-color:#fff0f0">All (Male/Female/Boy/Girl)</td>
+            <td style="background-color:#fff0f0">
+                All (Male/Female/Boy/Girl)
+                <span data-toggle="tooltip" data-placement="right" title="This field can also be used when the age or  gender is unspecified. E.g. When the data is not separated by age or gender  or the data given does not contain any age or gender specific data.<br>বয়স, নারী/ পুরুষ ইত্যাদি তথ্য যদি  আলাদাভাবে না থাকে বা নির্দিষ্ট তথ্য না থাকে, শুধুমাত্র এরকম ক্ষেত্রে এখানে তথ্য দিন">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </td>
             <td style="background-color:#fff0f0">
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7NewReach, new { @style = "width:100px;" })
             </td>
@@ -327,7 +373,12 @@
             </td>
         </tr>
         <tr>
-            <td>People With Disabilities</td>
+            <td>
+                People With Disabilities
+                <span data-toggle="tooltip" data-placement="right" title="Number of disabled individuals that have been reached<br>যতজন প্রতিবন্ধী ব্যক্তির কাছে পৌঁছানো গিয়েছে তার সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5NewReach, new { @style = "width:100px;" })
             </td>
@@ -336,9 +387,15 @@
             </td>
         </tr>
         <tr>
-            <td>House Holds</td>
+            <td>
+                House Holds
+                <span data-toggle="tooltip" data-placement="top" title="This should be the number of households reached and not a headcount of each family member. E.g. A family of 4 should be counted as 1 household. Each household should be considered as 1 household regardless of the number of family members.<br>যতগুলো খানায় এপর্যন্ত পৌঁছানো গিয়েছে তার সংখ্যা- এখানে একটি  খানা বলতে একটি পরিবারকে বোঝানো হয়েছে, পরিবারের প্রতিটি সদস্যকে এই গণনার আওতায় আনা যাবে না। উদাঃ ৪ জন সদস্য মিলে একটি পরিবার হলে তাকে ১টি খানা হিসাবে গণনা করা হবে। পরিবারের সদস্য যতই হোক, প্রত্যেকটি পরিবার কে একটি খানা হিসেবে ধরা হবে।">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6NewReach, new { @style = "width:100px;" })
+
             </td>
             <td>
                 @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6OldReach, new { @style = "width:100px;" })
@@ -365,7 +422,14 @@
     <table class="table-striped">
         <tr>
             <td class="title">
-                <h3>Remarks</h3>
+                <h3>
+                    Remarks
+
+                    <span data-toggle="tooltip" data-placement="top" title="Enter any Comments / Feedback you may have<br>আপনার কোনো মন্তব্য থাকলে তা লিখুন
+">
+                        <img src="~/Content/tools.png" width="30" />
+                    </span>
+                </h3>
             </td>
             <td class="control">
                 @Html.TextAreaFor(model => model.Remarks)
@@ -377,7 +441,7 @@
                 <p>
                     <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
                 </p>
-            </td>
+            </td> 
         </tr>
     </table>
 
@@ -386,7 +450,7 @@
     ValidatateForm("form0");
 
     $(document).ready(function () {
-
+         
         $("#save-submit").click(function () {
 
             if (!confirm("Do you want to Save?")) {

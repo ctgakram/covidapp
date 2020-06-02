@@ -1,0 +1,45 @@
+﻿@model AppProj.Web.ViewModels.VmFileUpload
+
+@{
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    ViewBag.Title = "FileUpload";
+}
+@using (Html.BeginForm("FileUpload", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="col-sm-12">
+        <div class="row">
+            <div class="col-sm-3">
+
+
+                <select class="form-control" id="type" name="type">
+                    <option value="0">Select Report Type</option>
+                    <option value="1">HR Circulars</option>
+                    <option value="2">HNPP Reports</option>
+                    <option value="3">Internal SitReps</option>
+                    <option value="4">External SitReps</option>
+
+
+                </select>
+            </div>
+
+
+            <div class="col-sm-3">
+
+
+                @Html.TextBox("file", "", new { type = "file", @class = " form-control" }) <br />
+            </div>
+            <div class="col-sm-3">
+                <input type="submit" value="Upload" class="btn btn-primary" />
+
+
+            </div>
+        </div>
+
+
+        <div class="col-sm-12">
+            @ViewBag.Message
+        </div>
+    </div>
+
+}

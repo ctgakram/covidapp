@@ -309,7 +309,11 @@ namespace AppProj.Web
             get { return GetFromSession("temp4"); }
             set { SetInSession("temp4", value); }
         }
-
+        public static string Returnurl
+        {
+            get { return GetFromSession<string>("returnurl"); }
+            set { SetInSession("returnurl", value); }
+        }
         private static object GetFromSession(string key)
         {
             return HttpContext.Current.Session[key];

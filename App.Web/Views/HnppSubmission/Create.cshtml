@@ -54,6 +54,9 @@
         <tr>
             <td class="title">
                 SS
+                <span data-toggle="tooltip" data-placement="top" title="Shastho Shebika<br>স্বাস্থ্য সেবিকা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.RiskBySS)
@@ -63,6 +66,9 @@
         <tr>
             <td class="title">
                 SK
+                <span data-toggle="tooltip" data-placement="top" title="Shashto Kormi<br>স্বাস্থ্য কর্মী">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.RiskBySK)
@@ -72,6 +78,9 @@
         <tr>
             <td class="title">
                 PK
+                <span data-toggle="tooltip" data-placement="top" title="Pushti Kormi<br>পুষ্টি কর্মী">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.RiskByPK)
@@ -81,6 +90,9 @@
         <tr>
             <td class="title">
                 PA
+                <span data-toggle="tooltip" data-placement="top" title="Program Assistant<br>প্রোগ্রাম সহকারী">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.RiskByPA)
@@ -90,6 +102,9 @@
         <tr>
             <td class="title">
                 AM
+                <span data-toggle="tooltip" data-placement="top" title="Area Manager<br>এলাকার ম্যানেজার">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.RiskByAM)
@@ -99,6 +114,9 @@
         <tr>
             <td class="title">
                 লিফলেট বিতরণ
+                <span data-toggle="tooltip" data-placement="top" title="Number of Leaflets distributed in this district<br>জেলায় বিতরণকৃত লিফলেটের সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.Leaflet)
@@ -108,6 +126,9 @@
         <tr>
             <td class="title">
                 স্টিকার বিতরণ
+                <span data-toggle="tooltip" data-placement="top" title="Number of Stickers distributed in this district<br>জেলায় বিতরণকৃত স্টিকারের সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.Sticker)
@@ -117,6 +138,9 @@
         <tr>
             <td class="title">
                 কেস সংখ্যা
+                <span data-toggle="tooltip" data-placement="top" title="Number of cases in this district<br>এই জেলায় মোট কেস- এর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.CaseCnt)
@@ -126,11 +150,17 @@
         <tr>
             <th class="title" colspan="2">
                 ব্র্যাক সমন্বয় মিটিং
+                <span data-toggle="tooltip" data-placement="top" title="Meetings coordinated by BRAC in this district<br>এই জেলায় ব্র্যাক কর্তৃক আয়োজিত মিটিং">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </th>
         </tr>
         <tr>
             <td class="title">
                 মিটিং সংখ্যা
+                <span data-toggle="tooltip" data-placement="top" title="Number of BRAC coordinated meetings that have been held<br>এই জেলায় ব্র্যাক কর্তৃক আয়োজিত মিটিং এর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.BracMeeting)
@@ -140,6 +170,9 @@
         <tr>
             <td class="title">
                 অংশহগ্রহণকারী
+                <span data-toggle="tooltip" data-placement="top" title="Number of participants of these meetings<br>মিটিংগুলোতে  অংশগ্রহণকারীর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.BracParticipant)
@@ -149,17 +182,28 @@
         <tr>
             <th class="title" colspan="2">
                 সরকারী সমন্বয় মিটিং
+                <span data-toggle="tooltip" data-placement="top" title="Meetings coordinated by the government in this district<br>এই জেলায় সরকার কর্তৃক আয়োজিত  মিটিং">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </th>
         </tr>
         <tr>
-            <td class="title">মিটিং সংখ্যা</td>
+            <td class="title">মিটিং সংখ্যা
+                <span data-toggle="tooltip" data-placement="top" title="Number of government coordinated meetings that have been held<br>এই জেলায় সরকার কর্তৃক আয়োজিত  মিটিং এর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.GovtMeeting)
                 @Html.ValidationMessageFor(model => model.GovtMeeting)
             </td>
         </tr>
         <tr>
-            <td class="title">অংশহগ্রহণকারী</td>
+            <td class="title">অংশহগ্রহণকারী
+                <span data-toggle="tooltip" data-placement="top" title="Number of participants of these meetings<br>মিটিংগুলোতে  অংশগ্রহণকারীর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
+            </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.GovtParticipant)
                 @Html.ValidationMessageFor(model => model.GovtParticipant)
@@ -168,6 +212,9 @@
         <tr>
             <td class="title">
                 মন্তব্য
+                <span data-toggle="tooltip" data-placement="right" title="Enter any Comments / Feedback you may have<br>আপনার কোনো মন্তব্য থাকলে তা লিখুন">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextAreaFor(model => model.Description)
@@ -187,7 +234,7 @@
 <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
-
+         
         $("#save-submit").click(function () {
 
             if (!confirm("Do you want to Save?")) {

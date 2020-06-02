@@ -33,7 +33,7 @@ namespace AppProj.Web.Controllers
             , IUserLoginLogService userLoginLogService
             , IRoleService roleService
             , IRoleFeatureService roleFeatureService
-            ,IReportService reportService
+            , IReportService reportService
             , IUnitOfWork unitOfWork)
         {
             this.userProfileService = userProfileService;
@@ -46,6 +46,11 @@ namespace AppProj.Web.Controllers
 
         public ActionResult Index(string returnUrl)
         {
+
+            if (!string.IsNullOrEmpty(returnUrl))
+            {
+                SessionHelper.Returnurl = returnUrl;
+            }
 
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
@@ -62,7 +67,7 @@ namespace AppProj.Web.Controllers
             //return Redirect("~/Main");
             //860538 source, 860539 dis, 860540 upz
 
-            //var items = _reportService.GetReport();
+            var items = _reportService.GetReport();
 
             if (authCookie != null)
             {
@@ -126,7 +131,10 @@ namespace AppProj.Web.Controllers
 
                     if (IsAuthorised(objSso.name))
                     {
-
+                        if (SessionHelper.Returnurl != null)
+                        {
+                            return Redirect("~/" + SessionHelper.Returnurl);
+                        }
                         return Redirect("~/" + SessionHelper.DefaultPage);
                     }
                     else
@@ -135,7 +143,12 @@ namespace AppProj.Web.Controllers
                         SessionHelper.UserId = 0;
                         SessionHelper.UnitId = 1;
                         //SessionHelper.DateFormat = "dd MMM, yyyy";
+                        if (SessionHelper.Returnurl != null)
+                        {
+                            return Redirect("~/" + SessionHelper.Returnurl);
+                        }
                         return Redirect("~/Main/Dashboard");
+
                     }
                 }
                 else if (objSso.name != null)

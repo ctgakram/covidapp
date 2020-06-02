@@ -4,18 +4,18 @@
     Layout = "~/Views/Shared/_LayoutBrac.cshtml";
     ViewBag.page = "main";
 }
-
+<link href="~/Content/css/brac/bootstrap-legacy.css" rel="stylesheet" />
 <div class="row-fluid">
     <div class="span12">
         <ul class="breadcrumb">
             <li>
-                <h2 class="textPrimary">                    
+                <h2 class="textPrimary">
                     BRAC COVID-19 Activities
                 </h2>
             </li>
         </ul>
-        <div class="tt" data-toggle="tooltip" data-placement="top"  data-original-title="Tooltip on top" title="Md. samnoon Mohebbo">Mohebbo</div>
-        <a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
+        <span class="abc" data-toggle="tooltip" data-placement="top" title="This is test"></span>
+        @*<img src="~/Content/tools.png" width="30" />*@
     </div>
 </div>
 <p>
@@ -49,8 +49,12 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-            //$('[data-toggle="tooltip"]').tooltip();
-            $('[data-toggle="tooltip"]').tooltip();
+             
+            $('[data-toggle="tooltip"]').tooltip(
+                {
+                    "html": true
+                }
+            );
         });
         $(".sidebar-item").removeClass("active");
         $("#my_helth").addClass("active");
