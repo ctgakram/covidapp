@@ -69,4 +69,5 @@ $(document).ready(function () {
         console.log("cliked");
         $(".sidebar").toggleClass("in");
     });
+    
 });

@@ -50,16 +50,16 @@ namespace AppProj.Web.Controllers
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             //temp
-            if (IsAuthorised("154211"))
-            {
-                return Redirect("~/" + SessionHelper.DefaultPage);
-            }
+            //if (IsAuthorised("154211"))
+            //{
+            //    return Redirect("~/" + SessionHelper.DefaultPage);
+            //}
 
-            SessionHelper.UserName = "154211";
-            SessionHelper.UserId = 3;
-            SessionHelper.UnitId = 1;
-            //SessionHelper.DateFormat = "dd MMM, yyyy";
-            return Redirect("~/Main");
+            //SessionHelper.UserName = "154211";
+            //SessionHelper.UserId = 3;
+            //SessionHelper.UnitId = 1;
+            ////SessionHelper.DateFormat = "dd MMM, yyyy";
+            //return Redirect("~/Main");
             //860538 source, 860539 dis, 860540 upz
 
             //var items = _reportService.GetReport();
@@ -88,16 +88,16 @@ namespace AppProj.Web.Controllers
         {
 
             //temp
-            if (IsAuthorised("154211"))
-            {
-                return Redirect("~/" + SessionHelper.DefaultPage);
-            }
+            //if (IsAuthorised("154211"))
+            //{
+            //    return Redirect("~/" + SessionHelper.DefaultPage);
+            //}
 
-            SessionHelper.UserName = "Admin";
-            SessionHelper.UserId = 3;
-            SessionHelper.UnitId = 1;
-            //SessionHelper.DateFormat = "dd MMM, yyyy";
-            return Redirect("~/Main");
+            //SessionHelper.UserName = "Admin";
+            //SessionHelper.UserId = 3;
+            //SessionHelper.UnitId = 1;
+            ////SessionHelper.DateFormat = "dd MMM, yyyy";
+            //return Redirect("~/Main");
 
 
             var encriptData = string.Empty;

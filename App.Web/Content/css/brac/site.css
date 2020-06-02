@@ -175,6 +175,12 @@ a.report-item:hover {
         bottom: 10px;
         left: 30%;
     }
+    /*.table-responsive {
+        display: block !important;
+    }*/
+    .filter-item {
+         max-width: 100% !important; 
+    }
 }
 
 .st0 {

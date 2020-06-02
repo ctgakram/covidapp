@@ -14,7 +14,8 @@
                 </h2>
             </li>
         </ul>
-
+        <div class="tt" data-toggle="tooltip" data-placement="top"  data-original-title="Tooltip on top" title="Md. samnoon Mohebbo">Mohebbo</div>
+        <a href="#" data-toggle="tooltip" title="Hooray!">Hover over me</a>
     </div>
 </div>
 <p>
@@ -48,13 +49,13 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-
-
+            //$('[data-toggle="tooltip"]').tooltip();
+            $('[data-toggle="tooltip"]').tooltip();
         });
         $(".sidebar-item").removeClass("active");
         $("#my_helth").addClass("active");
         $("#tebular").addClass("active");
-
+        
 
     </script>
 }
