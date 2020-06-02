@@ -2,7 +2,7 @@
 @using AppProj.Web;
 @model AppProj.Web.Models.SearchModel
 @{
-    Layout = "~/Views/Shared/_LayoutMain.cshtml";
+    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
     var ajaxOpt = new AjaxOptions
     {
         HttpMethod = "POST",
@@ -14,21 +14,10 @@
     };
 }
 
-<div class="row-fluid">
-    <div class="span12">
-        <ul class="breadcrumb">
-            <li>
-                <h2 class="textPrimary"><img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-icons2-small-img" style="padding-right:5px;"> Tele Consultancy</h2>
-            </li>
-        </ul>
-
-    </div>
-</div>
-
 <section id="formElement" class="utopia-widget utopia-form-box section">
     <div class="utopia-widget-title">
-        <img src="~/Content/img/icons2/zoom_in.png" class="utopia-widget-icon">
-        <span class="muted">search elements</span>
+        <img src="~/Content/img/icons2/burn_blu-ray2.png" class="utopia-widget-icon utopia-icons2-small-img"> 
+        <span class="textPrimary">Tele Consultancy</span>
 
         <span class="textPrimary" id="iTotalRecords" style="float:right; padding-right:10px;">0</span>
         <span class="textPrimary" style="float:right;">Total Records: </span>
@@ -36,7 +25,7 @@
 
     <div class="row-fluid">
         <div class="utopia-widget-content">
-            <div class="span3 utopia-form-freeSpace">
+            <div class="span2 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group ">
                         <label class="control-label" for="ContentTypeId1"> Program:</label>
@@ -46,20 +35,8 @@
                         </div>
                     </div>
                 </fieldset>
-                <fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="FromDate">&nbsp;</label>
-                            <div class="controls">
-                                @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
-                                {
-                                    @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-danger" })
-                                }
-                            </div>
-                        </div>
-
-                    </fieldset>
             </div>
-            <div class="span3 utopia-form-freeSpace">
+            <div class="span2 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group ">
                         <label class="control-label" for="ContentTypeId2">Division:</label>
@@ -67,20 +44,9 @@
 
                     </div>
                 </fieldset>
-                @*<fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="ToDate">To Date:</label>
-
-                            <div class="controls">
-                                @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
-                            </div>
-                        </div>
-
-                    </fieldset>*@
 
             </div>
-            <div class="span3 utopia-form-freeSpace">
+            <div class="span2 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group ">
                         <label class="control-label" for="ContentTypeId3"> District :</label>
@@ -90,20 +56,8 @@
                         </div>
                     </div>
                 </fieldset>
-                @*<fieldset>
-                        <div class="control-group ">
-                            <label class="control-label" for="select01">
-                                &nbsp;
-                            </label>
-                            <div class="controls">
-                                <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Search </a>
-                            </div>
-                        </div>
-
-                    </fieldset>*@
-
             </div>
-            <div class="span3 utopia-form-freeSpace">
+            <div class="span4 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group">
                         <label class="control-label" for="select01">
@@ -116,24 +70,25 @@
                                 @Html.DisplayFor(model => model.StatusList[i].Text)
                                 @Html.HiddenFor(model => model.StatusList[i].Value)
                                 @Html.HiddenFor(model => model.StatusList[i].Text)
-                                <br />
+
                             }
                             <input type="hidden" id="StatusIds" value="" />
+                            <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i></a>
                         </div>
                     </div>
-
                 </fieldset>
+            </div>
+            <div class="span2 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group">
-                        <label class="control-label" for="select01">
-                            &nbsp;
-                        </label>
-                        <div class="controls">
-                            <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i> Search </a>
-                            <a id="prn" href="#" class="btn pull-right"><i class="icon icon-print"></i> Print</a>
-                            <a id="exp" href="#" class="btn pull-right"><i class="icon icon-download"></i> Export</a>
+                        @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                        {
+                            @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-danger pull-right" })
+                        }
+                        
+                        <a id="prn" href="#" class="btn"><i class="icon icon-print"></i> Print</a>
+                        <a id="exp" href="#" class="btn"><i class="icon icon-download"></i> Export</a>
 
-                        </div>
                     </div>
                 </fieldset>
             </div>

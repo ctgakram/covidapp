@@ -115,13 +115,13 @@
                         @foreach (var v in Model.ExistingData)
                         {
                             <tr>
-                                <td>@v.StandingData4.Name</td>
+                                <td>@v.StandingData5.Name</td>
                                 <td>@v.Name</td>
                                 @*<td>@v.Age</td>
                                     <td>@v.StandingData.Name</td>*@
                                 <td>@v.EntryTime.ToString("dd MM, yyyy")</td>
                                 <td>
-                                    @{var vs = v.StandingData5 == null ? "" : v.StandingData5.Name;}
+                                    @{var vs = v.StandingData6 == null ? "" : v.StandingData6.Name;}
                                     @vs
                                 </td>
                                 @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))

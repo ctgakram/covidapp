@@ -12,105 +12,143 @@
                     <div class="header-divider">&nbsp;</div>
                     <div class="notification header-divider">
                         <div class="notification-wrapper">
-                            <a href="~/Main" class="notification-counter"> Tabular Data </a>
+                            <a href="~/Main" class="notification-counter">Home</a>
                         </div>
                     </div>
-
-                    <div class="notification header-divider">
-                        <div class="notification-wrapper">
-                            <a href="#" id="notCnt2" class="notification-counter"> Dashboards </a>
-                            <div id="triangle-down2"></div>
-                            <div id="notBox2" class="tabbable notification-box" style="display: none;">
-                                <ul class="message-list">
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/info.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/Main/Dashboard" style="padding-left:10px;">
-                                                Current Counts <small class="muted">(all counts from the collected data)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/door.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/Main/BracDashboard" style="padding-left:10px;">
-                                                BRAC Covid-19 Activities <small class="muted">(by all program)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/stats_pie.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/Analytics" style="padding-left:10px;">
-                                                Comparison Chart <small class="muted"> (chart view)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/bd.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/MapSummary" style="padding-left:10px;">
-                                                Demand-Supply Map <small class="muted"> (based on brac & govt data)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/corona.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/Main/GisMap" style="padding-left:10px;">
-                                                Current Infections <small class="muted"> (64 districts and Dhaka in detail)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="msg">
-                                            <img src="~/Content/img/icons2/world.png" class="utopia-icons2-medium-img" title="world" />
-                                            <a href="~/Main/WorldMap" style="padding-left:10px;">
-                                                World COVID-19 Status <small class="muted"> (developed by JHU)</small>
-                                            </a>
-                                        </div>
-                                    </li>
-
-
-
-                                </ul>
-                                <div class="message-more"><a href="#"> </a></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="notification header-divider">
-                        <div class="notification-wrapper">
-                            <a href="#" id="notCnt" class="notification-counter" style="font-style:italic;"> info </a>
-                            <div id="triangle-down"></div>
-                            <div id="notBox" class="tabbable notification-box" style="display: none;">
-                                <ul class="nav nav-tabs">
-                                    <li class="active"><a data-toggle="tab" href="#message">Messages</a></li>
-                                    <li class=""><a data-toggle="tab" href="#activity">Activity</a></li>
-                                </ul>
-                                <div class="tab-content">
-                                    <div id="message" class="tab-pane active">
-                                        <ul id="topMenuMsg" class="message-list">
-
-                                        </ul>
-                                        <div class="message-more"><a href="@Url.Action("Message", "Main")"> more messages </a></div>
-                                    </div>
-                                    <div id="activity" class="tab-pane">
-                                        <ul id="topMenuAct" class="message-list"></ul>
-                                        <div class="message-more"><a href="#"> </a></div>
-                                    </div>
+                    @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role)
+                                    || UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
+                                    || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
+                    {
+                        if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
+                        {
+                            <div class="notification header-divider">
+                                <div class="notification-wrapper">
+                                    <a href="~/DoctorPole/HrIndex" class="notification-counter">HRD Call</a>
                                 </div>
                             </div>
+                        }
+                        if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                        {
+                            <div class="notification header-divider">
+                                <div class="notification-wrapper">
+                                    <a href="~/DoctorPole/FollowupIndex" class="notification-counter">Tele Consultancy</a>
+                                </div>
+                            </div>
+                        }
+                        if (UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
+                        {
+                            <div class="notification header-divider">
+                                <div class="notification-wrapper">
+                                    <a href="~/DoctorPole/FollowupIndex" class="notification-counter">Follow Up</a>
+                                </div>
+                            </div>
+                        }
+                        <div class="notification header-divider">
+                            <div class="notification-wrapper">
+                                <a href="~/DoctorPole/ReportIndex" class="notification-counter">All Profiles</a>
+                            </div>
                         </div>
-                    </div><!-- Notification end -->
+                        <div class="notification header-divider">
+                            <div class="notification-wrapper">
+                                <a href="~/DoctorPole/Dashboard" class="notification-counter">Dashboard</a>
+                            </div>
+                        </div>
+                    }
+                    @*<div class="notification header-divider">
+            <div class="notification-wrapper">
+                <a href="#" id="notCnt2" class="notification-counter"> Dashboards </a>
+                <div id="triangle-down2"></div>
+                <div id="notBox2" class="tabbable notification-box" style="display: none;">
+                    <ul class="message-list">
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/info.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/Main/Dashboard" style="padding-left:10px;">
+                                    Current Counts <small class="muted">(all counts from the collected data)</small>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/door.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/Main/BracDashboard" style="padding-left:10px;">
+                                    BRAC Covid-19 Activities <small class="muted">(by all program)</small>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/stats_pie.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/Analytics" style="padding-left:10px;">
+                                    Comparison Chart <small class="muted"> (chart view)</small>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/bd.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/MapSummary" style="padding-left:10px;">
+                                    Demand-Supply Map <small class="muted"> (based on brac & govt data)</small>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/corona.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/Main/GisMap" style="padding-left:10px;">
+                                    Current Infections <small class="muted"> (64 districts and Dhaka in detail)</small>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="msg">
+                                <img src="~/Content/img/icons2/world.png" class="utopia-icons2-medium-img" title="world" />
+                                <a href="~/Main/WorldMap" style="padding-left:10px;">
+                                    World COVID-19 Status <small class="muted"> (developed by JHU)</small>
+                                </a>
+                            </div>
+                        </li>
+
+
+
+                    </ul>
+                    <div class="message-more"><a href="#"> </a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="notification header-divider">
+            <div class="notification-wrapper">
+                <a href="#" id="notCnt" class="notification-counter" style="font-style:italic;"> info </a>
+                <div id="triangle-down"></div>
+                <div id="notBox" class="tabbable notification-box" style="display: none;">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#message">Messages</a></li>
+                        <li class=""><a data-toggle="tab" href="#activity">Activity</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div id="message" class="tab-pane active">
+                            <ul id="topMenuMsg" class="message-list">
+
+                            </ul>
+                            <div class="message-more"><a href="@Url.Action("Message", "Main")"> more messages </a></div>
+                        </div>
+                        <div id="activity" class="tab-pane">
+                            <ul id="topMenuAct" class="message-list"></ul>
+                            <div class="message-more"><a href="#"> </a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> Notification end*@
 
                     <div class="user-panel header-divider">
                         <div class="user-info">
                             <img src="~/Content/img/icons/user.png" alt="">
                             <a href="#">
-                            
+
                                 @SessionHelper.UserName
-                            
+
                             </a>
                         </div>
                         <div class="user-dropbox" style="display: none;">

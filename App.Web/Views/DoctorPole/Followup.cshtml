@@ -22,7 +22,7 @@
 
     <button type="button" class="collapsible">@Model.DoctorsPole.StandingData4.Name  <span style="font-size:11px;"> @Model.DoctorsPole.StaffName (PIN : @Model.DoctorsPole.PIN)</span></button>
     <div class="content">
-        <table class="table table-striped table-bordered fixed_headers" style="width:100%">
+        <table class="table table-striped table-bordered" style="width:100%">
             <tr>
                 <th>Patient Name</th>
                 <td>@Model.DoctorsPole.Name</td>
@@ -273,7 +273,7 @@
                     @Html.TextBoxFor(model => model.TestResultDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                     @Html.ValidationMessageFor(model => model.TestResultDate)
                 </th>
-                <th style="visibility:hidden">
+                <th>
                     2nd Sample taken date
                     @Html.TextBoxFor(model => model.SampleTakenDate1, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                     @Html.ValidationMessageFor(model => model.SampleTakenDate1)
@@ -358,7 +358,8 @@
         </table>
     </div>
 }
-<script type="text/javascript">
+
+    <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
 
@@ -431,30 +432,32 @@
             startDate: null
         });
 
+
     });
-</script>
+    </script>
 
-<script type="text/javascript">
-    ValidatateForm("form0");
+    <script type="text/javascript">
+        ValidatateForm("form0");
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
+            var coll = document.getElementsByClassName("collapsible");
 
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
+            var i;
 
-        for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
-                this.classList.toggle("active");
-                var content = this.nextElementSibling;
-                if (content.style.display === "block") {
-                    content.style.display = "none";
-                } else {
-                    content.style.display = "block";
-                }
-            });
-        }
-    });
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+        });
 
-</script>
+    </script>
+
 

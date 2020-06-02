@@ -418,7 +418,7 @@ namespace AppProj.Web.Controllers
                        ,c.Age
                        , c.StandingData.Name
                        , c.StandingData5.Name
-                       , c.StandingData6==null?"":c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 //,new GridButtonModel[]
                 //    {
@@ -748,7 +748,7 @@ namespace AppProj.Web.Controllers
                        ,c.Age
                        , c.StandingData.Name
                        , c.StandingData5.Name
-                       , c.StandingData6==null?"":c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {
@@ -863,7 +863,7 @@ namespace AppProj.Web.Controllers
                        ,c.Age
                        , c.StandingData.Name
                        , c.StandingData5.Name
-                       , c.StandingData6==null?"":c.StandingData5.Name
+                       , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
                     {
