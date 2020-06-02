@@ -249,6 +249,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BepSubmissionController.cs" />
     <Compile Include="Controllers\DoctorPoleController.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AnalyticsController.cs" />
     <Compile Include="Controllers\DistrictSubmissionController.cs" />
@@ -309,6 +310,7 @@
     <Compile Include="ViewModels\ImageGridModel.cs" />
     <Compile Include="ViewModels\JQueryDataTable.cs" />
     <Compile Include="ViewModels\PosModel.cs" />
+    <Compile Include="ViewModels\VmFileUpload.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="aspnet_client\system_web\2_0_50727\crystalreportviewers13\ActiveXControls\PrintControl.cab" />
@@ -3328,6 +3330,7 @@
     <Content Include="Content\src\images\svg\tabular-data\toggle.svg" />
     <Content Include="Content\src\images\svg\tabular-data\total-interview.svg" />
     <Content Include="Content\src\template\map.html" />
+    <Content Include="Content\tools.png" />
     <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -3631,9 +3634,11 @@
     <Content Include="Views\Standing\Index - Copy.cshtml" />
     <Content Include="Views\UserProfile\Index - Copy.cshtml" />
     <Content Include="Views\Role\Index - Copy.cshtml" />
+    <Content Include="Views\FileUpload\FileUpload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Uploads\" />
     <Folder Include="Views\MeetingRoom\" />
   </ItemGroup>
   <ItemGroup>
