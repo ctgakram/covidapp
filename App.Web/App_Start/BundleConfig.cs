@@ -9,6 +9,7 @@ namespace AppProj.Web
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/utopia").Include(
+                        "~/Scripts/bootstrap.js",
                         "~/Scripts/jquery.dataTables.js",
                         "~/Scripts/bootstrap-datatable.js",
                         "~/Scripts/jquery.unobtrusive*",

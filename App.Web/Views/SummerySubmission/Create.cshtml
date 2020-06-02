@@ -57,6 +57,9 @@
     <tr>
         <td class="title">
             কতজনের সাক্ষাত নেয়া হয়েছে
+            <span data-toggle="tooltip" data-placement="top" title="Number of individuals who have been contacted
+যাদের সাথে যোগাযোগ করা হয়েছে তাদের সংখ্যা/ যোগাযোগ করা হয়েছে এমন ব্যক্তিদের সংখ্যা
+"><img src="~/Content/tools.png" width="30" /></span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.ReachCount)
@@ -94,6 +97,12 @@
 }
 <script type="text/javascript">
     ValidatateForm("form0");
+
+
+    $(document).ready(function () {
+         
+        //$('.abc').tooltip();
+    });
     $(document).ready(function () {
 
         $("#save-submit").click(function () {

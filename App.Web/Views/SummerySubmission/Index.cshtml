@@ -1,4 +1,4 @@
-﻿    @using AppProj.Web.Helpers;
+﻿@using AppProj.Web.Helpers;
 @using AppProj.Web;
 @model AppProj.Web.Models.SearchModel
 @{
@@ -233,42 +233,35 @@
             {
                 @Ajax.ActionLink("নতুন তথ্য প্রদান", "CreateMulti", "SummerySubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
             }
-            <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
-                <thead class="thead-yellow">
-                    <tr>
-                        <th>
-                            তথ্যের উৎস
-                        </th>
-                        <th>
-                            জেলা
-                        </th>
-                        <th>
-                            উপজেলা
-                        </th>
-                        <th>
-                            তারিখ
-                        </th>
-                        <th>
-                            কতজনের সাক্ষাত নেয়া হয়েছে
-                        </th>
-                        <th>
-                            নিবন্ধনকারী
-                        </th>
-                        @if (UserRole.Check("SUMMERY", SessionHelper.Role))
-                        {
-                            <th></th>
-                        }
-                    </tr>
-                </thead>
-            </table>
-
-
-
-
-
-
         </div>
-
+        <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
+            <thead class="thead-yellow">
+                <tr>
+                    <th>
+                        তথ্যের উৎস
+                    </th>
+                    <th>
+                        জেলা
+                    </th>
+                    <th>
+                        উপজেলা
+                    </th>
+                    <th>
+                        তারিখ
+                    </th>
+                    <th>
+                        কতজনের সাক্ষাত নেয়া হয়েছে
+                    </th>
+                    <th>
+                        নিবন্ধনকারী
+                    </th>
+                    @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+        </table>
 
 
 
@@ -276,6 +269,14 @@
 
 
     </div>
+
+
+
+
+
+
+
+</div>
 </div>
 
 

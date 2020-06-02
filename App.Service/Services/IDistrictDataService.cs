@@ -1,5 +1,6 @@
 ﻿using AppProj.Domain;
 using AppProj.Domain.ModelExt;
+using AppProj.Domain.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace AppProj.Service.Services
         IEnumerable<DistrictPatient> GetPatient(DateTime date);
         void AddPatient(DistrictPatient entity);
         void UpdatePatient(DistrictPatient entity);
+        List<SummeryStatus> GetSummeryStatus(int take);
 
     }
 }

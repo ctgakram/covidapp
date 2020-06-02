@@ -6,6 +6,11 @@ var keepSessionAliveUrl = null;
 function openDialog1(title) {    
     $('#dialog1Label').html(title);
     $('#dialog1').modal('show');
+    $('[data-toggle="tooltip"]').tooltip(
+        {
+            "html": true
+        }
+    );
 }
 function openDialog2(title) {
     $('#dialog1Labe2').html(title);

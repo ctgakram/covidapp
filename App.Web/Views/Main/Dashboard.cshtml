@@ -281,16 +281,16 @@
             <a target="_blank" href="~/Main/BracDashboard" class="view-in-deatils">View in deatils</a>
         </div>
         @*<div class="report-box box-shadow">
-            <h6 class="table-box-title">
-                <span>
-                    <img class="mr-2 carret" src="@Url.Content("~/Content/src/images/svg/report.svg")" alt="arrow-down">
-                    <strong>Circulars and Sitreps</strong>
-                </span>
-            </h6>
-            <div id="divrptcnt" class="reports">
-              
-            </div>
-        </div>*@
+                <h6 class="table-box-title">
+                    <span>
+                        <img class="mr-2 carret" src="@Url.Content("~/Content/src/images/svg/report.svg")" alt="arrow-down">
+                        <strong>Circulars and Sitreps</strong>
+                    </span>
+                </h6>
+                <div id="divrptcnt" class="reports">
+
+                </div>
+            </div>*@
     </div>
 
     <div id="map" class="custom-col col-40 position-relative">
@@ -305,12 +305,12 @@
 
             <ul class="city-list-from-map"></ul>
             <ul class="dropdown-menu select-menu">
-                @foreach (var item in Model.mapdatas)
+                @foreach (var item in Model.lstSummeryStatus)
                 {
-                    <li class="dropdown-item" id="top-affected-cities" data-color="@item.color" data-city="@item.keyelement.Value">
+                    <li class="dropdown-item" element="top-affected-elements" id="top-affected-cities" data-display-city="@item.TopDisplayItems" data-color="@item.Color" data-city="@item.TopItems">
                         <span class="legend-wrapper">
-                            <span class="map-legend @item.color"></span>
-                            <span>@item.keyelement.Key</span>
+                            <span class="map-legend @item.Color"></span>
+                            <span>@item.Name</span>
                         </span>
                     </li>
                 }
@@ -364,7 +364,7 @@
         <path id="natore_id" class="enabled" data-toggle="tooltip" title="Natore" fill="#D5E300" stroke="#000000" stroke-width="0.3965" d="M114,367.5V365l5-0.5l-1-2.5l-6.5-1l2-2l-2-1       l3-1.5l-2-3l8-3l-2.5-4v-3l-5,0.5l-2-5l6.5-4.5l-1-16l5-3.5l-3.5-3.5h-3l4.5-3l5,1l2-4l-0.5-2h3.5L129,306l3,2.5l4,0.5l3.5,0.5       l4.5-3l0.5-5.5h-2v-4.5l4-5l3.5,6l2-5l2,1l3-3l1.5,2l-3,3.5l6,4.5l0.5-2l-2-2.5l2.5-2.5l4.5,1l3,2.5l3,2.5l1.5,3.5l1.5,1.5       l-8.5,11.5l-5,6l3,1.5l1,3l2.5,1.5l0.5,9.5l-4,4v2.5l-2.5-0.5l-4.5,9l-3.5,2h-3l-1.5,3.5l-4.5,3.5l-9,2l-2-2l-1.5-0.5l-2,3.5       v3.5l-6-0.5l-5-1.5l-2,2.5L114,367.5z"></path>
                                     </g>
                                 </g>
-        <path id="sirajgonj_id" class="enabled" data-toggle="tooltip" title="Sirajgonj" fill="#D5E300" stroke="#000000" stroke-width="0.3965" d="M169,336v-7.5l-2.5-2v-2l-3.5-3l13.5-16.5l-1-2h9     l3.5,3h3.5l4.5-2.5l4,2l1-3.5l2,4l3.5,1v-2.5h2.5l2.5-2l-4-2.5l2-2l-3.5-3l-3,0.5l-1-0.5l2.5-2.5L202,291l1.5-5.5V282l2.5,2.5     l3-1l3,3l6.5-7l-1-3l1-5l6,0.5l2,2.5l1.5,1.5l1-2h1.5l2.5,2.5l1.5,0.5l0.5,3l-3,0.5l-0.5,1.5l3,2.5v7.5l-1,4h-3l2.5,3l0.5,3.5     L231,304l-0.5,3l-2-0.5l-2.5,3l2.5,3.5v4l-3.5,2.5l-1.5,2.5l7,7.5l-3,3l0.5,2l3.5,2.5l2.5,4l-1,14.5l1.5,2L233,359v2l1.5,0.5l2,2     v1.5l1.5,1.5l-0.5,6l-3.5,7l-6.5,2.5H224l-4-5l-6-4.5h-4.5L203,367l-5-1l-0.5-2.5l2.5-1l0.5-3.5l-2-1l1.5-1v-2l-2-2.5l-1.5,1     l-4.5,1l-1.5-1V350l2-1c0,0,0-3-2-3c-2,0-2.5,0-2.5,0l-1.5,2.5h-1l-1-3v-4l-4.5-3l-4-1L169,336z"></path>
+        <path id="sirajganj_id" class="enabled" data-toggle="tooltip" title="Sirajgonj" fill="#D5E300" stroke="#000000" stroke-width="0.3965" d="M169,336v-7.5l-2.5-2v-2l-3.5-3l13.5-16.5l-1-2h9     l3.5,3h3.5l4.5-2.5l4,2l1-3.5l2,4l3.5,1v-2.5h2.5l2.5-2l-4-2.5l2-2l-3.5-3l-3,0.5l-1-0.5l2.5-2.5L202,291l1.5-5.5V282l2.5,2.5     l3-1l3,3l6.5-7l-1-3l1-5l6,0.5l2,2.5l1.5,1.5l1-2h1.5l2.5,2.5l1.5,0.5l0.5,3l-3,0.5l-0.5,1.5l3,2.5v7.5l-1,4h-3l2.5,3l0.5,3.5     L231,304l-0.5,3l-2-0.5l-2.5,3l2.5,3.5v4l-3.5,2.5l-1.5,2.5l7,7.5l-3,3l0.5,2l3.5,2.5l2.5,4l-1,14.5l1.5,2L233,359v2l1.5,0.5l2,2     v1.5l1.5,1.5l-0.5,6l-3.5,7l-6.5,2.5H224l-4-5l-6-4.5h-4.5L203,367l-5-1l-0.5-2.5l2.5-1l0.5-3.5l-2-1l1.5-1v-2l-2-2.5l-1.5,1     l-4.5,1l-1.5-1V350l2-1c0,0,0-3-2-3c-2,0-2.5,0-2.5,0l-1.5,2.5h-1l-1-3v-4l-4.5-3l-4-1L169,336z"></path>
                             </g>
         <path id="pabna_id" data-toggle="tooltip" title="Pabna" class="enabled" fill="#D5E300" stroke="#000000" stroke-width="1" d="M313.428,897.043v-8.76l5.083-8.76l6.354,6.257    l25.417-5.006l12.709-10.011l2.542-10.011l7.625,2.503l11.438-6.258l7.625-22.524l7.626,3.754l1.271-10.011l10.167-10.011    l26.688,6.257l8.896,3.754v12.514l3.813,7.509l8.896-5.006l7.626,2.503l-5.084,3.754v10.011l5.084,3.755h11.438l5.084-6.258    l5.083,8.76l-7.625,6.257h6.354v7.509l-7.626,3.754l2.542,8.76l11.438,1.252l16.521,13.765l11.438-1.251l16.521,13.765    l8.896,12.514l-12.709,2.503v7.509l-5.083,1.251l1.271,11.263l6.354,7.508l10.167-2.502l5.084,15.017h-5.084l-10.167-11.263    l3.813,15.017l15.251,2.503l11.438,7.508l-11.438,3.754l-6.354,3.755l-15.251-1.252l-15.25-6.257l-17.793,5.006l-11.438,5.005    l-30.502-18.771l-5.084-12.514l-15.25-16.268h-6.354l5.083,12.514l-6.354,7.508l-13.979-2.503l-8.896-12.514l-12.709-13.765    l-5.083-2.503H373.16l-7.625-5.006h-13.98l-7.625-1.251l-10.167,8.76v-6.257l-10.167-3.755l-5.083-10.011l2.542-16.268    L313.428,897.043L313.428,897.043z"></path>
         <path id="path4161" fill="none" stroke="#000000" stroke-width="1" d="M552.355,1015.924L552.355,1015.924z"></path>
@@ -444,74 +444,74 @@
                 
         <path id="path11192" fill="none" stroke="#646464" stroke-width="3.125" stroke-opacity="0.9922" stroke-dasharray="25,6.25,3.125,6.25" d="    M385.376,1775.783l-8.987-14.157l12.581-12.388l-7.189-12.389l-1.797-19.467h-19.771l-8.987-24.776l-7.189-15.927l-3.595-31.855    l-14.378-28.315l1.797-17.697l19.771-7.079l-7.189-14.157l-8.986-17.697l-10.784-8.849l-8.986-21.236v-15.928l-1.797-12.389    l7.189-12.388l-8.986-23.006l-14.378-19.468l8.986-15.927l-14.378-12.389l10.784-15.927l-12.581-21.237l17.973-31.854    l-12.581-8.849l-8.987-14.158l1.797-8.849l-16.176-14.157l3.595-23.007l3.594-10.618l-7.189-12.388l16.176-14.158l10.784-10.618    l17.973-12.388l-7.189-7.079l-10.784,7.079l-8.986-8.849l-10.784-3.54l-21.567-8.849l-1.797,10.618h-8.987l-16.176-7.078    l-5.392-10.619l-7.189-10.618L227.212,1167l7.189-12.389l1.797-21.236h8.986l-7.189-14.158l-25.163-17.696l-10.784-12.389    l-7.189-10.618h-12.581v-14.158l-10.784-3.539l8.986-14.158l-10.784-5.309l10.784-15.928l-7.189-10.618l12.582-8.849    l-3.595-24.776l5.392-7.079l10.784,8.849l19.771-12.388l12.581-7.079l-3.595-15.927l-5.392-17.697l7.189-14.158l-14.378-10.618    l-5.392-28.315l5.392-8.849l8.986-8.849v-15.928l-7.189-15.928l-5.392-8.849l-10.784,8.849l-21.568,1.77l-10.784-8.848    l-7.189,7.078l-25.162-21.236l-25.163-10.618l-21.568-19.467l-28.757-8.849l-16.176,1.77l-8.987-12.389l-19.771-17.696    l1.797-8.849L9.737,717.49l-12.582-12.388l-7.189-15.928l8.986-7.079l3.595-21.236l12.581-3.539v-7.079l21.568-17.697    l-1.797-15.928l-12.581-8.849l16.176-12.388l10.784,1.77l10.784-5.31v14.158l10.784,10.618l14.378,8.849l10.784-8.849    l-8.987-3.539l5.392-14.158h17.973l7.189-14.157l3.595-10.619l8.987-3.539l-8.987-10.618l8.987-12.389l-3.595-14.157l8.987-7.079    l-5.392-8.849l12.581-14.158l17.973,8.85l10.784,5.309l7.189-8.849h16.176l19.771-5.31l21.568,10.619l10.784,3.539l12.581-14.158    l21.568,15.928l10.784-1.77v-10.618l7.189-19.467l14.379-5.31l1.797-10.618l-25.162-3.539h-8.987l-3.594-12.389l-5.392,7.079    l-16.176-15.928l-5.392-17.697l5.392-15.927l-8.987-12.389v-14.157l-7.189,7.078l-7.189-8.849v15.928h-7.189l-12.582,8.849    h-14.378l-3.595-8.849l-10.784,3.54l-5.392-7.079l-14.378,3.539l-5.392-3.539l-14.378-14.158l1.797-8.849l-14.378-1.77    l-7.189-12.388l3.595-3.54V342.31h-12.581l-12.582-14.158l-3.594-8.849l-10.784-1.77l-5.392-12.388l-14.379-5.309v-12.388    l-17.973,12.388l-7.189-7.079l-8.987,8.849l-7.189-3.54l-14.378-15.928l3.594-10.618l-7.189-5.309v-17.697l10.784-5.309v-12.388    l17.973-12.388l3.595-10.618l-7.189-10.618l7.189-23.006l12.581-3.54l3.595-12.388h10.784l17.973-5.309l14.379-10.618    l-8.987-10.619l8.987-17.697h10.784l14.378-15.927l8.987-8.849l8.986,7.079l8.987-3.539l-8.987-10.619l-1.797-14.158l-5.392-8.849    l-14.379,3.54l-7.189-7.079l-8.987-3.539l-7.189,12.388l-7.189-3.539l-1.797-15.928l12.581-14.158V16.681L121.17-2.786    l3.595,19.467v14.158h17.973l1.797,10.618l10.784-1.77l-1.797,10.618h12.581l5.392,8.849l12.581-7.079l3.595,12.388l17.973,15.928    l8.986-1.77l1.797,19.467l16.176-1.77v12.388v5.309h16.176l3.595,8.849l-1.797,10.619l17.973,12.388l1.797-12.388l3.595-14.158    l14.378,3.54l10.784,19.467l12.582-5.31l14.378,3.54l5.392-8.849l-7.189-8.849l-7.189-7.079l-10.784,3.539l-1.797-8.848    l3.595-7.079l-5.392-7.079l-5.392,5.31l-16.176-7.079l-5.392-15.927l14.378-12.388l10.784-7.079l7.189,12.388l17.973,7.079    l21.568,3.539l1.797,7.079l-10.784,3.54l8.987,5.309l-7.189,5.309l23.365,5.309l-3.595,8.849l-14.378-1.77v7.079l14.378,15.928    l1.797,10.618l-3.595,8.849l8.986,15.928l26.96,8.848l7.189,12.388l-8.987,3.54l23.365,8.849l10.784,12.388l17.974,3.539    l10.783-17.697l5.393,10.618l7.188,7.079h17.974l7.189,5.31l-1.798,8.849l8.987,3.539l8.986-10.618l-8.986-5.309l1.797-12.388    l14.379-7.079l10.783-1.77l-5.392-21.237l-8.986,12.388l-1.798-14.158l-5.392-12.388l14.378-12.388l7.189-15.928l14.379,5.309    l-3.595,15.928l5.392,10.618l14.379-7.079l7.189,12.388l7.189,10.619l5.392,8.849l-8.986,7.079l14.378,12.388v12.388h14.379    l-10.784,10.618l0,0l19.771,12.388l-7.189,8.849l-7.189,3.539l-3.594,15.928l-5.393,3.54l10.784,23.006l-7.189,3.539    l-3.595,10.618l8.986,5.31l-3.594,5.31l14.378,12.388l-7.189,15.928l5.393,17.697l-8.987,8.849l1.798,28.315l-7.189,14.157    l-1.797,14.158l-3.595,8.849l7.189,7.079l-1.798,8.849l16.176,12.388l5.392-7.079l17.974-5.309l16.176,8.849l19.771,12.388    l19.771,10.618l28.757,5.31l16.176,7.079l12.581,3.539l17.974-3.539l3.595,15.927l17.973-3.539l12.581,3.539    c0,0,3.595-8.849,19.771-8.849s25.162,0,25.162,0h12.582l10.783-5.309l8.986,7.078v3.54l30.456-9.22l15.251,7.509l40.669,2.503    l25.418-12.514h35.585h27.959l20.335-7.509l22.876,17.52l12.709-7.509l22.876,10.012l20.334,7.508l12.709-7.508l12.709-5.006    l15.251,7.509l15.251,5.005l10.167-10.011l15.25-5.006l30.502,5.006l33.043-5.006h17.793l22.876-2.502l7.625-5.006l17.793,15.017    l17.792,7.508l10.167,15.017l20.334,5.006l12.709-5.006l2.542,10.012l30.501,17.519l-2.541,15.018l20.334,5.005v17.52    l-2.542,15.017h-10.167h-20.334l-10.168,5.006l-15.25-2.503l-15.251,7.508l10.167,15.017l-17.792,30.033l-7.626,20.022    l-7.625,12.514l2.542,15.017l-10.167,12.514l-12.709,2.503l-5.084,10.011l2.542,15.017l10.167,17.52l-12.709,10.011l-22.876,7.509    l-17.792-7.509l-7.626,5.006l10.167,15.017l-10.167-2.503h-10.167l-5.084,12.514l2.542,20.022l-5.083,17.52l-12.709,15.017    l-10.167-7.509l-10.168-10.011l-17.792-7.508l-5.084,10.011l7.626,17.52l-10.167,5.005l-12.709-7.508l-7.626-12.514l-15.251-7.509    l2.542,20.022l-5.083,20.021l-17.793,12.515l-17.792-5.006l-12.709-5.006l-20.335-7.508l-15.25,2.503l10.167,20.021l-5.084,17.52    l-12.709,7.508l-12.709-5.005c0,0-12.708,5.005-17.792,15.017c-5.084,10.011-10.167,20.021-10.167,20.021l7.625,15.018    l-7.625,7.508l-2.542,27.53l-15.251-2.503l-5.083,12.514l4.04,5.443l8.065,3.971l3.145,10.608l-5.604,9.046l-10.135,12.997    l25.907,45.532l7.625,27.53l10.167,17.52l5.084,22.524l5.083,12.514v15.017v20.022l10.167,20.022l7.626,12.514l15.25-2.503    l-7.625-15.017l-2.542-27.53l2.542-25.027l17.793,5.005l20.334,22.525v20.021l2.542,17.52l5.083,25.027l10.168,20.022    l15.25-10.011l5.084,7.508l17.792-10.011h12.709l20.335-27.53l-0.373-3.484l8.088-0.885l3.595-8.849l-0.898-11.504l-1.798-10.618    v-8.849l-6.29-11.503l-7.189-12.388l8.088-23.892l16.176-26.546l21.567-15.928l14.379,7.079l-0.898-20.352l7.189-10.618    l-14.379-66.365l9.885-12.388h7.189l8.088,15.928l8.088,15.928l14.379-2.655l6.291-10.618l11.682-12.388l10.784-8.849h10.784    l6.291,9.733l6.29,17.697l4.493-10.618l7.189-12.389l7.189,3.54l4.493,4.424l-4.493,5.31l-3.595,8.849l3.595,14.158l3.595,10.618    l4.493,7.078l1.797,23.892v18.582l13.48,16.813l8.986,16.813l-5.392,8.849l6.29,7.079l4.493,7.963l-1.797,5.31l-14.379,10.618    l0.899,7.079l0.898,19.467l1.797,19.467l4.493,7.079l6.291,9.733l-4.493,27.431l-1.798,13.273l6.291,12.388l3.595,6.194    l14.379,7.963l7.188,4.425l-4.493,7.079l2.696,21.236l4.493,16.813l14.379,12.388l1.797,19.467l4.493,19.467v6.194l-8.088,4.424    l8.986,19.468l9.886,58.4l0.898,20.352l10.784,38.935v20.352l-8.088-2.654l-6.291-4.425l4.493,13.273l10.784,43.358l4.493,20.352    l5.392,15.927l-8.986,16.813v18.582l-2.696,13.273l-0.898,23.892v18.582l1.798,16.813l6.29,25.66l1.798,12.389l2.695,19.467    l0.899,17.697l10.783,19.467l3.595,7.964l-9.885,3.539l-15.277,14.158l-5.392-2.655l-13.48-29.2l2.696-12.388l-7.189-4.425    l-8.986,8.849l-8.986,0.885l-11.683-1.77l-8.088-6.193l-8.088-25.661l-6.291-8.849l-5.392-2.654l-14.379,22.121l-8.986-4.425    l-8.986,10.618l-4.493,14.158l-11.683,3.539l-4.493,8.85l5.392,20.352l2.689,16.178l-12.574,13.907l11.676,18.582l11.007,11.887    l6.966,12.005l-8.979,13.272l9.879,20.854l4.492,15.426l-2.688,11.503l9.209,14.291l2.474,20.219l4.493,9.734l2.688,5.059"></path>
         <text transform="matrix(1.0407 0 0 1 584.6895 1861.0869)" fill="#1292CC" font-size="44.6387">BAY OF BENGAL</text>
-        <text data-toggle="tooltip" title="Dhaka" transform="matrix(0.9299 0 0 1 729.6426 1022.9307)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="dhaka_id">Dhaka</text>
-        <text data-toggle="tooltip" title="Cumilla" transform="matrix(0.9299 0 0 1 979.3887 1161.626)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="cumilla_id">Cumilla</text>
-        <text data-toggle="tooltip" title="Munshiganj" transform="matrix(0.9299 0 0 1 730.8164 1115.9111)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="munshiganj_id">Munshiganj</text>
-        <text data-toggle="tooltip" title="Mymensingh" transform="matrix(0.9299 0 0 1 753.9668 716.6992)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="mymensingh_id">Mymensingh</text>
-        <text data-toggle="tooltip" title="Sylhet" transform="matrix(0.9299 0 0 1 1283.3408 626.2109)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="sylhet_id">Sylhet</text>
-        <text data-toggle="tooltip" title="Khagrachari" transform="matrix(0.9299 0 0 1 1257.1357 1231.7637)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="khagrachhari_id">Khagrachari</text>
-        <text data-toggle="tooltip" title="Bhola" transform="matrix(0.9299 0 0 1 873.6406 1491.2529)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="bhola_id">Bhola</text>
-        <text data-toggle="tooltip" title="Barguna" transform="matrix(0.9299 0 0 1 652.1934 1602.5205)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="barguna_id">Barguna</text>
-        <text data-toggle="tooltip" title="Satkhira" transform="matrix(0.9299 0 0 1 320.7656 1391.3789)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="satkhira_id">Satkhira</text>
-        <text data-toggle="tooltip" title="Gopalganj" transform="matrix(0.9299 0 0 1 571.0713 1274.9746)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="gopalganj_id">Gopalganj</text>
-        <text data-toggle="tooltip" title="Magura" transform="matrix(0.9299 0 0 1 421.6396 1145.2598)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="magura_id">Magura</text>
-        <text data-toggle="tooltip" title="Chuadanga" transform="matrix(0.9299 0 0 1 217.6226 1083.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="chuadanga_id">Chuadanga</text>
-        <text data-toggle="tooltip" title="Pabna" transform="matrix(0.9299 0 0 1 423.623 925.3779)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="pabna_id">Pabna</text>
-        <text data-toggle="tooltip" title="Rajshahi" transform="matrix(0.9299 0 0 1 155.0513 763.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="rajshahi_id">Rajshahi</text>
-        <text data-toggle="tooltip" title="Gaibandha" transform="matrix(0.9299 0 0 1 443.0508 485.3779)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="gaibandha_id">Gaibandha</text>
-        <text data-toggle="tooltip" title="Lalmonirhat" transform="matrix(0.9299 0 0 1 369.0513 237.0918)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="lalmonirhat_id">Lalmonirhat</text>
-        <text data-toggle="tooltip" title="Rangamati" transform="matrix(0.9299 0 0 1 1355.0518 1399.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="rangamati_id">Rangamati</text>
+        <text  title="Dhaka" transform="matrix(0.9299 0 0 1 729.6426 1022.9307)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="dhaka_id">Dhaka</text>
+        <text  title="Cumilla" transform="matrix(0.9299 0 0 1 979.3887 1161.626)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="cumilla_id">Cumilla</text>
+        <text  title="Munshiganj" transform="matrix(0.9299 0 0 1 730.8164 1115.9111)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="munshiganj_id">Munshiganj</text>
+        <text  title="Mymensingh" transform="matrix(0.9299 0 0 1 753.9668 716.6992)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="mymensingh_id">Mymensingh</text>
+        <text  title="Sylhet" transform="matrix(0.9299 0 0 1 1283.3408 626.2109)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="sylhet_id">Sylhet</text>
+        <text  title="Khagrachari" transform="matrix(0.9299 0 0 1 1257.1357 1231.7637)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="khagrachhari_id">Khagrachari</text>
+        <text  title="Bhola" transform="matrix(0.9299 0 0 1 873.6406 1491.2529)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="bhola_id">Bhola</text>
+        <text  title="Barguna" transform="matrix(0.9299 0 0 1 652.1934 1602.5205)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="barguna_id">Barguna</text>
+        <text  title="Satkhira" transform="matrix(0.9299 0 0 1 320.7656 1391.3789)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="satkhira_id">Satkhira</text>
+        <text  title="Gopalganj" transform="matrix(0.9299 0 0 1 571.0713 1274.9746)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="gopalganj_id">Gopalganj</text>
+        <text  title="Magura" transform="matrix(0.9299 0 0 1 421.6396 1145.2598)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="magura_id">Magura</text>
+        <text  title="Chuadanga" transform="matrix(0.9299 0 0 1 217.6226 1083.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="chuadanga_id">Chuadanga</text>
+        <text  title="Pabna" transform="matrix(0.9299 0 0 1 423.623 925.3779)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="pabna_id">Pabna</text>
+        <text  title="Rajshahi" transform="matrix(0.9299 0 0 1 155.0513 763.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="rajshahi_id">Rajshahi</text>
+        <text  title="Gaibandha" transform="matrix(0.9299 0 0 1 443.0508 485.3779)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="gaibandha_id">Gaibandha</text>
+        <text  title="Lalmonirhat" transform="matrix(0.9299 0 0 1 369.0513 237.0918)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="lalmonirhat_id">Lalmonirhat</text>
+        <text  title="Rangamati" transform="matrix(0.9299 0 0 1 1355.0518 1399.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="rangamati_id">Rangamati</text>
         <g id="g4653">
         <path id="path5362" fill="#D5E300" stroke="#000000" stroke-width="1" d="M1239.908,1676.654l25.418-5.006l5.084,25.027     l-7.626,22.525l-15.251,25.027l2.542-17.52l2.542-35.038L1239.908,1676.654z"></path>
         <path id="coxs_bazar_id" data-toggle="tooltip" title="Cox's Bazar" class="enabled" fill="#D5E300" stroke="#000000" stroke-width="1" d="M1275.493,1699.179l27.96-15.017l12.709-10.011     l12.709-2.503l17.792,30.033l20.334,10.011l7.626-2.503l5.083-12.514l12.709,17.52v7.508h-12.709l-2.542,17.52h-22.876     l-10.167,12.514l10.167,25.028l20.335,20.022l-7.626,12.514l12.709,20.021l10.167,12.514l-5.083,17.52h-10.167l-2.542-10.011     l-17.792,20.022l5.083,22.524l16.229,18.529l2.541,12.469l-12.154,14.534l11.145,20.021l18.803,23.535l-11.111,14.007     l12.644,20.022l5.231,15.906l-4.896,9.911l7.321,16.247l10.167,25.027l-2.541,12.514l-7.626-7.508l-10.167-27.531l-12.709-15.017     l-10.167-17.519l-7.625-17.52v-15.017l-43.211-50.056l-5.083-40.044v-17.52l-7.625-17.52l-15.251-20.022l-2.542-10.011     l12.709-15.017l2.541-17.52l5.084-15.017l5.084-22.524l-2.542-27.53l-10.167,22.524l-12.709-7.508l10.167,17.52l7.625,20.021     l-12.709,25.027l2.542,2.503l-25.418-2.503l2.542,12.515h-15.251l-2.542-12.515l7.626-22.524l5.083-20.022l-12.709-10.011     L1275.493,1699.179L1275.493,1699.179z"></path>
-        <text data-toggle="tooltip" title="Cox's Bazar" transform="matrix(0.9299 0 0 1 1274.7666 1727.3779)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="coxs_bazar_id">Cox's Bazar</text>
+        <text  title="Cox's Bazar" transform="matrix(0.9299 0 0 1 1274.7666 1727.3779)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="coxs_bazar_id">Cox's Bazar</text>
                             </g>
-        <text data-toggle="tooltip" title="Noakhali" transform="matrix(0.9299 0 0 1 981.0518 1336.5205)" fill="#FC6B68" font-size="21" class="map_text" data-id="noakhali_id">Noakhali</text>
-        <text data-toggle="tooltip" title="Chandpur" transform="matrix(0.9299 0 0 1 877.9082 1199.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="chandpur_id">Chandpur</text>
-        <text data-toggle="tooltip" title="Patuakhali" transform="matrix(0.9299 0 0 1 755.0518 1519.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="patuakhali_id">Patuakhali</text>
-        <text data-toggle="tooltip" title="Khulna" transform="matrix(0.9299 0 0 1 431.8438 1483.9014)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="khulna_id">Khulna</text>
-        <text data-toggle="tooltip" title="Pirojpur" transform="matrix(0.9299 0 0 1 629.833 1390.9668)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="pirojpur_id">Pirojpur</text>
-        <text data-toggle="tooltip" title="Madaripur" transform="matrix(0.9299 0 0 1 650.0361 1233.3828)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="madaripur_id">Madaripur</text>
-        <text data-toggle="tooltip" title="Jhenaidah" transform="matrix(0.9299 0 0 1 326.7871 1116.2051)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="jhenaidah_id">Jhenaidah</text>
-        <text data-toggle="tooltip" title="Meherpur" transform="matrix(0.9299 0 0 1 181.4473 1025.2715)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="meherpur_id">Meherpur</text>
-        <text data-toggle="tooltip" title="Manikganj" transform="matrix(0.9299 0 0 1 600.5684 997.8447)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="manikganj_id">Manikganj</text>
-        <text data-toggle="tooltip" title="Gazipur" transform="matrix(0.9299 0 0 1 772.1934 902.5205)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="gazipur_id">Gazipur</text>
-        <text data-toggle="tooltip" title="Brahmanbaria" transform="matrix(0.9299 0 0 1 932.8789 999.0283)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="brahmanbaria_id">Brahmanbaria</text>
-        <text data-toggle="tooltip" title="Natore" transform="matrix(0.9299 0 0 1 325.1118 801.0381)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="natore_id">Natore</text>
-        <text data-toggle="tooltip" title="Sunamganj" transform="matrix(0.9299 0 0 1 1086.4805 619.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="sunamganj_id">Sunamganj</text>
-        <text data-toggle="tooltip" title="Jamalpur" transform="matrix(0.9299 0 0 1 566.4805 636.8066)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="jamalpur_id">Jamalpur</text>
-        <text data-toggle="tooltip" title="Joypurhat" transform="matrix(0.9299 0 0 1 316.4795 552.8066)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="joypurhat_id">Joypurhat</text>
-        <text data-toggle="tooltip" title="Nilphamari" transform="matrix(0.9299 0 0 1 263.6226 242.5205)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="nilphamari_id">Nilphamari</text>
-        <text data-toggle="tooltip" title="Thakurgaon" transform="matrix(0.9299 0 0 1 46.4795 239.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="thakurgaon_id">Thakurgaon</text>
-        <text data-toggle="tooltip" title="Habiganj" transform="matrix(0.9299 0 0 1 1092.1934 812.5195)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="habiganj_id">Habiganj</text>
-        <text data-toggle="tooltip" title="Panchagarh" transform="matrix(0.9299 0 0 1 127.042 122.8037)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="panchagarh_id">Panchagarh</text>
-        <text data-toggle="tooltip" title="Netrakona" transform="matrix(0.9299 0 0 1 884.1855 631.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="netrakona_id">Netrakona</text>
-        <text data-toggle="tooltip" title="Tangail" transform="matrix(0.9299 0 0 1 621.3281 805.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="tangail_id">Tangail</text>
-        <text data-toggle="tooltip" title="Chattogram" transform="matrix(0.9299 0 0 1 1227.875 1528.2666)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="chattogram_id">Chattogram</text>
-        <text data-toggle="tooltip" title="Barishal" transform="matrix(0.9299 0 0 1 761.3281 1351.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="barishal_id">Barishal</text>
-        <text data-toggle="tooltip" title="Narail" transform="matrix(0.9299 0 0 1 487.042 1248.2354)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="narail_id">Narail</text>
-        <text data-toggle="tooltip" title="Narsindhi" transform="matrix(0.9299 0 0 1 875.6133 939.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="narsingdi_id">Narsindhi</text>
-        <text data-toggle="tooltip" title="Rajbari" transform="matrix(0.9299 0 0 1 469.8984 1039.6641)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="rajbari_id">Rajbari</text>
-        <text data-toggle="tooltip" title="Chapai Nababganj" transform="matrix(0.9299 0 0 1 24.1846 685.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="chapai_nababganj_id">Chapai Nababganj</text>
-        <text data-toggle="tooltip" title="Bogura" transform="matrix(0.9299 0 0 1 427.042 639.6641)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="bogura_id">Bogura</text>
-        <text data-toggle="tooltip" title="Dinajpur" transform="matrix(0.9299 0 0 1 189.8989 351.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="dinajpur_id">Dinajpur</text>
-        <text data-toggle="tooltip" title="Kurigram" transform="matrix(0.9299 0 0 1 501.3281 325.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="kurigram_id">Kurigram</text>
-        <text data-toggle="tooltip" title="Maulvibazar" transform="matrix(0.9299 0 0 1 1228.6709 767.1553)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="maulvibazar_id">Maulvibazar</text>
-        <text data-toggle="tooltip" title="Bandarban" transform="matrix(0.9299 0 0 1 1405.8135 1692.8691)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="bandarban_id">Bandarban</text>
-        <text data-toggle="tooltip" title="Feni" transform="matrix(0.9299 0 0 1 1092.957 1298.584)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="feni_id">Feni</text>
-        <text data-toggle="tooltip" title="Lakshmipur" transform="matrix(0.9299 0 0 1 879.5273 1310.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="lakshmipur_id">Lakshmipur</text>
-        <text data-toggle="tooltip" title="Jhalokati" transform="matrix(0.9299 0 0 1 694.3848 1424.2988)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="jhalokati_id">Jhalokati</text>
-        <text data-toggle="tooltip" title="Bagerhat" transform="matrix(0.9299 0 0 1 528.1523 1445.2725)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="bagerhat_id">Bagerhat</text>
-        <text data-toggle="tooltip" title="Jashore" transform="matrix(0.9299 0 0 1 350.3647 1247.2832)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="jashore_id">Jashore</text>
-        <text data-toggle="tooltip" title="Kushtia" transform="matrix(0.9299 0 0 1 305.918 976.5625)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="kushtia_id">Kushtia</text>
-        <text data-toggle="tooltip" title="Shariatpur" transform="matrix(0.9299 0 0 1 734.9395 1213.4111)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="shariatpur_id">Shariatpur</text>
-        <text data-toggle="tooltip" title="Faridpur" transform="matrix(0.9299 0 0 1 572.5986 1126.0645)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="faridpur_id">Faridpur</text>
-        <text data-toggle="tooltip" title="Narayanganj" transform="matrix(0.9299 0 0 1 796.9873 1019.6221)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="narayanganj_id">Narayanganj</text>
-        <text data-toggle="tooltip" title="Kishoregonj" transform="matrix(0.9299 0 0 1 925.8135 801.4414)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="kishoregonj_id">Kishoregonj</text>
-        <text data-toggle="tooltip" title="Sirajganj" transform="matrix(0.9299 0 0 1 462.957 801.4414)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="sirajgonj_id">Sirajganj</text>
-        <text data-toggle="tooltip" title="Naogaon" transform="matrix(0.9299 0 0 1 188.6709 624.2988)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="naogaon_id">Naogaon</text>
-        <text data-toggle="tooltip" title="Sherpur" transform="matrix(0.9299 0 0 1 645.8145 550.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="sherpur_id">Sherpur</text>
-        <text data-toggle="tooltip" title="Rangpur" transform="matrix(0.9299 0 0 1 354.9565 350.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="rangpur_id">Rangpur</text>
+        <text  title="Noakhali" transform="matrix(0.9299 0 0 1 981.0518 1336.5205)" fill="#FC6B68" font-size="21" class="map_text" data-id="noakhali_id">Noakhali</text>
+        <text  title="Chandpur" transform="matrix(0.9299 0 0 1 877.9082 1199.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="chandpur_id">Chandpur</text>
+        <text  title="Patuakhali" transform="matrix(0.9299 0 0 1 755.0518 1519.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="patuakhali_id">Patuakhali</text>
+        <text  title="Khulna" transform="matrix(0.9299 0 0 1 431.8438 1483.9014)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="khulna_id">Khulna</text>
+        <text  title="Pirojpur" transform="matrix(0.9299 0 0 1 629.833 1390.9668)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="pirojpur_id">Pirojpur</text>
+        <text  title="Madaripur" transform="matrix(0.9299 0 0 1 650.0361 1233.3828)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="madaripur_id">Madaripur</text>
+        <text  title="Jhenaidah" transform="matrix(0.9299 0 0 1 326.7871 1116.2051)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="jhenaidah_id">Jhenaidah</text>
+        <text  title="Meherpur" transform="matrix(0.9299 0 0 1 181.4473 1025.2715)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="meherpur_id">Meherpur</text>
+        <text  title="Manikganj" transform="matrix(0.9299 0 0 1 600.5684 997.8447)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="manikganj_id">Manikganj</text>
+        <text  title="Gazipur" transform="matrix(0.9299 0 0 1 772.1934 902.5205)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="gazipur_id">Gazipur</text>
+        <text  title="Brahmanbaria" transform="matrix(0.9299 0 0 1 932.8789 999.0283)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="brahmanbaria_id">Brahmanbaria</text>
+        <text  title="Natore" transform="matrix(0.9299 0 0 1 325.1118 801.0381)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="natore_id">Natore</text>
+        <text  title="Sunamganj" transform="matrix(0.9299 0 0 1 1086.4805 619.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="sunamganj_id">Sunamganj</text>
+        <text  title="Jamalpur" transform="matrix(0.9299 0 0 1 566.4805 636.8066)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="jamalpur_id">Jamalpur</text>
+        <text  title="Joypurhat" transform="matrix(0.9299 0 0 1 316.4795 552.8066)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="joypurhat_id">Joypurhat</text>
+        <text  title="Nilphamari" transform="matrix(0.9299 0 0 1 263.6226 242.5205)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="nilphamari_id">Nilphamari</text>
+        <text  title="Thakurgaon" transform="matrix(0.9299 0 0 1 46.4795 239.6641)" fill="#FC6B68" font-size="17.8907" class="map_text" data-id="thakurgaon_id">Thakurgaon</text>
+        <text  title="Habiganj" transform="matrix(0.9299 0 0 1 1092.1934 812.5195)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="habiganj_id">Habiganj</text>
+        <text  title="Panchagarh" transform="matrix(0.9299 0 0 1 127.042 122.8037)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="panchagarh_id">Panchagarh</text>
+        <text  title="Netrakona" transform="matrix(0.9299 0 0 1 884.1855 631.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="netrakona_id">Netrakona</text>
+        <text  title="Tangail" transform="matrix(0.9299 0 0 1 621.3281 805.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="tangail_id">Tangail</text>
+        <text  title="Chattogram" transform="matrix(0.9299 0 0 1 1227.875 1528.2666)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="chattogram_id">Chattogram</text>
+        <text  title="Barishal" transform="matrix(0.9299 0 0 1 761.3281 1351.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="barishal_id">Barishal</text>
+        <text  title="Narail" transform="matrix(0.9299 0 0 1 487.042 1248.2354)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="narail_id">Narail</text>
+        <text  title="Narsindhi" transform="matrix(0.9299 0 0 1 875.6133 939.6641)" fill="#7E8ECC" font-size="17.8907" class="map_text" data-id="narsingdi_id">Narsindhi</text>
+        <text  title="Rajbari" transform="matrix(0.9299 0 0 1 469.8984 1039.6641)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="rajbari_id">Rajbari</text>
+        <text  title="Chapai Nababganj" transform="matrix(0.9299 0 0 1 24.1846 685.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="chapai_nababganj_id">Chapai Nababganj</text>
+        <text  title="Bogura" transform="matrix(0.9299 0 0 1 427.042 639.6641)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="bogura_id">Bogura</text>
+        <text  title="Dinajpur" transform="matrix(0.9299 0 0 1 189.8989 351.0918)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="dinajpur_id">Dinajpur</text>
+        <text  title="Kurigram" transform="matrix(0.9299 0 0 1 501.3281 325.3779)" fill="#53BF3F" font-size="17.8907" class="map_text" data-id="kurigram_id">Kurigram</text>
+        <text  title="Maulvibazar" transform="matrix(0.9299 0 0 1 1228.6709 767.1553)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="maulvibazar_id">Maulvibazar</text>
+        <text  title="Bandarban" transform="matrix(0.9299 0 0 1 1405.8135 1692.8691)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="bandarban_id">Bandarban</text>
+        <text  title="Feni" transform="matrix(0.9299 0 0 1 1092.957 1298.584)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="feni_id">Feni</text>
+        <text  title="Lakshmipur" transform="matrix(0.9299 0 0 1 879.5273 1310.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="lakshmipur_id">Lakshmipur</text>
+        <text  title="Jhalokati" transform="matrix(0.9299 0 0 1 694.3848 1424.2988)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="jhalokati_id">Jhalokati</text>
+        <text  title="Bagerhat" transform="matrix(0.9299 0 0 1 528.1523 1445.2725)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="bagerhat_id">Bagerhat</text>
+        <text  title="Jashore" transform="matrix(0.9299 0 0 1 350.3647 1247.2832)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="jashore_id">Jashore</text>
+        <text  title="Kushtia" transform="matrix(0.9299 0 0 1 305.918 976.5625)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="kushtia_id">Kushtia</text>
+        <text  title="Shariatpur" transform="matrix(0.9299 0 0 1 734.9395 1213.4111)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="shariatpur_id">Shariatpur</text>
+        <text  title="Faridpur" transform="matrix(0.9299 0 0 1 572.5986 1126.0645)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="faridpur_id">Faridpur</text>
+        <text  title="Narayanganj" transform="matrix(0.9299 0 0 1 796.9873 1019.6221)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="narayanganj_id">Narayanganj</text>
+        <text  title="Kishoregonj" transform="matrix(0.9299 0 0 1 925.8135 801.4414)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="kishoregonj_id">Kishoregonj</text>
+        <text  title="Sirajganj" transform="matrix(0.9299 0 0 1 462.957 801.4414)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="sirajgonj_id">Sirajganj</text>
+        <text  title="Naogaon" transform="matrix(0.9299 0 0 1 188.6709 624.2988)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="naogaon_id">Naogaon</text>
+        <text  title="Sherpur" transform="matrix(0.9299 0 0 1 645.8145 550.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="sherpur_id">Sherpur</text>
+        <text  title="Rangpur" transform="matrix(0.9299 0 0 1 354.9565 350.0127)" fill="#F0AC0C" font-size="17.8907" class="map_text" data-id="rangpur_id">Rangpur</text>
                 
         <path id="path12251" fill-opacity="0" stroke="#000000" d="M1502.857,1632.285l25.714-15.714"></path>
         <path id="path13274" fill="none" stroke="#000000" d="M968.571,518v27.143l8.571,5.715h-12.856L960,556.571l12.857,4.286    l-5.715,5.714l-2.856,14.286l7.143,10L970,606.571l20,4.286l5.714,11.429l20.001,2.856l10,10l-1.429,8.572l4.285,10l10-11.429    l8.571,8.571v8.571l-10,2.857l-4.285,14.285l17.143,7.143l12.857,4.286l4.285,11.429l-15.714,12.857v17.143l10,10l-7.144,17.143    l-17.143,8.571l4.286,4.286l11.429-4.286l7.143,5.715l1.429,8.571l-5.715,5.714l10,17.144v4.285l-10,1.429l5.715,7.143v8.571    l-8.571,4.286l-14.286-2.857l-4.286,7.144l8.572,4.285l1.428,5.715l-8.571,7.143l14.286,1.429l14.285,7.143l11.429-12.857    l15.715-2.856l-1.429,10l-14.286,8.571l10,10l-1.429,5.714l-12.856-4.285l-2.857,12.856l11.429,7.144l-11.429,2.856l2.857,11.429    l2.856,8.571l8.572,5.715l-5.715,10l1.429,7.143l0,0l0,0v1.429"></path>
@@ -531,15 +531,37 @@
 <!-- Body end -->
 
 @section scripts{
-    @*<script>
+    <script>
         $(document).ready(function () {
-            var rpt = '';
-            $("#divrptcnt").empty();
-            $.each(jsonTopMenuData.msg, function (index, element) {
-                rpt += element.Name;
+            loaddistrict("Top 5 Districts - Probable cases in programme participants");
+            //$("#bangladesh_svg #" + panchagarh+"_id")
+            $(document).on("click", "#map .dropdown-menu li", function () {
+                var curitem = $(this).find("span").last().text();
+                loaddistrict(curitem);
             });
-            $("#divrptcnt").html(rpt);
+
+            function loaddistrict(curitem) {
+                console.log(curitem);
+                var items = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(Model.lstSummeryStatus, Newtonsoft.Json.Formatting.Indented));
+                var item = {};
+                $.each(items, function (index,value) {
+                    if (curitem == value.Name) {
+                        console.log(curitem)
+                        console.log(value.Name)
+                        item = value;
+                        $.each(item.DistrictCnt, function (index, single_dis) {
+                            $("#" + single_dis.NameId + "_id").attr("data-original-title", jsUcfirst(single_dis.Display) + " (" + single_dis.Count + ")");
+                        })
+                        return true;
+                    }
+                });
+            }
+
+            function jsUcfirst(string) {
+                var output = string.toLowerCase();
+                return output.charAt(0).toUpperCase() + output.slice(1);
+            }
         });
-    </script>*@
+    </script>
 
 }

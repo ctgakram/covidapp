@@ -1,6 +1,7 @@
-﻿.modal{
-    height:90%;
+﻿.modal {
+    height: 90%;
 }
+
 .modal-backdrop {
     position: fixed;
     top: 0;
@@ -23,19 +24,19 @@
 
 .modal {
     position: fixed;
-    top: 5%;
+    top: 60%;
     left: 50%;
     z-index: 1050;
-    width: 800px;
-    margin-left: -400px;
+    overflow: auto;
+    width: 1000px;
+    margin: -280px 0 0 -500px;
     background-color: #ffffff;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.3);
-    *border: 1px solid #999;
+    border: 1px solid #999;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
     border-radius: 6px;
-    outline: none;
     -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
     box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -59,11 +60,10 @@
 .modal-header {
     padding: 9px 15px;
     border-bottom: 1px solid #eee;
-    display:block;
+    display: block;
 }
 
     .modal-header .close {
-        
     }
 
     .modal-header h3 {
@@ -122,6 +122,110 @@
     .modal-footer .btn-block + .btn-block {
         margin-left: 0;
     }
+
 .modal-body .table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
     background-color: #f9f9f9;
+}
+
+.tooltip {
+    position: absolute;
+    z-index: 1030;
+    display: block;
+    font-size: 11px;
+    line-height: 1.4;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    visibility: visible;
+}
+
+    .tooltip.in {
+        opacity: 0.8;
+        filter: alpha(opacity=80);
+    }
+
+    .tooltip.top {
+        padding: 5px 0;
+        margin-top: -3px;
+    }
+
+    .tooltip.right {
+        padding: 0 5px;
+        margin-left: 3px;
+    }
+
+    .tooltip.bottom {
+        padding: 5px 0;
+        margin-top: 3px;
+    }
+
+    .tooltip.left {
+        padding: 0 5px;
+        margin-left: -3px;
+    }
+
+.tooltip-inner {
+    max-width: 200px;
+    padding: 8px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    background-color: #000000;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.tooltip-arrow {
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.tooltip.top .tooltip-arrow {
+    bottom: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-top-color: #000000;
+    border-width: 5px 5px 0;
+}
+
+.tooltip.right .tooltip-arrow {
+    top: 50%;
+    left: 0;
+    margin-top: -5px;
+    border-right-color: #000000;
+    border-width: 5px 5px 5px 0;
+}
+
+.tooltip.left .tooltip-arrow {
+    top: 50%;
+    right: 0;
+    margin-top: -5px;
+    border-left-color: #000000;
+    border-width: 5px 0 5px 5px;
+}
+
+.tooltip.bottom .tooltip-arrow {
+    top: 0;
+    left: 50%;
+    margin-left: -5px;
+    border-bottom-color: #000000;
+    border-width: 0 5px 5px;
+}
+
+
+@media (max-width: 480px) {
+    .modal {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        left: 10px;
+        width: auto;
+        margin: 0;
+    }
+}
+[data-toggle="tooltip"] {
+    padding: 5px;
 }

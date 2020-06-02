@@ -38,7 +38,7 @@ function LoadMenuTopBRAC(url) {
     $.each(jsonTopMenuData.msg, function (index, element) {
 
         //var baseurl = '@Url.Content("~")';
-        rptitem += '<li><div class="msg"><a target="_blank" href="' + baseurl + element.Blob + '" class="brac-link" >' + element.Name + '</a></div></li>';
+        rptitem += '<li><div class="msg"><a target="_blank" href="' + baseurl + element.Blob.replace("..","") + '" class="brac-link" >' + element.Name + '</a></div></li>';
     });
     $("#divmessages").html('<ul>' + rptitem + '</ul>');
 }
@@ -58,10 +58,17 @@ $(document).ready(function () {
 
         }
     });
-
+    $(".long-nav-toggler").on("click", function () {
+        $(".long-nav-items-wrapper").slideToggle();
+    });
     $("div.sidebar-item").click(function () {
         var target = $(this).attr("data-target");
         $(target).slideToggle();
     });
-    
+    $(".mobile-drawer").on("click", function () {
+        console.log("cliked");
+        $(".sidebar").toggleClass("in");
+    });
+
+
 });

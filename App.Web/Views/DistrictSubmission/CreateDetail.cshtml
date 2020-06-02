@@ -46,6 +46,9 @@
     <tr>
         <td class="title">
             হাসপাতালের সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="The number of hospitals in the district<br>এই জেলায় হাসপাতালের  সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.HospitalCount)
@@ -56,6 +59,9 @@
     <tr>
         <td class="title">
             আইসোলেশন বেড সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="The number of isolation beds in the district<br>এই জেলায় আইসোলেশন বেড এর সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.BedCount)
@@ -66,6 +72,9 @@
     <tr>
         <td class="title">
             এই পর্যন্ত মোট বরাদ্দ চালের পরিমাণ (মেঃটন)
+            <span data-toggle="tooltip" data-placement="top" title="The amount of rice that has been allocated to date in metric tons.<br>আজ পর্যন্ত যে পরিমাণ চাল বরাদ্দ করা হয়েছে তা মেঃটন -এ প্রকাশ করুন">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.PlannedRice)
@@ -96,6 +105,9 @@
     <tr>
         <td class="title">
             এই পর্যন্ত মোট বরাদ্দ নগদ অর্থের পরিমাণ (টাকা)
+            <span data-toggle="tooltip" data-placement="top" title="The amount of money that has been allocated to date in Taka.<br>আজ পর্যন্ত যে পরিমাণ অর্থ বরাদ্দ করা হয়েছে তা টাকা-এ প্রকাশ করুন">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.PlannedMoney)
@@ -106,6 +118,9 @@
     <tr>
         <td class="title">
             কোভিড ছাড়া অন্যান্য সেবা প্রাপ্ত রোগির সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="Number of patients other than COVID patients.<br>কোভিড রোগী বাদে অন্যান্য রোগীর সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.OtherPatientCount)
@@ -116,6 +131,9 @@
     <tr>
         <td class="title">
             শ্বাস-কষ্ট সংক্রান্ত রোগির সেবা প্রাপ্তির সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="Total number of individuals who have breathing difficulties receiving treatment<br>শ্বাষকষ্টের সমস্যার জন্য চিকিৎসা গ্রহণ করছেন এমন রোগীর মোট সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.BreathingPatientCount)
@@ -126,6 +144,9 @@
     <tr>
         <td class="title">
             প্রসূতি স্বাস্থ্য সেবা কতজন নিয়েছেন
+            <span data-toggle="tooltip" data-placement="right" title="Total number of pregnant women receiving treatment<br>চিকিৎসা প্রাপ্ত মোট গর্ভবতী মহিলাদের সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.MaternalCount)
@@ -158,6 +179,9 @@
     <tr>
         <td class="title">
             নতুন কোয়ারেন্টাইন
+            <span data-toggle="tooltip" data-placement="top" title="Number of individuals that have been quarantined today<br>আজ নতুন করে কোয়ারেন্টাইনে যতজন গিয়েছেন তাদের সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.NewQuarantine)
@@ -168,6 +192,9 @@
     <tr>
         <td class="title">
             কোয়ারেন্টাইন থেকে রিলিজড
+            <span data-toggle="tooltip" data-placement="top" title="Number of individuals that have been released from quarantine today.<br>আজ কোয়ারেন্টাইন শেষ হয়েছে যতজনের তাদের সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.ReleasedQuarantine)
@@ -180,6 +207,9 @@
         <tr>
             <td class="title">
                 Covid-19 টেস্ট করা হয়েছে
+                <span data-toggle="tooltip" data-placement="top" title="Number of individuals that have been tested for COVID-19 today<br>আজ কোভিড ১৯ পরীক্ষা করা হয়েছে এমন কর্মচারীর সংখ্যা">
+                    <img src="~/Content/tools.png" width="30" />
+                </span>
             </td>
             <td class="control">
                 @Html.TextBoxFor(model => model.DoTestOn)
@@ -191,6 +221,9 @@
     <tr>
         <td class="title">
             মৃত্যুর সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="Number of deaths today<br>আজ মৃত্যুর সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.Death)
@@ -206,6 +239,9 @@
     <tr>
         <td class="title">
             নতুন আক্রান্তের সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="Number of infected BRAC staff detected today<br>আজকের আক্রান্ত  ব্র্যাক কর্মচারীর সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.BracPatient)
@@ -216,6 +252,9 @@
     <tr>
         <td class="title">
             আজকের সুস্থ হওয়ার সংখ্যা
+            <span data-toggle="tooltip" data-placement="top" title="Number of BRAC staff that have recovered today<br>আজ সুস্থ হয়েছেন এমন ব্র্যাক কর্মচারীর সংখ্যা">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.BracReleased)
@@ -226,6 +265,11 @@
     <tr>
         <td class="title">
             আজ নতুন করে কোয়ারেন্টাইনে গেছেন
+            <span data-toggle="tooltip" data-placement="top" title="Number of BRAC staff that have been quarantined today<br>আজ কোয়ারেন্টাইনে আছেন এমন ব্র্যাক কর্মচারীর সংখ্যা
+">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
+
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.BracQurantine)
@@ -237,6 +281,9 @@
     <tr>
         <td class="title">
             সামাজিক নিরাপত্তা তথ্য
+            <span data-toggle="tooltip" data-placement="top" title="Social Distancing Information<br>সামাজিক দূরত্ব সম্পর্কিত তথ্য।">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td>
             <table class="table-striped">
@@ -310,6 +357,10 @@
     <tr>
         <td class="title">
             স্থানীয় প্রশাসন কী ব্যবস্থা গ্রহণ করেছে?
+            <span data-toggle="tooltip" data-placement="top" title="What preventative measures has the local government taken?<br>স্থনীয় সরকার কী ধরনের প্রতিরোধমূলক ব্যবস্থা গ্রহণ করেছে?
+">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.LocalAdminMeasure, new { @style = "width:100%;" })
@@ -319,6 +370,9 @@
     <tr>
         <td class="title">
             স্থানীয় প্রশাসন কর্তৃক ব্র্যাককে কী দাবি/অনুরোধ করা হয়েছে?
+            <span data-toggle="tooltip" data-placement="top" title="The demands / requests made by the local government to BRAC<br>স্থানীয় সরকার কর্তৃক ব্র্যাক এর কাছে দাবী/ অনুরোধ।">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.Demand, new { @style = "width:100%;" })
@@ -328,6 +382,9 @@
     <tr>
         <td class="title">
             কী আতঙ্ক সৃষ্টি হয়েছিল এবং আতঙ্কের প্রকৃতি?
+            <span data-toggle="tooltip" data-placement="top" title="What kind of panic due to the pandemic was caused and what was the extent of it?<br>মহামারী জনিত কারণে কী ধরনের আতঙ্কের সৃষ্টি হয়েছিলো এবং এই আতঙ্ক কী পরিমাণে  ছড়িয়েছে?">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.Panic, new { @style = "width:100%;" })
@@ -337,6 +394,9 @@
     <tr>
         <td class="title">
             সামাজিক সমস্যা সমূহ
+            <span data-toggle="tooltip" data-placement="top" title="The number of social problems related to the pandemic / COVID-19<br>কোভিড ১৯ মহামারী চলাকালীন সময় সৃষ্ট বিভিন্ন সামাজিক সমস্যাগুলোর  সংখ্যা / কোভিড ১৯ মহামারী সম্পর্কিত সামাজিক সমস্যাগুলোর সংখ্যা।">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.SocialIssue, new { @style = "width:100%;" })
@@ -346,6 +406,9 @@
     <tr>
         <td class="title">
             ব্র্যাকের স্টাফদের অনুভূতি কী?
+            <span data-toggle="tooltip" data-placement="right" title="Emotional state of BRAC staff<br>ব্র্যাক কর্মীদের মানসিক অবস্থা।">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.BracThink, new { @style = "width:100%;" })
@@ -355,6 +418,9 @@
     <tr>
         <td class="title">
             এনজিওরা কী করছে?
+            <span data-toggle="tooltip" data-placement="top" title="What are the other NGO’s doing in regards to the pandemic?<br>মহামারী মোকাবিলায় অন্যান্য এনজিও কী ভূমিকা পালন করছে?">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.NgoDoing, new { @style = "width:100%;" })
@@ -364,6 +430,9 @@
     <tr>
         <td class="title">
             অভাবী মানুষের অবস্থা কী?
+            <span data-toggle="tooltip" data-placement="top" title="What is the condition of the under-priveleged individuals?<br>সুবিধাবঞ্চিত মানুষেরা কী অবস্থায় আছেন?">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.NeedyPeople, new { @style = "width:100%;" })
@@ -373,6 +442,9 @@
     <tr>
         <td class="title">
             ব্র্যাক কী করতে পারে?
+            <span data-toggle="tooltip" data-placement="top" title="What can BRAC do for the individuals in need?<br>সাহায্যের প্রয়োজন রয়েছে এমন ব্যক্তির জন্য ব্র্যাক এর করনীয় কী?">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.BracDo, new { @style = "width:100%;" })
@@ -382,6 +454,9 @@
     <tr>
         <td class="title">
             অন্য কোন সমস্যা / মন্তব্য
+            <span data-toggle="tooltip" data-placement="top" title="Any other suggestions or comments?<br>অন্য কোনো পরামর্শ বা মতামত?">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextAreaFor(model => model.RemarksDetail, new { @style = "width:100%;" })
@@ -417,6 +492,9 @@
     <tr>
         <td class="title">
             জেলায় Covid-19 সদস্য
+            <span data-toggle="tooltip" data-placement="top" title="Members of the committee who work for the COVID-19 response team for the district / zilla.<br>কমিটির সদস্য যারা জেলায় কোভিড ১৯ রেসপন্স টিমে কাজ করেন।">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.MemberCount)
@@ -427,6 +505,10 @@
     <tr>
         <td class="title">
             উপজেলায় Covid-19 সদস্য
+            <span data-toggle="tooltip" data-placement="top" title="Members of the committee who work for the COVID-19 response team for the sub-district / upazilla.<br>কমিটির সদস্য যারা  উপজেলায় কোভিড ১৯ রেসপন্স টিমে কাজ করেন।
+">
+                <img src="~/Content/tools.png" width="30" />
+            </span>
         </td>
         <td class="control">
             @Html.TextBoxFor(model => model.MemberUpazillaCount)
@@ -447,7 +529,7 @@
 <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
-
+         
         $("#save-submit").click(function () {
 
             if (!confirm("Do you want to Save?")) {
