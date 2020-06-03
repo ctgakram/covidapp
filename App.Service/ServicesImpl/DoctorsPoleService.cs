@@ -55,10 +55,10 @@ namespace AppProj.Service.ServicesImpl
                 && (disId == null ? true : c.DistrictId == disId)
                 && (divId == null ? true : c.DivisionId == divId)
                 )
-                .OrderBy(c => c.StandingData.Name)
-                .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData3.Name)
-                .ThenBy(c => c.EntryTime)
+                //.OrderBy(c => c.StandingData.Name)
+                //.ThenBy(c => c.StandingData1.Name)
+                //.ThenBy(c => c.StandingData3.Name)
+                .OrderBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount
@@ -91,10 +91,10 @@ namespace AppProj.Service.ServicesImpl
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
                     )
-                    .OrderBy(c => c.StandingData.Name)
-                    .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData3.Name)
-                    .ThenBy(c => c.EntryTime)
+                    //.OrderBy(c => c.StandingData.Name)
+                    //.ThenBy(c => c.StandingData1.Name)
+                    //.ThenBy(c => c.StandingData3.Name)
+                    .OrderBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -115,10 +115,10 @@ namespace AppProj.Service.ServicesImpl
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
                     )
-                    .OrderBy(c => c.StandingData.Name)
-                    .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData3.Name)
-                    .ThenBy(c => c.EntryTime)
+                    //.OrderBy(c => c.StandingData.Name)
+                    //.ThenBy(c => c.StandingData1.Name)
+                    //.ThenBy(c => c.StandingData3.Name)
+                    .OrderBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -143,10 +143,10 @@ namespace AppProj.Service.ServicesImpl
                && (disId == null ? true : c.DistrictId == disId)
                && (divId == null ? true : c.DivisionId == divId)
                 )
-                .OrderBy(c => c.StandingData.Name)
-                .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData3.Name)
-                .ThenBy(c => c.EntryTime)
+                //.OrderBy(c => c.StandingData.Name)
+                //.ThenBy(c => c.StandingData1.Name)
+                //.ThenBy(c => c.StandingData3.Name)
+                .OrderBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount(c =>

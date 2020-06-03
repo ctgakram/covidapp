@@ -408,16 +408,16 @@ namespace AppProj.Web.Controllers
 
 
             var obj = (from c in dataList
-                       select new object[] {c.StandingData1.Name
-                       ,c.StandingData3.Name
-                       ,c.StandingData4.Name
+                       select new object[] {c.StandingData1==null?"":c.StandingData1.Name
+                       ,c.StandingData3==null?"":c.StandingData3.Name
+                       ,c.StandingData4==null?"":c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
-                       , c.StandingData.Name
-                       , c.StandingData5.Name
+                       , c.StandingData==null?"":c.StandingData.Name
+                       , c.StandingData5==null?"":c.StandingData5.Name
                        , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 //,new GridButtonModel[]
@@ -738,16 +738,16 @@ namespace AppProj.Web.Controllers
 
 
             var obj = (from c in dataList
-                       select new object[] {c.StandingData1.Name
-                       ,c.StandingData3.Name
-                       ,c.StandingData4.Name
+                       select new object[] {c.StandingData1==null?"":c.StandingData1.Name
+                       ,c.StandingData3==null?"":c.StandingData3.Name
+                       ,c.StandingData4==null?"":c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
-                       , c.StandingData.Name
-                       , c.StandingData5.Name
+                       , c.StandingData==null?"":c.StandingData.Name
+                       , c.StandingData5==null?"":c.StandingData5.Name
                        , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
@@ -853,16 +853,16 @@ namespace AppProj.Web.Controllers
             IEnumerable<DoctorsPole> dataList = service.Get(srcId, divId, disId, FromDate, ToDate, dateType, statusIds,txt, skip, take,  out count);
             
             var obj = (from c in dataList
-                       select new object[] {c.StandingData1.Name
-                       ,c.StandingData3.Name
-                       ,c.StandingData4.Name
+                       select new object[] {c.StandingData1==null?"":c.StandingData1.Name
+                       ,c.StandingData3==null?"":c.StandingData3.Name
+                       ,c.StandingData4==null?"":c.StandingData4.Name
                        ,c.AreaOffice
                        , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
                        ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
                        ,c.Name
                        ,c.Age
-                       , c.StandingData.Name
-                       , c.StandingData5.Name
+                       , c.StandingData==null?"":c.StandingData.Name
+                       , c.StandingData5==null?"":c.StandingData5.Name
                        , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
                 ,new GridButtonModel[]
