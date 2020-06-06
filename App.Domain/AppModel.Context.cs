@@ -38,6 +38,7 @@ namespace AppProj.Domain
         public DbSet<DistrictPatient> DistrictPatients { get; set; }
         public DbSet<DistrictQuestion> DistrictQuestions { get; set; }
         public DbSet<DistrictSummery> DistrictSummeries { get; set; }
+        public DbSet<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
         public DbSet<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
         public DbSet<DoctorsPole> DoctorsPoles { get; set; }
         public DbSet<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }

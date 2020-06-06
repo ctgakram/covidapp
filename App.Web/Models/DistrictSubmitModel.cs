@@ -94,6 +94,20 @@ namespace AppProj.Web.Models
         //public decimal Oil { get; set; }
         //public decimal Soap { get; set; }
 
+        public bool IsPriceUpdate { get; set; }
+        public Nullable<int> PriceRice { get; set; }
+        public Nullable<int> PriceDal { get; set; }
+        public Nullable<int> PricePotato { get; set; }
+        public Nullable<int> PriceOnion { get; set; }
+        public Nullable<int> PriceOil { get; set; }
+        public Nullable<int> PriceOilPack { get; set; }
+        public Nullable<int> PriceSalt { get; set; }
+        public Nullable<int> PriceEggPlant { get; set; }
+        public Nullable<int> PriceEgg { get; set; }
+        public Nullable<int> PriceChille { get; set; }
+        public Nullable<int> PricePumpkin { get; set; }
+        public string PriceComment { get; set; }
+
         public string ReliefRemarks { get; set; }
         public int? Question1Id { get; set; }
         public string Question1 { get; set; }

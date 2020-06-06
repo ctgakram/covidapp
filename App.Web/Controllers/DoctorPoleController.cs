@@ -171,9 +171,7 @@ namespace AppProj.Web.Controllers
                     model.DivisionList = div.ToSelectList(fd, "Id", "Name");
 
                 }
-
-                var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson).Where(r => r.IsActive);
-                model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
+                               
 
                 model.Name = staff.StaffName;
                 model.StaffName = staff.StaffName;
@@ -189,11 +187,16 @@ namespace AppProj.Web.Controllers
 
             }
 
-            model.EffectedPersonList = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
+            var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
                     .Where(r => r.IsActive)
-                    .ToSelectList(null, "Id", "Name");
+                    .OrderBy(c => c.IntValue);
+            model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
 
-
+            var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
+                .Where(r => r.IsActive)
+                .OrderBy(c => c.Name);
+            model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
+            
             return PartialView(model);
         }
 
@@ -297,9 +300,7 @@ namespace AppProj.Web.Controllers
 
                 }
 
-                var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson).Where(r => r.IsActive);
-                model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
-
+                
                 model.Name = staff.StaffName;
                 model.MobileNo = staff.MobileNo;
 
@@ -313,9 +314,15 @@ namespace AppProj.Web.Controllers
 
             }
 
-            model.EffectedPersonList = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
+            var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
                     .Where(r => r.IsActive)
-                    .ToSelectList(null, "Id", "Name");
+                    .OrderBy(c => c.IntValue);
+            model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
+
+            var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
+                .Where(r => r.IsActive)
+                .OrderBy(c => c.Name);
+            model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
 
 
             return PartialView("HrCreateDetail", model);
@@ -495,6 +502,11 @@ namespace AppProj.Web.Controllers
             lst.Add(new SelectListItem { Text = "No need any followup", Value = "-1" });
             model.FollowupAfterDaysList = lst;
 
+            var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
+                .Where(r => r.IsActive)
+                .OrderBy(c => c.Name);
+            model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
+
             return PartialView(model);
         }
 
@@ -670,14 +682,14 @@ namespace AppProj.Web.Controllers
             if(visibleDoc)
             {
                 co = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
-                    .Where(c => (c.IntValue == 0 || c.IntValue == 1 || c.IntValue == 2))
+                    .Where(c => (c.IntValue == 0 || c.IntValue == 1 || c.IntValue == 2 || c.IntValue == 3))
                     .OrderBy(c => c.IntValue)
                     .ToList();
             }
             else if (visibleSus)
             {
                 co = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
-                    .Where(c => (c.IntValue == 0 || c.IntValue == 1))
+                    .Where(c => (c.IntValue == 0 || c.IntValue == 1 || c.IntValue == 2))
                     .OrderBy(c => c.IntValue)
                     .ToList();
             }
@@ -816,9 +828,6 @@ namespace AppProj.Web.Controllers
                 statusIds = tmpSts.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
             }
             
-
-            
-
             if (take == -1) { take = 100000000; skip = 0; }
 
             int? srcId = null;

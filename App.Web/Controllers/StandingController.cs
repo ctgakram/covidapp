@@ -66,6 +66,10 @@ namespace AppProj.Web.Controllers
             {
                 ViewBag.Title = "COVID Circular";
             }
+            else if (id == StandingDataTypes.Doctor_IsolationOffices)
+            {
+                ViewBag.Title = "Isolation Offices";
+            }
             else
             {
                 return View("Error");

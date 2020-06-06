@@ -23,8 +23,10 @@ namespace AppProj.Domain
             this.DistrictByUserProfiles = new HashSet<DistrictByUserProfile>();
             this.DistrictDatas = new HashSet<DistrictData>();
             this.DistrictSummeries = new HashSet<DistrictSummery>();
+            this.DoctorPoleCouncillings = new HashSet<DoctorPoleCouncilling>();
             this.DoctorsPoles = new HashSet<DoctorsPole>();
             this.DoctorsPoles1 = new HashSet<DoctorsPole>();
+            this.DoctorsPoles2 = new HashSet<DoctorsPole>();
             this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits1 = new HashSet<DoctorsPoleVisit>();
             this.HnppDatas = new HashSet<HnppData>();
@@ -47,8 +49,10 @@ namespace AppProj.Domain
         public virtual ICollection<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
         public virtual ICollection<DistrictData> DistrictDatas { get; set; }
         public virtual ICollection<DistrictSummery> DistrictSummeries { get; set; }
+        public virtual ICollection<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles1 { get; set; }
+        public virtual ICollection<DoctorsPole> DoctorsPoles2 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits1 { get; set; }
         public virtual ICollection<HnppData> HnppDatas { get; set; }

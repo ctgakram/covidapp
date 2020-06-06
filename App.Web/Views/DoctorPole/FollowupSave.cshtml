@@ -1,4 +1,23 @@
-﻿Saved Successfully
+﻿@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('New Call')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+
+Saved Successfully
+
+<br />
+<p>
+    @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-danger" })
+</p>
+
+
 <script type="text/javascript">
     $(document).ready(function () {
         $('#gridTable').dataTable().fnDraw();

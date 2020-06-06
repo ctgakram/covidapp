@@ -55,6 +55,10 @@ namespace AppProj.Domain
         public Nullable<System.DateTime> SampleTakenDate2 { get; set; }
         public Nullable<int> TestResultId2 { get; set; }
         public Nullable<System.DateTime> TestResultDate2 { get; set; }
+        public string AdviceTxt { get; set; }
+        public string AntibioticTxt { get; set; }
+        public Nullable<int> IsolationOfficeId { get; set; }
+        public Nullable<System.DateTime> DeathTime { get; set; }
     
         public virtual DoctorsPole DoctorsPole { get; set; }
         public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
@@ -64,6 +68,7 @@ namespace AppProj.Domain
         public virtual StandingData StandingData3 { get; set; }
         public virtual StandingData StandingData4 { get; set; }
         public virtual StandingData StandingData5 { get; set; }
+        public virtual StandingData StandingData6 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual UserProfile UserProfile1 { get; set; }
     }

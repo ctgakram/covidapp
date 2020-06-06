@@ -7,7 +7,7 @@
         HttpMethod = "POST",
         UpdateTargetId = "dialog1Body",
         InsertionMode = InsertionMode.Replace,
-        OnSuccess = "openDialog1('Suspected Patient')",
+        OnSuccess = "openDialog1('Followup')",
         LoadingElementId = "loading",
         OnFailure = "failure"
     };
@@ -64,10 +64,10 @@
     </table>
 
     <h3 style="padding-top:10px; color:#ff6a00">History</h3>
-    if (Model.DoctorsPoleVisits.Count > 0)
-    {
-        foreach (var v in Model.DoctorsPoleVisits)
-        {
+                    if (Model.DoctorsPoleVisits.Count > 0)
+                    {
+                        foreach (var v in Model.DoctorsPoleVisits.OrderBy(c=>c.EntryTime))
+                        {
             <button type="button" class="collapsible">By: <strong> @v.UserProfile.UserName </strong> at @v.EntryTime.ToString("dd MMM, yyyy hh:mm") </button>
             <div class="content">
                 <table class="table table-striped table-bordered fixed_headers" style="width:100%">
@@ -121,12 +121,16 @@
                             {
                                 <span>Referred to Hospital</span>
                             }
+                            <br />
+                            @v.AdviceTxt
                         </td>
                         <th>
                             Antibiotic Tahen : @if (v.IsAntibioticTaken == true)
                             {<span>Yes</span> }
                             else
                             {<span>No</span>}
+                            <br />
+                            @v.AntibioticTxt
 
                         </th>
                     </tr>
@@ -191,7 +195,10 @@
                         <td>
                             Attendant Phone Number : @v.AlternatePhoneNo
                         </td>
-                        <td></td>
+                        <td>
+                            Ofc Isolation: @{var oi = v.StandingData6 == null ? "" : v.StandingData6.Name;}
+                            @oi
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -207,10 +214,10 @@
         <table class="table table-striped table-bordered fixed_headers" style="width:100%">
 
             <tr>
-                <td colspan="2" style="color:#c15305">
+                <td style="color:#c15305">
                     Symptoms collected by Call Center
                 </td>
-                <td style="color:#c15305">
+                <td colspan="2" style="color:#c15305">
                     Advices
                 </td>
                 <td style="color:#c15305">
@@ -226,11 +233,8 @@
                     @Html.CheckBoxFor(model => model.IsSoreThroat) Sore throat
                     <br />
                     @Html.CheckBoxFor(model => model.IsBreathing) Breathlessness
-                </th>
-                <th>
-                    Others
-                    <br />
-                    @Html.TextAreaFor(model => model.OtherSymptoms)
+                    Others :
+                    @Html.TextBoxFor(model => model.OtherSymptoms)
                 </th>
                 <th>
                     @Html.CheckBoxFor(model => model.AdvConTreat) Conservative treatment
@@ -242,8 +246,14 @@
                     @Html.CheckBoxFor(model => model.AdvReferHospital) Referred to Hospital
                 </th>
                 <th>
+                    Other Advices
+                    <br />
+                    @Html.TextAreaFor(model => model.AdviceTxt)
+                </th>
+                <th>
                     @Html.CheckBoxFor(model => model.IsAntibioticTaken)
                     Antibiotic Taken
+                    @Html.TextAreaFor(model => model.AntibioticTxt)
                 </th>
             </tr>
             <tr>
@@ -274,84 +284,110 @@
                     @Html.ValidationMessageFor(model => model.TestResultDate)
                 </th>
                 <th>
-                    2nd Sample taken date
-                    @Html.TextBoxFor(model => model.SampleTakenDate1, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.SampleTakenDate1)
-                    <br />
-                    2nd Test Result
-                    @Html.DropDownListFor(model => model.TestResultId1, Model.TestResultList, "Not Applicable Now")
-                    @Html.ValidationMessageFor(model => model.TestResultId1)
-                    <br />
-                    2nd Test Result Date
-                    @Html.TextBoxFor(model => model.TestResultDate1, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.TestResultDate1)
+                    <div class="2ndLast">
+                        2nd Last Sample taken date
+                        @Html.TextBoxFor(model => model.SampleTakenDate1, "{0:dd MMM, yyyy}", new { @class = "span2 2ndLast", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.SampleTakenDate1)
+                        <br />
+                        2nd Last Test Result
+                        @Html.DropDownListFor(model => model.TestResultId1, Model.TestResultList, "Not Applicable Now", new { @class = "2ndLast" })
+                        @Html.ValidationMessageFor(model => model.TestResultId1)
+                        <br />
+                        2nd Last Test Result Date
+                        @Html.TextBoxFor(model => model.TestResultDate1, "{0:dd MMM, yyyy}", new { @class = "span2 2ndLast", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.TestResultDate1)
+                    </div>
                 </th>
                 <th>
-                    3rd Sample taken date
-                    @Html.TextBoxFor(model => model.SampleTakenDate2, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.SampleTakenDate2)
-                    <br />
-                    3rd Test Result
-                    @Html.DropDownListFor(model => model.TestResultId2, Model.TestResultList, "Not Applicable Now")
-                    @Html.ValidationMessageFor(model => model.TestResultId2)
-                    <br />
-                    3rd Test Result Date
-                    @Html.TextBoxFor(model => model.TestResultDate2, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.TestResultDate2)
+                    <div class="last">
+                        Last Sample taken date
+                        @Html.TextBoxFor(model => model.SampleTakenDate2, "{0:dd MMM, yyyy}", new { @class = "span2 last", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.SampleTakenDate2)
+                        <br />
+                        Last Test Result
+                        @Html.DropDownListFor(model => model.TestResultId2, Model.TestResultList, "Not Applicable Now", new { @class = "last" })
+                        @Html.ValidationMessageFor(model => model.TestResultId2)
+                        <br />
+                        Last Test Result Date
+                        @Html.TextBoxFor(model => model.TestResultDate2, "{0:dd MMM, yyyy}", new { @class = "span2 last", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.TestResultDate2)
+                    </div>
                 </th>
                 <th>
                     Admitted at
                     @Html.DropDownListFor(model => model.AdmittedTypeId, Model.AdminTypeList, "Not Applicable Now")
                     @Html.ValidationMessageFor(model => model.AdmittedTypeId)
-                    <br />
-                    Admission Date
-                    @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.AdmissionDate)
-                    <br />
-                    Discharge Date
-                    @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                    @Html.ValidationMessageFor(model => model.DischargeDate)
+                    <div class="hosdiv">
+                        <br />
+                        Admission Date
+                        @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.AdmissionDate)
+                        <br />
+                        Discharge Date
+                        @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.DischargeDate)
+                    </div>
                 </th>
             </tr>
-
+            
             <tr>
                 <th>
-                    Hospital Name
-                    @Html.TextBoxFor(model => model.HospitalName)
-                    @Html.ValidationMessageFor(model => model.HospitalName)
+                    <div class="hosdiv">
+                        Hospital Name
+                        @Html.TextBoxFor(model => model.HospitalName)
+                        @Html.ValidationMessageFor(model => model.HospitalName)
+                    </div>
                 </th>
                 <th>
-                    Attendant Name
-                    @Html.TextBoxFor(model => model.AlternateName)
-                    @Html.ValidationMessageFor(model => model.AlternateName)
+                    <div class="hosdiv">
+                        Attendant Name
+                        @Html.TextBoxFor(model => model.AlternateName)
+                        @Html.ValidationMessageFor(model => model.AlternateName)
+                    </div>
                 </th>
                 <th>
-                    Phone Number
-                    @Html.TextBoxFor(model => model.AlternatePhoneNo)
-                    @Html.ValidationMessageFor(model => model.AlternatePhoneNo)
+                    <div class="hosdiv">
+                        Phone Number
+                        @Html.TextBoxFor(model => model.AlternatePhoneNo)
+                        @Html.ValidationMessageFor(model => model.AlternatePhoneNo)
+                    </div>
                 </th>
                 <th>
-
+                    <div class="isodiv">
+                        Isolation Office
+                        @Html.DropDownListFor(model => model.IsolationOfficeId, Model.IsolationOffices, "Not Applicable")
+                        @Html.ValidationMessageFor(model => model.IsolationOfficeId)
+                    </div>
                 </th>
             </tr>
             <tr>
-                <th>
-                    Status
-                    @Html.DropDownListFor(model => model.StatusId, Model.StatusList)
-                    @Html.ValidationMessageFor(model => model.StatusId)
-                </th>
+
                 <th>
                     Comments
                     @Html.TextAreaFor(model => model.Comments)
                     @Html.ValidationMessageFor(model => model.Comments)
                 </th>
                 <th>
+                    <span style="color:#ff6a00">Status</span>
+                    @Html.DropDownListFor(model => model.StatusId, Model.StatusList)
+                    @Html.ValidationMessageFor(model => model.StatusId)
+                    <div class="deathdiv">
+                        <br />
+                        Death Time
+                        @Html.TextBoxFor(model => model.DeathTime, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                        @Html.ValidationMessageFor(model => model.DeathTime)
+                    </div>
+                </th>
+                <th>
+                    <div class="tokendiv">
+                        Request for Token
+                    </div>
+                </th>
+                <th>
                     Next Followup
                     @Html.DropDownListFor(model => model.FollowupAfterDays, Model.FollowupAfterDaysList, "Please select next follow up days")
                     @Html.ValidationMessageFor(model => model.FollowupAfterDays)
-                </th>
-                <th>
-                    <p> &nbsp; </p>
+                    <br />
                     <input id="save-submit" type="submit" value="Submit Followup" class="btn btn-warning" />
                 </th>
             </tr>
@@ -359,7 +395,7 @@
     </div>
 }
 
-    <script type="text/javascript">
+<script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
 
@@ -369,10 +405,111 @@
                 return false;
             }
 
+            Clear();
+
         });
 
-        $('#DivisionId').change(function (event) {
-            LoadDistrictSearch($('#DivisionId').val());
+        Admit();
+        Status();
+        TestResultDiv();
+
+        function TestResultDiv() {
+            
+            var v = $('#SampleTakenDate').val();
+            var v1 = $('#SampleTakenDate1').val();
+
+            if (v != null || v != '') {
+                $('#SampleTakenDate1').show();
+            }
+            else {
+                $('#SampleTakenDate1').hide();
+            }
+
+            if (v1 != null || v1 != '') {
+                $('#SampleTakenDate2').show();
+            }
+            else {
+                $('#SampleTakenDate2').hide();
+            }
+        }
+
+        function Clear() {
+            var v = $('#AdmittedTypeId').val();
+
+            if (v == 862673) { //office isolation
+                $('#AdmissionDate').val(null);
+                $('#DischargeDate').val(null);
+                $('#HospitalName').val(null);
+                $('#AlternateName').val(null);
+                $('#AlternatePhoneNo').val(null);
+            }
+            else if (v == 861719) { //hospitalized
+                $('#IsolationOfficeId').val(null);
+            }
+            else {
+                $('#AdmissionDate').val(null);
+                $('#DischargeDate').val(null);
+                $('#HospitalName').val(null);
+                $('#AlternateName').val(null);
+                $('#AlternatePhoneNo').val(null);
+                $('#IsolationOfficeId').val(null);
+            }
+
+            v = $('#StatusId').val();
+
+            if (v == 862672) { //death
+
+            }
+            else if (v == 862671) { //recommandent for test                
+                $('#DeathTime').val(null);
+            }
+            else {
+
+                $('#DeathTime').val(null);
+            }
+        }
+        
+        function Admit() {
+            var v = $('#AdmittedTypeId').val();
+
+            if (v == 862673) { //office isolation
+                $(".isodiv").show();
+                $(".hosdiv").hide();
+            }
+            else if (v == 861719) { //hospitalized
+                $(".isodiv").hide();
+                $(".hosdiv").show();
+            }
+            else {
+                $(".isodiv").hide();
+                $(".hosdiv").hide();
+            }
+
+        }
+
+        function Status() {
+            var v = $('#StatusId').val();
+
+            if (v == 862672) { //death
+                $(".deathdiv").show();
+                $(".tokendiv").hide();
+            }
+            else if (v == 862671) { //recommandent for test
+                $(".deathdiv").hide();
+                $(".tokendiv").show();
+            }
+            else {
+                $(".deathdiv").hide();
+                $(".tokendiv").hide();
+            }
+        }
+
+        $('#StatusId').change(function (event) {
+            Status();
+        });
+
+        $('#AdmittedTypeId').change(function (event) {
+            Admit();
         });
 
         window.LoadDistrictSearch = function (areaId) {
@@ -432,32 +569,39 @@
             startDate: null
         });
 
-
-    });
-    </script>
-
-    <script type="text/javascript">
-        ValidatateForm("form0");
-
-        $(document).ready(function () {
-
-            var coll = document.getElementsByClassName("collapsible");
-
-            var i;
-
-            for (i = 0; i < coll.length; i++) {
-                coll[i].addEventListener("click", function () {
-                    this.classList.toggle("active");
-                    var content = this.nextElementSibling;
-                    if (content.style.display === "block") {
-                        content.style.display = "none";
-                    } else {
-                        content.style.display = "block";
-                    }
-                });
-            }
+        $('#DeathTime').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
         });
 
-    </script>
+
+    });
+</script>
+
+<script type="text/javascript">
+    ValidatateForm("form0");
+
+    $(document).ready(function () {
+
+        var coll = document.getElementsByClassName("collapsible");
+
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+
+</script>
 
 
