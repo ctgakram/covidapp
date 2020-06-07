@@ -23,7 +23,13 @@
     <table>
         <tr>
             <td style="width:50%; vertical-align:top;">
-                <h3>@Html.DisplayFor(m=> m.StaffName)</h3>
+                <h3 style="color:#ff6a00">
+                    @Html.DisplayFor(m => m.StaffName)
+                    @if (!Model.IsFound)
+                    {
+                    <span style="color:#0026ff">@Html.DisplayFor(m => m.Message)</span>
+                    }
+                </h3>
                 <table class="table table-striped table-bordered fixed_headers">                    
                     <tr>
                         <td>
@@ -34,7 +40,7 @@
                             @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList)
                             @Html.ValidationMessageFor(model => model.ProgramId)
                             Designation
-                            @Html.TextBoxFor(model => model.Designation)
+                            @Html.TextBoxFor(model => model.Designation,new { @style = "color:#ff6a00" })
                             @Html.ValidationMessageFor(model => model.Designation)
                             Division
                             @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList)
@@ -115,7 +121,7 @@
                         @foreach (var v in Model.ExistingData)
                         {
                             <tr>
-                                <td>@v.StandingData5.Name</td>
+                                <td>@{var v5 = v.StandingData5 == null ? "" : v.StandingData5.Name;} @v5</td>
                                 <td>@v.Name</td>
                                 @*<td>@v.Age</td>
                                     <td>@v.StandingData.Name</td>*@

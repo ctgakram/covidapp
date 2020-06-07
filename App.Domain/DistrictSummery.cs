@@ -73,6 +73,19 @@ namespace AppProj.Domain
         public int TotalBracPatient { get; set; }
         public int TotalBracReleased { get; set; }
         public int TotalBracQurantine { get; set; }
+        public Nullable<System.DateTime> PriceDate { get; set; }
+        public Nullable<int> PriceRice { get; set; }
+        public Nullable<int> PriceDal { get; set; }
+        public Nullable<int> PricePotato { get; set; }
+        public Nullable<int> PriceOnion { get; set; }
+        public Nullable<int> PriceOil { get; set; }
+        public Nullable<int> PriceOilPack { get; set; }
+        public Nullable<int> PriceSalt { get; set; }
+        public Nullable<int> PriceEggPlant { get; set; }
+        public Nullable<int> PriceEgg { get; set; }
+        public Nullable<int> PriceChille { get; set; }
+        public Nullable<int> PricePumpkin { get; set; }
+        public string PriceComment { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }

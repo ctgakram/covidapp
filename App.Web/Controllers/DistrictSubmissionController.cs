@@ -23,7 +23,7 @@ namespace AppProj.Web.Controllers
         readonly IUnitOfWork unitOfWork;
 
         public DistrictSubmissionController(IUnitOfWork unitOfWork,
-            IDistrictDataService disDataService, 
+            IDistrictDataService disDataService,
             IStandingDataService standingDataService,
             IDistrictQuestionService districtQuestionService,
             IDistrictByUserProfileService districtByUserProfileService)
@@ -44,7 +44,7 @@ namespace AppProj.Web.Controllers
 
             var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
             up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
-            
+
             up.FromDate = DateTime.Now;
             up.ToDate = DateTime.Now;
 
@@ -126,7 +126,7 @@ namespace AppProj.Web.Controllers
 
             if (FromDate == ToDate && divId == null && disId == null)
             {
-                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c=>c.IsActive);
+                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c => c.IsActive);
 
                 List<int> all = districts.Select(c => c.Id).ToList();
                 List<int> used = dataList.Select(c => c.DistrictId).ToList();
@@ -203,7 +203,7 @@ namespace AppProj.Web.Controllers
 
             var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
             up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
-            
+
             return View(up);
         }
 
@@ -234,7 +234,7 @@ namespace AppProj.Web.Controllers
             }
             catch { }
 
-            
+
             //DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
             //DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
 
@@ -489,7 +489,7 @@ namespace AppProj.Web.Controllers
             */
             if (FromDate == ToDate && divId == null && disId == null)
             {
-                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c=>c.IsActive);
+                IEnumerable<StandingData> districts = standingDataService.GetDistricts().Where(c => c.IsActive);
 
                 List<int> all = districts.Select(c => c.Id).ToList();
                 List<int> used = dataList.Select(c => c.DistrictId).ToList();
@@ -498,7 +498,7 @@ namespace AppProj.Web.Controllers
 
                 List<StandingData> add = districts.Where(c => notused.Contains(c.Id)).ToList();
 
-                foreach(var v in add)
+                foreach (var v in add)
                 {
                     dataList.Add(new DistrictData
                     {
@@ -523,10 +523,10 @@ namespace AppProj.Web.Controllers
 
             var obj = (from c in dataList
                        select new object[] {
-                       c.StandingData.Name 
+                       c.StandingData.Name
                        ,c.StandingData1.Name
-                       ,String.Format("{0:dd MMM, yyyy}", c.Date) 
-                       
+                       ,String.Format("{0:dd MMM, yyyy}", c.Date)
+
                        ,c.NewQuarantine
                        ,c.ReleasedQuarantine
                        ,c.DoTestOn
@@ -539,9 +539,9 @@ namespace AppProj.Web.Controllers
 
                        ,c.TillCurrentQuarantine
 
-                       
 
-                       
+
+
                        ,c.Rice
                        ,c.ReliefFamily
                        //,c.Dal
@@ -582,8 +582,8 @@ namespace AppProj.Web.Controllers
             var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
             up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
 
-            up.FromDate = DateTime.Now;
-            up.ToDate = DateTime.Now;
+            //up.FromDate = DateTime.Now;
+            //up.ToDate = DateTime.Now;
 
             return View(up);
         }
@@ -591,14 +591,13 @@ namespace AppProj.Web.Controllers
         public JsonResult DataGridBrac()
         {
 
-            bool visible = UserRole.Check("DISTRICT", SessionHelper.Role);
+            //bool visible = UserRole.Check("DISTRICT", SessionHelper.Role);
 
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
             int skip = int.Parse(Request.QueryString["iDisplayStart"]);
-            //bool isSum = bool.Parse(Request.QueryString["isSum"]);
 
-            if (take == -1) { take = 1000000000; skip = 0; }
+            if (take == -1) { take = 100000000; skip = 0; }
 
             int? divId = null;
 
@@ -617,101 +616,30 @@ namespace AppProj.Web.Controllers
             catch { }
 
 
-            DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
-            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+            //DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
+            //DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
 
             int count = 0;
-            List<DistrictData> dataList = disDataService.Get(divId, disId, FromDate, ToDate, skip, take, out count).ToList();
-
-            //List<DistrictData> dl = new List<DistrictData>();
-            /*
-            if (skip<=0 && dataList.Count()>0)
-            {
-                IEnumerable<DistrictData> dataListSum = disDataService.Get(divId, disId, FromDate, ToDate, skip, 1000000000, out count);
-
-                DistrictData tot = dataListSum.GroupBy(q => 1)
-                    .Select(g => new DistrictData
-                    {
-                        Id = 0
-                        ,
-                        Date = ToDate
-                        ,
-                        StandingData = new StandingData { Name = "<span style=\"color:#ff6a00; font-size:14px;\">Total</span>" }
-                        ,
-                        DivisionId = -1
-                        ,
-                        StandingData1 = new StandingData { Name = " " }
-                        ,
-                        DistrictId = -1
-                        ,
-                        NewQuarantine = g.Sum(c => c.NewQuarantine)
-                        ,
-                        Death = g.Sum(c => c.Death)
-                        ,
-                        DoTestOn = g.Sum(c => c.DoTestOn)
-                        ,
-                        ReleasedQuarantine = g.Sum(c => c.ReleasedQuarantine)
-                        //,
-                        //TillCurrentQuarantine = g.Sum(c => c.TillCurrentQuarantine)
-                        //,
-                        //TillDeath = g.Sum(c => c.TillDeath)
-                        //,
-                        //TillDoTestOn = g.Sum(c => c.TillDoTestOn)
-                        //,
-                        //TillQuarantine = g.Sum(c => c.TillQuarantine)
-                        //,
-                        //TillReleasedQuarantine = g.Sum(c => c.TillReleasedQuarantine)
-                        ,                        
-                        ReliefFamily = g.Sum(c => c.ReliefFamily)
-                       //,
-                       // ReliefPerson = g.Sum(c => c.ReliefPerson)
-                       ,
-                        Rice = g.Sum(c => c.Rice)
-                       ,
-                        Dal = g.Sum(c => c.Dal)
-                       ,
-                        Potato = g.Sum(c => c.Potato)
-                       ,
-                        Money = g.Sum(c => c.Money)
-                       //,
-                       // Onion = g.Sum(c => c.Onion)
-                       //,
-                       // Salt = g.Sum(c => c.Salt)
-                       //,
-                       // Oil = g.Sum(c => c.Oil)
-                       //,
-                       // Soap = g.Sum(c => c.Soap)
-                        ,
-                        InsertedById = -1
-                        ,
-                        UserProfile = new UserProfile { UserName = "" }
-                    }
-                    ).Single();
-
-                dataList.Insert(0, tot);
-            }
-            */
-            
+            List<DistrictSummery> dataList = disDataService.GetSummery(divId, disId, skip, take, out count).ToList();
+                       
 
             var obj = (from c in dataList
-                       select new object[] {
-                       c.StandingData.Name
+                       select new object[] {c.StandingData.Name
                        ,c.StandingData1.Name
-                       ,String.Format("{0:dd MMM, yyyy}", c.Date)
-
-                       ,c.BracPatient
-                       ,c.BracReleased
-                       ,c.BracQurantine
-
-                       ,c.TillBracPatient
-                       ,c.TillBracReleased
-                       ,c.TillBracQurantine
-
-                //,new GridButtonModel[]
-                //    {
-                //         new GridButtonModel{U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-warning\"", V = visible}
-
-                //    }
+                       ,String.Format("{0:dd MMM, yyyy}", c.PriceDate)
+                       ,c.PriceRice
+                       ,c.PriceDal
+                       ,c.PricePotato
+                       ,c.PriceOnion
+                       ,c.PriceOilPack
+                       ,c.PriceOil                       
+                       ,c.PriceSalt
+                       ,c.PriceEggPlant
+                       ,c.PriceEgg
+                       ,c.PriceChille
+                       ,c.PricePumpkin
+                       ,c.PriceComment
+                      
             }).ToArray();
 
 
@@ -735,12 +663,12 @@ namespace AppProj.Web.Controllers
 
             //up.Districts=standingDataService.GetDistricts(d).Where(r => r.IsActive).ToSelectList(d, "Id", "Name");
 
-            up.Districts =  districtByUserProfileService.GetByUser(SessionHelper.UserId).Select(c=> new {c.DistrictId,c.StandingData.Name }).ToSelectList(null, "DistrictId", "Name");
+            up.Districts = districtByUserProfileService.GetByUser(SessionHelper.UserId).Select(c => new { c.DistrictId, c.StandingData.Name }).ToSelectList(null, "DistrictId", "Name");
 
             //up.DivisionId = d;
             up.Date = DateTime.Now;
 
-            
+
 
             return PartialView(up);
         }
@@ -756,7 +684,7 @@ namespace AppProj.Web.Controllers
             ModelCopier.CopyModel(disData, up);
             ModelCopier.CopyModel(sumData, up);
 
-            if(disData!=null)
+            if (disData != null)
             {
                 up.DetailId = disData.Id;
                 up.RemarksDetail = disData.Remarks;
@@ -769,7 +697,7 @@ namespace AppProj.Web.Controllers
             }
 
             up.Date = model.Date;
-           
+
             var dis = standingDataService.GetDataById(model.DistrictId);
             up.DistrictName = dis.Name;
 
@@ -779,7 +707,7 @@ namespace AppProj.Web.Controllers
 
             up.DistrictTypeValue = dis.IntValue ?? 0;
             var districtQuesitonsIds = districtQuestionService.GetDistrictQuestions(model.DistrictId).Take(2).ToList();
-            if (districtQuesitonsIds!=null)
+            if (districtQuesitonsIds != null)
             {
                 if (districtQuesitonsIds.Count == 1)
                 {
@@ -787,40 +715,39 @@ namespace AppProj.Web.Controllers
                     up.Question1 = ques1.Name;
                 }
                 else if (districtQuesitonsIds.Count == 2)
-                { 
-                    var ques1= standingDataService.GetDataById(districtQuesitonsIds.First());
+                {
+                    var ques1 = standingDataService.GetDataById(districtQuesitonsIds.First());
                     if (ques1 != null)
                     {
                         up.Question1 = ques1.Name;
                         up.Question1Id = ques1.Id;
                     }
-                    var ques2= standingDataService.GetDataById(districtQuesitonsIds.Last());
+                    var ques2 = standingDataService.GetDataById(districtQuesitonsIds.Last());
                     if (ques2 != null)
                     {
                         up.Question2 = ques2.Name;
                         up.Question2Id = ques2.Id;
                     }
                 }
-                
+
             }
-            
 
             return PartialView(up);
         }
-       
+
         [CustomAuthorize(Roles: new string[] { "DISTRICT" })]
         public ActionResult Save(DistrictSubmitModel model)
         {
-            
+
             DistrictData entityDis = disDataService.Get(model.DistrictId, model.Date);
             DistrictSummery entityDisSum = disDataService.GetSummery(model.DistrictId);
 
-            if(entityDisSum==null)
+            if (entityDisSum == null)
             {
                 entityDisSum = new DistrictSummery();
             }
 
-            if(entityDis == null)
+            if (entityDis == null)
             {
                 entityDis = new DistrictData();
                 entityDisSum.TotalQuarantine = entityDisSum.TotalQuarantine + model.NewQuarantine;
@@ -835,10 +762,10 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + model.Potato;
                 entityDisSum.TotalMoney = entityDisSum.TotalMoney + model.Money;
 
-                entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + model.BracPatient;
-                entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + model.BracReleased;
-                entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + model.BracQurantine;
-                
+                //entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + model.BracPatient;
+                //entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + model.BracReleased;
+                //entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + model.BracQurantine;
+
                 //entityDisSum.TotalOil = entityDisSum.TotalOil + model.Oil;
                 //entityDisSum.TotalSoap = entityDisSum.TotalSoap + model.Soap;
                 //entityDisSum.TotalOnion = entityDisSum.TotalOnion + model.Onion;
@@ -851,16 +778,16 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalDoTestOn = entityDisSum.TotalDoTestOn + (model.DoTestOn - entityDis.DoTestOn);
                 entityDisSum.TotalDeath = entityDisSum.TotalDeath + (model.Death - entityDis.Death);
 
-                entityDisSum.TotalReliefFamily = entityDisSum.TotalReliefFamily + (model.ReliefFamily- entityDis.ReliefFamily);
-                entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + (model.ReliefPerson- entityDis.ReliefPerson);
-                entityDisSum.TotalRice = entityDisSum.TotalRice + (model.Rice- entityDis.Rice);
-                entityDisSum.TotalDal = entityDisSum.TotalDal + (model.Dal- entityDis.Dal);
-                entityDisSum.TotalPotato = entityDisSum.TotalPotato + (model.Potato- entityDis.Potato);
-                entityDisSum.TotalMoney = entityDisSum.TotalMoney + (model.Money- entityDis.Money);
+                entityDisSum.TotalReliefFamily = entityDisSum.TotalReliefFamily + (model.ReliefFamily - entityDis.ReliefFamily);
+                entityDisSum.TotalReliefPerson = entityDisSum.TotalReliefPerson + (model.ReliefPerson - entityDis.ReliefPerson);
+                entityDisSum.TotalRice = entityDisSum.TotalRice + (model.Rice - entityDis.Rice);
+                entityDisSum.TotalDal = entityDisSum.TotalDal + (model.Dal - entityDis.Dal);
+                entityDisSum.TotalPotato = entityDisSum.TotalPotato + (model.Potato - entityDis.Potato);
+                entityDisSum.TotalMoney = entityDisSum.TotalMoney + (model.Money - entityDis.Money);
 
-                entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + (model.BracPatient - entityDis.BracPatient);
-                entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + (model.BracReleased - entityDis.BracReleased);
-                entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + (model.BracQurantine - entityDis.BracQurantine);
+                //entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + (model.BracPatient - entityDis.BracPatient);
+                //entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + (model.BracReleased - entityDis.BracReleased);
+                //entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + (model.BracQurantine - entityDis.BracQurantine);
 
                 //entityDisSum.TotalOil = entityDisSum.TotalOil + (model.Oil- entityDis.TotalOil);
                 //entityDisSum.TotalSoap = entityDisSum.TotalSoap +( model.Soap- entityDis.TotalSoap);
@@ -869,23 +796,58 @@ namespace AppProj.Web.Controllers
 
             }
 
-            entityDisSum.CurrentQuarantine = entityDisSum.TotalQuarantine 
+            entityDisSum.CurrentQuarantine = entityDisSum.TotalQuarantine
                 - entityDisSum.TotalReleased;
 
             //running qrn, death, release, new qrn
 
+            int? PriceRice = entityDisSum.PriceRice;
+            int? PriceDal = entityDisSum.PriceDal;
+            int? PricePotato = entityDisSum.PricePotato;
+            int? PriceOnion = entityDisSum.PriceOnion;
+            int? PriceOil = entityDisSum.PriceOil;
+            int? PriceOilPack = entityDisSum.PriceOilPack;
+            int? PriceSalt = entityDisSum.PriceSalt;
+            int? PriceEggPlant = entityDisSum.PriceEggPlant;
+            int? PriceEgg = entityDisSum.PriceEgg;
+            int? PriceChille = entityDisSum.PriceChille;
+            int? PricePumpkin = entityDisSum.PricePumpkin;
+            string PriceComment = entityDisSum.PriceComment;
+
+
             ModelCopier.CopyModel(model, entityDis);
             ModelCopier.CopyModel(model, entityDisSum);
+
+            if (model.IsPriceUpdate)
+            {
+                entityDisSum.PriceDate = model.Date;
+            }
+            else
+            {
+                entityDisSum.PriceRice = PriceRice;
+                entityDisSum.PriceDal = PriceDal;
+                entityDisSum.PricePotato = PricePotato;
+                entityDisSum.PriceOnion = PriceOnion;
+                entityDisSum.PriceOil = PriceOil;
+                entityDisSum.PriceOilPack = PriceOilPack;
+                entityDisSum.PriceSalt = PriceSalt;
+                entityDisSum.PriceEggPlant = PriceEggPlant;
+                entityDisSum.PriceEgg = PriceEgg;
+                entityDisSum.PriceChille = PriceChille;
+                entityDisSum.PricePumpkin = PricePumpkin;
+                entityDisSum.PriceComment = PriceComment;
+            }
+
 
             entityDis.Id = model.DetailId;
             entityDis.Remarks = model.RemarksDetail;
 
             entityDisSum.Id = model.SumId;
             entityDisSum.Remarks = model.RemarksSum;
-            
+
             entityDis.InsertedById = SessionHelper.UserId;
             entityDisSum.InsertedById = SessionHelper.UserId;
-                        
+
             disDataService.Update(entityDis, entityDisSum);
 
             unitOfWork.Commit();

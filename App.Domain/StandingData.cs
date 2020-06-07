@@ -59,6 +59,7 @@ namespace AppProj.Domain
             this.DoctorsPoles8 = new HashSet<DoctorsPole>();
             this.DoctorsPoles9 = new HashSet<DoctorsPole>();
             this.DoctorsPoles10 = new HashSet<DoctorsPole>();
+            this.DoctorsPoles11 = new HashSet<DoctorsPole>();
             this.DoctorsPoleVisitDetails = new HashSet<DoctorsPoleVisitDetail>();
             this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits1 = new HashSet<DoctorsPoleVisit>();
@@ -66,6 +67,7 @@ namespace AppProj.Domain
             this.DoctorsPoleVisits3 = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits4 = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits5 = new HashSet<DoctorsPoleVisit>();
+            this.DoctorsPoleVisits6 = new HashSet<DoctorsPoleVisit>();
             this.HnppDatas = new HashSet<HnppData>();
             this.HnppDatas1 = new HashSet<HnppData>();
             this.ProgramByUserProfiles = new HashSet<ProgramByUserProfile>();
@@ -131,6 +133,7 @@ namespace AppProj.Domain
         public virtual ICollection<DoctorsPole> DoctorsPoles8 { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles9 { get; set; }
         public virtual ICollection<DoctorsPole> DoctorsPoles10 { get; set; }
+        public virtual ICollection<DoctorsPole> DoctorsPoles11 { get; set; }
         public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits1 { get; set; }
@@ -138,6 +141,7 @@ namespace AppProj.Domain
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits3 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits4 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits5 { get; set; }
+        public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits6 { get; set; }
         public virtual ICollection<HnppData> HnppDatas { get; set; }
         public virtual ICollection<HnppData> HnppDatas1 { get; set; }
         public virtual ICollection<ProgramByUserProfile> ProgramByUserProfiles { get; set; }

@@ -16,6 +16,7 @@ namespace AppProj.Service.ServicesImpl
         readonly IDoctorsPolesRepository repository;
         readonly IDoctorsPoleVisitRepository visitRepository;
         readonly IDoctorsPoleVisitDetailRepository visitDetailRepository;
+        readonly IDoctorPoleCouncillingRepository councilingRepository;
         readonly IDoctorPoleStatusesRepository repositoryStatus;
         readonly IStandingDataRepository standingRepository;
         readonly IUnitOfWork unitOfWork;
@@ -24,6 +25,7 @@ namespace AppProj.Service.ServicesImpl
             , IUnitOfWork unitOfWork
             , IDoctorsPoleVisitRepository visitRepository
             , IDoctorsPoleVisitDetailRepository visitDetailRepository
+            , IDoctorPoleCouncillingRepository councilingRepository
             , IDoctorPoleStatusesRepository repositoryStatus
             , IStandingDataRepository standingRepository)
         {
@@ -31,6 +33,7 @@ namespace AppProj.Service.ServicesImpl
             this.standingRepository = standingRepository;
             this.visitRepository = visitRepository;
             this.visitDetailRepository = visitDetailRepository;
+            this.councilingRepository = councilingRepository;
             this.repositoryStatus = repositoryStatus;
             this.unitOfWork = unitOfWork;
         }
@@ -55,10 +58,10 @@ namespace AppProj.Service.ServicesImpl
                 && (disId == null ? true : c.DistrictId == disId)
                 && (divId == null ? true : c.DivisionId == divId)
                 )
-                .OrderBy(c => c.StandingData.Name)
-                .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData3.Name)
-                .ThenBy(c => c.EntryTime)
+                //.OrderBy(c => c.StandingData.Name)
+                //.ThenBy(c => c.StandingData1.Name)
+                //.ThenBy(c => c.StandingData3.Name)
+                .OrderBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount
@@ -86,15 +89,16 @@ namespace AppProj.Service.ServicesImpl
                        (dateType == "L" ? (c.LastFollowupDate >= fromDate && c.LastFollowupDate < toDate) : true)
                     && (dateType == "N" ? (c.NextFollowupDate >= fromDate && c.NextFollowupDate < toDate) : true)
                     && (dateType == "E" ? (c.EntryTime >= fromDate && c.EntryTime < toDate) : true)
+                    //dateType == "A" always true
                     && statusTypeIds.Contains(c.StatusId)
                     && (sourceId == null ? true : c.ProgramId == sourceId)
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
                     )
-                    .OrderBy(c => c.StandingData.Name)
-                    .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData3.Name)
-                    .ThenBy(c => c.EntryTime)
+                    //.OrderBy(c => c.StandingData.Name)
+                    //.ThenBy(c => c.StandingData1.Name)
+                    //.ThenBy(c => c.StandingData3.Name)
+                    .OrderBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -115,10 +119,10 @@ namespace AppProj.Service.ServicesImpl
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
                     )
-                    .OrderBy(c => c.StandingData.Name)
-                    .ThenBy(c => c.StandingData1.Name)
-                    .ThenBy(c => c.StandingData3.Name)
-                    .ThenBy(c => c.EntryTime)
+                    //.OrderBy(c => c.StandingData.Name)
+                    //.ThenBy(c => c.StandingData1.Name)
+                    //.ThenBy(c => c.StandingData3.Name)
+                    .OrderBy(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -143,10 +147,10 @@ namespace AppProj.Service.ServicesImpl
                && (disId == null ? true : c.DistrictId == disId)
                && (divId == null ? true : c.DivisionId == divId)
                 )
-                .OrderBy(c => c.StandingData.Name)
-                .ThenBy(c => c.StandingData1.Name)
-                .ThenBy(c => c.StandingData3.Name)
-                .ThenBy(c => c.EntryTime)
+                //.OrderBy(c => c.StandingData.Name)
+                //.ThenBy(c => c.StandingData1.Name)
+                //.ThenBy(c => c.StandingData3.Name)
+                .OrderBy(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount(c =>
@@ -171,6 +175,10 @@ namespace AppProj.Service.ServicesImpl
             return visitRepository.GetMany(c => c.DoctorPoleId == Id);
         }
 
+        public IEnumerable<DoctorPoleCouncilling> GetCouncilByParent(int Id)
+        {
+            return councilingRepository.GetMany(c => c.DoctorPoleId == Id);
+        }
         public IEnumerable<DoctorsPoleVisitDetail> GetVisitDetailsByParent(int Id)
         {
             return visitDetailRepository.GetMany(c => c.DoctorsPoleVisitId == Id);
@@ -191,12 +199,12 @@ namespace AppProj.Service.ServicesImpl
             var suspectedData = repository.GetMany(c => suspectedIds.Contains(c.Id))
                 .ToList();
 
-            var totalPositive = suspectedData.Where(c => c.StandingData.IntValue == 2);
-            var totalNegetive = suspectedData.Where(c => c.StandingData.IntValue == 3);
-            var totalResolved = suspectedData.Where(c => c.StandingData.IntValue == 4);
+            var totalPositive = suspectedData.Where(c => c.StandingData6.IntValue == 2);
+            var totalNegetive = suspectedData.Where(c => c.StandingData6.IntValue == 3);
+            var totalResolved = suspectedData.Where(c => c.StandingData6.IntValue == 4);
 
             var currentPositive = repository.GetMany(c =>
-            c.StandingData5.IntValue.Value == 2
+            c.StandingData6.IntValue.Value == 2
             && (sourceId == null ? true : (sourceId == c.ProgramId))
             ).ToList();
 
@@ -209,7 +217,8 @@ namespace AppProj.Service.ServicesImpl
 
             model.TotalResolved = totalResolved.Count();
 
-            model.TotalTestPending = suspectedData.Where(c => c.SampleTakenDate != null && c.TestResultId == null).Count();
+            model.TotalTestPending = suspectedData.Where(c => c.SampleTakenDate != null 
+            && c.TestResultId == null).Count();
 
             model.TotalHomeIsolation = currentPositive
                 .Where(c => c.StandingData8 == null ? false : c.StandingData8.IntValue == 1)
@@ -223,7 +232,8 @@ namespace AppProj.Service.ServicesImpl
 
             //suspected
 
-            model.ProgramWiseCases = suspectedData.GroupBy(c => c.StandingData1.Name)
+            model.ProgramWiseCases = suspectedData                
+                .GroupBy(c => c.StandingData1.Name)
             .Select(s => new DoctorPoleDashboardDetailModel
             {
                 Particular = s.Key
@@ -417,6 +427,11 @@ namespace AppProj.Service.ServicesImpl
             {
                 visitDetailRepository.Delete(r);
             }
+        }
+
+        public void AddCounciling(DoctorPoleCouncilling entity)
+        {
+            councilingRepository.Add(entity);
         }
 
         void UpdateStatus(int id, int statId)

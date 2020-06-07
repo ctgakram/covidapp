@@ -20,7 +20,7 @@
 
 
 <div class="page-header">
-    <h2>বি.ডি.সি. তথ্য-ব্র্যাক কর্মীদের তথ্য</h2>
+    <h2>বি.ডি.সি. তথ্য - পণ্যের দাম এবং মজুরি সম্পর্কিত তথ্য</h2>
     <div class="btn-group" role="group" aria-label="Basic example">
         <a id="exp" href="#" class="btn btn-blank btn-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="13.425" height="11.935" viewBox="0 0 13.425 11.935"> <path id="export" d="M8.951,2.842a.558.558,0,0,0-.163-.394L6.506.163A.559.559,0,0,0,6.11,0H5.967V2.984H8.951ZM13.31,7.18,11.079,4.932a.374.374,0,0,0-.639.263V6.713H8.949V8.205h1.492v1.52a.374.374,0,0,0,.639.263L13.31,7.739A.4.4,0,0,0,13.31,7.18Zm-8.834.653V7.086a.374.374,0,0,1,.373-.373h4.1V3.73H5.781a.561.561,0,0,1-.559-.559V0H.559A.558.558,0,0,0,0,.559V11.375a.558.558,0,0,0,.559.559H8.392a.558.558,0,0,0,.559-.559V8.205h-4.1A.374.374,0,0,1,4.476,7.832Z" fill="#d10d74" /></svg>
@@ -95,10 +95,9 @@
                         <label for="districts">উপজেলা</label>
                         @Html.DropDownListFor(model => model.ContentTypeId3, Model.ContentTypes3, "All Upazillas", new { @class = "searchable-dropdown form-control" })
                     </div>*@
-                <div class="filter-item">
+                @*<div class="filter-item">
                     <label for="start_date">সার্চের শুরুর তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                        @*<input value="" autocomplete="off" id="start_date" name="start_date" type="hidden" class="form-control flatpickr-input" data-input=""><input class="input-group datepicker flatpickr form-control input" placeholder="" tabindex="0" type="text">*@
                         @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -110,7 +109,6 @@
                 <div class="filter-item">
                     <label for="end_date">সার্চের শেষ তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                        @*<input value="" autocomplete="off" id="end_date" name="end_date" type="hidden" class="form-control flatpickr-input" data-input=""><input class="input-group datepicker flatpickr form-control input" placeholder="" tabindex="0" type="text">*@
                         @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -118,7 +116,7 @@
                             </button>
                         </div>
                     </div>
-                </div>
+                </div>*@
                 <div class="filter-item">
                     <button id="dateSearchButton" class="btn btn-bracify search">
                         <span>Search</span>
@@ -131,11 +129,7 @@
 
         <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
             <thead class="thead-yellow">
-                <tr>
-                    <th colspan="3">এরিয়া </th>
-                    <th colspan="3">ব্র্যাক কর্মীদের দিনের তথ্য</th>
-                    <th colspan="3">ব্র্যাক কর্মীদের আজ পর্যন্ত তথ্য</th>
-                </tr>
+                
                 <tr>
                     <th>
                         বিভাগ
@@ -147,30 +141,23 @@
                         তারিখ
                     </th>
 
-                    <th>
-                        নতুন আক্রান্তের সংখ্যা
-                    </th>
-                    <th>
-                        আজকের সুস্থ হওয়ার সংখ্যা
-                    </th>
-                    <th>
-                        আজ নতুন করে কোয়ারেন্টাইনে গেছেন
-                    </th>
-
-                    <th>
-                        আজ পর্যন্ত আক্রান্তের সংখ্যা
-                    </th>
-                    <th>
-                        আজ পর্যন্ত সুস্থ হওয়ার সংখ্যা
-                    </th>
-                    <th>
-                        আজ পর্যন্ত কোয়ারেন্টাইনে গেছেন
-                    </th>
+                    <th>মোটা চাল</th>
+                    <th>মসুর (আমদানিকৃত) সাধারন মানসম্পন্ন</th>
+                    <th>আলু হল্যান্ড সাদা</th>
+                    <th>পেয়াজ (আমদানিকৃত)</th>
+                    <th>সয়াবিন তেল (প্যাকেট)</th>
+                    <th>সয়াবিন তেল (লুজ)</th>
+                    <th>লবণ</th>
+                    <th>বেগুন সাধারনমান</th>
+                    <th>ডিম ফার্ম লাল </th>
+                    <th>কাঁচা মরিচ</th>
+                    <th>মিস্টি কুমড়া (প্রতি কেজি)</th>
+                    <th>মন্তব্য</th>
 
                     @*@if (UserRole.Check("DISTRICT", SessionHelper.Role))
-                        {
-                            <th></th>
-                        }*@
+        {
+            <th></th>
+        }*@
                 </tr>
             </thead>
         </table>
@@ -189,20 +176,18 @@
             tableToExcel('gridTable', 'Export Name');
         });
 
-            DatePicker('FromDate', 'dd MMM, yyyy');
-            DatePicker('ToDate', 'dd MMM, yyyy');
-
+            
             $(".ddl").change(function () {
                 $('#gridTable').dataTable().fnDraw();
             });
 
         $("#dateSearchButton").click(function () {
-            $("#isSum").val(false);
+            //$("#isSum").val(false);
             $('#gridTable').dataTable().fnDraw();
         });
 
         $("#dateSearchButtonSum").click(function () {
-            $("#isSum").val(true);
+           // $("#isSum").val(true);
             $('#gridTable').dataTable().fnDraw();
         });
 
@@ -222,8 +207,8 @@
             var addPost = {
                 'ContentTypeId1': 'ContentTypeId1',
                 'ContentTypeId2': 'ContentTypeId2',
-                'FromDate': 'FromDate',
-                'ToDate': 'ToDate',
+                //'FromDate': 'FromDate',
+                //'ToDate': 'ToDate',
                 'isSum': 'isSum'
             }
             var btns = {
@@ -233,7 +218,7 @@
             /*data grid initializer*/
             DataTableBinder($("#gridTable")   //table object
                 , '@Url.Content("~/DistrictSubmission/DataGridBrac")'  //json data url
-                , [16,32,64, 128, 256, 1024] //record size
+                , [64, 128, 256, 1024] //record size
                 , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns

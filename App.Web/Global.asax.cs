@@ -80,6 +80,7 @@ namespace AppProj.Web
                 .RegisterType<IDoctorsPoleVisitRepository, DoctorsPoleVisitRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitRepository>())
                 .RegisterType<IDoctorsPoleVisitDetailRepository, DoctorsPoleVisitDetailRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitDetailRepository>())
                 .RegisterType<IDoctorPoleStatusesRepository, DoctorPoleStatusesRepository>(new HttpContextLifetimeManager<IDoctorPoleStatusesRepository>())
+                .RegisterType<IDoctorPoleCouncillingRepository, DoctorPoleCouncillingRepository>(new HttpContextLifetimeManager<IDoctorPoleCouncillingRepository>())
 
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
@@ -473,15 +474,13 @@ namespace AppProj.Web
             get { return "DAT"; }
         }
 
-        public static class DoctorsPoleVisitVetailRelationType
+        public static string Doctor_IsolationOffices
         {
-            public static string CoMorbidity
-            {
-                get { return "COM"; }
-            }
+            get { return "ISO"; }
         }
 
-            public static IEnumerable<TSource> DistinctBy<TSource, TKey>
+        
+        public static IEnumerable<TSource> DistinctBy<TSource, TKey>
         (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {
             HashSet<TKey> seenKeys = new HashSet<TKey>();
@@ -492,6 +491,14 @@ namespace AppProj.Web
                     yield return element;
                 }
             }
+        }
+    }
+
+    public static class DoctorsPoleVisitVetailRelationType
+    {
+        public static string CoMorbidity
+        {
+            get { return "COM"; }
         }
     }
 

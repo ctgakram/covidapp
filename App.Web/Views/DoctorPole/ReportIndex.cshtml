@@ -93,14 +93,15 @@
             <div class="span8 utopia-form-freeSpace">
                 <fieldset>
                     <div class="control-group ">
-                        Date by: <input type="radio" id="follow" name="rdoDateType" value="L" checked="checked"> Last Follow-Up
-                        <input type="radio" id="entry" name="rdoDateType" value="N"> Next Folloe-Up
-                        <input type="radio" id="entry" name="rdoDateType" value="E"> Enrollment
-                        <input type="hidden" id="dateType" value="L" />
-
-                        From Date:   @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-                        To Date: @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-
+                        Date by: <input type="radio" name="rdoDateType" value="A" checked="checked"> All Data
+                        <input type="radio" name="rdoDateType" value="L"> Last Follow-Up
+                        <input type="radio" name="rdoDateType" value="N"> Next Folloe-Up
+                        <input type="radio" name="rdoDateType" value="E"> Enrollment
+                        <input type="hidden" id="dateType" value="A" />
+                        <div id="dateDiv">
+                            From Date:   @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+                            To Date: @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
+                        </div>
                     </div>
                 </fieldset>
             </div>
@@ -160,6 +161,12 @@
             <th>
                 Data Entered by
             </th>
+            <th>
+                Counseling by
+            </th>
+            <th>
+                Last Counseling at
+            </th>
             @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
                 || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
             {
@@ -172,6 +179,17 @@
 @section scripts{
     <script type="text/javascript">
     $(document).ready(function () {
+
+        $('#dateDiv').hide();
+
+        $('input[type=radio][name=rdoDateType]').change(function () {
+            if (this.value == 'A') {
+                $('#dateDiv').hide();
+            }
+            else {
+                $('#dateDiv').show();
+            }
+        });
 
         $("#prn").click(function () {
             $("#gridTable").printThis();
@@ -248,7 +266,7 @@
             'StatusIds': 'StatusIds'
         }
         var btns = {
-            12: false //column number : is button group
+            14: false //column number : is button group
         };
 
         /*data grid initializer*/

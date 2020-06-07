@@ -66,6 +66,11 @@ namespace AppProj.Web.Models
         public string AlternateName { get; set; }        
         public int EntryById { get; set; }
         public System.DateTime EntryTime { get; set; }
+        public string AdviceTxt { get; set; }
+        public string AntibioticTxt { get; set; }
+        public Nullable<int> IsolationOfficeId { get; set; }
+        public Nullable<System.DateTime> DeathTime { get; set; }
+        public Nullable<int> CouncilorUserId { get; set; }
 
         [Required(ErrorMessage = "Required")]
         [Range(0, 120, ErrorMessage = "(age within 0 to 120)")]
@@ -97,6 +102,8 @@ namespace AppProj.Web.Models
         public IEnumerable<SelectListItem> CoMobList { get; set; }
         public IEnumerable<SelectListItem> TestResultList { get; set; }
         public IEnumerable<SelectListItem> AdmitList { get; set; }
+        public IEnumerable<SelectListItem> IsolationOffices { get; set; }
+        public IEnumerable<SelectListItem> Councilors { get; set; }
 
 
         public List<DoctorsPole> ExistingData { get; set; }
@@ -141,8 +148,13 @@ namespace AppProj.Web.Models
         public Nullable<System.DateTime> SampleTakenDate2 { get; set; }
         public Nullable<int> TestResultId2 { get; set; }
         public Nullable<System.DateTime> TestResultDate2 { get; set; }
+        public string AdviceTxt { get; set; }
+        public string AntibioticTxt { get; set; }
+        public Nullable<int> IsolationOfficeId { get; set; }
+        public Nullable<System.DateTime> DeathTime { get; set; }
+        public Nullable<System.DateTime> LastCouncilingDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Please select next followup")]
         public Nullable<int> FollowupAfterDays { get; set; }
         public List<SelectListItem> FollowupAfterDaysList { get; set; }
 
@@ -150,10 +162,11 @@ namespace AppProj.Web.Models
         public IEnumerable<SelectListItem> TestResultList { get; set; }
         public List<SelectListItem> CoMobiList { get; set; }
         public IEnumerable<SelectListItem> StatusList { get; set; }
-
+        public IEnumerable<SelectListItem> IsolationOffices { get; set; }
 
         public DoctorsPole DoctorsPole { get; set; }
         public List<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
+        public List<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
     }
 
 }
