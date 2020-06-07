@@ -1,0 +1,307 @@
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.DoctorsPoleVisitModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Followup')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+
+}
+
+
+
+<button type="button" class="collapsible">@{var v5 = Model.DoctorsPole.StandingData5 == null ? "" : Model.DoctorsPole.StandingData5.Name;} @v5  <span style="font-size:11px;"> @Model.DoctorsPole.StaffName (PIN : @Model.DoctorsPole.PIN)</span></button>
+<div class="content">
+    <table class="table table-striped table-bordered" style="width:100%">
+        <tr>
+            <th>Patient Name</th>
+            <td>@Model.DoctorsPole.Name</td>
+            <th>Mobile No</th>
+            <td>@Model.DoctorsPole.MobileNo</td>
+            <th>Gender</th>
+            <td>@{var v0 = Model.DoctorsPole.StandingData == null ? "" : Model.DoctorsPole.StandingData.Name;} @v0</td>
+        </tr>
+        <tr>
+            <th>Program</th>
+            <td>@{var v1 = Model.DoctorsPole.StandingData == null ? "" : Model.DoctorsPole.StandingData.Name;} @v1</td>
+            <th>Area Office</th>
+            <td>@Model.DoctorsPole.AreaOffice</td>
+            <th rowspan="2" colspan="2">HR Comment: @Model.DoctorsPole.CommentByHR</th>
+        </tr>
+        <tr>
+            <th>Division</th>
+            <td>@{var v3 = Model.DoctorsPole.StandingData3 == null ? "" : Model.DoctorsPole.StandingData3.Name;} @v3</td>
+            <th>District</th>
+            <td>@{var v4 = Model.DoctorsPole.StandingData4 == null ? "" : Model.DoctorsPole.StandingData4.Name;} @v4</td>
+        </tr>
+    </table>
+</div>
+<table class="table table-striped table-bordered fixed_headers">
+    <tr>
+        <td>
+            <strong>Any Travel?</strong>  @Model.DoctorsPole.IsTravel
+        </td>
+        <td>
+            <strong>Travel within country?</strong> @Model.DoctorsPole.IsTravelCountry
+        </td>
+        <td>
+            <strong>Travel outside country?</strong> @Model.DoctorsPole.IsTravelAbroad
+        </td>
+        <td>
+            <strong>Any Contact history? </strong> @Model.DoctorsPole.IsContract
+        </td>
+    </tr>
+</table>
+
+<h3 style="padding-top:10px; color:#ff6a00">Doctor's Followup History</h3>
+@if (Model.DoctorsPoleVisits.Count > 0)
+{
+    foreach (var v in Model.DoctorsPoleVisits.OrderBy(c => c.EntryTime))
+    {
+        <button type="button" class="collapsible">By: <strong> @v.UserProfile.UserName </strong> at @v.EntryTime.ToString("dd MMM, yyyy hh:mm") </button>
+        <div class="content">
+            <table class="table table-striped table-bordered fixed_headers" style="width:100%">
+
+                <tr>
+                    <td colspan="2" style="color:#c15305">
+                        Symptoms collected by Call Center
+                    </td>
+                    <td colspan="2" style="color:#c15305">
+                        Advices
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @if (v.IsFever)
+                        {
+                            <span>Fever</span><br />
+                        }
+                        @if (v.IsDryCough)
+                        {
+                            <span>Dry cough</span><br />
+                        }
+                        @if (v.IsSoreThroat)
+                        {
+                            <span>Sore throat</span><br />
+                        }
+                        @if (v.IsBreathing)
+                        {
+                            <span>Breathlessness</span>
+                        }
+                    </td>
+                    <td>
+                        Others:
+                        <br />
+                        @v.OtherSymptoms
+                    </td>
+                    <td>
+                        @if (v.AdvConTreat == true)
+                        {
+                            <span>Conservative treatment</span><br />
+                        }
+                        @if (v.AdvQurentine == true)
+                        {
+                            <span>Quarentine</span><br />
+                        }
+                        @if (v.AdvHomeIsolation == true)
+                        {
+                            <span>Home Isolation</span><br />
+                        }
+                        @if (v.AdvReferHospital == true)
+                        {
+                            <span>Referred to Hospital</span>
+                        }
+                        <br />
+                        @v.AdviceTxt
+                    </td>
+                    <th>
+                        Antibiotic Tahen : @if (v.IsAntibioticTaken == true)
+                        {<span>Yes</span> }
+                        else
+                        {<span>No</span>}
+                        <br />
+                        @v.AntibioticTxt
+
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Status :
+                        @{var s = v.StandingData == null ? "" : v.StandingData.Name;}
+                        @s
+                    </td>
+                    <td>
+                        Comments : @v.Comments
+                    </td>
+                    <th colspan="2">
+                        Co-morbidity for suspected case : @v.CoMorbidities
+                    </th>
+                </tr>
+                <tr>
+                    <td>
+                        Sample taken date : @v.SampleTakenDate.ToDateString()
+                        <br />
+                        Test Result :
+                        @{var t = v.StandingData2 == null ? "" : v.StandingData2.Name;}
+                        @t
+                        <br />
+                        Test Result Date : @v.TestResultDate.ToDateString()
+                    </td>
+                    <td>
+                        2nd Sample taken date : @v.SampleTakenDate1.ToDateString()
+                        <br />
+                        2nd Test Result :
+                        @{var t1 = v.StandingData4 == null ? "" : v.StandingData4.Name;}
+                        @t
+                        <br />
+                        2nd Test Result Date : @v.TestResultDate1.ToDateString()
+                    </td>
+                    <td>
+                        3rd Sample taken date : @v.SampleTakenDate2.ToDateString()
+                        <br />
+                        3rd Test Result :
+                        @{var t2 = v.StandingData5 == null ? "" : v.StandingData5.Name;}
+                        @t
+                        <br />
+                        3rd Test Result Date : @v.TestResultDate2.ToDateString()
+                    </td>
+                    <td>
+                        Admitted at : @{var k = v.StandingData3 == null ? "" : v.StandingData3.Name;}
+                        @k
+                        <br />
+                        Admission Date : @v.AdmissionDate.ToDateString()
+                        <br />
+                        Discharge Date : @v.DischargeDate.ToDateString()
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>
+                        Hospital Name : @v.HospitalName
+                    </td>
+                    <td>
+                        Attendant Name : @v.AlternateName
+                    </td>
+                    <td>
+                        Attendant Phone Number : @v.AlternatePhoneNo
+                    </td>
+                    <td>
+                        Ofc Isolation: @{var oi = v.StandingData6 == null ? "" : v.StandingData6.Name;}
+                        @oi
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+}
+else
+{
+    <p>No history found</p>
+}
+
+<h3 style="padding-top:10px; color:#ff6a00">Counseling History</h3>
+@if (Model.DoctorPoleCouncillings.Count > 0)
+{
+    foreach (var v in Model.DoctorPoleCouncillings.OrderBy(c => c.InsertionTime))
+    {
+        <button type="button" class="collapsible" style="background-color:#fcf1b5">By: <strong> @v.UserProfile.UserName </strong> at @v.InsertionTime.ToString("dd MMM, yyyy hh:mm") </button>
+        <div class="content">
+            <table class="table table-striped table-bordered fixed_headers" style="width:100%">
+
+                <tr>
+                    <th>
+                        Advices
+                    </th>
+                    <td>@v.Advice</td>
+                    <th>
+                        Comments
+                    </th>
+                    <td>@v.Comment</td>
+                </tr>
+            </table>
+        </div>
+    }
+}
+else
+{
+    <p>No history found</p>
+}
+
+@using (Ajax.BeginForm("CouncilingSave", "DoctorPole", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(m => m.DoctorPoleId)
+    <h3 style="padding-top:10px; color:#ff6a00">Today's Counseling</h3>
+    <div style="width:100%">
+        <table class="table table-striped table-bordered fixed_headers" style="width:100%">
+
+            <tr>
+                <th>
+                    Advices
+                </th>
+                <td>
+                    @Html.TextAreaFor(model => model.AdviceTxt)
+                </td>
+                <th>
+                    Comments
+                </th>
+                <td>
+                    @Html.TextAreaFor(model => model.AntibioticTxt)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input id="save-submit" type="submit" value="Submit Followup" class="btn btn-success" />
+                </td>
+            </tr>
+        </table>
+    </div>
+}
+
+<script type="text/javascript">
+    ValidatateForm("form0");
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+
+            if (!confirm("Do you want to Save?")) {
+                return false;
+            }
+
+        });
+
+    });
+</script>
+
+<script type="text/javascript">
+    ValidatateForm("form0");
+
+    $(document).ready(function () {
+
+        var coll = document.getElementsByClassName("collapsible");
+
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+            coll[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var content = this.nextElementSibling;
+                if (content.style.display === "block") {
+                    content.style.display = "none";
+                } else {
+                    content.style.display = "block";
+                }
+            });
+        }
+    });
+
+</script>
+
+

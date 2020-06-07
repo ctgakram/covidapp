@@ -83,6 +83,7 @@ namespace AppProj.Domain
         public Nullable<int> IsolationOfficeId { get; set; }
         public Nullable<System.DateTime> DeathTime { get; set; }
         public Nullable<int> CouncilorUserId { get; set; }
+        public Nullable<System.DateTime> LastCouncilingDate { get; set; }
     
         public virtual ICollection<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
         public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }

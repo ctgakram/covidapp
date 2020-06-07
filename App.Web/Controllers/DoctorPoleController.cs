@@ -16,7 +16,11 @@ using AppProj.Domain.ModelExt;
 namespace AppProj.Web.Controllers
 {
     [Authorize]
-    [CustomAuthorize(Roles : new string[] { "DoctorPool_HR", "DoctorPool_Doc", "DoctorPool_Suspect" })]
+    [CustomAuthorize(Roles : new string[] { "DoctorPool_HR"
+        , "DoctorPool_Doc"
+        , "DoctorPool_Suspect"
+        , "DoctorPool_Admin"
+        , "DoctorPool_Council" })]
     public class DoctorPoleController : Controller
     {
         readonly IDoctorsPoleService service;
@@ -192,140 +196,42 @@ namespace AppProj.Web.Controllers
                     .OrderBy(c => c.IntValue);
             model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
 
-            var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
-                .Where(r => r.IsActive)
-                .OrderBy(c => c.Name);
-            model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
+            //var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
+            //    .Where(r => r.IsActive)
+            //    .OrderBy(c => c.Name);
+            //model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
             
             return PartialView(model);
         }
 
-        [CustomAuthorize(Roles: new string[] { "DoctorPool_HR", "DoctorPool_Doc" })]
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Admin"})]
         public ActionResult Edit(int Id)
         {
             DoctorsPoleModel model = new DoctorsPoleModel();
 
-            //model.PIN = ("" + mod.PIN_).Trim();
-            //model.MobileNo = ("" + mod.MobileNo_).Trim();
+            var entity = service.Get(Id);
 
-            IEnumerable<StaffProfile> dataObjects = null;
-            StaffProfile staff = null;
-
-            if (model.PIN != "")
-            {
-                dataObjects = ApiCaller.GetEmployeeByPIN(model.PIN);
-            }
-            else if (model.MobileNo != "")
-            {
-                dataObjects = ApiCaller.GetEmployeeByMobile(model.MobileNo);
-            }
+            ModelCopier.CopyModel(entity, model);
 
 
-            if (dataObjects != null)
-            {
-                staff = dataObjects.FirstOrDefault();
-            }
+            var prj = standingDataService.GetProject().Where(r => r.IsActive);
+            model.ProgramList = prj.ToSelectList(null, "Id", "Name");
 
-            if (staff == null)
-            {
-                model.Message = "Staff not found by PIN or mobile";
+            var div = standingDataService.GetDivisions().Where(r => r.IsActive);
+            model.DivisionList = div.ToSelectList(null, "Id", "Name");
 
-                var prj = standingDataService.GetProject();
-                model.ProgramList = prj.ToSelectList(null, "Id", "Name");
+            var dis = standingDataService.GetDistricts(model.DivisionId).Where(r => r.IsActive);
+            model.DistrictList = dis.ToSelectList(null, "Id", "Name");
 
-                var div = standingDataService.GetDivisions().Where(r => r.IsActive);
-                var fd = div.FirstOrDefault().Id;
-
-                model.DivisionList = div.ToSelectList(fd, "Id", "Name");
-
-                var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
-                model.DistrictList = dis.ToSelectList(null, "Id", "Name");
-
-                var gen = standingDataService.GetGender().Where(r => r.IsActive);
-                model.GenderList = gen.ToSelectList(null, "Id", "Name");
-
-                model.IsFound = false;
-            }
-            else
-            {
-                model.Message = "";
-                model.PIN = staff.pin;
-                model.IsFound = true;
-
-                model.ExistingData = service.GetPersonal(staff.pin).ToList();
-
-                var prjId = GetProject(staff.projectname);
-
-                var prj = standingDataService.GetProject().Where(r => r.IsActive);
-                model.ProgramList = prj.ToSelectList(prjId, "Id", "Name");
-                model.ProgramId = prjId;
-
-                var disOfStaff = standingDataService.GetDistricts(staff.districtname);
-                var genOfStaff = standingDataService.GetGender(staff.sex);
-
-                var div = standingDataService.GetDivisions().Where(r => r.IsActive);
-                var gen = standingDataService.GetGender().Where(r => r.IsActive);
-
-
-
-                if (genOfStaff != null)
-                {
-                    model.GenderList = gen.ToSelectList(genOfStaff.Id, "Id", "Name");
-                    model.GenderId = genOfStaff.Id;
-                }
-                else
-                {
-                    model.GenderList = gen.ToSelectList(null, "Id", "Name");
-                }
-
-                if (disOfStaff != null)
-                {
-                    var dis = standingDataService.GetDistricts(disOfStaff.ParentId.Value).Where(r => r.IsActive);
-
-                    model.DistrictList = dis.ToSelectList(disOfStaff.Id, "Id", "Name");
-                    model.DivisionList = div.ToSelectList(disOfStaff.ParentId, "Id", "Name");
-
-                    model.DivisionId = disOfStaff.ParentId.Value;
-                    model.DistrictId = disOfStaff.Id;
-
-                }
-                else
-                {
-                    var fd = div.FirstOrDefault().Id;
-
-                    var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
-                    model.DistrictList = dis.ToSelectList(null, "Id", "Name");
-
-                    model.DivisionList = div.ToSelectList(fd, "Id", "Name");
-
-                }
-
-                
-                model.Name = staff.StaffName;
-                model.MobileNo = staff.MobileNo;
-
-                if (staff.dateofbirth != null)
-                {
-                    model.Dob = staff.dateofbirth;
-                    model.Age = (int)(((DateTime.Now - staff.dateofbirth.Value).TotalDays) / 365);
-                }
-
-                model.AreaOffice = staff.branchname;
-
-            }
+            var gen = standingDataService.GetGender().Where(r => r.IsActive).OrderBy(c => c.IntValue);
+            model.GenderList = gen.ToSelectList(null, "Id", "Name");
 
             var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
                     .Where(r => r.IsActive)
                     .OrderBy(c => c.IntValue);
             model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
-
-            var ofc = standingDataService.GetByType(StandingDataTypes.Doctor_IsolationOffices)
-                .Where(r => r.IsActive)
-                .OrderBy(c => c.Name);
-            model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
-
-
-            return PartialView("HrCreateDetail", model);
+            
+            return PartialView("Edit", model);
         }
 
         [CustomAuthorize(Roles: new string[] { "DoctorPool_HR", "DoctorPool_Doc" })]
@@ -661,7 +567,7 @@ namespace AppProj.Web.Controllers
                 "Save");
         }
 
-        [CustomAuthorize(Roles: new string[] { "DoctorPool_Doc", "DoctorPool_Suspect" })]
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Doc", "DoctorPool_Suspect", "DoctorPool_Council", "DoctorPool_Admin" })]
         public ActionResult FollowupIndex()
         {
             SearchModel up = new SearchModel();
@@ -703,11 +609,13 @@ namespace AppProj.Web.Controllers
             return View(up);
         }
 
-        [CustomAuthorize(Roles: new string[] { "DoctorPool_Doc", "DoctorPool_Suspect" })]
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Doc", "DoctorPool_Suspect", "DoctorPool_Council", "DoctorPool_Admin" })]
         public JsonResult FollowupDataGrid()
         {
             bool visibleDoc = UserRole.Check("DoctorPool_Doc", SessionHelper.Role);
             bool visibleSus = UserRole.Check("DoctorPool_Suspect", SessionHelper.Role);
+            bool visibleAdmin = UserRole.Check("DoctorPool_Admin", SessionHelper.Role);
+            bool visibleCouncil = UserRole.Check("DoctorPool_Council", SessionHelper.Role);
 
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
@@ -762,14 +670,14 @@ namespace AppProj.Web.Controllers
                        , c.StandingData5==null?"":c.StandingData5.Name
                        , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
+                       ,c.UserProfile2==null?"":c.UserProfile2.UserName
+                       ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\""
-                         , V = (visibleDoc)}
-                         ,
-                         new GridButtonModel{U=Url.Action("FollowupSuspected",new {Id=c.Id}), T="Suspected", D = GridButtonDialog.dialig1.ToString(), H="Suspected Patient", M="class=\"btn btn-mini btn-success\""
-                         , V = (visibleSus)}
-
+                         new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
+                         ,new GridButtonModel{U=Url.Action("FollowupSuspected",new {Id=c.Id}), T="Suspected", D = GridButtonDialog.dialig1.ToString(), H="Suspected Patient", M="class=\"btn btn-mini btn-success\"", V = (visibleSus)}
+                         ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-danger\"", V = (visibleAdmin)}
+                         ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"btn btn-mini btn-success\"", V = (visibleCouncil)}
                     }
             }).ToArray();
 
@@ -813,6 +721,8 @@ namespace AppProj.Web.Controllers
         {
             bool visibleDoc = UserRole.Check("DoctorPool_Doc", SessionHelper.Role);
             bool visibleSus = UserRole.Check("DoctorPool_Suspect", SessionHelper.Role);
+            bool visibleAdmin = UserRole.Check("DoctorPool_Admin", SessionHelper.Role);
+            bool visibleCouncil = UserRole.Check("DoctorPool_Council", SessionHelper.Role);
 
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
@@ -874,10 +784,13 @@ namespace AppProj.Web.Controllers
                        , c.StandingData5==null?"":c.StandingData5.Name
                        , c.StandingData6==null?"":c.StandingData6.Name
                        ,c.UserProfile.UserName
+                       ,c.UserProfile2==null?"":c.UserProfile2.UserName
+                       ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\""
-                         , V = (visibleDoc)}                         
+                         new GridButtonModel {U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
+                        ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-danger\"", V = (visibleAdmin)}
+                        ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"btn btn-mini btn-success\"", V = (visibleCouncil)}
                     }
             }).ToArray();
 
@@ -890,7 +803,52 @@ namespace AppProj.Web.Controllers
 
             return Json(js, JsonRequestBehavior.AllowGet);
         }
-        
+
+
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Council" })]
+        public ActionResult Counciling(int id)
+        {
+            DoctorsPoleVisitModel model = new DoctorsPoleVisitModel();
+            model.DoctorsPole = service.Get(id);
+
+            model.DoctorsPoleVisits = service.GetVisitsByParent(id).ToList();
+
+            model.DoctorPoleCouncillings = service.GetCouncilByParent(id).ToList();
+
+            model.DoctorPoleId = id;
+
+
+            return PartialView(model);
+        }
+
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Council" })]
+        public ActionResult CouncilingSave(DoctorsPoleVisitModel model)
+        {
+            var entity = service.Get(model.DoctorPoleId);
+
+            entity.CouncilorUserId= SessionHelper.UserId;
+            entity.LastCouncilingDate = DateTime.Now;
+
+            service.Update(entity);
+            
+
+            DoctorPoleCouncilling entityC = new DoctorPoleCouncilling();
+
+            entityC.DoctorPoleId = model.DoctorPoleId;
+            entityC.Advice = model.AdviceTxt;
+            entityC.Comment = model.AntibioticTxt;
+
+            entityC.InsertedById= SessionHelper.UserId;
+            entityC.InsertionTime= DateTime.Now;
+
+            service.AddCounciling(entityC);
+
+            unitOfWork.Commit();
+
+
+            return PartialView("Save");
+        }
+
         public ActionResult Dashboard()
         {
             DoctorPoleDashboardModel model = new DoctorPoleDashboardModel();

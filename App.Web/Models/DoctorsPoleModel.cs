@@ -152,6 +152,7 @@ namespace AppProj.Web.Models
         public string AntibioticTxt { get; set; }
         public Nullable<int> IsolationOfficeId { get; set; }
         public Nullable<System.DateTime> DeathTime { get; set; }
+        public Nullable<System.DateTime> LastCouncilingDate { get; set; }
 
         [Required(ErrorMessage ="Please select next followup")]
         public Nullable<int> FollowupAfterDays { get; set; }

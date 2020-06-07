@@ -16,6 +16,7 @@ namespace AppProj.Service.ServicesImpl
         readonly IDoctorsPolesRepository repository;
         readonly IDoctorsPoleVisitRepository visitRepository;
         readonly IDoctorsPoleVisitDetailRepository visitDetailRepository;
+        readonly IDoctorPoleCouncillingRepository councilingRepository;
         readonly IDoctorPoleStatusesRepository repositoryStatus;
         readonly IStandingDataRepository standingRepository;
         readonly IUnitOfWork unitOfWork;
@@ -24,6 +25,7 @@ namespace AppProj.Service.ServicesImpl
             , IUnitOfWork unitOfWork
             , IDoctorsPoleVisitRepository visitRepository
             , IDoctorsPoleVisitDetailRepository visitDetailRepository
+            , IDoctorPoleCouncillingRepository councilingRepository
             , IDoctorPoleStatusesRepository repositoryStatus
             , IStandingDataRepository standingRepository)
         {
@@ -31,6 +33,7 @@ namespace AppProj.Service.ServicesImpl
             this.standingRepository = standingRepository;
             this.visitRepository = visitRepository;
             this.visitDetailRepository = visitDetailRepository;
+            this.councilingRepository = councilingRepository;
             this.repositoryStatus = repositoryStatus;
             this.unitOfWork = unitOfWork;
         }
@@ -172,6 +175,10 @@ namespace AppProj.Service.ServicesImpl
             return visitRepository.GetMany(c => c.DoctorPoleId == Id);
         }
 
+        public IEnumerable<DoctorPoleCouncilling> GetCouncilByParent(int Id)
+        {
+            return councilingRepository.GetMany(c => c.DoctorPoleId == Id);
+        }
         public IEnumerable<DoctorsPoleVisitDetail> GetVisitDetailsByParent(int Id)
         {
             return visitDetailRepository.GetMany(c => c.DoctorsPoleVisitId == Id);
@@ -420,6 +427,11 @@ namespace AppProj.Service.ServicesImpl
             {
                 visitDetailRepository.Delete(r);
             }
+        }
+
+        public void AddCounciling(DoctorPoleCouncilling entity)
+        {
+            councilingRepository.Add(entity);
         }
 
         void UpdateStatus(int id, int statId)

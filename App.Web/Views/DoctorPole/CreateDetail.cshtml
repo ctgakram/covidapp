@@ -23,7 +23,13 @@
     <table>
         <tr>
             <td style="width:50%; vertical-align:top;">
-                <h3 style="color:#ff6a00">@Html.DisplayFor(m => m.StaffName)</h3>
+                <h3 style="color:#ff6a00">
+                    @Html.DisplayFor(m => m.StaffName)
+                    @if (!Model.IsFound)
+                    {
+                    <span style="color:#0026ff">@Html.DisplayFor(m => m.Message)</span>
+                    }
+                </h3>
                 <table class="table table-striped table-bordered fixed_headers">                    
                     <tr>
                         <td>

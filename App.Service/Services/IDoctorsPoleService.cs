@@ -21,6 +21,8 @@ namespace AppProj.Service.Services
 
         IEnumerable<DoctorsPoleVisit> GetVisitsByParent(int Id);
 
+        IEnumerable<DoctorPoleCouncilling> GetCouncilByParent(int Id);
+
         IEnumerable<DoctorsPoleVisitDetail> GetVisitDetailsByParent(int Id);
 
         DoctorPoleDashboardModel Dashboard(int? sourceId, int minVar);
@@ -33,5 +35,7 @@ namespace AppProj.Service.Services
         void AddVisitDetail(DoctorsPoleVisitDetail entity);
         void DeleteVisitDetail(DoctorsPoleVisitDetail entity);
         void DeleteVisitDetailAllByParent(int id);
+
+        void AddCounciling(DoctorPoleCouncilling entity);
     }
 }

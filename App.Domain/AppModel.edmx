@@ -379,6 +379,7 @@
           <Property Name="IsolationOfficeId" Type="int" />
           <Property Name="DeathTime" Type="datetime" />
           <Property Name="CouncilorUserId" Type="int" />
+          <Property Name="LastCouncilingDate" Type="date" />
         </EntityType>
         <EntityType Name="DoctorsPoleVisitDetails">
           <Key>
@@ -3140,6 +3141,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoles_UserProfiles1" FromRole="DoctorsPole" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile2" Relationship="AppModel.FK_DoctorsPoles_UserProfiles2" FromRole="DoctorsPole" ToRole="UserProfile" />
           <NavigationProperty Name="DoctorsPoleVisits" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorsPoleVisit" />
+          <Property Name="LastCouncilingDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="DoctorsPoleVisitDetail">
           <Key>
@@ -4869,6 +4871,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DoctorsPoles">
             <EntityTypeMapping TypeName="AppModel.DoctorsPole">
               <MappingFragment StoreEntitySet="DoctorsPoles">
+                <ScalarProperty Name="LastCouncilingDate" ColumnName="LastCouncilingDate" />
                 <ScalarProperty Name="CouncilorUserId" ColumnName="CouncilorUserId" />
                 <ScalarProperty Name="DeathTime" ColumnName="DeathTime" />
                 <ScalarProperty Name="IsolationOfficeId" ColumnName="IsolationOfficeId" />
