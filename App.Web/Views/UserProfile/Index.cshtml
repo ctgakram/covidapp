@@ -48,7 +48,7 @@
                     @Html.TextBox("txtSearch", null, new { @class = "input-group form-control input active", @placeholder = "Search" })
                 </div>
                 <div class="filter-item">
-                    <button id="SearchButton" class="btn btn-bracify search">
+                    <button onclick="ReSearch()" id="txtSearch" class="btn btn-bracify search">
                         <span>Search</span>
                         <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
                     </button>
@@ -90,7 +90,11 @@
 
 @section scripts{
     <script type="text/javascript">
+        function ReSearch() {
+            $('#myTable').dataTable().fnDraw();
+        }
         $(document).ready(function () {
+            
             //DataTableBinderClient($('#myTable'), [10, 15], false)
             var addPost = {
                 'searchText': 'txtSearch'

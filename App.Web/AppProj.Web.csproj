@@ -2649,6 +2649,7 @@
     <Content Include="Content\color\javascripts\vendor\PIE.htc" />
     <Content Include="Content\css\alerts.css" />
     <Content Include="Content\css\brac\bootstrap-legacy.css" />
+    <Content Include="Content\css\brac\homepage.css" />
     <Content Include="Content\css\brac\site.css" />
     <Content Include="Content\css\brac\bundle.css" />
     <Content Include="Content\css\calendarPicker.css" />
@@ -3314,6 +3315,18 @@
     <Content Include="Content\logo\1.png" />
     <Content Include="Content\logo\brac_logo.png" />
     <Content Include="Content\src\images\svg\folder_open.svg" />
+    <Content Include="Content\src\images\svg\home-page\brac-projects.svg" />
+    <Content Include="Content\src\images\svg\home-page\coronarodh.svg" />
+    <Content Include="Content\src\images\svg\home-page\images\data-collection.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\generate-maps.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\hotspots.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\kiosk.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\program-activity.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\releif.jpg" />
+    <Content Include="Content\src\images\svg\home-page\images\telehealth.jpg" />
+    <Content Include="Content\src\images\svg\home-page\map.svg" />
+    <Content Include="Content\src\images\svg\home-page\sitreps.svg" />
+    <Content Include="Content\src\images\svg\home-page\user.svg" />
     <Content Include="Content\src\images\svg\left-arrow.svg" />
     <Content Include="Content\src\images\svg\relief.svg" />
     <Content Include="Content\src\images\svg\right-arrow.svg" />
