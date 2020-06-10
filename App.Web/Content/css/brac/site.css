@@ -179,7 +179,9 @@ a.report-item:hover {
     .box-shadow {
         min-height: 350px !important;
     }
-
+    .hidden-phone{
+        display:none;
+    }
     .overview-box-wrapper.box-shadow.position-relative .view-in-deatils {
         position: absolute;
         bottom: 10px;
@@ -190,6 +192,9 @@ a.report-item:hover {
     }*/
     .filter-item {
         max-width: 100% !important;
+    }
+    .user-dd .datatree-menu .dropdown-item {
+        padding-left: 5px;
     }
 }
 

@@ -853,7 +853,7 @@ namespace AppProj.Web.Controllers
         {
             DoctorPoleDashboardModel model = new DoctorPoleDashboardModel();
 
-            model = service.Dashboard(null, 2);
+            //model = service.Dashboard(null, 2);
 
             return View(model);
         }

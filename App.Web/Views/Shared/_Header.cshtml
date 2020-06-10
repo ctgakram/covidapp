@@ -4,13 +4,13 @@
 <nav class="container-custom topbar-nav navbar">
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-lg-2 col-xs-12 text-center">
             <a class="navbar-brand" href="#">
                 <img class="img-fluid logo" src=@Url.Content("~/Content/src/images/brac-logo.svg") alt="Brac" />
             </a>
         </div>
-        <div class="col-6">
-            <div class="bullentin-wrapper">
+        <div class="col-lg-6 col-xs-12">
+            <div class="bullentin-wrapper pl-1 pr-1">
                 <h2 class="bulletin-header">Notice</h2>
                 <div id="bullentin">
                     <p>
@@ -19,8 +19,8 @@
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <div class="topbar-dropdowns float-right">
+        <div class="col-lg-4 col-xs-12">
+            <div class="topbar-dropdowns float-lg-right float-xl-none">
                 <div class="dropdown notification-dd ">
                     <span class="circular">Circulars</span>
                     <span id="spnmessagetop" class="count-badge red corner msg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="dropdown user-dd">
                     <div class="user-profile-toggle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img class="profile-picture" src="@Url.Content("~/Content/img/icons/user.png")" alt="" />
+                        <img class="profile-picture hidden-phone" src="@Url.Content("~/Content/img/icons/user.png")" alt="" />
                         <p>
                             <strong>@SessionHelper.UserName</strong>
                             <span>Technology Brac</span>
