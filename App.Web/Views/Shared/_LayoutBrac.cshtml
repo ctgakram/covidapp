@@ -31,12 +31,12 @@
             @Html.Partial("_leftmenu")
             <div class="page-content">
                 <!-- <div class="fa fa-people-arrows"></div> -->
-               
-                    @RenderBody()
-                    @Scripts.Render("~/bundles/jquery")
-                    @Scripts.Render("~/bundles/existing")
-                
-              
+
+                @RenderBody()
+                @Scripts.Render("~/bundles/jquery")
+                @Scripts.Render("~/bundles/existing")
+                <script src="~/Scripts/brac/bootstrap-legacy.js"></script>
+
             </div>
         </main>
     }

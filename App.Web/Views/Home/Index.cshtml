@@ -1,1 +1,92 @@
-﻿<h2>Un Authirised Access </h2>
+﻿@{
+    Layout = "";
+}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Covid 19 Data Tree</title>
+    <link href="~/Content/css/brac/homepage.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <nav class="container-custom homepage-nav navbar">
+        <a class="navbar-brand" href="#">
+            <img class="img-fluid logo" src="@Url.Content("~/Content/src/images/brac-logo.svg")" alt="Brac">
+        </a>
+        <a href="../Home/Landing" class="signIn-btn">
+            <img src="@Url.Content("~/Content/src/images/svg/home-page/user.svg")" alt="User">
+            <span>Sign In</span>
+        </a>
+    </nav>
+    <div class="grid-box">
+        <div class="grid-row">
+            <div class="grid-col grid-col-40">
+                <a href="@Url.Action("Dashboard","Main")" class="gb-item generate-maps">
+                    <span class="font-lg">Visualise Programme<br> intervention and<br> generate maps</span>
+                </a>
+            </div>
+
+            <div class="grid-col grid-col-20">
+                <a href="@Url.Action("Index","SummerySubmission")" class="gb-item prog-activity">
+                    <span class="font-md">Programme activity detailed data</span>
+                </a>
+                <a target="_blank" href="https://coronatest.brac.net" class="gb-item kiosk">
+                    <span class="font-sm">Covid kiosk<br> management</span>
+                </a>
+            </div>
+            <div class="grid-col grid-col-20">
+                <a href="#" class="gb-item relief">
+                    <span class="font-md">Relief <br>management</span>
+                </a>
+                <a href="@Url.Action("Dashboard","DoctorPole")" class="gb-item telehealth">
+                    <span class="font-sm">TeleHealth</span>
+                </a>
+            </div>
+            <div class="grid-col grid-col-20">
+                <a href="#" class="gb-item hotspots">
+                    <span class="font-md">Analytics and emerging hotspots</span>
+                </a>
+                <a href="#" class="gb-item data-collection">
+                    <span class="font-sm">Data collection</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div class="homepage-footer">
+        <div class="container-custom">
+            <h4 class="quick-link-title">Quick Links</h4>
+            <div class="quick-links">
+                <div class="left">
+                    <a target="_blank" href="https://coronarodh.brac.net/" class="ql-item">
+                        <img src="@Url.Content("~/Content/src/images/svg/home-page/coronarodh.svg")" alt="CoronaRodh">
+                        <span>CoronaRodh</span>
+                    </a>
+                    <a target="_blank" href="http://urbanslummap.brac.net/" class="ql-item">
+                        <img src="@Url.Content("~/Content/src/images/svg/home-page/map.svg")" alt="Urban Slum Map">
+                        <span>Urban Slum Map</span>
+                    </a>
+                    <a target="_blank" href="https://www.brac.net/covid19/sitrep.html" class="ql-item">
+                        <img src="@Url.Content("~/Content/src/images/svg/home-page/sitreps.svg")" alt="SitReps">
+                        <span>Sitreps</span>
+                    </a>
+                    <a target="_blank" href="#" class="ql-item">
+                        <img src="@Url.Content("~/Content/src/images/svg/home-page/brac-projects.svg")" alt="Brac Projects">
+                        <span>BRAC Projects</span>
+                    </a>
+
+                </div>
+                <div class="right">
+                    <small>Powered by BRAC Technology 2020</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
