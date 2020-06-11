@@ -50,8 +50,14 @@ namespace AppProj.Web.Controllers
             if (!string.IsNullOrEmpty(returnUrl))
             {
                 SessionHelper.Returnurl = returnUrl;
+                return Redirect("~/Home/Landing");
             }
 
+            HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
+            return View("Index");
+        }
+        public ActionResult Landing()
+        {
             HttpCookie authCookie = Request.Cookies[FormsAuthentication.FormsCookieName];
 
             //temp
@@ -66,8 +72,6 @@ namespace AppProj.Web.Controllers
             ////SessionHelper.DateFormat = "dd MMM, yyyy";
             //return Redirect("~/Main");
             //860538 source, 860539 dis, 860540 upz
-
-            var items = _reportService.GetReport();
 
             if (authCookie != null)
             {
@@ -87,7 +91,6 @@ namespace AppProj.Web.Controllers
             return Redirect(SsoUtility.SsoSession + "?site=" + SsoUtility.Site);
             //return View("Index");
         }
-
 
         public ActionResult Login()
         {

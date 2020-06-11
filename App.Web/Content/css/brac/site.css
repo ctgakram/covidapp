@@ -63,8 +63,9 @@
         text-decoration: none;
         color: #D10D74;
     }
-.datepicker.dropdown-menu{
-    width:225px;
+
+.datepicker.dropdown-menu {
+    width: 225px;
 }
 
 
@@ -155,9 +156,18 @@ a.report-item:hover {
     height: 100px;
 }
 
+.bullentin-wrapper {
+    margin-top: 15px;
+}
+
+.topbar-dropdowns.float-right {
+    margin-top: 5px;
+}
+
 @media screen and (min-width: 992px) {
-    #bullentin {
-        width: 600px !important;
+    .bullentin-wrapper {
+        max-width: 100% !important;
+        margin-top: 15px;
     }
 
     .table-responsive {
@@ -169,7 +179,9 @@ a.report-item:hover {
     .box-shadow {
         min-height: 350px !important;
     }
-
+    .hidden-phone{
+        display:none;
+    }
     .overview-box-wrapper.box-shadow.position-relative .view-in-deatils {
         position: absolute;
         bottom: 10px;
@@ -179,7 +191,10 @@ a.report-item:hover {
         display: block !important;
     }*/
     .filter-item {
-         max-width: 100% !important; 
+        max-width: 100% !important;
+    }
+    .user-dd .datatree-menu .dropdown-item {
+        padding-left: 5px;
     }
 }
 
@@ -373,7 +388,13 @@ a.report-item:hover {
 
 .notification-dd {
     margin-right: 10px;
+    width: 100px;
 }
+
+    .notification-dd .corner {
+        top: -3px;
+        right: 6px;
+    }
 
 ul.dropdown-menu {
     padding: 5px;
@@ -392,6 +413,7 @@ ul.dropdown-menu {
 .dataTables_length label select {
     margin-right: 10px;
 }
+
 .filter-item {
     max-width: 300px;
 }
@@ -400,10 +422,11 @@ ul.dropdown-menu {
     border: 1px solid #eee;
     box-sizing: content-box;
 }
-.sidebar.in
-{
-    z-index:1000;
+
+.sidebar.in {
+    z-index: 1000;
 }
+
 .fixed_headers {
     overflow-y: auto;
     height: 100px;
@@ -414,11 +437,13 @@ ul.dropdown-menu {
         position: -webkit-sticky;
         top: 0;
     }
+
     .fixed_headers thead tr:nth-child(2) th {
         position: sticky;
         position: -webkit-sticky;
         top: 45px;
     }
+
 .thead-yellow th {
     z-index: 10;
 }
@@ -426,6 +451,7 @@ ul.dropdown-menu {
 #map path[data-original-title] {
     text-transform: capitalize;
 }
+
 .table-responsive {
     display: initial;
 }
