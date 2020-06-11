@@ -1,21 +1,16 @@
-﻿using AppProj.Data;
+﻿using AppProj.Data.Infrastructure;
 using AppProj.Domain;
 using AppProj.Service.Services;
-using AppProj.Web.Filters;
 using AppProj.Web.Helpers;
-using AppProj.Web.Models;
+using SSOClient.ModelManager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
+//using SSOClient.ModelManager;
+using System.Security.Principal;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
-using System.Configuration;
-//using SSOClient.ModelManager;
-using System.Security.Principal;
-using AppProj.Data.Infrastructure;
-using SSOClient.ModelManager;
 
 namespace AppProj.Web.Controllers
 {
