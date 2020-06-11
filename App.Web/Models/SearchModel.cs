@@ -42,6 +42,8 @@ namespace AppProj.Web.Models
         public string SearchText { get; set; }
 
         public bool IsPostBack { get; set; }
+
+        public string PIN { get; set; }
     }
 
     public class RadioButtonHelper

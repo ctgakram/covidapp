@@ -82,6 +82,7 @@
     <Compile Include="RepositoriesImpl\SummerizedDataRepository.cs" />
     <Compile Include="RepositoriesImpl\UserLoginLogRepository.cs" />
     <Compile Include="RepositoriesImpl\UserProfileRepository.cs" />
+    <Compile Include="RepositoriesImpl\WorkstationLeaveQuarantineRepository.cs" />
     <Compile Include="Repositories\IDoctorPoleCouncillingRepository.cs" />
     <Compile Include="Repositories\IReportRepository.cs" />
     <Compile Include="Repositories\IBERDataItemWiseQuantityRepository.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Repositories\ISummerizedDataRepository.cs" />
     <Compile Include="Repositories\IUserLoginLogRepository.cs" />
     <Compile Include="Repositories\IUserProfileRepository.cs" />
+    <Compile Include="Repositories\IWorkstationLeaveQuarantineRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\App.Domain\AppProj.Domain.csproj">

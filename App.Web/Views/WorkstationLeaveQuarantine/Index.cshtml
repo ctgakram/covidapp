@@ -1,0 +1,312 @@
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.SearchModel
+@{
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Workstation Leave and Quarantine Information')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+
+<div class="page-header">
+    <h2>Workstation Leave and Quarantine Information</h2>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <a id="exp" href="#" class="btn btn-blank btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="13.425" height="11.935" viewBox="0 0 13.425 11.935"> <path id="export" d="M8.951,2.842a.558.558,0,0,0-.163-.394L6.506.163A.559.559,0,0,0,6.11,0H5.967V2.984H8.951ZM13.31,7.18,11.079,4.932a.374.374,0,0,0-.639.263V6.713H8.949V8.205h1.492v1.52a.374.374,0,0,0,.639.263L13.31,7.739A.4.4,0,0,0,13.31,7.18Zm-8.834.653V7.086a.374.374,0,0,1,.373-.373h4.1V3.73H5.781a.561.561,0,0,1-.559-.559V0H.559A.558.558,0,0,0,0,.559V11.375a.558.558,0,0,0,.559.559H8.392a.558.558,0,0,0,.559-.559V8.205h-4.1A.374.374,0,0,1,4.476,7.832Z" fill="#d10d74" /></svg>
+            <span>Export</span>
+        </a>
+        <a id="prn" href="#" class="btn btn-blank btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12.959" height="11.663" viewBox="0 0 12.959 11.663"> <path id="print" d="M14.015,7.74H4.944A1.941,1.941,0,0,0,3,9.684v3.888H5.592v2.592h7.775V13.571h2.592V9.684A1.941,1.941,0,0,0,14.015,7.74Zm-1.944,7.127H6.888v-3.24h5.184Zm1.944-4.536a.648.648,0,1,1,.648-.648A.65.65,0,0,1,14.015,10.331ZM13.367,4.5H5.592V7.092h7.775Z" transform="translate(-3 -4.5)" fill="#d10d74" /></svg>
+            <span>Print</span>
+        </a>
+
+    </div>
+</div>
+
+<div class="table-responsive">
+    <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+        <div class="dt_top">
+            <div class="dt_toolbar">
+                <div class="dt_toolbar">
+                    <svg class="toggle-trigger" xmlns="http://www.w3.org/2000/svg" width="22" height="20.2" viewBox="0 0 22 20.2">
+                        <g id="filter" transform="translate(-1 -2.5)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21,4.5H3l7.2,8.514V18.9l3.6,1.8V13.014Z" stroke="none"></path>
+                            <path d="M 3.000003814697266 4.500005722045898 L 10.19999313354492 13.01399612426758 L 10.19999313354492 18.89999771118164 L 13.79999351501465 20.69998550415039 L 13.79999351501465 13.01399612426758 L 20.9999828338623 4.500005722045898 L 3.000003814697266 4.500005722045898 M 3.000003814697266 2.500005722045898 L 20.9999828338623 2.500005722045898 C 21.77863311767578 2.500005722045898 22.48650360107422 2.951927185058594 22.81422424316406 3.658256530761719 C 23.14193344116211 4.36457633972168 23.0299129486084 5.196907043457031 22.52712249755859 5.79145622253418 L 15.79999351501465 13.74628925323486 L 15.79999351501465 20.69998550415039 C 15.79999351501465 21.39313697814941 15.44109344482422 22.0368766784668 14.85145378112793 22.40128707885742 C 14.53029537200928 22.59977340698242 14.1655740737915 22.69998741149902 13.79989337921143 22.69998741149902 C 13.49420356750488 22.69998741149902 13.18785953521729 22.6299877166748 12.90557289123535 22.48884582519531 L 9.305573463439941 20.68885612487793 C 8.628003120422363 20.35006713867188 8.199993133544922 19.65754699707031 8.199993133544922 18.89999771118164 L 8.199993133544922 13.74628925323486 L 1.472864151000977 5.79145622253418 C 0.9700736999511719 5.196907043457031 0.8580532073974609 4.36457633972168 1.185762405395508 3.658256530761719 C 1.513483047485352 2.951927185058594 2.221353530883789 2.500005722045898 3.000003814697266 2.500005722045898 Z" stroke="none" fill="#c9d600"></path>
+                        </g>
+                    </svg>
+                    <span class="toggle-trigger">Search By Filter</span>
+                    <svg class="dt-carret toggle-trigger" xmlns="http://www.w3.org/2000/svg" width="13.248" height="6.624" viewBox="0 0 13.248 6.624">
+                        <path d="M10.5,15l6.624,6.624L23.748,15Z" transform="translate(-10.5 -15)" fill="#D10D74"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">
+                Total Records
+                <strong id="iTotalRecords" class="text-bracify">
+
+                </strong>
+            </div>
+        </div>
+
+        <div class="tnav" style="">
+            <div class="filter-item">
+                <label for="end_date">PIN</label>
+                <div class="input-group datepicker flatpickr">
+                    @Html.TextBoxFor(model => model.PIN)
+                    @Html.ValidationMessageFor(model=> model.PIN)
+                </div>
+            </div>
+            @*<div class="filter-item">
+                <button id="pinSearchButton" class="btn btn-bracify search">
+                    <span>Search</span>
+                    <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
+                </button>
+            </div>*@
+        </div>
+
+        <div class="tnav" style="">
+            <div class="table-filter-nav">
+                <div class="filter-item">
+                    <label for="info_source">বিভাগ</label>
+                    @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Divisions", new { @class = "searchable-dropdown form-control" })
+
+                </div>
+
+                <div class="filter-item">
+                    <label for="filter_district">জেলা</label>
+                    @Html.DropDownListFor(model => model.ContentTypeId2, Model.ContentTypes2, "All Districts", new { @class = "searchable-dropdown form-control" })
+                </div>
+
+                <div class="filter-item">
+                    <label for="start_date">সার্চের শুরুর তারিখ</label>
+                    <div class="input-group datepicker flatpickr">
+                       
+                        @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                        <div class="input-group-append border-0 calender-icon">
+                            <button class="btn" type="button" data-toggle="">
+                                <img src="@Url.Content("Content/src/images/svg/tabular-data/calendar.svg")" alt="Calender">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <label for="end_date">সার্চের শেষ তারিখ</label>
+                    <div class="input-group datepicker flatpickr">
+                        
+                        @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                        <div class="input-group-append border-0 calender-icon">
+                            <button class="btn" type="button" data-toggle="">
+                                <img src="src/images/svg/tabular-data/calendar.svg" alt="Calender">
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-item">
+                    <button id="dateSearchButton" class="btn btn-bracify search">
+                        <span>Search</span>
+                        <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="custom-add">
+            @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+            {
+                @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "WorkstationLeaveQuarantine", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+            }
+        </div>
+        <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
+            <thead class="thead-yellow">
+                <tr>
+                    <th>
+                        PIN
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Grade
+                    </th>
+                    <th>
+                        Sex
+                    </th>
+                    <th>
+                        Home District
+                    </th>
+                    <th>
+                        Programme/Project
+                    </th>
+                    <th>
+                        Date of Joining at BRAC
+                    </th>
+                    <th>
+                        Date of Joining at Current Branch
+                    </th>
+                    <th>
+                        Branch
+                    </th>
+                    <th>
+                        Area
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        Upazilla
+                    </th>
+                    <th>
+                        District
+                    </th>
+                    <th>
+                        Is Workstation left?
+                    </th>
+                    <th>
+                        Leave date
+                    </th>
+                    <th>
+                        Return Date
+                    </th>
+                    <th>
+                        Is supervisor permitted to leave workstation?
+                    </th>
+                    <th>
+                        Whether stay in quarantine or not after returning the workstation?
+                    </th>
+                    <th>
+                        Quarantine Start Date
+                    </th>
+                    <th>
+                        End Date
+                    </th>
+                    <th>
+                        Is corona symptomitic?
+                    </th>
+                    <th>
+                        Is Quarantine extended?
+                    </th>
+                    <th>
+                        Extended Quarantine start date
+                    </th>
+                    <th>
+                        End date
+                    </th>
+                    <th>
+                        Is Information  get from another person
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        PIN
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Comment
+                    </th>
+                    @*<th>
+            Data Entered by
+        </th>*@
+                    <th>
+                    </th>
+                    @*@if (UserRole.Check("SUMMERY", SessionHelper.Role))
+        {
+            <th></th>
+        }*@
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $("#prn").click(function () {
+            $("#gridTable").printThis();
+        });
+
+        $("#exp").click(function () {
+            tableToExcel('gridTable', 'Export Name');
+        });
+
+
+
+            DatePicker('FromDate', 'dd MMM, yyyy');
+            DatePicker('ToDate', 'dd MMM, yyyy');
+
+            $(".ddl").change(function () {
+                $('#gridTable').dataTable().fnDraw();
+            });
+
+        $("#dateSearchButton").click(function () {
+            $("#isSum").val(false);
+            $("#PIN").val();
+                $('#gridTable').dataTable().fnDraw();
+        });
+
+        //$("#pinSearchButton").click(function () {
+        //    $("#PIN").val();
+        //    $('#gridTable').dataTable().fnDraw();
+        //});
+
+        $("#dateSearchButtonSum").click(function () {
+            $("#isSum").val(true);
+            $('#gridTable').dataTable().fnDraw();
+        });
+
+        $('#ContentTypeId1').change(function (event) {
+            LoadDistrictSearch($('#ContentTypeId1').val());
+        });
+
+        window.LoadDistrictSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+                LoadDropDownListWithCall('ContentTypeId2'
+                    , url
+                    , 'All Districts'
+                    , null);
+            }
+
+            var addPost = {
+                'ContentTypeId1': 'ContentTypeId1',
+                'ContentTypeId2': 'ContentTypeId2',
+                'FromDate': 'FromDate',
+                'ToDate': 'ToDate',
+                'isSum': 'isSum',
+                'PIN':'PIN'
+            }
+            var btns = {
+                31: false //column number : is button group
+            };
+
+            /*data grid initializer*/
+            DataTableBinder($("#gridTable")   //table object
+                , '@Url.Content("~/WorkstationLeaveQuarantine/DataGrid")'  //json data url
+                , [10,50, 100, 200, 1000]  //record size
+                , true //show all with row size
+            , addPost  //additional parameters at query string
+            , btns   //buttons are at these columns
+            , true
+        );
+        $(".sidebar-item").removeClass("active");
+        $("#total_survey").addClass("active");
+        $("#tebular").addClass("active");
+        });
+    </script>
+}

@@ -81,7 +81,7 @@ namespace AppProj.Web
                 .RegisterType<IDoctorsPoleVisitDetailRepository, DoctorsPoleVisitDetailRepository>(new HttpContextLifetimeManager<IDoctorsPoleVisitDetailRepository>())
                 .RegisterType<IDoctorPoleStatusesRepository, DoctorPoleStatusesRepository>(new HttpContextLifetimeManager<IDoctorPoleStatusesRepository>())
                 .RegisterType<IDoctorPoleCouncillingRepository, DoctorPoleCouncillingRepository>(new HttpContextLifetimeManager<IDoctorPoleCouncillingRepository>())
-
+                .RegisterType<IWorkstationLeaveQuarantineRepository, WorkstationLeaveQuarantineRepository>(new HttpContextLifetimeManager<IWorkstationLeaveQuarantineRepository>())
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
                 .RegisterType<IFeatureService, FeatureService>(new HttpContextLifetimeManager<IFeatureService>())
@@ -104,6 +104,7 @@ namespace AppProj.Web
 
                 .RegisterType<IMapSummaryService, MapSummaryService>(new HttpContextLifetimeManager<IMapSummaryService>())
                 .RegisterType<IDoctorsPoleService, DoctorsPoleService>(new HttpContextLifetimeManager<IDoctorsPoleService>())
+                .RegisterType<IWorkstationLeaveQuarantineService, WorkstationLeaveQuarantineService>(new HttpContextLifetimeManager<IWorkstationLeaveQuarantineService>())
 
             ;
 

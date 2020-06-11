@@ -585,6 +585,48 @@
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="512" />
         </EntityType>
+        <EntityType Name="WorkstationLeaveQuarantine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PIN" Type="varchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="128" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="128" />
+          <Property Name="Grade" Type="nvarchar" MaxLength="50" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="HomeDistrict" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateOfJoiningBrac" Type="date" />
+          <Property Name="DateOfJoiningCurrentBranch" Type="date" />
+          <Property Name="Branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="Area" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="UpazillaId" Type="int" />
+          <Property Name="DistrictId" Type="int" />
+          <Property Name="DivisionId" Type="int" />
+          <Property Name="SourceId" Type="int" />
+          <Property Name="IsWorkStationLeft" Type="bit" Nullable="false" />
+          <Property Name="WorkStationLeaveDate" Type="date" />
+          <Property Name="WorkStationReturnDate" Type="date" />
+          <Property Name="SupervisorPermitted" Type="nvarchar" MaxLength="20" />
+          <Property Name="IsStayInQuarantine" Type="bit" Nullable="false" />
+          <Property Name="QuarantineStartDate" Type="date" />
+          <Property Name="QuarantineEndDate" Type="date" />
+          <Property Name="IsCoronaSymptomitic" Type="bit" Nullable="false" />
+          <Property Name="IsQuarantineExtended" Type="bit" Nullable="false" />
+          <Property Name="ExtendedQuarantineStartDate" Type="date" />
+          <Property Name="ExtendedQuarantineEndDate" Type="date" />
+          <Property Name="InfoCollectedName" Type="nvarchar" MaxLength="128" />
+          <Property Name="InfoCollectedPIN" Type="varchar" MaxLength="50" />
+          <Property Name="InfoCollectedDesignation" Type="nvarchar" MaxLength="128" />
+          <Property Name="InfoCollectedDate" Type="date" />
+          <Property Name="Comment" Type="nvarchar(max)" />
+          <Property Name="EntryById" Type="int" Nullable="false" />
+          <Property Name="EntryTime" Type="datetime" Nullable="false" />
+          <Property Name="LastUpdateById" Type="int" />
+          <Property Name="LastUpdateTime" Type="datetime" />
+          <Property Name="IsInformationFromAnotherPerson" Type="bit" Nullable="false" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="QryRoleFeatures">
@@ -1686,6 +1728,7 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           <EntitySet Name="UserAccessLogs" EntityType="Self.UserAccessLogs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLoginLog" EntityType="Self.UserLoginLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserProfiles" EntityType="Self.UserProfiles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkstationLeaveQuarantine" EntityType="Self.WorkstationLeaveQuarantine" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QryRoleFeatures" EntityType="Self.QryRoleFeatures" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [QryRoleFeatures].[Id] AS [Id], 
@@ -2558,6 +2601,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
+          <EntitySet Name="WorkstationLeaveQuarantines" EntityType="AppModel.WorkstationLeaveQuarantine" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -4511,6 +4555,48 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="WorkstationLeaveQuarantine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="HomeDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfJoiningBrac" Type="DateTime" Precision="0" />
+          <Property Name="DateOfJoiningCurrentBranch" Type="DateTime" Precision="0" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpazillaId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="SourceId" Type="Int32" />
+          <Property Name="IsWorkStationLeft" Type="Boolean" Nullable="false" />
+          <Property Name="WorkStationLeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="WorkStationReturnDate" Type="DateTime" Precision="0" />
+          <Property Name="SupervisorPermitted" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsStayInQuarantine" Type="Boolean" Nullable="false" />
+          <Property Name="QuarantineStartDate" Type="DateTime" Precision="0" />
+          <Property Name="QuarantineEndDate" Type="DateTime" Precision="0" />
+          <Property Name="IsCoronaSymptomitic" Type="Boolean" Nullable="false" />
+          <Property Name="IsQuarantineExtended" Type="Boolean" Nullable="false" />
+          <Property Name="ExtendedQuarantineStartDate" Type="DateTime" Precision="0" />
+          <Property Name="ExtendedQuarantineEndDate" Type="DateTime" Precision="0" />
+          <Property Name="InfoCollectedName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InfoCollectedPIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InfoCollectedDesignation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InfoCollectedDate" Type="DateTime" Precision="0" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntryById" Type="Int32" Nullable="false" />
+          <Property Name="EntryTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateById" Type="Int32" />
+          <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsInformationFromAnotherPerson" Type="Boolean" Nullable="false" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5163,6 +5249,49 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkstationLeaveQuarantines">
+            <EntityTypeMapping TypeName="AppModel.WorkstationLeaveQuarantine">
+              <MappingFragment StoreEntitySet="WorkstationLeaveQuarantine">
+                <ScalarProperty Name="IsInformationFromAnotherPerson" ColumnName="IsInformationFromAnotherPerson" />
+                <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
+                <ScalarProperty Name="LastUpdateById" ColumnName="LastUpdateById" />
+                <ScalarProperty Name="EntryTime" ColumnName="EntryTime" />
+                <ScalarProperty Name="EntryById" ColumnName="EntryById" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="InfoCollectedDate" ColumnName="InfoCollectedDate" />
+                <ScalarProperty Name="InfoCollectedDesignation" ColumnName="InfoCollectedDesignation" />
+                <ScalarProperty Name="InfoCollectedPIN" ColumnName="InfoCollectedPIN" />
+                <ScalarProperty Name="InfoCollectedName" ColumnName="InfoCollectedName" />
+                <ScalarProperty Name="ExtendedQuarantineEndDate" ColumnName="ExtendedQuarantineEndDate" />
+                <ScalarProperty Name="ExtendedQuarantineStartDate" ColumnName="ExtendedQuarantineStartDate" />
+                <ScalarProperty Name="IsQuarantineExtended" ColumnName="IsQuarantineExtended" />
+                <ScalarProperty Name="IsCoronaSymptomitic" ColumnName="IsCoronaSymptomitic" />
+                <ScalarProperty Name="QuarantineEndDate" ColumnName="QuarantineEndDate" />
+                <ScalarProperty Name="QuarantineStartDate" ColumnName="QuarantineStartDate" />
+                <ScalarProperty Name="IsStayInQuarantine" ColumnName="IsStayInQuarantine" />
+                <ScalarProperty Name="SupervisorPermitted" ColumnName="SupervisorPermitted" />
+                <ScalarProperty Name="WorkStationReturnDate" ColumnName="WorkStationReturnDate" />
+                <ScalarProperty Name="WorkStationLeaveDate" ColumnName="WorkStationLeaveDate" />
+                <ScalarProperty Name="IsWorkStationLeft" ColumnName="IsWorkStationLeft" />
+                <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="UpazillaId" ColumnName="UpazillaId" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="Branch" ColumnName="Branch" />
+                <ScalarProperty Name="DateOfJoiningCurrentBranch" ColumnName="DateOfJoiningCurrentBranch" />
+                <ScalarProperty Name="DateOfJoiningBrac" ColumnName="DateOfJoiningBrac" />
+                <ScalarProperty Name="HomeDistrict" ColumnName="HomeDistrict" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

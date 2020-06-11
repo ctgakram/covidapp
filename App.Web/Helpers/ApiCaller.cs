@@ -13,7 +13,7 @@ namespace AppProj.Web.Helpers
         public static IEnumerable<StaffProfile> GetEmployeeByPIN(string pin)
         {
             string URL = "http://api.brac.net/v1/staffs";
-            string urlParameters = "?Key=d65808a7-699f-4d5c-88ee-01951e675cf2&fields=pin,StaffName,Designationname,EmailID,MobileNo,dateofbirth,sex,projectname,branchname,districtname&q=pin=" + pin;
+            string urlParameters = "?Key=d65808a7-699f-4d5c-88ee-01951e675cf2&fields=pin,StaffName,Designationname,EmailID,MobileNo,dateofbirth,sex,projectname,branchname,districtname,Grade,PermanentAddressDistrictName,JoiningDate,TransferDate,UpazilaName&q=pin=" + pin;
 
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(URL);

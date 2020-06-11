@@ -200,5 +200,12 @@ namespace AppProj.Service.ServicesImpl
                 .GetMany(c => c.Id == id)
                 .OrderBy(d => d.Name);
         }
+
+        public StandingData GetUpazillas(string text)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "UPZ" && c.Name == text);
+
+        }
     }
 }

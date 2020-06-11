@@ -42,5 +42,7 @@ namespace AppProj.Service.Services
         void Update(StandingData entity);
 
         IEnumerable<StandingData> GetAllDataById(int id);
+
+        StandingData GetUpazillas(string text);
     }
 }

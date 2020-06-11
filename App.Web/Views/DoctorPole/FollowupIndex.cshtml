@@ -142,7 +142,8 @@
                 Last Counseling at
             </th>
             @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
-                || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
+                || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role)
+                || UserRole.Check("DoctorPool_Council", SessionHelper.Role))
             {
                 <th></th>
             }

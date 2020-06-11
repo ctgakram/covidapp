@@ -1,0 +1,56 @@
+﻿@model AppProj.Web.Models.WorkstationLeaveQuarantineShortModel
+@{
+    var ajaxOpt = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        UpdateTargetId = "dialog1Body",
+        InsertionMode = InsertionMode.Replace,
+        OnSuccess = "openDialog1('Workstation Leave and Quarantine Information')",
+        LoadingElementId = "loading",
+        OnFailure = "failure"
+    };
+}
+@using (Ajax.BeginForm("CreateDetail", "WorkstationLeaveQuarantine", ajaxOpt))
+{
+    @Html.ValidationSummary(true)
+<table class="table table-striped table-bordered fixed_headers">
+    <tr>
+        <th>
+            Staff PIN     
+        </th>       
+    </tr>
+    <tr>
+        <td>
+            @Html.TextBoxFor(model => model.PIN_, new { @placeholder = "Staff PIN" })
+            @Html.ValidationMessageFor(model => model.PIN_)
+            <input id="save-submit" type="submit" value="Next" class="btn btn-primary" />
+            @Html.DisplayFor(model => model.Message)
+        </td>
+       
+    </tr>  
+
+   
+</table>
+
+}
+<script type="text/javascript">
+    ValidatateForm("form0");
+    $(document).ready(function () {
+
+        $("#save-submit").click(function () {
+            if ($("#PIN_").val() == '')
+            {
+                alert('Please enter BRAC Staff PIN');
+                return false;
+            }
+        });
+        
+        $('#Date').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+    });
+</script>

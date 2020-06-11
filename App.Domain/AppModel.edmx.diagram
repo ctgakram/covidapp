@@ -121,6 +121,7 @@
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_UserProfiles" />
+        <EntityTypeShape EntityType="AppModel.WorkstationLeaveQuarantine" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
