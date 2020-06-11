@@ -573,6 +573,7 @@ namespace AppProj.Web.Controllers
             SearchModel up = new SearchModel();
             bool visibleDoc = UserRole.Check("DoctorPool_Doc", SessionHelper.Role);
             bool visibleSus = UserRole.Check("DoctorPool_Suspect", SessionHelper.Role);
+            bool visibleCouncil = UserRole.Check("DoctorPool_Council", SessionHelper.Role);
 
             var prj = standingDataService.GetProject().Where(r => r.IsActive);
             up.ContentTypes1 = prj.ToSelectList(null, "Id", "Name");
@@ -585,7 +586,7 @@ namespace AppProj.Web.Controllers
 
             var co = new List<StandingData>();
 
-            if(visibleDoc)
+            if(visibleDoc || visibleCouncil)
             {
                 co = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
                     .Where(c => (c.IntValue == 0 || c.IntValue == 1 || c.IntValue == 2 || c.IntValue == 3))

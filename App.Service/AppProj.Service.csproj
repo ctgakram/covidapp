@@ -77,6 +77,7 @@
     <Compile Include="ServicesImpl\SummerizedDataService.cs" />
     <Compile Include="ServicesImpl\UserLoginLogService.cs" />
     <Compile Include="ServicesImpl\UserProfileService.cs" />
+    <Compile Include="ServicesImpl\WorkstationLeaveQuarantineService.cs" />
     <Compile Include="Services\IReportService.cs" />
     <Compile Include="Services\IDoctorsPoleService.cs" />
     <Compile Include="Services\IMapSummaryService.cs" />
@@ -95,6 +96,7 @@
     <Compile Include="Services\ISummerizedDataService.cs" />
     <Compile Include="Services\IUserLoginLogService.cs" />
     <Compile Include="Services\IUserProfileService.cs" />
+    <Compile Include="Services\IWorkstationLeaveQuarantineService.cs" />
     <Compile Include="SqlExecutor.cs" />
   </ItemGroup>
   <ItemGroup>

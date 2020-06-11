@@ -22,5 +22,11 @@ namespace AppProj.Web.Helpers
         public string projectname { get; set; }
         public string branchname { get; set; }
         public string districtname { get; set; }
+
+        public string Grade { get; set; }
+        public string PermanentAddressDistrictName { get; set; }
+        public Nullable<System.DateTime> JoiningDate { get; set; }
+        public Nullable<System.DateTime> TransferDate { get; set; }
+        public string UpazilaName { get; set; }
     }
 }
