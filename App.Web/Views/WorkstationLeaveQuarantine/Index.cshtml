@@ -122,114 +122,116 @@
                 @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "WorkstationLeaveQuarantine", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
             }
         </div>
-        <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
-            <thead class="thead-yellow">
-                <tr>
-                    <th>
-                        PIN
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        Designation
-                    </th>
-                    <th>
-                        Grade
-                    </th>
-                    <th>
-                        Sex
-                    </th>
-                    <th>
-                        Home District
-                    </th>
-                    <th>
-                        Programme/Project
-                    </th>
-                    <th>
-                        Date of Joining at BRAC
-                    </th>
-                    <th>
-                        Date of Joining at Current Branch
-                    </th>
-                    <th>
-                        Branch
-                    </th>
-                    <th>
-                        Area
-                    </th>
-                    <th>
-                        Region
-                    </th>
-                    <th>
-                        Upazilla
-                    </th>
-                    <th>
-                        District
-                    </th>
-                    <th>
-                        Is Workstation left?
-                    </th>
-                    <th>
-                        Leave date
-                    </th>
-                    <th>
-                        Return Date
-                    </th>
-                    <th>
-                        Is supervisor permitted to leave workstation?
-                    </th>
-                    <th>
-                        Whether stay in quarantine or not after returning the workstation?
-                    </th>
-                    <th>
-                        Quarantine Start Date
-                    </th>
-                    <th>
-                        End Date
-                    </th>
-                    <th>
-                        Is corona symptomitic?
-                    </th>
-                    <th>
-                        Is Quarantine extended?
-                    </th>
-                    <th>
-                        Extended Quarantine start date
-                    </th>
-                    <th>
-                        End date
-                    </th>
-                    <th>
-                        Is Information  get from another person
-                    </th>
-                    <th>
-                        Name
-                    </th>
-                    <th>
-                        PIN
-                    </th>
-                    <th>
-                        Designation
-                    </th>
-                    <th>
-                        Date
-                    </th>
-                    <th>
-                        Comment
-                    </th>
-                    @*<th>
-            Data Entered by
-        </th>*@
-                    <th>
-                    </th>
-                    @*@if (UserRole.Check("SUMMERY", SessionHelper.Role))
-        {
-            <th></th>
-        }*@
-                </tr>
-            </thead>
-        </table>
+        <div style="overflow:auto;">
+            <table id="gridTable" class="table table-borderless table-striped header-table table-alt fixed_headers">
+                <thead class="thead-yellow">
+                    <tr>
+                        <th>
+                            PIN
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Designation
+                        </th>
+                        <th>
+                            Grade
+                        </th>
+                        <th>
+                            Sex
+                        </th>
+                        <th>
+                            Home District
+                        </th>
+                        <th>
+                            Programme/Project
+                        </th>
+                        <th>
+                            Date of Joining at BRAC
+                        </th>
+                        <th>
+                            Date of Joining at Current Branch
+                        </th>
+                        <th>
+                            Branch
+                        </th>
+                        <th>
+                            Area
+                        </th>
+                        <th>
+                            Region
+                        </th>
+                        <th>
+                            Upazilla
+                        </th>
+                        <th>
+                            District
+                        </th>
+                        <th>
+                            Is Workstation left?
+                        </th>
+                        <th>
+                            Leave date
+                        </th>
+                        <th>
+                            Return Date
+                        </th>
+                        <th>
+                            Is supervisor permitted to leave workstation?
+                        </th>
+                        <th>
+                            Whether stay in quarantine or not after returning the workstation?
+                        </th>
+                        <th>
+                            Quarantine Start Date
+                        </th>
+                        <th>
+                            End Date
+                        </th>
+                        <th>
+                            Is corona symptomitic?
+                        </th>
+                        <th>
+                            Is Quarantine extended?
+                        </th>
+                        <th>
+                            Extended Quarantine start date
+                        </th>
+                        <th>
+                            End date
+                        </th>
+                        <th>
+                            Is Information  get from another person
+                        </th>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            PIN
+                        </th>
+                        <th>
+                            Designation
+                        </th>
+                        <th>
+                            Date
+                        </th>
+                        <th>
+                            Comment
+                        </th>
+                        @*<th>
+                        Data Entered by
+                    </th>*@
+                        <th>
+                        </th>
+                        @*@if (UserRole.Check("SUMMERY", SessionHelper.Role))
+                    {
+                        <th></th>
+                    }*@
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -260,11 +262,6 @@
             $("#PIN").val();
                 $('#gridTable').dataTable().fnDraw();
         });
-
-        //$("#pinSearchButton").click(function () {
-        //    $("#PIN").val();
-        //    $('#gridTable').dataTable().fnDraw();
-        //});
 
         $("#dateSearchButtonSum").click(function () {
             $("#isSum").val(true);
