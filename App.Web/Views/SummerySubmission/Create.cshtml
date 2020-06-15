@@ -23,7 +23,9 @@
             তথ্যের উৎস
         </td>
         <td class="control">
-            @Html.DropDownListFor(model => model.SourceId, Model.Sources)
+            @*@Html.DropDownListFor(model => model.SourceId, Model.Sources)*@
+            @Html.DropDownListFor(model => model.SourceId, Model.Sources, "All Sources", new { @class = "searchable-dropdown form-control" })
+
             @Html.ValidationMessageFor(model => model.SourceId)
         </td>
     </tr>
