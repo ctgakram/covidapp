@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="filter-item">
-                    <label for="filter_district">জেলা</label>
+                    <label for="filter_district">বিভাগ</label>
 
                     @Html.DropDownListFor(model => model.ContentTypeId1, Model.ContentTypes1, "All Districts", new { @class = "searchable-dropdown form-control" })
 
@@ -351,7 +351,7 @@
             /*data grid initializer*/
         DataTableBinder($('#gridTable')   //table object
                 , '@Url.Content("~/BepSubmission/DataGridCount")'  //json data url
-                , [10, 50,100, 200, 1000] //record size
+                , [100, 200, 1000] //record size
                 , true //show all with row size
                 , addPost  //additional parameters at query string
                 , btns   //buttons are at these columns
@@ -361,7 +361,7 @@
         /*data grid initializer*/
         DataTableBinder($('#gridTableR')   //table object
             , '@Url.Content("~/BepSubmission/DataGridCount")'  //json data url
-            , [10,50,100, 200, 1000] //record size
+            , [100, 200, 1000] //record size
             , true //show all with row size
             , addPost  //additional parameters at query string
             , btns   //buttons are at these columns

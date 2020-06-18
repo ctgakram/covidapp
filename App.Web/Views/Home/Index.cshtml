@@ -17,10 +17,25 @@
         <a class="navbar-brand" href="#">
             <img class="img-fluid logo" src="@Url.Content("~/Content/src/images/brac-logo.svg")" alt="Brac">
         </a>
-        <a href="../Home/Landing" class="signIn-btn">
-            <img src="@Url.Content("~/Content/src/images/svg/home-page/user.svg")" alt="User">
+        <div id="ddlsignchoose" class="signIn-btn dropdown-toggle">
+            @*../Home/Landing*@
+            <img class="menu-item-img" src="@Url.Content("~/Content/src/images/svg/profile.svg")" alt="User">
             <span>Sign In</span>
-        </a>
+
+            <div id="childitem" class="dropdown-menu fw-dropdown-menu datatree-menu show">
+                <a class="dropdown-item" href="../Home/Landing">
+                    <img class="menu-item-img" src="/Content/src/images/svg/profile.svg" alt="Profile">
+                    <span>Sign in as BRAC employee </span>
+                </a>
+                <a class="dropdown-item" href="../login/index">
+                    <img class="menu-item-img" src="/Content/src/images/svg/profile.svg" alt="Sign Out">
+                    <span>
+                        Sign in as consultant
+                    </span>
+                </a>
+            </div>
+
+        </div>
     </nav>
     <div class="grid-box">
         <div class="grid-row">
@@ -86,7 +101,23 @@
             </div>
         </div>
     </div>
+    <script type="text/javascript">
+        var el = document.getElementById("ddlsignchoose");
+        var childitem = document.getElementById("childitem");
+        el.onclick = function changeContent() {
+            if (childitem.classList.contains("in")) {
+                childitem.classList.remove("in");
+                this.classList.remove("in");
+            }
+            else {
+                childitem.classList.add("in");
+                this.classList.add("in");
+            }
 
+        }
+    </script>
 </body>
 
 </html>
+
+

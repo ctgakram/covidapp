@@ -28,7 +28,7 @@
             জেলা
         </td>
         <td class="control">
-            @Html.DropDownListFor(model => model.DistrictId, Model.Districts)
+            @Html.DropDownListFor(model => model.DistrictId, Model.Districts, "", new { @class = "searchable-dropdown form-control" })
             @Html.ValidationMessageFor(model => model.DistrictId)
         </td>
     </tr>    
@@ -37,14 +37,14 @@
             তারিখ
         </td>
         <td class="control">
-            @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+            @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
             @Html.ValidationMessageFor(model => model.Date)
         </td>
     </tr>    
     <tr>
         <td class="control">
             <p>
-                <input id="save-submit" type="submit" value="নেক্সট" class="btn btn-primary" />
+                <input id="save-submit" type="submit" value="নেক্সট" class="btn btn-bracify font-color-white" />
             </p>
         </td>
     </tr>

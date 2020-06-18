@@ -17,51 +17,51 @@
     {
         @Html.HiddenFor(m => m.Id)
     }
-<table class="table-striped">
-    <tr>
-        <td class="title">
-            তথ্যের উৎস
-        </td>
-        <td class="control">
-            @Html.DropDownListFor(model => model.SourceId, Model.Sources)
-            @Html.ValidationMessageFor(model => model.SourceId)
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            জেলা
-        </td>
-        <td class="control">
-            @Html.DropDownListFor(model => model.DistrictId, Model.Districts)
-            @Html.ValidationMessageFor(model => model.DistrictId)
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            উপজেলা / থানা
-        </td>
-        <td class="control">
-            @Html.DropDownListFor(model => model.UpazillaId, Model.Upazillas)
-            @Html.ValidationMessageFor(model => model.UpazillaId)
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            তারিখ
-        </td>
-        <td class="control">
-            @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-            @Html.ValidationMessageFor(model => model.Date)
-        </td>
-    </tr>
-    <tr>
+    <table class="table-striped">
+        <tr>
+            <td class="title">
+                তথ্যের উৎস
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.SourceId, Model.Sources, new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.SourceId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                জেলা
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.DistrictId, Model.Districts, new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.DistrictId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                উপজেলা / থানা
+            </td>
+            <td class="control">
+                @Html.DropDownListFor(model => model.UpazillaId, Model.Upazillas, new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.UpazillaId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                তারিখ
+            </td>
+            <td class="control">
+                @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                @Html.ValidationMessageFor(model => model.Date)
+            </td>
+        </tr>
+        <tr>
 
         <td class="title">
             সম্ভাব্য রোগীর নাম
             <span data-toggle="tooltip" data-placement="top" title="Name of the patient showing symptoms<br>যে রোগীর মধ্যে উপসর্গগুলো দেখা দিয়েছে তার নাম"><img src="~/Content/tools.png" width="30" /></span>
         </td>
         <td class="control">
-            @Html.TextBoxFor(model => model.Name)
+            @Html.TextBoxFor(model => model.Name ,new { @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.Name)
         </td>
     </tr>
@@ -70,7 +70,7 @@
             বয়স
         </td>
         <td class="control">
-            @Html.TextBoxFor(model => model.Age)
+            @Html.TextBoxFor(model => model.Age, new { @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.Age)
         </td>
     </tr>
@@ -79,7 +79,7 @@
             লিঙ্গ
         </td>
         <td class="control">
-            @Html.DropDownListFor(model => model.GenderId, Model.Genders)
+            @Html.DropDownListFor(model => model.GenderId, Model.Genders, new { @class = "searchable-dropdown form-control" })
             @Html.ValidationMessageFor(model => model.GenderId)
         </td>
     </tr>
@@ -90,7 +90,7 @@
             </span>
         </td>
         <td class="control">
-            @Html.TextBoxFor(model => model.Phone)
+            @Html.TextBoxFor(model => model.Phone, new { @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.Phone)
         </td>
     </tr>
@@ -100,8 +100,9 @@
             <span data-toggle="tooltip" data-placement="top" title="Does the patient have a fever?<br>রোগীর কি জ্বর আছে?"><img src="~/Content/tools.png" width="30" />
             </span>
         </td>
-        <td class="control">
+        <td class="checkbox mb-3">
             @Html.CheckBoxFor(model => model.IsFever)
+           
         </td>
     </tr>
     <tr>
@@ -146,7 +147,7 @@
             </span>
         </td>
         <td class="control">
-            @Html.TextBoxFor(model => model.CollectedBy)
+            @Html.TextBoxFor(model => model.CollectedBy, new { @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.CollectedBy)
         </td>
     </tr>
@@ -158,14 +159,14 @@
             </span>
         </td>
         <td class="control">
-            @Html.TextAreaFor(model => model.Description)
+            @Html.TextAreaFor(model => model.Description, new { @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.Description)
         </td>
     </tr>
     <tr>
         <td class="control">
             <p>
-                <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-primary" />
+                <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white" />
             </p>
         </td>
     </tr>
@@ -175,7 +176,7 @@
 <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
-         
+
 
 
         $("#save-submit").click(function () {

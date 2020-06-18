@@ -34,12 +34,12 @@
                         <td class="control">
                             @if (Model.Id <= 0)
                             {
-                                @Html.TextBoxFor(model => model.Pin)
+                                @Html.TextBoxFor(model => model.Pin, new { @class = "input-group form-control" })
                                 @Html.ValidationMessageFor(model => model.Pin)
                             }
                             else
                             {
-                                @Html.DisplayFor(model => model.Pin)
+                                @Html.DisplayFor(model => model.Pin, new { @class = "input-group form-control" })
                                 @Html.HiddenFor(model => model.Pin)
                             }
                         </td>
@@ -49,7 +49,7 @@
                             @Html.LabelFor(model => model.UserName)
                         </td>
                         <td class="control">
-                            @Html.TextBoxFor(model => model.UserName)
+                            @Html.TextBoxFor(model => model.UserName, new { @class = "input-group form-control" })
                             @Html.ValidationMessageFor(model => model.UserName)
                         </td>
                     </tr>
@@ -58,7 +58,7 @@
                             @Html.LabelFor(model => model.EmailAddress)
                         </td>
                         <td class="control">
-                            @Html.TextBoxFor(model => model.EmailAddress)
+                            @Html.TextBoxFor(model => model.EmailAddress, new { @class = "input-group form-control" })
                             @Html.ValidationMessageFor(model => model.EmailAddress)
 
                         </td>
@@ -86,7 +86,7 @@
                             @Html.LabelFor(model => model.RoleId)
                         </td>
                         <td class="control">
-                            @Html.DropDownListFor(model => model.RoleId, Model.Roles)
+                            @Html.DropDownListFor(model => model.RoleId, Model.Roles, new { @class = "searchable-dropdown form-control" })
                             @Html.ValidationMessageFor(model => model.RoleId)
                         </td>
                     </tr>
@@ -99,15 +99,13 @@
                             @Html.ValidationMessageFor(model => model.IsActive)
                         </td>
                     </tr>
-                    <tr>
-                        <td class="title"></td>
-                        <td class="control">
-                            <p>
-                                <input id="save-submit" class="btn btn-primary" type="submit" value="Save">
-                            </p>
-                        </td>
-                    </tr>
+
                 </table>
+                <div class="control mt-3">
+                    <p>
+                        <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
+                    </p>
+                </div>
                 <br />
 
             }
