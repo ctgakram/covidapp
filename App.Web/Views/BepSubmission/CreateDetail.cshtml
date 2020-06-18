@@ -89,16 +89,16 @@
         </table>
     }
     <br />
-    <table class="table-striped">
+    <table class="table-striped" style="width:100%">
         <tr>
             <td class="title">
                 # of Coverage Upazilla
                 <span data-toggle="tooltip" data-placement="top" title="Number of upazilla’s covered by the program in this district<br>এই জেলায় প্রোগ্রামের আওতাভুক্ত উপজেলার সংখ্যা">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.UpazilaCoverageCount)
+                @Html.TextBoxFor(model => model.UpazilaCoverageCount, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.UpazilaCoverageCount)
             </td>
         </tr>
@@ -106,11 +106,11 @@
             <td class="title">
                 Comment on Upazilla
                 <span data-toggle="tooltip" data-placement="top" title="Enter any comments or feedback on the upazilla<br>উপজেলাটি  সম্পর্কে আপনার কোনো মন্তব্য থাকলে তা  লিখুন">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.UpazillaRemarks)
+                @Html.TextBoxFor(model => model.UpazillaRemarks, new { @class = "iinput-group form-control" })
                 @Html.ValidationMessageFor(model => model.UpazillaRemarks)
             </td>
         </tr>
@@ -123,7 +123,7 @@
                 How the program has been impacted/affected?
             </td>
             <td class="control">
-                @Html.DropDownListFor(model => model.ImpactProgramId, Model.ImpactedReasons)
+                @Html.DropDownListFor(model => model.ImpactProgramId, Model.ImpactedReasons, new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.ImpactProgramId)
             </td>
         </tr>
@@ -132,7 +132,7 @@
                 Is there any national/ local restriction on program implementation?
             </td>
             <td class="control">
-                @Html.DropDownListFor(model => model.RestrictonId, Model.Restrictions)
+                @Html.DropDownListFor(model => model.RestrictonId, Model.Restrictions, new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.RestrictonId)
             </td>
         </tr>
@@ -141,7 +141,7 @@
                 # of BRAC staff/Volunteer/Health Worker been affected by COVID-19
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.AffectedBracWorkerCount)
+                @Html.TextBoxFor(model => model.AffectedBracWorkerCount, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.AffectedBracWorkerCount)
             </td>
         </tr>
@@ -150,7 +150,7 @@
                 No. of staff working from home
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.WorkFromHomeStaffCount)
+                @Html.TextBoxFor(model => model.WorkFromHomeStaffCount, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.WorkFromHomeStaffCount)
             </td>
         </tr>
@@ -159,7 +159,7 @@
                 Financial loss in BDT (if applicable to the program)
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.FinancialLoss)
+                @Html.TextBoxFor(model => model.FinancialLoss, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.FinancialLoss)
             </td>
         </tr>
@@ -168,7 +168,7 @@
     <h2>
         Preparedness
         <span data-toggle="tooltip" data-placement="top" title="The extent to which the program is prepared for the campaign<br>ক্যাম্পেইনটি সম্পন্ন করতে প্রোগ্রাম কতখানি  প্রস্তুত">
-            <img src="~/Content/tools.png" width="30" />
+            <img src="~/Content/toolsgray.png" width="30" />
         </span>
     </h2>
     curId = 0;
@@ -198,19 +198,19 @@
                 @Html.HiddenFor(model => model.BEPPreparenessActivityModels[i].ActivityId)
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].Quantity, new {  @class = "input-group form-control" })
 
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ExpQuantity, new {  @class = "input-group form-control" })
 
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCount, new {  @class = "input-group form-control" })
 
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPPreparenessActivityModels[i].ReachCountFemale, new {  @class = "input-group form-control" })
 
             </td>
         </tr>
@@ -228,7 +228,7 @@
                 What are the communication materials developped by the program?
             </td>
             <td class="control">
-                @Html.DropDownListFor(model => model.ComMaterialId, Model.CommMaterials, "Please Select")
+                @Html.DropDownListFor(model => model.ComMaterialId, Model.CommMaterials, "Please Select", new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.ComMaterialId)
             </td>
         </tr>
@@ -238,7 +238,7 @@
                 What are the channels used to distribute the communication materials?
             </td>
             <td class="control">
-                @Html.DropDownListFor(model => model.ComChannelId, Model.CommChannels, "Please Select")
+                @Html.DropDownListFor(model => model.ComChannelId, Model.CommChannels, "Please Select", new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.ComChannelId)
             </td>
         </tr>
@@ -247,11 +247,11 @@
             <td class="title">
                 Target
                 <span data-toggle="tooltip" data-placement="right" title="The number of staff we are planning to reach in this campaign.<br>এই ক্যাম্পেইনের মাধ্যমে যতজন কর্মীর কাছে পৌঁছানোর পরিকল্পনা রয়েছে তার সংখ্যা">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.Target)
+                @Html.TextBoxFor(model => model.Target, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.Target)
             </td>
         </tr>
@@ -274,7 +274,7 @@
             @Html.Raw("<button type=\"button\" class=\"collapsible\">" + Model.BEPResponseActivityModels[i].ActivityName + "</button><div class=\"content\"><table class=\"table-striped\"><tr><th>Material</th><th>Quantity  <span data-toggle='tooltip' data-placement='top' title='The amount of materials distributed (e.g. sticker, poster, etc) or activities (e.g. phone calls, one-to-one discussion, miking, etc) by this program in this district.<br>এই জেলায় প্রোগ্রামের মাধ্যমে বিতরণকৃত ম্যাটেরিয়াল/ সামগ্রী (উদাঃ স্টিকার, পোস্টার ইত্যাদি) বা বিভিন্ন কার্যক্রমের (উদাঃ ফোন কল, আলোচনা, মাইকিং ইত্যাদি) পরিমাণ'><img src='../Content/tools.png' width='30' /></span></th><th>People Reach <span data-toggle='tooltip' data-placement='top' title='The number of individuals successfully reached as a result of material distribution or activities by this program in this district.<br>সামগ্রী বিতরণ এবং অন্যান্য কার্যক্রমের  মাধ্যমে এই জেলায় যতজন মানুষের কাছে প্রোগ্রাম পৌঁছতে পেরেছে  তার সংখ্যা '><img src='../Content/tools.png' width='30' /></span></th></tr>")
         }
 
-    
+
 
 
 
@@ -288,12 +288,12 @@
                     @Html.HiddenFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Id)
                 </td>
                 <td>
-                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Quantity, new { @style = "width:100px;" })
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].Quantity, new {  @class = "input-group form-control" })
 
                 </td>
                 <td>
-                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ReachCount, new { @style = "width:100px;" })
-                    
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].BEPDetailModels[j].ReachCount, new {  @class = "input-group form-control" })
+
                 </td>
             </tr>
         }
@@ -308,14 +308,14 @@
             <th>
                 New Reach
                 <span data-toggle="tooltip" data-placement="top" title="The number of unique individuals reached by the campaign by the program in this district.<br>এই ক্যাম্পেইনের মাধ্যমে প্রোগ্রাম এই জেলায় যতজন ইউনিক (যার কাছে প্রথমবার পৌঁছানো হয়েছে) ব্যক্তির কাছে পৌঁছতে পেরেছে তার সংখ্যা">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
-                
+
             </th>
             <th>
                 Old Reach
                 <span data-toggle="tooltip" data-placement="top" title="The number of individuals visited that were already visited before.<br>যতজন ব্যক্তির কাছে একাধিক বার পৌঁছানো হয়েছে তার সংখ্যা">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </th>
 
@@ -325,80 +325,80 @@
             <td style="background-color:#fff0f0">
                 All (Male/Female/Boy/Girl)
                 <span data-toggle="tooltip" data-placement="right" title="This field can also be used when the age or  gender is unspecified. E.g. When the data is not separated by age or gender  or the data given does not contain any age or gender specific data.<br>বয়স, নারী/ পুরুষ ইত্যাদি তথ্য যদি  আলাদাভাবে না থাকে বা নির্দিষ্ট তথ্য না থাকে, শুধুমাত্র এরকম ক্ষেত্রে এখানে তথ্য দিন">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td style="background-color:#fff0f0">
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7NewReach, new {  @class = "input-group form-control" })
             </td>
             <td style="background-color:#fff0f0">
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat7OldReach, new {  @class = "input-group form-control" })
             </td>
             <td style="background-color:#fff0f0">যদি নারী, পুরুষ, বালক, বালিকা এর তথ্য আলাদাভাবে না থাকে তাহলেই শুধুমাত্র এখানে মোট তথ্য দিন </td>
         </tr>
         <tr>
             <td>Male (18 and Above)</td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1NewReach, new {  @class = "input-group form-control" })
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat1OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         <tr>
             <td>Female (18 and Above)</td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2NewReach, new {  @class = "input-group form-control" })
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat2OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         <tr>
             <td> Boy (Less than 18)</td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3NewReach, new {  @class = "input-group form-control" })
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat3OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         <tr>
             <td>Girl (Less than 18)</td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4NewReach, new {  @class = "input-group form-control" })
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat4OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         <tr>
             <td>
                 People With Disabilities
                 <span data-toggle="tooltip" data-placement="right" title="Number of disabled individuals that have been reached<br>যতজন প্রতিবন্ধী ব্যক্তির কাছে পৌঁছানো গিয়েছে তার সংখ্যা">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5NewReach, new {  @class = "input-group form-control" })
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat5OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         <tr>
             <td>
                 House Holds
                 <span data-toggle="tooltip" data-placement="top" title="This should be the number of households reached and not a headcount of each family member. E.g. A family of 4 should be counted as 1 household. Each household should be considered as 1 household regardless of the number of family members.<br>যতগুলো খানায় এপর্যন্ত পৌঁছানো গিয়েছে তার সংখ্যা- এখানে একটি  খানা বলতে একটি পরিবারকে বোঝানো হয়েছে, পরিবারের প্রতিটি সদস্যকে এই গণনার আওতায় আনা যাবে না। উদাঃ ৪ জন সদস্য মিলে একটি পরিবার হলে তাকে ১টি খানা হিসাবে গণনা করা হবে। পরিবারের সদস্য যতই হোক, প্রত্যেকটি পরিবার কে একটি খানা হিসেবে ধরা হবে।">
-                    <img src="~/Content/tools.png" width="30" />
+                    <img src="~/Content/toolsgray.png" width="30" />
                 </span>
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6NewReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6NewReach, new {  @class = "input-group form-control" })
 
             </td>
             <td>
-                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6OldReach, new { @style = "width:100px;" })
+                @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat6OldReach, new {  @class = "input-group form-control" })
             </td>
         </tr>
         if (Model.ProgramId == 860515)
@@ -406,10 +406,10 @@
             <tr>
                 <td>Pregnant Women</td>
                 <td>
-                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8NewReach, new { @style = "width:100px;" })
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8NewReach, new {  @class = "input-group form-control" })
                 </td>
                 <td>
-                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8OldReach, new { @style = "width:100px;" })
+                    @Html.TextBoxFor(model => model.BEPResponseActivityModels[i].Cat8OldReach, new {  @class = "input-group form-control" })
                 </td>
             </tr>
         }
@@ -427,30 +427,29 @@
 
                     <span data-toggle="tooltip" data-placement="top" title="Enter any Comments / Feedback you may have<br>আপনার কোনো মন্তব্য থাকলে তা লিখুন
 ">
-                        <img src="~/Content/tools.png" width="30" />
+                        <img src="~/Content/toolsgray.png" width="30" />
                     </span>
                 </h3>
             </td>
             <td class="control">
-                @Html.TextAreaFor(model => model.Remarks)
+                @Html.TextAreaFor(model => model.Remarks, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.Remarks)
             </td>
         </tr>
-        <tr>
-            <td class="control">
-                <p>
-                    <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
-                </p>
-            </td> 
-        </tr>
+
     </table>
+    <div class="control mt-3">
+        <p>
+            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
+        </p>
+    </div>
 
 }
 <script type="text/javascript">
     ValidatateForm("form0");
 
     $(document).ready(function () {
-         
+
         $("#save-submit").click(function () {
 
             if (!confirm("Do you want to Save?")) {

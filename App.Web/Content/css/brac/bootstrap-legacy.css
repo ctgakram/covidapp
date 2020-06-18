@@ -1,6 +1,13 @@
 ﻿.modal {
     height: calc(95vh);
+    font-size: 14px;
 }
+
+    .modal input, .modal select, .modal select option {
+        font-size: 14px;
+    }
+
+
 
 .modal-backdrop {
     position: fixed;
@@ -58,9 +65,10 @@
         }
 
 .modal-header {
-    padding: 9px 15px;
+    padding: 9px 20px;
     border-bottom: 1px solid #eee;
     display: block;
+    background-color: #D5E300;
 }
 
     .modal-header .close {
@@ -70,6 +78,7 @@
         margin: 0;
         line-height: 30px;
         font-size: 18px;
+        color: white;
     }
 
 .modal-body {
@@ -124,7 +133,7 @@
     }
 
 .modal-body .table-striped tbody tr:nth-child(odd) td, .table-striped tbody tr:nth-child(odd) th {
-    background-color: #f9f9f9;
+    background-color: #FFF;
 }
 
 .tooltip {
@@ -226,6 +235,64 @@
         margin: 0;
     }
 }
+
 [data-toggle="tooltip"] {
     padding: 5px;
+}
+
+td.title {
+    width: 20%;
+}
+
+h2, h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td h3, th h3 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+td.control {
+    display: flex;
+    flex-direction: row;
+}
+
+    td.control input[type=text], td.control select {
+        height: 30px;
+    }
+   
+
+
+
+
+table-striped th {
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #FFF;
+}
+
+
+
+.table-striped {
+    width: 100%;
+}
+.content{
+    display:none;
+}
+.btn.btn-success {
+    background-color: #D10D74;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    max-width: 150px;
+    border-radius: 5px;
 }

@@ -3346,6 +3346,7 @@
     <Content Include="Content\src\images\svg\tabular-data\total-interview.svg" />
     <Content Include="Content\src\template\map.html" />
     <Content Include="Content\tools.png" />
+    <Content Include="Content\toolsgray.png" />
     <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -3544,7 +3545,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\RoleFeature\AddFeature.cshtml" />
-    <Content Include="Views\RoleFeature\Index.cshtml" />
     <Content Include="Views\Role\Create.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Save.cshtml" />
@@ -3657,6 +3657,8 @@
     <Content Include="Views\WorkstationLeaveQuarantine\CreateDetail.cshtml" />
     <Content Include="Views\WorkstationLeaveQuarantine\Index.cshtml" />
     <Content Include="Views\WorkstationLeaveQuarantine\Save.cshtml" />
+    <Content Include="Views\RoleFeature\Index.cshtml" />
+    <Content Include="Views\RoleFeature\Index -Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

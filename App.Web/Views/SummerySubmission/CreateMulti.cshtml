@@ -17,88 +17,117 @@
     {
         @Html.HiddenFor(m => m.Id)
     }
-<table class="table-striped">
+    <table class="table-striped">
 
-    <tr>
-        <td class="title">
-            জেলা
-        </td>
-        <td class="control">
-            @Html.DropDownListFor(model => model.DistrictId, Model.Districts)
-            @Html.ValidationMessageFor(model => model.DistrictId)
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            উপজেলা / থানা
-        </td>
-        <td class="control">
-            @Html.DropDownListFor(model => model.UpazillaId, Model.Upazillas)
-            @Html.ValidationMessageFor(model => model.UpazillaId)
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            তারিখ
-        </td>
-        <td class="control">
-            @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-            @Html.ValidationMessageFor(model => model.Date)
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <table class="table-bordered">
-                <tr>
-                    <th>তথ্যের উৎস</th>
-                    <th>
-                        কতজনের সাক্ষাত নেয়া হয়েছে
-                       <span data-toggle="tooltip" data-placement="right" title="Number of individuals who have been contacted <br> যোগাযোগ করা হয়েছে এমন ব্যক্তিদের সংখ্যা"><img src="~/Content/tools.png" width="30" /></span>
-                    </th>
-                    <th>
-                        পিন (যার কাছ থেকে ডাটা নেয়া হয়েছে )
-                        <span data-toggle="tooltip" data-placement="bottom" title=" PIN of the staff who has given you the data<br>যে কর্মী থেকে আপনি তথ্য নিয়েছেন তার পিন"><img src="~/Content/tools.png" width="30" /></span>
-                    </th>
-                </tr>
-                @for (int i = 0; i < Model.MultiDatas.Count; i++)
-                {
-                <tr>
-                    <td>
-                        @Model.MultiDatas[i].Src
-                        @Html.HiddenFor(model => model.MultiDatas[i].Id)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.MultiDatas[i].Count)
-                    </td>
-                    <td>
-                        @Html.TextBoxFor(model => model.MultiDatas[i].CollectedBy)
-                    </td>
+        <tr>
+            <td class="title">
+                জেলা
+            </td>
+            <td class="control" colspan="2">
+                @Html.DropDownListFor(model => model.DistrictId, Model.Districts, "", new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.DistrictId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                উপজেলা / থানা
+            </td>
+            <td class="control" colspan="2">
+                @*@Html.DropDownListFor(model => model.UpazillaId, Model.Upazillas)*@
+                @Html.DropDownListFor(model => model.UpazillaId, Model.Upazillas, "", new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.UpazillaId)
+            </td>
+        </tr>
+        <tr>
+            <td class="title">
+                তারিখ
+            </td>
+            <td class="control" colspan="2">
+                @Html.TextBoxFor(model => model.Date, "{0:dd MMM, yyyy}", new { @class = "searchable-dropdown form-control", @placeholder = "Date" })
+                @Html.ValidationMessageFor(model => model.Date)
+            </td>
+        </tr>
+        <tr>
+            <th>তথ্যের উৎস</th>
+            <th>
+                কতজনের সাক্ষাত নেয়া হয়েছে
+                <span data-toggle="tooltip" data-placement="right" title="Number of individuals who have been contacted <br> যোগাযোগ করা হয়েছে এমন ব্যক্তিদের সংখ্যা"><img src="~/Content/toolsgray.png" width="30" /></span>
+            </th>
+            <th>
+                পিন (যার কাছ থেকে ডাটা নেয়া হয়েছে )
+                <span data-toggle="tooltip" data-placement="bottom" title=" PIN of the staff who has given you the data<br>যে কর্মী থেকে আপনি তথ্য নিয়েছেন তার পিন"><img src="~/Content/toolsgray.png" width="30" /></span>
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.MultiDatas.Count; i++)
+        {
+            <tr>
+                <td>
+                    @Model.MultiDatas[i].Src
+                    @Html.HiddenFor(model => model.MultiDatas[i].Id)
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.MultiDatas[i].Count, new { @class = "searchable-dropdown form-control" })
+                </td>
+                <td>
+                    @Html.TextBoxFor(model => model.MultiDatas[i].CollectedBy, new { @class = "searchable-dropdown form-control" })
+                </td>
 
-                </tr>
-            }
-            </table>
-        </td>
-    </tr>
-    <tr>
-        <td class="title">
-            মন্তব্য
-            <span data-toggle="tooltip" data-placement="right" title="Enter any comments or feedback that you may have<br>আপনার কোনো মন্তব্য থাকলে তা লিখুন 
-"><img src="~/Content/tools.png" width="30" /></span>
-        </td>
-        <td class="control">
-            @Html.TextAreaFor(model => model.Description)
-            @Html.ValidationMessageFor(model => model.Description)
-        </td>
-    </tr>
+            </tr>
+        }
 
-    <tr>
-        <td class="control">
-            <p>
-                <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-primary" />
-            </p>
-        </td>
-    </tr>
-</table>
+
+        @*<tr>
+                <td colspan="2">
+                    <table class="table-bordered">
+                        <tr>
+                            <th>তথ্যের উৎস</th>
+                            <th>
+                                কতজনের সাক্ষাত নেয়া হয়েছে
+                                <span data-toggle="tooltip" data-placement="right" title="Number of individuals who have been contacted <br> যোগাযোগ করা হয়েছে এমন ব্যক্তিদের সংখ্যা"><img src="~/Content/toolsgray.png" width="30" /></span>
+                            </th>
+                            <th>
+                                পিন (যার কাছ থেকে ডাটা নেয়া হয়েছে )
+                                <span data-toggle="tooltip" data-placement="bottom" title=" PIN of the staff who has given you the data<br>যে কর্মী থেকে আপনি তথ্য নিয়েছেন তার পিন"><img src="~/Content/toolsgray.png" width="30" /></span>
+                            </th>
+                        </tr>
+                        @for (int i = 0; i < Model.MultiDatas.Count; i++)
+                        {
+                            <tr>
+                                <td>
+                                    @Model.MultiDatas[i].Src
+                                    @Html.HiddenFor(model => model.MultiDatas[i].Id)
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.MultiDatas[i].Count, new { @class = "input-group datepicker flatpickr form-control input" })
+                                </td>
+                                <td>
+                                    @Html.TextBoxFor(model => model.MultiDatas[i].CollectedBy, new { @class = "input-group datepicker flatpickr form-control input" })
+                                </td>
+
+                            </tr>
+                        }
+                    </table>
+                </td>
+            </tr>*@
+        <tr>
+            <td class="title">
+                মন্তব্য
+                <span data-toggle="tooltip" data-placement="right" title="Enter any comments or feedback that you may have<br>আপনার কোনো মন্তব্য থাকলে তা লিখুন
+"><img src="~/Content/toolsgray.png" width="30" /></span>
+            </td>
+            <td class="control" colspan="2">
+                @Html.TextAreaFor(model => model.Description, new { @class = "searchable-dropdown form-control" })
+                @Html.ValidationMessageFor(model => model.Description)
+            </td>
+        </tr>
+
+
+    </table>
+    <div class="control mt-3">
+        <p>
+            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
+        </p>
+    </div>
 
 }
 <script type="text/javascript">
@@ -114,7 +143,7 @@
         );
     });
     $(document).ready(function () {
-        
+
         $("#save-submit").click(function () {
 
             if (!confirm("Do you want to Save?")) {
