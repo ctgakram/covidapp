@@ -11,12 +11,12 @@
         Confirm = "Do you want to continue?"
     };
 }
-@using (Ajax.BeginForm("Save", "Role", ajaxOpt ))
+@using (Ajax.BeginForm("Save", "Role", ajaxOpt))
 {
     @Html.ValidationSummary(true)
     if (Model != null)
     {
-        @Html.HiddenFor(m => m.Id)        
+        @Html.HiddenFor(m => m.Id)
     }
     <table class="text" border="0" cellpadding="4" cellspacing="3" width="100%">
         <tr>
@@ -24,19 +24,19 @@
                 Name
             </td>
             <td class="control">
-                @Html.TextBoxFor(model => model.RoleName)
+                @Html.TextBoxFor(model => model.RoleName, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.RoleName)
             </td>
-        </tr>  
-           <tr>
+        </tr>
+        <tr>
             <td class="title">
                 Default Page
             </td>
             <td class="control">
-                @Html.DropDownListFor(model => model.RoleDefaultPageId, Model.RoleDefaultPages)
+                @Html.DropDownListFor(model => model.RoleDefaultPageId, Model.RoleDefaultPages, new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.RoleDefaultPageId)
             </td>
-        </tr>      
+        </tr>
         <tr>
             <td class="title">
                 Active
@@ -56,9 +56,11 @@
             </td>
         </tr>
     </table>
-    <p>
-        <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
-    </p>    
+    <div class="control mt-3">
+        <p>
+            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
+        </p>
+    </div>
 }
 <script type="text/javascript">
     ValidatateForm("form0");

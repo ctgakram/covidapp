@@ -25,11 +25,11 @@
                 Question
             </td>
             <td class="control">
-                @Html.TextAreaFor(model => model.Name)
+                @Html.TextAreaFor(model => model.Name, new { @class = "input-group form-control", @style = "width:100%;" })
                 @Html.ValidationMessageFor(model => model.Name)
             </td>
         </tr>
-        
+
         <tr>
             <td class="title">
                 Active
@@ -40,9 +40,11 @@
             </td>
         </tr>
     </table>
-    <p>
-        <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
-    </p>
+    <div class="control mt-3">
+        <p>
+            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
+        </p>
+    </div>
 }
 <script type="text/javascript">
     ValidatateForm("form0");

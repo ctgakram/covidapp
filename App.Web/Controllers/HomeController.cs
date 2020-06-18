@@ -91,10 +91,10 @@ namespace AppProj.Web.Controllers
         {
 
             //temp
-            if (IsAuthorised("154211"))
-            {
-                return Redirect("~/" + SessionHelper.DefaultPage);
-            }
+            //if (IsAuthorised("154211"))
+            //{
+            //    return Redirect("~/" + SessionHelper.DefaultPage);
+            //}
 
             //SessionHelper.UserName = "Admin";
             //SessionHelper.UserId = 3;
