@@ -480,7 +480,12 @@ namespace AppProj.Web
             get { return "ISO"; }
         }
 
-        
+        public static string BloodGroups
+        {
+            get { return "BLG"; }
+        }
+
+
         public static IEnumerable<TSource> DistinctBy<TSource, TKey>
         (this IEnumerable<TSource> source, Func<TSource, TKey> keySelector)
         {

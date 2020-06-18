@@ -73,6 +73,10 @@
 
                             }
                             <input type="hidden" id="StatusIds" value="" />
+
+                            <input style="margin-left:20px; margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk" type="checkbox" checked="checked" /><span style="color:#4800ff">Only Staff</span>
+                            <input id="StatusList_99__Value" name="StatusList[99].Value" type="hidden" value="-1">
+
                             <a id="dateSearchButton" class="btn btn-info"><i class="icon icon-search icon-white"></i></a>
                         </div>
                     </div>
@@ -100,10 +104,22 @@
     <thead>
         <tr>
             <th>
-                Program/Project
+                Who is
             </th>
             <th>
-                Division
+                PIN
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                B/G
+            </th>
+            <th>
+                Designation
+            </th>
+            <th>
+                Program/Project
             </th>
             <th>
                 Distrrict
@@ -112,28 +128,13 @@
                 Area
             </th>
             <th>
-                Entry Date
+                Hospital/Isolation
             </th>
             <th>
-                Doctor's First Call
+                Alternate Contact
             </th>
             <th>
-                Name
-            </th>
-            <th>
-                Age
-            </th>
-            <th>
-                Gender
-            </th>
-            <th>
-                Who is Effected
-            </th>
-            <th>
-                Status
-            </th>
-            <th>
-                Data Entered by
+                Next Followup
             </th>
             <th>
                 Counseling by
@@ -219,7 +220,7 @@
             //'ToDate': 'ToDate'
         }
         var btns = {
-            14: false //column number : is button group
+            13: false //column number : is button group
         };
 
         /*data grid initializer*/

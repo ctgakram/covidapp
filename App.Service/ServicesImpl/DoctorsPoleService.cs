@@ -76,7 +76,7 @@ namespace AppProj.Service.ServicesImpl
             return data;
         }
 
-        public IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, string dateType, List<int> statusTypeIds, string txt, int skip, int take, out int count)
+        public IEnumerable<DoctorsPole> Get(int? effectedTypeId, int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, string dateType, List<int> statusTypeIds, string txt, int skip, int take, out int count)
         {
             fromDate = fromDate ?? DateTime.Now;
             toDate = toDate ?? DateTime.Now;
@@ -94,6 +94,7 @@ namespace AppProj.Service.ServicesImpl
                     && (sourceId == null ? true : c.ProgramId == sourceId)
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
+                    && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                     )
                     //.OrderBy(c => c.StandingData.Name)
                     //.ThenBy(c => c.StandingData1.Name)
@@ -109,15 +110,17 @@ namespace AppProj.Service.ServicesImpl
                     && (sourceId == null ? true : c.ProgramId == sourceId)
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
+                    && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                     );
             }
             else
             {
                 data = repository.GetMany(c =>
-                       (c.PIN.Contains(txt) || c.MobileNo == txt)
+                       (c.PIN == txt || c.MobileNo == txt)
                     && (sourceId == null ? true : c.ProgramId == sourceId)
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
+                    && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                     )
                     //.OrderBy(c => c.StandingData.Name)
                     //.ThenBy(c => c.StandingData1.Name)
@@ -126,19 +129,21 @@ namespace AppProj.Service.ServicesImpl
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
-                       (c.PIN.Contains(txt) || c.MobileNo == txt)
+                       (c.PIN == txt || c.MobileNo == txt)
                     && (sourceId == null ? true : c.ProgramId == sourceId)
                     && (disId == null ? true : c.DistrictId == disId)
                     && (divId == null ? true : c.DivisionId == divId)
+                    && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                     );
             }
 
             return data;
         }
 
-        public IEnumerable<DoctorsPole> GetFollowup(int? sourceId, int? divId, int? disId, List<int> statusTypeIds, int skip, int take, out int count)
+        public IEnumerable<DoctorsPole> GetFollowup(int? effectedTypeId, int? sourceId, int? divId, int? disId, List<int> statusTypeIds, int skip, int take, out int count)
         {
             DateTime dt = DateTime.Now;
+
 
             IEnumerable<DoctorsPole> data = repository.GetMany(c =>
                   (c.NextFollowupDate <= dt || c.NextFollowupDate == null)
@@ -146,6 +151,7 @@ namespace AppProj.Service.ServicesImpl
                && (sourceId == null ? true : c.ProgramId == sourceId)
                && (disId == null ? true : c.DistrictId == disId)
                && (divId == null ? true : c.DivisionId == divId)
+               && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                 )
                 //.OrderBy(c => c.StandingData.Name)
                 //.ThenBy(c => c.StandingData1.Name)
@@ -159,6 +165,7 @@ namespace AppProj.Service.ServicesImpl
                 && (sourceId == null ? true : c.ProgramId == sourceId)
                 && (disId == null ? true : c.DistrictId == disId)
                 && (divId == null ? true : c.DivisionId == divId)
+                && (effectedTypeId == null ? true : c.EffectedPersonId == effectedTypeId)
                 );
 
             return data;

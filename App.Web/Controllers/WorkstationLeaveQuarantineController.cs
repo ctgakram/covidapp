@@ -159,13 +159,26 @@ namespace AppProj.Web.Controllers
                         }
                         else
                         {
-                            var fd = div.FirstOrDefault().Id;
+                            if (!string.IsNullOrEmpty(staff.districtname))
+                            {
+                                SelectListItem item1 = new SelectListItem();
+                                item1.Text = staff.districtname;
+                                item1.Value = "0";
 
-                            var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
-                            model.DistrictList = dis.ToSelectList(null, "Id", "Name");
+                                List<SelectListItem> selectListItems = new List<SelectListItem>();
+                                selectListItems.Add(item1);
 
-                            model.DivisionList = div.ToSelectList(fd, "Id", "Name");
+                                model.DistrictList = selectListItems;
+                            }
+                            else
+                            {
+                                var fd = div.FirstOrDefault().Id;
 
+                                var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
+                                model.DistrictList = dis.ToSelectList(null, "Id", "Name");
+
+                                model.DivisionList = div.ToSelectList(fd, "Id", "Name");
+                            }
                         }
 
                         var upazilaOfStaff = standingDataService.GetUpazillas(staff.UpazilaName);
@@ -179,9 +192,29 @@ namespace AppProj.Web.Controllers
                         }
                         else
                         {
-                            var upzila = standingDataService.GetUpazilla(model.DistrictId ?? 0).Where(r => r.IsActive);
+                            if (!string.IsNullOrEmpty(staff.UpazilaName))
+                            {
+                                SelectListItem item1 = new SelectListItem();
+                                item1.Text = staff.UpazilaName;
+                                item1.Value = "0";
 
-                            model.UpazillaList = upzila.ToSelectList(model.DistrictId, "Id", "Name");
+                                List<SelectListItem> selectListItems = new List<SelectListItem>();
+                                selectListItems.Add(item1);
+
+                                model.UpazillaList = selectListItems;
+                            }
+                            else
+                            {
+
+                                var fd = div.FirstOrDefault().Id;
+
+                                var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
+
+                                var upzila = standingDataService.GetUpazilla(dis.FirstOrDefault().Id).Where(r => r.IsActive);
+
+                                model.UpazillaList = upzila.ToSelectList(null, "Id", "Name");
+                            }
+
                         }
 
                         model.Name = staff.StaffName;
@@ -305,8 +338,12 @@ namespace AppProj.Web.Controllers
 
             if (entity.DistrictId != null)
             {
-                var disOfStaff = standingDataService.GetDataById(entity.DistrictId ?? 0);
-                entity.DivisionId = disOfStaff.ParentId.Value;
+                if (entity.DistrictId > 0)
+                {
+                    var disOfStaff = standingDataService.GetDataById(entity.DistrictId ?? 0);
+                    entity.DivisionId = disOfStaff.ParentId.Value;
+                }
+                
             }
 
             if (model.Id == 0)
@@ -424,12 +461,26 @@ namespace AppProj.Web.Controllers
                     }
                     else
                     {
-                        var fd = div.FirstOrDefault().Id;
+                        if (!string.IsNullOrEmpty(staff.districtname))
+                        {
+                            SelectListItem item1 = new SelectListItem();
+                            item1.Text = staff.districtname;
+                            item1.Value = "0";
 
-                        var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
-                        model.DistrictList = dis.ToSelectList(null, "Id", "Name");
+                            List<SelectListItem> selectListItems = new List<SelectListItem>();
+                            selectListItems.Add(item1);
 
-                        model.DivisionList = div.ToSelectList(fd, "Id", "Name");
+                            model.DistrictList = selectListItems;
+                        }
+                        else
+                        {
+                            var fd = div.FirstOrDefault().Id;
+
+                            var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
+                            model.DistrictList = dis.ToSelectList(null, "Id", "Name");
+
+                            model.DivisionList = div.ToSelectList(fd, "Id", "Name");
+                        }
 
                     }
 
@@ -444,9 +495,28 @@ namespace AppProj.Web.Controllers
                     }
                     else
                     {
-                        var upzila = standingDataService.GetUpazilla(model.DistrictId ?? 0).Where(r => r.IsActive);
+                        if (!string.IsNullOrEmpty(staff.UpazilaName))
+                        {
+                            SelectListItem item1 = new SelectListItem();
+                            item1.Text = staff.UpazilaName;
+                            item1.Value = "0";
 
-                        model.UpazillaList = upzila.ToSelectList(model.DistrictId, "Id", "Name");
+                            List<SelectListItem> selectListItems = new List<SelectListItem>();
+                            selectListItems.Add(item1);
+
+                            model.UpazillaList = selectListItems;
+                        }
+                        else
+                        {
+
+                            var fd = div.FirstOrDefault().Id;
+
+                            var dis = standingDataService.GetDistricts(fd).Where(r => r.IsActive);
+
+                            var upzila = standingDataService.GetUpazilla(dis.FirstOrDefault().Id).Where(r => r.IsActive);
+
+                            model.UpazillaList = upzila.ToSelectList(null, "Id", "Name");
+                        }
                     }
 
                     GenerateSupervisorList(model);

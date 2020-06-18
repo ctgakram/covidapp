@@ -56,6 +56,8 @@ namespace AppProj.Web.Models
         public Nullable<int> LastUpdateById { get; set; }
         public Nullable<System.DateTime> LastUpdateTime { get; set; }
 
+        public bool IsInformationFromAnotherPerson { get; set; }
+
         public string StaffName { get; set; }
 
         public bool IsFound { get; set; }
