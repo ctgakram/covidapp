@@ -12,9 +12,9 @@ namespace AppProj.Service.Services
     {
         IEnumerable<DoctorsPole> GetPersonal(string pinOrMobile);
         IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, string byDept , out int count);
-        IEnumerable<DoctorsPole> Get(int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, string dateType, List<int> statusTypeIds, string txt, int skip, int take, out int count);
+        IEnumerable<DoctorsPole> Get(int? effectedTypeId, int? sourceId, int? divId, int? disId, DateTime? fromDate, DateTime? toDate, string dateType, List<int> statusTypeIds, string txt, int skip, int take, out int count);
 
-        IEnumerable<DoctorsPole> GetFollowup(int? sourceId, int? divId, int? disId, List<int> statusTypeIds, int skip, int take, out int count);
+        IEnumerable<DoctorsPole> GetFollowup(int? effectedTypeId, int? sourceId, int? divId, int? disId, List<int> statusTypeIds, int skip, int take, out int count);
         
         DoctorsPole Get(int Id);
 

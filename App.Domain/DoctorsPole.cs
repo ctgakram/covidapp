@@ -84,6 +84,8 @@ namespace AppProj.Domain
         public Nullable<System.DateTime> DeathTime { get; set; }
         public Nullable<int> CouncilorUserId { get; set; }
         public Nullable<System.DateTime> LastCouncilingDate { get; set; }
+        public Nullable<int> BloodGroupId { get; set; }
+        public Nullable<System.DateTime> StatusChangedAt { get; set; }
     
         public virtual ICollection<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
         public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }
@@ -103,5 +105,6 @@ namespace AppProj.Domain
         public virtual UserProfile UserProfile1 { get; set; }
         public virtual UserProfile UserProfile2 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
+        public virtual StandingData StandingData41 { get; set; }
     }
 }

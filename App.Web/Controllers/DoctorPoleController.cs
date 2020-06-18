@@ -602,7 +602,7 @@ namespace AppProj.Web.Controllers
             }
 
             up.StatusList = co.ToSelectList(null, "Id", "Name").ToList();
-            up.StatusList.ForEach(c => c.Selected = true);
+            //up.StatusList.ForEach(c => c.Selected = true);
 
             up.FromDate = DateTime.Now.AddDays(-7);
             up.ToDate = DateTime.Now;
@@ -625,10 +625,16 @@ namespace AppProj.Web.Controllers
             if (take == -1) { take = 100000000; skip = 0; }
 
             string tmpSts = Request.QueryString["StatusIds"];
+            bool isStaffOnly = false;
             List<int> statusIds = new List<int>();
             if (!string.IsNullOrEmpty(tmpSts))
             {
                 statusIds = tmpSts.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+                if (statusIds.IndexOf(-1) >= 0)
+                {
+                    statusIds.Remove(-1);
+                    isStaffOnly = true;
+                }
             }
             int? srcId = null;
 
@@ -653,24 +659,42 @@ namespace AppProj.Web.Controllers
             }
             catch { }
 
-            
-            int count = 0;
-            IEnumerable<DoctorsPole> dataList = service.GetFollowup(srcId, divId, disId, statusIds, skip, take, out count);
+            int? effectedTypeId = null;
 
+            if (isStaffOnly)
+            {
+                effectedTypeId = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
+                    .Where(c => c.IntValue == 1)
+                    .FirstOrDefault().Id;
+            }
+
+            int count = 0;
+            IEnumerable<DoctorsPole> dataList = service.GetFollowup(effectedTypeId, srcId, divId, disId, statusIds, skip, take, out count);
+                        
 
             var obj = (from c in dataList
-                       select new object[] {c.StandingData1==null?"":c.StandingData1.Name
-                       ,c.StandingData3==null?"":c.StandingData3.Name
+                       select new object[] {
+                        c.StandingData6==null?"":c.StandingData6.Name
+                        ,c.PIN
+                        ,c.Name
+                        ,c.StandingData41==null?"":c.StandingData41.Name
+                        ,c.Designation
+                       ,c.StandingData1==null?"":c.StandingData1.Name
                        ,c.StandingData4==null?"":c.StandingData4.Name
                        ,c.AreaOffice
-                       , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
-                       ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
-                       ,c.Name
-                       ,c.Age
-                       , c.StandingData==null?"":c.StandingData.Name
-                       , c.StandingData5==null?"":c.StandingData5.Name
-                       , c.StandingData6==null?"":c.StandingData6.Name
-                       ,c.UserProfile.UserName
+                       //,c.StandingData3==null?"":c.StandingData3.Name
+                       ,c.StandingData8==null?"" : (c.StandingData8.Name + (c.StandingData11==null?"":" "+c.StandingData11.Name) + " "+c.HospitalName)
+                       ,c.AlternateName + " " +c.AlternatePhoneNo
+                       
+                       //,String.Format("{0:dd MMM, yyyy}", c.EntryTime)
+                       //,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
+                       //,c.Name
+                       //,c.Age
+                       //, c.StandingData==null?"":c.StandingData.Name
+                       
+                       //, c.StandingData6==null?"":c.StandingData6.Name
+                       //,c.UserProfile.UserName
+                       ,String.Format("{0:dd MMM, yyyy}", c.NextFollowupDate)
                        ,c.UserProfile2==null?"":c.UserProfile2.UserName
                        ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
@@ -709,7 +733,7 @@ namespace AppProj.Web.Controllers
                 .Where(r => r.IsActive)
                 .OrderBy(c=> c.IntValue);
             up.StatusList = co.ToSelectList(null, "Id", "Name").ToList();            
-            up.StatusList.ForEach(c => c.Selected = true);
+            //up.StatusList.ForEach(c => c.Selected = true);
 
 
             up.FromDate = DateTime.Now.AddDays(-7);
@@ -732,11 +756,17 @@ namespace AppProj.Web.Controllers
             string txt = Request.QueryString["SearchText"];
             string tmpSts = Request.QueryString["StatusIds"];
             string dateType = Request.QueryString["dateType"];
+            bool isStaffOnly = false;
 
             List<int> statusIds = new List<int>();
             if (!string.IsNullOrEmpty(tmpSts))
             {
                 statusIds = tmpSts.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList();
+                if (statusIds.IndexOf(-1) >= 0)
+                {
+                    statusIds.Remove(-1);
+                    isStaffOnly = true;
+                }
             }
             
             if (take == -1) { take = 100000000; skip = 0; }
@@ -769,22 +799,40 @@ namespace AppProj.Web.Controllers
             DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
             DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
 
+            int? effectedTypeId = null;
+
+            if (isStaffOnly)
+            {
+                effectedTypeId = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
+                    .Where(c => c.IntValue == 1)
+                    .FirstOrDefault().Id;
+            }
             int count = 0;
-            IEnumerable<DoctorsPole> dataList = service.Get(srcId, divId, disId, FromDate, ToDate, dateType, statusIds,txt, skip, take,  out count);
+            IEnumerable<DoctorsPole> dataList = service.Get(effectedTypeId, srcId, divId, disId, FromDate, ToDate, dateType, statusIds,txt, skip, take,  out count);
             
             var obj = (from c in dataList
-                       select new object[] {c.StandingData1==null?"":c.StandingData1.Name
-                       ,c.StandingData3==null?"":c.StandingData3.Name
+                       select new object[] {
+                           c.StandingData6==null?"":c.StandingData6.Name
+                        ,c.PIN
+                        ,c.Name
+                        ,c.StandingData41==null?"":c.StandingData41.Name
+                        ,c.Designation
+                       ,c.StandingData1==null?"":c.StandingData1.Name
                        ,c.StandingData4==null?"":c.StandingData4.Name
                        ,c.AreaOffice
-                       , String.Format("{0:dd MMM, yyyy}", c.EntryTime)
-                       ,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
-                       ,c.Name
-                       ,c.Age
-                       , c.StandingData==null?"":c.StandingData.Name
-                       , c.StandingData5==null?"":c.StandingData5.Name
-                       , c.StandingData6==null?"":c.StandingData6.Name
-                       ,c.UserProfile.UserName
+                       //,c.StandingData3==null?"":c.StandingData3.Name
+                       ,c.StandingData8==null?"" : (c.StandingData8.Name + (c.StandingData11==null?"":" "+c.StandingData11.Name) + " "+c.HospitalName)
+                       ,c.AlternateName + " " +c.AlternatePhoneNo
+                       
+                       //,String.Format("{0:dd MMM, yyyy}", c.EntryTime)
+                       //,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
+                       //,c.Name
+                       //,c.Age
+                       //, c.StandingData==null?"":c.StandingData.Name
+                       
+                       //, c.StandingData6==null?"":c.StandingData6.Name
+                       //,c.UserProfile.UserName
+                       ,String.Format("{0:dd MMM, yyyy}", c.NextFollowupDate)
                        ,c.UserProfile2==null?"":c.UserProfile2.UserName
                        ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]

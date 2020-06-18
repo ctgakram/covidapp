@@ -76,6 +76,7 @@ namespace AppProj.Domain
             this.SummerizedDatas = new HashSet<SummerizedData>();
             this.SummerizedDatas1 = new HashSet<SummerizedData>();
             this.SummerizedDatas2 = new HashSet<SummerizedData>();
+            this.DoctorsPoles41 = new HashSet<DoctorsPole>();
         }
     
         public int Id { get; set; }
@@ -150,5 +151,6 @@ namespace AppProj.Domain
         public virtual ICollection<SummerizedData> SummerizedDatas { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas1 { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas2 { get; set; }
+        public virtual ICollection<DoctorsPole> DoctorsPoles41 { get; set; }
     }
 }

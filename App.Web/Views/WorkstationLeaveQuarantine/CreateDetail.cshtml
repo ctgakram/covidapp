@@ -174,52 +174,54 @@
                         </tr>
                         <tr>
                             <td>
-                                <table class="table-striped">
-                                    <tr>
-                                        <td class="title">
-                                            Have you left workstation?
-                                        </td>
-                                        <td class="control">
-                                            @if (Model.IsWorkStationLeft)
-                                            {
-                                                @Html.RadioButtonFor(model => model.IsWorkStationLeft, "1", new { @checked = "checked" }) <text>Yes</text>
-                                                @Html.RadioButtonFor(model => model.IsWorkStationLeft, "0") <text>No</text>
-                                            }
-                                            else
-                                            {
-                                                @Html.RadioButtonFor(model => model.IsWorkStationLeft, "1") <text>Yes</text>
-                                                @Html.RadioButtonFor(model => model.IsWorkStationLeft, "0", new { @checked = "checked" }) <text>No</text>
-                                            }
+                                <div>
+                                    <table class="table-striped">
+                                        <tr>
+                                            <td class="title">
+                                                Have you left workstation?
+                                            </td>
+                                            <td class="control">
+                                                @if (Model.IsWorkStationLeft)
+                                                {
+                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeft, "1", new { @checked = "checked" }) <text>Yes</text>
+                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeft, "0") <text>No</text>
+                                                }
+                                                else
+                                                {
+                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeft, "1") <text>Yes</text>
+                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeft, "0", new { @checked = "checked" }) <text>No</text>
+                                                }
 
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="title" id="tdWorkStationLeaveDateTitle">
-                                            If yes, specify the date
-                                        </td>
-                                        <td class="control" id="tdWorkStationLeaveDateControl">
-                                            @Html.TextBoxFor(model => model.WorkStationLeaveDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="title" id="tdWorkStationReturnDateTitle">
-                                            When have you returned the workstation?
-                                        </td>
-                                        <td class="control" id="tdWorkStationReturnDateControl">
-                                            @Html.TextBoxFor(model => model.WorkStationReturnDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            Has  your supervisor  permitted you to leave workstation?
-                                        </td>
-                                        <td class="control">
-                                            @Html.DropDownListFor(model => model.SupervisorPermitted, Model.SupervisorPermittedList)
-                                            @Html.ValidationMessageFor(model => model.SupervisorPermitted)
-                                        </td>
-                                    </tr>
-                                </table>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title" id="tdWorkStationLeaveDateTitle">
+                                                If yes, specify the date
+                                            </td>
+                                            <td class="control" id="tdWorkStationLeaveDateControl">
+                                                @Html.TextBoxFor(model => model.WorkStationLeaveDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="title" id="tdWorkStationReturnDateTitle">
+                                                When have you returned the workstation?
+                                            </td>
+                                            <td class="control" id="tdWorkStationReturnDateControl">
+                                                @Html.TextBoxFor(model => model.WorkStationReturnDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Has  your supervisor  permitted you to leave workstation?
+                                            </td>
+                                            <td class="control">
+                                                @Html.DropDownListFor(model => model.SupervisorPermitted, Model.SupervisorPermittedList)
+                                                @Html.ValidationMessageFor(model => model.SupervisorPermitted)
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -261,7 +263,7 @@
                                         <tr>
                                             <td class="title" id="tdQuarantineEndDateTitle">
                                                 End date
-                                                @*</td>*@
+                                            </td>
                                             <td class="control" id="tdQuarantineEndDateControl">
                                                 @Html.TextBoxFor(model => model.QuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
@@ -316,6 +318,7 @@
                                                 @Html.TextBoxFor(model => model.ExtendedQuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
+
 
                                     </table>
                                 </div>
@@ -385,43 +388,43 @@
                                                 @Html.TextBoxFor(model => model.InfoCollectedDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>
+
+                                                <hr style="width:100%" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Comments, if any
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.TextAreaFor(model => model.Comment)
+                                                @Html.ValidationMessageFor(model => model.Comment)
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @if (Model.Id == 0)
+                                                {
+                                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "" })
+                                                }
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
+                                                </p>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>
-
-                                <hr style="width:100%" />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                Comments, if any
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.TextAreaFor(model => model.Comment)
-                                @Html.ValidationMessageFor(model => model.Comment)
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                @if (Model.Id == 0)
-                                {
-                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "" })
-                                }
-                            </td>
-                            <td>
-                                <p>
-                                    <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
-                                </p>
-                            </td>
-                        </tr>
                     </table>
                 </div>
-            </td>
+</td>
             
         </tr>
     </table>
@@ -579,6 +582,18 @@
             }
 
         });
+
+        $('#DistrictId').change(function (event) {
+            LoadUpazialSearch($('#DistrictId').val());
+        });
+
+        window.LoadUpazialSearch = function (areaId) {
+                var url = '@Url.Content("~/Main/GetUpazilaByDistrict")?id=' + areaId;
+            LoadDropDownListWithCall('UpazillaId'
+                    , url
+                    , null
+                    , null);
+        }
 
         $('#InfoCollectedDate').datepicker({
             format: "dd M, yyyy",

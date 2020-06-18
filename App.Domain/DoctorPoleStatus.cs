@@ -17,6 +17,7 @@ namespace AppProj.Domain
         public int Id { get; set; }
         public int DoctorPoleId { get; set; }
         public int StatusId { get; set; }
+        public Nullable<System.DateTime> StartDate { get; set; }
     
         public virtual DoctorsPole DoctorsPole { get; set; }
         public virtual StandingData StandingData { get; set; }
