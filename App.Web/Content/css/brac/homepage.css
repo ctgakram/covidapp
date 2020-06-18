@@ -315,8 +315,9 @@ body {
             padding-right: 30px;
             width: 100%;
             text-align: center;
-            padding: 15px 0;
+            padding: 15px 5px;
         }
+
 
             .gb-item span.font-md, .gb-item span.font-sm {
                 font-size: 16px;
@@ -325,6 +326,23 @@ body {
             .gb-item span br {
                 display: none;
             }
+
+        .gb-item:hover::before {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+        }
+    /*.gb-item:hover span {
+            -webkit-transform: translateY(-30%);
+            transform: translateY(-30%);
+        }
+
+        .gb-item:hover::before {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .gb-item:hover::after {
+            transform: scale(1.2);
+            -webkit-transform: scale(1.2);
+        }*/
 
     .homepage-nav {
         padding: 0 15px;
