@@ -5,34 +5,34 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="31efdc5f07f24a83abde93ff3c304cf2" Name="Diagram1" ZoomLevel="52" >
-        <EntityTypeShape EntityType="AppModel.BEPData" Width="1.5" PointX="3" PointY="50.25" />
-        <EntityTypeShape EntityType="AppModel.BERDataItemWiseQuantity" Width="1.5" PointX="14.25" PointY="46.125" />
-        <EntityTypeShape EntityType="AppModel.BERDataPeopleWiseQuantity" Width="1.5" PointX="14.25" PointY="56.125" />
+        <EntityTypeShape EntityType="AppModel.BEPData" Width="1.5" PointX="6" PointY="43.875" />
+        <EntityTypeShape EntityType="AppModel.BERDataItemWiseQuantity" Width="1.5" PointX="17.25" PointY="42.125" />
+        <EntityTypeShape EntityType="AppModel.BERDataPeopleWiseQuantity" Width="1.5" PointX="17.25" PointY="48.125" />
         <EntityTypeShape EntityType="AppModel.Content" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AppModel.DetailData" Width="1.5" PointX="6" PointY="42.875" />
-        <EntityTypeShape EntityType="AppModel.DistrictByUserProfile" Width="1.5" PointX="6" PointY="49.75" />
-        <EntityTypeShape EntityType="AppModel.DistrictData" Width="1.5" PointX="6" PointY="55.5" />
-        <EntityTypeShape EntityType="AppModel.DistrictPatient" Width="1.5" PointX="3" PointY="133.75" />
-        <EntityTypeShape EntityType="AppModel.DistrictQuestion" Width="1.5" PointX="3" PointY="130.25" />
-        <EntityTypeShape EntityType="AppModel.DistrictSummery" Width="1.5" PointX="12" PointY="46" />
-        <EntityTypeShape EntityType="AppModel.DoctorPoleCouncilling" Width="1.5" PointX="17.25" PointY="52.375" />
-        <EntityTypeShape EntityType="AppModel.DoctorPoleStatus" Width="1.5" PointX="14.25" PointY="52.75" />
-        <EntityTypeShape EntityType="AppModel.DoctorsPole" Width="1.5" PointX="9" PointY="45.5" />
-        <EntityTypeShape EntityType="AppModel.DoctorsPoleVisitDetail" Width="1.5" PointX="19.5" PointY="49.625" />
-        <EntityTypeShape EntityType="AppModel.DoctorsPoleVisit" Width="1.5" PointX="17.25" PointY="40.25" />
-        <EntityTypeShape EntityType="AppModel.Feature" Width="1.5" PointX="4.5" PointY="33.75" />
-        <EntityTypeShape EntityType="AppModel.HnppData" Width="1.5" PointX="3" PointY="44.125" />
+        <EntityTypeShape EntityType="AppModel.DetailData" Width="1.5" PointX="6" PointY="51.375" />
+        <EntityTypeShape EntityType="AppModel.DistrictByUserProfile" Width="1.5" PointX="6" PointY="58.25" />
+        <EntityTypeShape EntityType="AppModel.DistrictData" Width="1.5" PointX="15" PointY="47" />
+        <EntityTypeShape EntityType="AppModel.DistrictPatient" Width="1.5" PointX="3" PointY="65.125" />
+        <EntityTypeShape EntityType="AppModel.DistrictQuestion" Width="1.5" PointX="3" PointY="134.875" />
+        <EntityTypeShape EntityType="AppModel.DistrictSummery" Width="1.5" PointX="12" PointY="46.5" />
+        <EntityTypeShape EntityType="AppModel.DoctorPoleCouncilling" Width="1.5" PointX="20.25" PointY="53" />
+        <EntityTypeShape EntityType="AppModel.DoctorPoleStatus" Width="1.5" PointX="3" PointY="48.125" />
+        <EntityTypeShape EntityType="AppModel.DoctorsPole" Width="1.5" PointX="9" PointY="45.625" />
+        <EntityTypeShape EntityType="AppModel.DoctorsPoleVisitDetail" Width="1.5" PointX="19.5" PointY="56.25" />
+        <EntityTypeShape EntityType="AppModel.DoctorsPoleVisit" Width="1.5" PointX="17.25" PointY="56.625" />
+        <EntityTypeShape EntityType="AppModel.Feature" Width="1.5" PointX="1.5" PointY="30.25" />
+        <EntityTypeShape EntityType="AppModel.HnppData" Width="1.5" PointX="3" PointY="51.625" />
         <EntityTypeShape EntityType="AppModel.MapSummary" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AppModel.ProgramByUserProfile" Width="1.5" PointX="6" PointY="52.75" />
-        <EntityTypeShape EntityType="AppModel.RoleDefaultPage" Width="1.5" PointX="1.5" PointY="35.75" />
-        <EntityTypeShape EntityType="AppModel.RoleFeature" Width="1.5" PointX="6.75" PointY="38.75" />
-        <EntityTypeShape EntityType="AppModel.Role" Width="1.5" PointX="1.5" PointY="38.5" />
-        <EntityTypeShape EntityType="AppModel.StandingDataPcRelation" Width="1.5" PointX="3" PointY="136.875" />
-        <EntityTypeShape EntityType="AppModel.StandingData" Width="1.5" PointX="0.75" PointY="46.375" />
-        <EntityTypeShape EntityType="AppModel.SummerizedData" Width="1.5" PointX="3" PointY="57.875" />
-        <EntityTypeShape EntityType="AppModel.UserAccessLog" Width="1.5" PointX="4.75" PointY="0.75" />
-        <EntityTypeShape EntityType="AppModel.UserLoginLog" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="AppModel.UserProfile" Width="1.5" PointX="3.75" PointY="36.875" />
+        <EntityTypeShape EntityType="AppModel.ProgramByUserProfile" Width="1.5" PointX="3" PointY="45.25" />
+        <EntityTypeShape EntityType="AppModel.RoleDefaultPage" Width="1.5" PointX="1.5" PointY="33.375" />
+        <EntityTypeShape EntityType="AppModel.RoleFeature" Width="1.5" PointX="3.75" PointY="36.25" />
+        <EntityTypeShape EntityType="AppModel.Role" Width="1.5" PointX="1.5" PointY="36" />
+        <EntityTypeShape EntityType="AppModel.StandingDataPcRelation" Width="1.5" PointX="3" PointY="138.375" />
+        <EntityTypeShape EntityType="AppModel.StandingData" Width="1.5" PointX="0.75" PointY="46.75" />
+        <EntityTypeShape EntityType="AppModel.SummerizedData" Width="1.5" PointX="3" PointY="58.5" />
+        <EntityTypeShape EntityType="AppModel.UserLoginLog" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AppModel.UserProfile" Width="1.5" PointX="0.75" PointY="39.25" />
+        <EntityTypeShape EntityType="AppModel.WorkstationLeaveQuarantine" Width="1.5" PointX="0.75" PointY="4.75" />
         <EntityTypeShape EntityType="AppModel.QryRoleFeature" Width="1.5" PointX="2.75" PointY="4.75" />
         <AssociationConnector Association="AppModel.FK_BEPData_BEPData" />
         <AssociationConnector Association="AppModel.FK_BEPData_StandingDatas_CommChannel" />
@@ -83,6 +83,7 @@
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas10" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas11" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas12" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas3" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas4" />
@@ -106,6 +107,7 @@
         <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_StandingDatas6" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_UserProfiles" />
         <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_UserProfiles1" />
+        <AssociationConnector Association="AppModel.FK_DoctorsPoleVisits_UserProfiles2" />
         <AssociationConnector Association="AppModel.FK_dbo_RoleFeatures_dbo_Features_FeatureId" />
         <AssociationConnector Association="AppModel.FK_HnppData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_HnppData_StandingDatas2" />
@@ -121,8 +123,6 @@
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_UserProfiles" />
-        <EntityTypeShape EntityType="AppModel.WorkstationLeaveQuarantine" Width="1.5" PointX="5.375" PointY="3.75" />
-        <AssociationConnector Association="AppModel.FK_DoctorsPoles_StandingDatas12" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

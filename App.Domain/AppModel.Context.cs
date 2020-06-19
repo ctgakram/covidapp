@@ -53,11 +53,10 @@ namespace AppProj.Domain
         public DbSet<StandingDataPcRelation> StandingDataPcRelations { get; set; }
         public DbSet<StandingData> StandingDatas { get; set; }
         public DbSet<SummerizedData> SummerizedDatas { get; set; }
-        public DbSet<UserAccessLog> UserAccessLogs { get; set; }
         public DbSet<UserLoginLog> UserLoginLogs { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
         public DbSet<WorkstationLeaveQuarantine> WorkstationLeaveQuarantines { get; set; }
+        public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)

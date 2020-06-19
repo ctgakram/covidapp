@@ -113,7 +113,13 @@
                 Name
             </th>
             <th>
+                Mobile
+            </th>
+            <th>
                 B/G
+            </th>
+            <th>
+                Sex
             </th>
             <th>
                 Designation
@@ -136,12 +142,12 @@
             <th>
                 Next Followup
             </th>
-            <th>
-                Counseling by
-            </th>
-            <th>
-                Last Counseling at
-            </th>
+            @*<th>
+            Counseling by
+        </th>
+        <th>
+            Last Counseling at
+        </th>*@
             @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
                 || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role)
                 || UserRole.Check("DoctorPool_Council", SessionHelper.Role))

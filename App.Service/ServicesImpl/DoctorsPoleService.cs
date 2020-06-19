@@ -193,46 +193,63 @@ namespace AppProj.Service.ServicesImpl
 
         public DoctorPoleDashboardModel Dashboard(int? sourceId, int minVar)
         {
-            List<int> suspectedTypes = new List<int> { 1, 2, 3, 4 };
+            List<int> suspectedTypes = new List<int> { 1, 2, 3, 4, 5, 7 };
             decimal tmp = 0;
+            int staff = 861692; //staff effected person
 
             DoctorPoleDashboardModel model = new DoctorPoleDashboardModel();
 
-            var suspectedIds = repositoryStatus.GetMany(c =>
+            var totals = repositoryStatus.GetMany(c =>
             suspectedTypes.Contains(c.StandingData.IntValue.Value)
             && (sourceId == null ? true : (sourceId == c.DoctorsPole.ProgramId))
-            ).Select(c=> c.DoctorPoleId).ToList();
+            && c.DoctorsPole.EffectedPersonId == staff
+            ).ToList();
+            //.Select(c=> c.DoctorPoleId).ToList();
 
-            var suspectedData = repository.GetMany(c => suspectedIds.Contains(c.Id))
+            var totalIds = totals.Select(c => c.DoctorPoleId);
+
+            var totalPosIds= totals.Where(c=> c.StandingData.IntValue==3).Select(c => c.DoctorPoleId);
+            var totalNegIds = totals.Where(c => c.StandingData.IntValue == 4).Select(c => c.DoctorPoleId);
+            var totalResIds = totals.Where(c => c.StandingData.IntValue == 5).Select(c => c.DoctorPoleId);
+            var totalDeathIds = totals.Where(c => c.StandingData.IntValue == 7).Select(c => c.DoctorPoleId);
+
+
+            var suspectedData = repository.GetMany(c => totalIds.Contains(c.Id))
                 .ToList();
 
-            var totalPositive = suspectedData.Where(c => c.StandingData6.IntValue == 2);
-            var totalNegetive = suspectedData.Where(c => c.StandingData6.IntValue == 3);
-            var totalResolved = suspectedData.Where(c => c.StandingData6.IntValue == 4);
+            //var totalPositive = suspectedData.Where(c => c.StandingData8.IntValue == 3);
+            //var totalNegetive = suspectedData.Where(c => c.StandingData8.IntValue == 4);
+            //var totalResolved = suspectedData.Where(c => c.StandingData8.IntValue == 5);
 
             var currentPositive = repository.GetMany(c =>
-            c.StandingData6.IntValue.Value == 2
+            c.StandingData8.IntValue.Value == 3
+            && c.EffectedPersonId == staff
             && (sourceId == null ? true : (sourceId == c.ProgramId))
             ).ToList();
 
 
             model.TotalCases = suspectedData.Count();
 
-            model.TotalPositive = totalPositive.Count();
+            model.TotalPositive = totalPosIds.Count();
 
-            model.TotalNegetive = totalNegetive.Count();
+            model.TotalNegetive = totalNegIds.Count();
 
-            model.TotalResolved = totalResolved.Count();
+            model.TotalResolved = totalResIds.Count();
 
-            model.TotalTestPending = suspectedData.Where(c => c.SampleTakenDate != null 
-            && c.TestResultId == null).Count();
+            model.TotalDeath = totalDeathIds.Count();
+
+            model.TotalTestPending = suspectedData.Where(c =>
+            (c.SampleTakenDate != null && c.TestResultId == null)
+            || (c.SampleTakenDate1 != null && c.TestResultId1 == null)
+            || (c.SampleTakenDate2 != null && c.TestResultId2 == null)
+            ).Count();
 
             model.TotalHomeIsolation = currentPositive
-                .Where(c => c.StandingData8 == null ? false : c.StandingData8.IntValue == 1)
+                .Where(c => c.StandingData12 == null ? false : c.StandingData12.IntValue == 1)
                 .Count();
 
             model.TotalHospitalized = currentPositive
-                .Where(c => c.StandingData8 == null ? false : c.StandingData8.IntValue == 2)
+                .Where(c => c.StandingData12 == null ? false : c.StandingData12.IntValue == 2)
                 .Count();
 
             model.CurrentPositive = currentPositive.Count();
@@ -293,7 +310,7 @@ namespace AppProj.Service.ServicesImpl
             }
 
 
-            model.DistrictWiseCases = suspectedData.GroupBy(c => c.StandingData3.Name)
+            model.DistrictWiseCases = suspectedData.GroupBy(c => c.StandingData6.Name)
            .Select(s => new DoctorPoleDashboardDetailModel
            {
                Particular = s.Key
@@ -369,7 +386,7 @@ namespace AppProj.Service.ServicesImpl
             }
 
 
-            model.DistrictWiseCurrentPositiveCases = currentPositive.GroupBy(c => c.StandingData3.Name)
+            model.DistrictWiseCurrentPositiveCases = currentPositive.GroupBy(c => c.StandingData6.Name)
            .Select(s => new DoctorPoleDashboardDetailModel
            {
                Particular = s.Key
@@ -447,7 +464,7 @@ namespace AppProj.Service.ServicesImpl
 
             if (v == null)
             {
-                repositoryStatus.Add(new DoctorPoleStatus { DoctorPoleId = id, StatusId = statId });
+                repositoryStatus.Add(new DoctorPoleStatus { DoctorPoleId = id, StatusId = statId, StartDate=DateTime.Now });
             }
         }
     }

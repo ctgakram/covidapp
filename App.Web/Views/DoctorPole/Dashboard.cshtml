@@ -53,7 +53,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.ProgramWiseCases)
+                                        @foreach (var row in Model.ProgramWiseCases.OrderByDescending(c=> c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -97,7 +97,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.DistrictWiseCases_MinVariable)
+                                        @foreach (var row in Model.DistrictWiseCases_MinVariable.OrderByDescending(c=> c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -141,7 +141,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.SexWiseCases)
+                                        @foreach (var row in Model.SexWiseCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -185,7 +185,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.AgeWiseCases)
+                                        @foreach (var row in Model.AgeWiseCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -233,7 +233,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.DistrictWiseCases)
+                                        @foreach (var row in Model.DistrictWiseCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -297,6 +297,10 @@
                                             <td>@Model.TotalResolved</td>
                                         </tr>
                                         <tr>
+                                            <th>Deceased</th>
+                                            <td>@Model.TotalDeath</td>
+                                        </tr>
+                                        <tr>
                                             <th>Test Pending</th>
                                             <td>@Model.TotalTestPending</td>
                                         </tr>
@@ -345,7 +349,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.ProgramWiseCurrentPositiveCases)
+                                        @foreach (var row in Model.ProgramWiseCurrentPositiveCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -389,7 +393,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.DistrictWiseCurrentPositiveCases)
+                                        @foreach (var row in Model.DistrictWiseCurrentPositiveCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -433,7 +437,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.SexWiseCurrentPositiveCases)
+                                        @foreach (var row in Model.SexWiseCurrentPositiveCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>
@@ -477,7 +481,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var row in Model.AgeWiseCurrentPositiveCases)
+                                        @foreach (var row in Model.AgeWiseCurrentPositiveCases.OrderByDescending(c => c.Value))
                                         {
                                             <tr>
                                                 <td>@row.Particular</td>

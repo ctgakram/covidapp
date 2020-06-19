@@ -15,6 +15,22 @@ using AppProj.Domain.ModelExt;
 
 namespace AppProj.Web.Controllers
 {
+    /*
+    standing data
+  0 > Gender
+  1 > program
+  2 > test result-2
+  3
+  4 > blood group
+  5 > division
+  6 > district
+  7 > who effected
+  8 > status
+  9
+  10 > test result-1
+  11 > test result
+  12 > AdmittedTypeId
+         */
     [Authorize]
     [CustomAuthorize(Roles : new string[] { "DoctorPool_HR"
         , "DoctorPool_Doc"
@@ -674,29 +690,22 @@ namespace AppProj.Web.Controllers
 
             var obj = (from c in dataList
                        select new object[] {
-                        c.StandingData6==null?"":c.StandingData6.Name
+                        c.StandingData7==null?"":c.StandingData7.Name
                         ,c.PIN
                         ,c.Name
-                        ,c.StandingData41==null?"":c.StandingData41.Name
+                        ,c.MobileNo
+                        ,c.StandingData4==null?"":c.StandingData4.Name
+                        ,c.StandingData==null?"":c.StandingData.Name
                         ,c.Designation
                        ,c.StandingData1==null?"":c.StandingData1.Name
-                       ,c.StandingData4==null?"":c.StandingData4.Name
+                       ,c.StandingData6==null?"":c.StandingData6.Name
                        ,c.AreaOffice
-                       //,c.StandingData3==null?"":c.StandingData3.Name
-                       ,c.StandingData8==null?"" : (c.StandingData8.Name + (c.StandingData11==null?"":" "+c.StandingData11.Name) + " "+c.HospitalName)
-                       ,c.AlternateName + " " +c.AlternatePhoneNo
-                       
-                       //,String.Format("{0:dd MMM, yyyy}", c.EntryTime)
-                       //,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
-                       //,c.Name
-                       //,c.Age
-                       //, c.StandingData==null?"":c.StandingData.Name
-                       
-                       //, c.StandingData6==null?"":c.StandingData6.Name
-                       //,c.UserProfile.UserName
+                       ,c.StandingData12==null?"" : (c.StandingData12.Name + " "+c.HospitalName)
+                       ,c.AlternateName + "<br />" +c.AlternatePhoneNo
+
                        ,String.Format("{0:dd MMM, yyyy}", c.NextFollowupDate)
-                       ,c.UserProfile2==null?"":c.UserProfile2.UserName
-                       ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
+                       //,c.UserProfile2==null?"":c.UserProfile2.UserName
+                       //,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
                          new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
@@ -809,32 +818,26 @@ namespace AppProj.Web.Controllers
             }
             int count = 0;
             IEnumerable<DoctorsPole> dataList = service.Get(effectedTypeId, srcId, divId, disId, FromDate, ToDate, dateType, statusIds,txt, skip, take,  out count);
+
             
             var obj = (from c in dataList
                        select new object[] {
-                           c.StandingData6==null?"":c.StandingData6.Name
+                        c.StandingData7==null?"":c.StandingData7.Name
                         ,c.PIN
                         ,c.Name
-                        ,c.StandingData41==null?"":c.StandingData41.Name
+                        ,c.MobileNo
+                        ,c.StandingData4==null?"":c.StandingData4.Name 
+                        ,c.StandingData==null?"":c.StandingData.Name
                         ,c.Designation
                        ,c.StandingData1==null?"":c.StandingData1.Name
-                       ,c.StandingData4==null?"":c.StandingData4.Name
-                       ,c.AreaOffice
-                       //,c.StandingData3==null?"":c.StandingData3.Name
-                       ,c.StandingData8==null?"" : (c.StandingData8.Name + (c.StandingData11==null?"":" "+c.StandingData11.Name) + " "+c.HospitalName)
-                       ,c.AlternateName + " " +c.AlternatePhoneNo
+                       ,c.StandingData6==null?"":c.StandingData6.Name
+                       ,c.AreaOffice                       
+                       ,c.StandingData12==null?"" : (c.StandingData12.Name + " "+c.HospitalName)
+                       ,c.AlternateName + "<br />" +c.AlternatePhoneNo
                        
-                       //,String.Format("{0:dd MMM, yyyy}", c.EntryTime)
-                       //,String.Format("{0:dd MMM, yyyy}", c.FirstDoctorCallTime)
-                       //,c.Name
-                       //,c.Age
-                       //, c.StandingData==null?"":c.StandingData.Name
-                       
-                       //, c.StandingData6==null?"":c.StandingData6.Name
-                       //,c.UserProfile.UserName
                        ,String.Format("{0:dd MMM, yyyy}", c.NextFollowupDate)
-                       ,c.UserProfile2==null?"":c.UserProfile2.UserName
-                       ,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
+                       //,c.UserProfile2==null?"":c.UserProfile2.UserName
+                       //,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
                          new GridButtonModel {U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
@@ -902,7 +905,7 @@ namespace AppProj.Web.Controllers
         {
             DoctorPoleDashboardModel model = new DoctorPoleDashboardModel();
 
-            //model = service.Dashboard(null, 2);
+            model = service.Dashboard(null, 2);
 
             return View(model);
         }

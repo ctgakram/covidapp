@@ -20,7 +20,7 @@
     @Html.HiddenFor(m => m.DoctorPoleId)
 
 
-    <button type="button" class="collapsible">@{var v5 = Model.DoctorsPole.StandingData6 == null ? "" : Model.DoctorsPole.StandingData6.Name;} @v5  <span style="font-size:11px;"> @Model.DoctorsPole.StaffName (PIN : @Model.DoctorsPole.PIN)</span></button>
+    <button type="button" class="collapsible">@{var v5 = Model.DoctorsPole.StandingData7 == null ? "" : Model.DoctorsPole.StandingData7.Name;} @v5  <span style="font-size:11px;"> @Model.DoctorsPole.StaffName (PIN : @Model.DoctorsPole.PIN)</span></button>
     <div class="content">
         <table class="table table-striped table-bordered" style="width:100%">
             <tr>
@@ -42,7 +42,7 @@
                 <th>Division</th>
                 <td>@{var v3 = Model.DoctorsPole.StandingData5 == null ? "" : Model.DoctorsPole.StandingData5.Name;} @v3</td>
                 <th>District</th>
-                <td>@{var v4 = Model.DoctorsPole.StandingData4 == null ? "" : Model.DoctorsPole.StandingData4.Name;} @v4</td>
+                <td>@{var v4 = Model.DoctorsPole.StandingData6 == null ? "" : Model.DoctorsPole.StandingData6.Name;} @v4</td>
             </tr>
         </table>
     </div>
@@ -64,10 +64,10 @@
     </table>
 
     <h3 style="padding-top:10px; color:#ff6a00">History</h3>
-                    if (Model.DoctorsPoleVisits.Count > 0)
-                    {
-                        foreach (var v in Model.DoctorsPoleVisits.OrderBy(c=>c.EntryTime))
-                        {
+    if (Model.DoctorsPoleVisits.Count > 0)
+    {
+        foreach (var v in Model.DoctorsPoleVisits.OrderBy(c => c.EntryTime))
+        {
             <button type="button" class="collapsible">By: <strong> @v.UserProfile.UserName </strong> at @v.EntryTime.ToString("dd MMM, yyyy hh:mm") </button>
             <div class="content">
                 <table class="table table-striped table-bordered fixed_headers" style="width:100%">
@@ -329,7 +329,7 @@
                     </div>
                 </th>
             </tr>
-            
+
             <tr>
                 <th>
                     <div class="hosdiv">
@@ -414,7 +414,7 @@
         TestResultDiv();
 
         function TestResultDiv() {
-            
+
             var v = $('#SampleTakenDate').val();
             var v1 = $('#SampleTakenDate1').val();
 
@@ -460,7 +460,7 @@
             if (v == 862672) { //death
 
             }
-            else if (v == 862671) { //recommandent for test                
+            else if (v == 862671) { //recommandent for test
                 $('#DeathTime').val(null);
             }
             else {
@@ -468,7 +468,7 @@
                 $('#DeathTime').val(null);
             }
         }
-        
+
         function Admit() {
             var v = $('#AdmittedTypeId').val();
 
