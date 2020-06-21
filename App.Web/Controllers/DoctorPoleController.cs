@@ -695,6 +695,7 @@ namespace AppProj.Web.Controllers
                         ,c.Name
                         ,c.MobileNo
                         ,c.StandingData4==null?"":c.StandingData4.Name
+                        ,c.Age
                         ,c.StandingData==null?"":c.StandingData.Name
                         ,c.Designation
                        ,c.StandingData1==null?"":c.StandingData1.Name
@@ -826,7 +827,8 @@ namespace AppProj.Web.Controllers
                         ,c.PIN
                         ,c.Name
                         ,c.MobileNo
-                        ,c.StandingData4==null?"":c.StandingData4.Name 
+                        ,c.StandingData4==null?"":c.StandingData4.Name
+                        ,c.Age
                         ,c.StandingData==null?"":c.StandingData.Name
                         ,c.Designation
                        ,c.StandingData1==null?"":c.StandingData1.Name

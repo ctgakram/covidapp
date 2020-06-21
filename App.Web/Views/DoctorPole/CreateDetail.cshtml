@@ -27,10 +27,10 @@
                     @Html.DisplayFor(m => m.StaffName)
                     @if (!Model.IsFound)
                     {
-                    <span style="color:#0026ff">@Html.DisplayFor(m => m.Message)</span>
+                        <span style="color:#0026ff">@Html.DisplayFor(m => m.Message)</span>
                     }
                 </h3>
-                <table class="table table-striped table-bordered fixed_headers">                    
+                <table class="table table-striped table-bordered fixed_headers">
                     <tr>
                         <td>
                             PIN
@@ -40,7 +40,7 @@
                             @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList)
                             @Html.ValidationMessageFor(model => model.ProgramId)
                             Designation
-                            @Html.TextBoxFor(model => model.Designation,new { @style = "color:#ff6a00" })
+                            @Html.TextBoxFor(model => model.Designation, new { @style = "color:#ff6a00" })
                             @Html.ValidationMessageFor(model => model.Designation)
                             Division
                             @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList)
@@ -132,9 +132,18 @@
                                 </td>
                                 @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
                                 {
-                                    <td>
-                                        @Ajax.ActionLink("Continue", "Followup", "DoctorPole", new { id = v.Id }, ajaxOpt, new { @class = "" })
-                                    </td>
+                                    if (v.StatusId == 862672)
+                                    {
+                                        <td>
+                                            Deceased
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @Ajax.ActionLink("Continue", "Followup", "DoctorPole", new { id = v.Id }, ajaxOpt, new { @class = "" })
+                                        </td>
+                                    }
                                 }
                             </tr>
                         }

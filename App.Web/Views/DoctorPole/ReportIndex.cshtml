@@ -144,6 +144,9 @@
                 B/G
             </th>
             <th>
+                Age
+            </th>
+            <th>
                 Sex
             </th>
             <th>
@@ -168,11 +171,11 @@
                 Next Followup
             </th>
             @*<th>
-                Counseling by
-            </th>
-            <th>
-                Last Counseling at
-            </th>*@
+            Counseling by
+        </th>
+        <th>
+            Last Counseling at
+        </th>*@
             @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role)
                 || UserRole.Check("DoctorPool_Suspect", SessionHelper.Role)
                 || UserRole.Check("DoctorPool_Council", SessionHelper.Role))
@@ -273,7 +276,7 @@
             'StatusIds': 'StatusIds'
         }
         var btns = {
-            13: false //column number : is button group
+            14: false //column number : is button group
         };
 
         /*data grid initializer*/

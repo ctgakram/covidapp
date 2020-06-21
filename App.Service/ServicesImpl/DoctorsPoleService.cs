@@ -61,7 +61,7 @@ namespace AppProj.Service.ServicesImpl
                 //.OrderBy(c => c.StandingData.Name)
                 //.ThenBy(c => c.StandingData1.Name)
                 //.ThenBy(c => c.StandingData3.Name)
-                .OrderBy(c => c.EntryTime)
+                .OrderByDescending(c => c.EntryTime)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount
@@ -99,7 +99,7 @@ namespace AppProj.Service.ServicesImpl
                     //.OrderBy(c => c.StandingData.Name)
                     //.ThenBy(c => c.StandingData1.Name)
                     //.ThenBy(c => c.StandingData3.Name)
-                    .OrderBy(c => c.EntryTime)
+                    .OrderByDescending(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -125,7 +125,7 @@ namespace AppProj.Service.ServicesImpl
                     //.OrderBy(c => c.StandingData.Name)
                     //.ThenBy(c => c.StandingData1.Name)
                     //.ThenBy(c => c.StandingData3.Name)
-                    .OrderBy(c => c.EntryTime)
+                    .OrderByDescending(c => c.EntryTime)
                     .Skip(skip).Take(take).ToArray();
 
                 count = repository.GetCount(c =>
@@ -156,7 +156,7 @@ namespace AppProj.Service.ServicesImpl
                 //.OrderBy(c => c.StandingData.Name)
                 //.ThenBy(c => c.StandingData1.Name)
                 //.ThenBy(c => c.StandingData3.Name)
-                .OrderBy(c => c.EntryTime)
+                .OrderBy(c => c.NextFollowupDate)
                 .Skip(skip).Take(take).ToArray();
 
             count = repository.GetCount(c =>
@@ -208,11 +208,12 @@ namespace AppProj.Service.ServicesImpl
 
             var totalIds = totals.Select(c => c.DoctorPoleId);
 
-            var totalPosIds= totals.Where(c=> c.StandingData.IntValue==3).Select(c => c.DoctorPoleId);
-            var totalNegIds = totals.Where(c => c.StandingData.IntValue == 4).Select(c => c.DoctorPoleId);
-            var totalResIds = totals.Where(c => c.StandingData.IntValue == 5).Select(c => c.DoctorPoleId);
-            var totalDeathIds = totals.Where(c => c.StandingData.IntValue == 7).Select(c => c.DoctorPoleId);
+            //var totalPosIds= totals.Where(c=> c.StandingData.IntValue==3).Select(c => c.DoctorPoleId);
+            //var totalNegIds = totals.Where(c => c.StandingData.IntValue == 4).Select(c => c.DoctorPoleId);
+            //var totalResIds = totals.Where(c => c.StandingData.IntValue == 5).Select(c => c.DoctorPoleId);
+            //var totalDeathIds = totals.Where(c => c.StandingData.IntValue == 7).Select(c => c.DoctorPoleId);
 
+            
 
             var suspectedData = repository.GetMany(c => totalIds.Contains(c.Id))
                 .ToList();
@@ -221,27 +222,31 @@ namespace AppProj.Service.ServicesImpl
             //var totalNegetive = suspectedData.Where(c => c.StandingData8.IntValue == 4);
             //var totalResolved = suspectedData.Where(c => c.StandingData8.IntValue == 5);
 
-            var currentPositive = repository.GetMany(c =>
-            c.StandingData8.IntValue.Value == 3
-            && c.EffectedPersonId == staff
+            var currentData = repository.GetMany(c =>
+            c.EffectedPersonId == staff
             && (sourceId == null ? true : (sourceId == c.ProgramId))
-            ).ToList();
+            );
 
-
+            var currentPositive = currentData.Where(c => c.StandingData8.IntValue.Value == 3).ToList();
+            
             model.TotalCases = suspectedData.Count();
 
-            model.TotalPositive = totalPosIds.Count();
+            model.CurrentPositive = currentPositive.Count();
 
-            model.TotalNegetive = totalNegIds.Count();
+            model.TotalNegetive = currentData.Where(c => c.StandingData8.IntValue.Value == 4).Count();
 
-            model.TotalResolved = totalResIds.Count();
+            model.TotalResolved = currentData.Where(c => c.StandingData8.IntValue.Value == 5).Count();
 
-            model.TotalDeath = totalDeathIds.Count();
+            model.TotalDeath = currentData.Where(c => c.StandingData8.IntValue.Value == 7).Count();
+
+            model.TotalPositive = model.CurrentPositive + model.TotalNegetive + model.TotalResolved + model.TotalDeath;
+
+            model.TotalCall = visitRepository.GetAll().Count();
 
             model.TotalTestPending = suspectedData.Where(c =>
-            (c.SampleTakenDate != null && c.TestResultId == null)
-            || (c.SampleTakenDate1 != null && c.TestResultId1 == null)
-            || (c.SampleTakenDate2 != null && c.TestResultId2 == null)
+            ((c.SampleTakenDate != null && c.TestResultId == null) || c.TestResultId == 861717)
+            || ((c.SampleTakenDate1 != null && c.TestResultId1 == null) || c.TestResultId == 861717)
+            || ((c.SampleTakenDate2 != null && c.TestResultId2 == null) || c.TestResultId == 861717)
             ).Count();
 
             model.TotalHomeIsolation = currentPositive
@@ -252,7 +257,7 @@ namespace AppProj.Service.ServicesImpl
                 .Where(c => c.StandingData12 == null ? false : c.StandingData12.IntValue == 2)
                 .Count();
 
-            model.CurrentPositive = currentPositive.Count();
+            
 
             //suspected
 
@@ -460,11 +465,13 @@ namespace AppProj.Service.ServicesImpl
 
         void UpdateStatus(int id, int statId)
         {
-            var v = repositoryStatus.Get(c => c.DoctorPoleId == id && c.StatusId == statId);
+            var v = repositoryStatus
+                .GetMany(c => c.DoctorPoleId == id && c.StatusId == statId)
+                .Count();
 
-            if (v == null)
+            if (v <= 0)
             {
-                repositoryStatus.Add(new DoctorPoleStatus { DoctorPoleId = id, StatusId = statId, StartDate=DateTime.Now });
+                repositoryStatus.Add(new DoctorPoleStatus { DoctorPoleId = id, StatusId = statId, StartDate = DateTime.Now });
             }
         }
     }
