@@ -39734,6 +39734,7 @@
                         $(".dt-carret").toggleClass("active");
                         $(".tnav").slideToggle();
                     });
+                    $('[data-toggle="tooltip"]').tooltip();
                       //onload map thing
 
                     if ($("#bangladesh_svg").length > 0) {
