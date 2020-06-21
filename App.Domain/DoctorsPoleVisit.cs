@@ -59,6 +59,7 @@ namespace AppProj.Domain
         public string AntibioticTxt { get; set; }
         public Nullable<int> IsolationOfficeId { get; set; }
         public Nullable<System.DateTime> DeathTime { get; set; }
+        public Nullable<int> CouncilorUserId { get; set; }
     
         public virtual DoctorsPole DoctorsPole { get; set; }
         public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }
@@ -71,5 +72,6 @@ namespace AppProj.Domain
         public virtual StandingData StandingData6 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual UserProfile UserProfile1 { get; set; }
+        public virtual UserProfile UserProfile2 { get; set; }
     }
 }

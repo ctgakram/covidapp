@@ -29,6 +29,7 @@ namespace AppProj.Domain
             this.DoctorsPoles2 = new HashSet<DoctorsPole>();
             this.DoctorsPoleVisits = new HashSet<DoctorsPoleVisit>();
             this.DoctorsPoleVisits1 = new HashSet<DoctorsPoleVisit>();
+            this.DoctorsPoleVisits2 = new HashSet<DoctorsPoleVisit>();
             this.HnppDatas = new HashSet<HnppData>();
             this.ProgramByUserProfiles = new HashSet<ProgramByUserProfile>();
             this.SummerizedDatas = new HashSet<SummerizedData>();
@@ -55,6 +56,7 @@ namespace AppProj.Domain
         public virtual ICollection<DoctorsPole> DoctorsPoles2 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits1 { get; set; }
+        public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits2 { get; set; }
         public virtual ICollection<HnppData> HnppDatas { get; set; }
         public virtual ICollection<ProgramByUserProfile> ProgramByUserProfiles { get; set; }
         public virtual Role Role { get; set; }

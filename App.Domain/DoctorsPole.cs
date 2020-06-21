@@ -101,10 +101,10 @@ namespace AppProj.Domain
         public virtual StandingData StandingData9 { get; set; }
         public virtual StandingData StandingData10 { get; set; }
         public virtual StandingData StandingData11 { get; set; }
+        public virtual StandingData StandingData12 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
         public virtual UserProfile UserProfile1 { get; set; }
         public virtual UserProfile UserProfile2 { get; set; }
         public virtual ICollection<DoctorsPoleVisit> DoctorsPoleVisits { get; set; }
-        public virtual StandingData StandingData41 { get; set; }
     }
 }

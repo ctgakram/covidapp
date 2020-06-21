@@ -22,6 +22,10 @@ namespace AppProj.Domain.ModelExt
         public int TotalHomeIsolation { get; set; }
         public int TotalHospitalized { get; set; }
         public int CurrentPositive { get; set; }
+        public int TotalDeath { get; set; }
+
+        public int TotalCall { get; set; }
+
         public List<DoctorPoleDashboardDetailModel> ProgramWiseCurrentPositiveCases { get; set; }
         public List<DoctorPoleDashboardDetailModel> AgeWiseCurrentPositiveCases { get; set; }
         public List<DoctorPoleDashboardDetailModel> DistrictWiseCurrentPositiveCases { get; set; }
