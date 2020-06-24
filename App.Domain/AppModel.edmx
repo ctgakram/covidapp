@@ -193,6 +193,15 @@
           <Property Name="PricePumpkin" Type="int" />
           <Property Name="PriceComment" Type="nvarchar" MaxLength="1024" />
           <Property Name="IsPriceUpdate" Type="bit" />
+          <Property Name="AgroLaborSalaryMale" Type="int" />
+          <Property Name="AgroLaborExpMale" Type="int" />
+          <Property Name="CarpenterSalaryMale" Type="int" />
+          <Property Name="CarpenterAssSalaryMale" Type="int" />
+          <Property Name="RickPullIncome" Type="int" />
+          <Property Name="RickPullExp" Type="int" />
+          <Property Name="AgroLaborSalaryFemale" Type="int" />
+          <Property Name="AgroLaborExpFemale" Type="int" />
+          <Property Name="CarpenterAssSalaryFemale" Type="int" />
         </EntityType>
         <EntityType Name="DistrictPatients">
           <Key>
@@ -293,6 +302,15 @@
           <Property Name="PriceChille" Type="int" />
           <Property Name="PricePumpkin" Type="int" />
           <Property Name="PriceComment" Type="nvarchar" MaxLength="1024" />
+          <Property Name="AgroLaborSalaryMale" Type="int" />
+          <Property Name="AgroLaborExpMale" Type="int" />
+          <Property Name="CarpenterSalaryMale" Type="int" />
+          <Property Name="CarpenterAssSalaryMale" Type="int" />
+          <Property Name="RickPullIncome" Type="int" />
+          <Property Name="RickPullExp" Type="int" />
+          <Property Name="AgroLaborSalaryFemale" Type="int" />
+          <Property Name="AgroLaborExpFemale" Type="int" />
+          <Property Name="CarpenterAssSalaryFemale" Type="int" />
         </EntityType>
         <EntityType Name="DoctorPoleCouncillings">
           <Key>
@@ -438,6 +456,7 @@
           <Property Name="IsolationOfficeId" Type="int" />
           <Property Name="DeathTime" Type="datetime" />
           <Property Name="CouncilorUserId" Type="int" />
+          <Property Name="KioskToken" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="Features">
           <Key>
@@ -471,6 +490,18 @@
           <Property Name="Leaflet" Type="int" Nullable="false" />
           <Property Name="Sticker" Type="int" Nullable="false" />
           <Property Name="InsertedById" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KioskQuotas">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AppKey" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="KioskId" Type="int" Nullable="false" />
+          <Property Name="DailyLimit" Type="int" Nullable="false" />
+          <Property Name="Available" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="EndTime" Type="time" Precision="7" Nullable="false" />
         </EntityType>
         <EntityType Name="MapSummary">
           <Key>
@@ -579,6 +610,7 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="512" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="16" />
         </EntityType>
         <EntityType Name="WorkstationLeaveQuarantine">
           <Key>
@@ -1738,6 +1770,7 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           <EntitySet Name="DoctorsPoleVisits" EntityType="Self.DoctorsPoleVisits" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Features" EntityType="Self.Features" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HnppData" EntityType="Self.HnppData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KioskQuotas" EntityType="Self.KioskQuotas" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MapSummary" EntityType="Self.MapSummary" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProgramByUserProfiles" EntityType="Self.ProgramByUserProfiles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RoleDefaultPages" EntityType="Self.RoleDefaultPages" Schema="dbo" store:Type="Tables" />
@@ -2637,6 +2670,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
+          <EntitySet Name="KioskQuotas" EntityType="AppModel.KioskQuota" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -3006,6 +3040,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_DistrictData_StandingDatas2" FromRole="DistrictData" ToRole="StandingData" />
           <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_DistrictData_StandingDatas3" FromRole="DistrictData" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DistrictData_UserProfiles" FromRole="DistrictData" ToRole="UserProfile" />
+          <Property Name="AgroLaborSalaryMale" Type="Int32" />
+          <Property Name="AgroLaborExpMale" Type="Int32" />
+          <Property Name="CarpenterSalaryMale" Type="Int32" />
+          <Property Name="CarpenterAssSalaryMale" Type="Int32" />
+          <Property Name="RickPullIncome" Type="Int32" />
+          <Property Name="RickPullExp" Type="Int32" />
+          <Property Name="AgroLaborSalaryFemale" Type="Int32" />
+          <Property Name="AgroLaborExpFemale" Type="Int32" />
+          <Property Name="CarpenterAssSalaryFemale" Type="Int32" />
         </EntityType>
         <EntityType Name="DistrictPatient">
           <Key>
@@ -3112,6 +3155,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData" Relationship="AppModel.FK_DistrictSummery_StandingDatas" FromRole="DistrictSummery" ToRole="StandingData" />
           <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_DistrictSummery_StandingDatas1" FromRole="DistrictSummery" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DistrictSummery_UserProfiles" FromRole="DistrictSummery" ToRole="UserProfile" />
+          <Property Name="AgroLaborSalaryMale" Type="Int32" />
+          <Property Name="AgroLaborExpMale" Type="Int32" />
+          <Property Name="CarpenterSalaryMale" Type="Int32" />
+          <Property Name="CarpenterAssSalaryMale" Type="Int32" />
+          <Property Name="RickPullIncome" Type="Int32" />
+          <Property Name="RickPullExp" Type="Int32" />
+          <Property Name="AgroLaborSalaryFemale" Type="Int32" />
+          <Property Name="AgroLaborExpFemale" Type="Int32" />
+          <Property Name="CarpenterAssSalaryFemale" Type="Int32" />
         </EntityType>
         <EntityType Name="DoctorPoleCouncilling">
           <Key>
@@ -3294,6 +3346,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles1" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile2" Relationship="AppModel.FK_DoctorsPoleVisits_UserProfiles2" FromRole="DoctorsPoleVisit" ToRole="UserProfile" />
+          <Property Name="KioskToken" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Feature">
           <Key>
@@ -3532,6 +3585,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="ProgramByUserProfiles" Relationship="AppModel.FK_ProgramByUserProfiles_UserProfiles" FromRole="UserProfile" ToRole="ProgramByUserProfile" />
           <NavigationProperty Name="Role" Relationship="AppModel.FK_dbo_UserProfiles_dbo_Roles_RoleId" FromRole="UserProfile" ToRole="Role" />
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_UserProfiles" FromRole="UserProfile" ToRole="SummerizedData" />
+          <Property Name="MobileNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="WorkstationLeaveQuarantine">
           <Key>
@@ -4655,6 +4709,18 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="KioskQuota">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AppKey" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="KioskId" Type="Int32" Nullable="false" />
+          <Property Name="DailyLimit" Type="Int32" Nullable="false" />
+          <Property Name="Available" Type="Int32" Nullable="false" />
+          <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4819,6 +4885,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DistrictDatas">
             <EntityTypeMapping TypeName="AppModel.DistrictData">
               <MappingFragment StoreEntitySet="DistrictData">
+                <ScalarProperty Name="CarpenterAssSalaryFemale" ColumnName="CarpenterAssSalaryFemale" />
+                <ScalarProperty Name="AgroLaborExpFemale" ColumnName="AgroLaborExpFemale" />
+                <ScalarProperty Name="AgroLaborSalaryFemale" ColumnName="AgroLaborSalaryFemale" />
+                <ScalarProperty Name="RickPullExp" ColumnName="RickPullExp" />
+                <ScalarProperty Name="RickPullIncome" ColumnName="RickPullIncome" />
+                <ScalarProperty Name="CarpenterAssSalaryMale" ColumnName="CarpenterAssSalaryMale" />
+                <ScalarProperty Name="CarpenterSalaryMale" ColumnName="CarpenterSalaryMale" />
+                <ScalarProperty Name="AgroLaborExpMale" ColumnName="AgroLaborExpMale" />
+                <ScalarProperty Name="AgroLaborSalaryMale" ColumnName="AgroLaborSalaryMale" />
                 <ScalarProperty Name="IsPriceUpdate" ColumnName="IsPriceUpdate" />
                 <ScalarProperty Name="PriceComment" ColumnName="PriceComment" />
                 <ScalarProperty Name="PricePumpkin" ColumnName="PricePumpkin" />
@@ -4915,6 +4990,15 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DistrictSummeries">
             <EntityTypeMapping TypeName="AppModel.DistrictSummery">
               <MappingFragment StoreEntitySet="DistrictSummery">
+                <ScalarProperty Name="CarpenterAssSalaryFemale" ColumnName="CarpenterAssSalaryFemale" />
+                <ScalarProperty Name="AgroLaborExpFemale" ColumnName="AgroLaborExpFemale" />
+                <ScalarProperty Name="AgroLaborSalaryFemale" ColumnName="AgroLaborSalaryFemale" />
+                <ScalarProperty Name="RickPullExp" ColumnName="RickPullExp" />
+                <ScalarProperty Name="RickPullIncome" ColumnName="RickPullIncome" />
+                <ScalarProperty Name="CarpenterAssSalaryMale" ColumnName="CarpenterAssSalaryMale" />
+                <ScalarProperty Name="CarpenterSalaryMale" ColumnName="CarpenterSalaryMale" />
+                <ScalarProperty Name="AgroLaborExpMale" ColumnName="AgroLaborExpMale" />
+                <ScalarProperty Name="AgroLaborSalaryMale" ColumnName="AgroLaborSalaryMale" />
                 <ScalarProperty Name="PriceComment" ColumnName="PriceComment" />
                 <ScalarProperty Name="PricePumpkin" ColumnName="PricePumpkin" />
                 <ScalarProperty Name="PriceChille" ColumnName="PriceChille" />
@@ -5096,6 +5180,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DoctorsPoleVisits">
             <EntityTypeMapping TypeName="AppModel.DoctorsPoleVisit">
               <MappingFragment StoreEntitySet="DoctorsPoleVisits">
+                <ScalarProperty Name="KioskToken" ColumnName="KioskToken" />
                 <ScalarProperty Name="CouncilorUserId" ColumnName="CouncilorUserId" />
                 <ScalarProperty Name="DeathTime" ColumnName="DeathTime" />
                 <ScalarProperty Name="IsolationOfficeId" ColumnName="IsolationOfficeId" />
@@ -5283,6 +5368,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="UserProfiles">
             <EntityTypeMapping TypeName="AppModel.UserProfile">
               <MappingFragment StoreEntitySet="UserProfiles">
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
@@ -5343,6 +5429,19 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KioskQuotas">
+            <EntityTypeMapping TypeName="AppModel.KioskQuota">
+              <MappingFragment StoreEntitySet="KioskQuotas">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="DailyLimit" ColumnName="DailyLimit" />
+                <ScalarProperty Name="KioskId" ColumnName="KioskId" />
+                <ScalarProperty Name="AppKey" ColumnName="AppKey" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

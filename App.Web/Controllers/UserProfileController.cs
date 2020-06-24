@@ -108,6 +108,7 @@ namespace AppProj.Web.Controllers
             else //update
             {
                 login.UserName = model.UserName;
+                login.MobileNo = model.MobileNo;
                 login.EmailAddress = model.EmailAddress;
                 login.RoleId = model.RoleId;
 

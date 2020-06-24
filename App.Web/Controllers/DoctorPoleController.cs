@@ -12,6 +12,11 @@ using AppProj.Web.ViewModels;
 using Microsoft.Web.Mvc;
 using static AppProj.Web.StandingDataTypes;
 using AppProj.Domain.ModelExt;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Configuration;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace AppProj.Web.Controllers
 {
@@ -32,7 +37,7 @@ namespace AppProj.Web.Controllers
   12 > AdmittedTypeId
          */
     [Authorize]
-    [CustomAuthorize(Roles : new string[] { "DoctorPool_HR"
+    [CustomAuthorize(Roles: new string[] { "DoctorPool_HR"
         , "DoctorPool_Doc"
         , "DoctorPool_Suspect"
         , "DoctorPool_Admin"
@@ -41,13 +46,17 @@ namespace AppProj.Web.Controllers
     {
         readonly IDoctorsPoleService service;
         readonly IStandingDataService standingDataService;
+        readonly IUserProfileService userProfile;
         readonly IUnitOfWork unitOfWork;
 
-        public DoctorPoleController(IDoctorsPoleService service, IStandingDataService standingDataService
+        public DoctorPoleController(IDoctorsPoleService service
+            , IStandingDataService standingDataService
+            , IUserProfileService userProfile
             , UnitOfWork unitOfWork)
         {
             this.service = service;
             this.standingDataService = standingDataService;
+            this.userProfile = userProfile;
             this.unitOfWork = unitOfWork;
         }
 
@@ -191,7 +200,7 @@ namespace AppProj.Web.Controllers
                     model.DivisionList = div.ToSelectList(fd, "Id", "Name");
 
                 }
-                               
+
 
                 model.Name = staff.StaffName;
                 model.StaffName = staff.StaffName;
@@ -216,11 +225,11 @@ namespace AppProj.Web.Controllers
             //    .Where(r => r.IsActive)
             //    .OrderBy(c => c.Name);
             //model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
-            
+
             return PartialView(model);
         }
 
-        [CustomAuthorize(Roles: new string[] { "DoctorPool_Admin"})]
+        [CustomAuthorize(Roles: new string[] { "DoctorPool_Admin" })]
         public ActionResult Edit(int Id)
         {
             DoctorsPoleModel model = new DoctorsPoleModel();
@@ -246,7 +255,7 @@ namespace AppProj.Web.Controllers
                     .Where(r => r.IsActive)
                     .OrderBy(c => c.IntValue);
             model.EffectedPersonList = eff.ToSelectList(null, "Id", "Name");
-            
+
             return PartialView("Edit", model);
         }
 
@@ -287,9 +296,9 @@ namespace AppProj.Web.Controllers
 
             if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
             {
-                return RedirectToAction("Followup", new { id = entity.Id });                
+                return RedirectToAction("Followup", new { id = entity.Id });
             }
-            
+
             return PartialView();
         }
 
@@ -375,7 +384,7 @@ namespace AppProj.Web.Controllers
 
             var stst = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
                 .Where(r => r.IsActive)
-                .OrderBy(c=> c.IntValue);
+                .OrderBy(c => c.IntValue);
             model.StatusList = stst.ToSelectList(model.DoctorsPole.StatusId, "Id", "Name");
 
             var ts = standingDataService.GetByType(StandingDataTypes.Doctor_TestResult).Where(r => r.IsActive);
@@ -383,7 +392,7 @@ namespace AppProj.Web.Controllers
 
             var ad = standingDataService.GetByType(StandingDataTypes.Doctor_AdmissionType).Where(r => r.IsActive);
             model.AdminTypeList = ad.ToSelectList(null, "Id", "Name");
-                        
+
             model.DoctorsPoleVisits = service.GetVisitsByParent(id).ToList();
 
             var co = standingDataService.GetByType(StandingDataTypes.Doctor_CoMorbidity).Where(r => r.IsActive);
@@ -412,7 +421,7 @@ namespace AppProj.Web.Controllers
 
             model.DoctorPoleId = id;
 
-            List<SelectListItem> lst = new List<SelectListItem>(); 
+            List<SelectListItem> lst = new List<SelectListItem>();
             lst.Add(new SelectListItem { Text = "After 1 day", Value = "1" });
             lst.Add(new SelectListItem { Text = "After 3 days", Value = "3" });
             lst.Add(new SelectListItem { Text = "After 5 days", Value = "5" });
@@ -429,6 +438,7 @@ namespace AppProj.Web.Controllers
                 .OrderBy(c => c.Name);
             model.IsolationOffices = ofc.ToSelectList(null, "Id", "Name");
 
+
             return PartialView(model);
         }
 
@@ -440,13 +450,13 @@ namespace AppProj.Web.Controllers
             DateTime oldEt = entity.EntryTime;
             DateTime oldFst = entity.FirstDoctorCallTime ?? DateTime.Now;
 
-            string comobStr = string.Join(", ", model.CoMobiList.Where(d=>d.Selected).Select(c => c.Text).ToArray());
+            string comobStr = string.Join(", ", model.CoMobiList.Where(d => d.Selected).Select(c => c.Text).ToArray());
 
             if (model.FollowupAfterDays == -1)
             {
                 model.FollowupAfterDays = 36500;
             }
-            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays??0);
+            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays ?? 0);
 
             ModelCopier.CopyModel(model, entity);
 
@@ -472,7 +482,7 @@ namespace AppProj.Web.Controllers
 
             service.DeleteVisitDetailAllByParent(entityVisit.Id);
 
-            foreach(var r in model.CoMobiList)
+            foreach (var r in model.CoMobiList)
             {
                 if (r.Selected)
                 {
@@ -565,7 +575,7 @@ namespace AppProj.Web.Controllers
                 model.FollowupAfterDays = 36500;
             }
 
-            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays??0);
+            entity.NextFollowupDate = DateTime.Now.AddDays(model.FollowupAfterDays ?? 0);
 
             ModelCopier.CopyModel(model, entity);
 
@@ -574,7 +584,7 @@ namespace AppProj.Web.Controllers
             entity.EntryById = oldEb;
             entity.EntryTime = oldEt;
             entity.FirstDoctorCallTime = oldFst;
-            
+
             service.Update(entity);
 
             unitOfWork.Commit();
@@ -602,7 +612,7 @@ namespace AppProj.Web.Controllers
 
             var co = new List<StandingData>();
 
-            if(visibleDoc || visibleCouncil)
+            if (visibleDoc || visibleCouncil)
             {
                 co = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
                     .Where(c => (c.IntValue == 0 || c.IntValue == 1 || c.IntValue == 2 || c.IntValue == 3))
@@ -637,7 +647,7 @@ namespace AppProj.Web.Controllers
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
             int skip = int.Parse(Request.QueryString["iDisplayStart"]);
-            
+
             if (take == -1) { take = 100000000; skip = 0; }
 
             string tmpSts = Request.QueryString["StatusIds"];
@@ -686,7 +696,7 @@ namespace AppProj.Web.Controllers
 
             int count = 0;
             IEnumerable<DoctorsPole> dataList = service.GetFollowup(effectedTypeId, srcId, divId, disId, statusIds, skip, take, out count);
-                        
+
 
             var obj = (from c in dataList
                        select new object[] {
@@ -741,8 +751,8 @@ namespace AppProj.Web.Controllers
 
             var co = standingDataService.GetByType(StandingDataTypes.Doctor_Status)
                 .Where(r => r.IsActive)
-                .OrderBy(c=> c.IntValue);
-            up.StatusList = co.ToSelectList(null, "Id", "Name").ToList();            
+                .OrderBy(c => c.IntValue);
+            up.StatusList = co.ToSelectList(null, "Id", "Name").ToList();
             //up.StatusList.ForEach(c => c.Selected = true);
 
 
@@ -762,7 +772,7 @@ namespace AppProj.Web.Controllers
             int ec = int.Parse(Request.QueryString["sEcho"]);
             int take = int.Parse(Request.QueryString["iDisplayLength"]);
             int skip = int.Parse(Request.QueryString["iDisplayStart"]);
-            
+
             string txt = Request.QueryString["SearchText"];
             string tmpSts = Request.QueryString["StatusIds"];
             string dateType = Request.QueryString["dateType"];
@@ -778,7 +788,7 @@ namespace AppProj.Web.Controllers
                     isStaffOnly = true;
                 }
             }
-            
+
             if (take == -1) { take = 100000000; skip = 0; }
 
             int? srcId = null;
@@ -818,9 +828,9 @@ namespace AppProj.Web.Controllers
                     .FirstOrDefault().Id;
             }
             int count = 0;
-            IEnumerable<DoctorsPole> dataList = service.Get(effectedTypeId, srcId, divId, disId, FromDate, ToDate, dateType, statusIds,txt, skip, take,  out count);
+            IEnumerable<DoctorsPole> dataList = service.Get(effectedTypeId, srcId, divId, disId, FromDate, ToDate, dateType, statusIds, txt, skip, take, out count);
 
-            
+
             var obj = (from c in dataList
                        select new object[] {
                         c.StandingData7==null?"":c.StandingData7.Name
@@ -833,10 +843,10 @@ namespace AppProj.Web.Controllers
                         ,c.Designation
                        ,c.StandingData1==null?"":c.StandingData1.Name
                        ,c.StandingData6==null?"":c.StandingData6.Name
-                       ,c.AreaOffice                       
+                       ,c.AreaOffice
                        ,c.StandingData12==null?"" : (c.StandingData12.Name + " "+c.HospitalName)
                        ,c.AlternateName + "<br />" +c.AlternatePhoneNo
-                       
+
                        ,String.Format("{0:dd MMM, yyyy}", c.NextFollowupDate)
                        //,c.UserProfile2==null?"":c.UserProfile2.UserName
                        //,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
@@ -880,11 +890,11 @@ namespace AppProj.Web.Controllers
         {
             var entity = service.Get(model.DoctorPoleId);
 
-            entity.CouncilorUserId= SessionHelper.UserId;
+            entity.CouncilorUserId = SessionHelper.UserId;
             entity.LastCouncilingDate = DateTime.Now;
 
             service.Update(entity);
-            
+
 
             DoctorPoleCouncilling entityC = new DoctorPoleCouncilling();
 
@@ -892,8 +902,8 @@ namespace AppProj.Web.Controllers
             entityC.Advice = model.AdviceTxt;
             entityC.Comment = model.AntibioticTxt;
 
-            entityC.InsertedById= SessionHelper.UserId;
-            entityC.InsertionTime= DateTime.Now;
+            entityC.InsertedById = SessionHelper.UserId;
+            entityC.InsertionTime = DateTime.Now;
 
             service.AddCounciling(entityC);
 
@@ -932,5 +942,143 @@ namespace AppProj.Web.Controllers
             return standingDataService.GetProject(program).Id;
         }
 
+        public JsonResult CallForToken(int kioskId)
+        {
+            ApplicantApiReturnModel model = new ApplicantApiReturnModel();
+            string key = ConfigurationManager.AppSettings.Get("kiosk_doctor");
+
+            var user = userProfile.GetDataById(SessionHelper.UserId);
+
+            if(String.IsNullOrEmpty(user.MobileNo) && String.IsNullOrEmpty(user.EmailAddress))
+            {
+                model.Success = false;
+                model.Message = "Please update mobile number / email at your profile. For generating token you will have an OTP at email/mobile";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+
+            var entity = service.GetKiosk(key, kioskId);
+
+            if (entity == null)
+            {
+                model.Success = false;
+                model.Message = "Daily quota has exceed for this user";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+
+
+            if (entity.Available > 0)
+            {
+                entity.Available--;
+                service.UpdateKioskQuota(entity);
+                unitOfWork.Commit();
+
+                var entity1 = service.GetKiosk(key, kioskId);
+
+                if (entity1.Available < 0)
+                {
+                    entity1.Available++;
+                    service.UpdateKioskQuota(entity1);
+                    unitOfWork.Commit();
+
+                    model.Success = false;
+                    model.Message = "Daily quota has exceed for this user";
+                    return Json(model, JsonRequestBehavior.AllowGet);
+                }
+            }
+
+            
+            string URL = "https://coronatest.brac.net/api/appointment";
+            string urlParameters = "?key=" + key + "&kioskId=" + kioskId + "&mobileNo=" + user.MobileNo + "&email=" + user.EmailAddress;
+
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(URL);
+
+            // Add an Accept header for JSON format.
+            client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // List data response.
+            HttpResponseMessage response = client.GetAsync(urlParameters).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
+            if (response.IsSuccessStatusCode)
+            {
+                // Parse the response body.
+
+                try
+                {
+                    model = response.Content.ReadAsAsync<ApplicantApiReturnModel>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
+
+                }
+                catch
+                {
+
+                }
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+                
+        public JsonResult GetToken(int kioskId, string otpKey, string otp, int profileId)
+        {
+            ApplicantApiReturnModel model = new ApplicantApiReturnModel();
+
+            string key = ConfigurationManager.AppSettings.Get("kiosk_doctor");
+
+            var dp = service.Get(profileId);
+
+            var user = userProfile.GetDataById(SessionHelper.UserId);
+            var profile = service.Get(profileId);
+
+            ApplicantPost post = new ApplicantPost();
+
+            post.Age = profile.Age ?? 0;
+            post.BloodGroupId = profile.StandingData4 == null ? 861792 : (profile.StandingData4.IntValue ?? 861792);
+            post.Email = "";
+            post.GenderId = profile.StandingData == null ? 861741 : (profile.StandingData.IntValue ?? 861741); 
+            post.Key= ConfigurationManager.AppSettings.Get("kiosk_doctor");
+            post.KioskId = kioskId;
+            post.MobileNo = profile.MobileNo;
+            post.Name = profile.Name;
+            post.OTP = otp;
+            post.OtpKey = otpKey;
+            post.RelationId = 861789;
+            post.Staff_Program = profile.StandingData1 == null ? "" : profile.StandingData1.Name;
+
+            post.HrEmail= ConfigurationManager.AppSettings.Get("kiosk_hr_email");
+            post.By_Name = user.UserName;
+
+            var json = JsonConvert.SerializeObject(post);
+            var data = new StringContent(json, Encoding.UTF8, "application/json");
+
+            string URL = "https://coronatest.brac.net/api/appointment";
+            
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(URL);
+
+            // Add an Accept header for JSON format.
+            client.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+
+            // List data response.
+            HttpResponseMessage response = client.PostAsync(URL, data).Result;//client.GetAsync(urlParameters).Result;  // Blocking call! Program will wait here until a response is received or a timeout occurs.
+            if (response.IsSuccessStatusCode)
+            {
+                // Parse the response body.
+
+                try
+                {
+                    model = response.Content.ReadAsAsync<ApplicantApiReturnModel>().Result;  //Make sure to add a reference to System.Net.Http.Formatting.dll
+
+                }
+                catch
+                {
+
+                }
+            }
+
+            return Json(model, JsonRequestBehavior.AllowGet);
+        }
+
     }
+
+    
 }

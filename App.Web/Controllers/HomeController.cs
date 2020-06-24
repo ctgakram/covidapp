@@ -89,20 +89,6 @@ namespace AppProj.Web.Controllers
 
         public ActionResult Login()
         {
-
-            //temp
-            //if (IsAuthorised("154211"))
-            //{
-            //    return Redirect("~/" + SessionHelper.DefaultPage);
-            //}
-
-            //SessionHelper.UserName = "Admin";
-            //SessionHelper.UserId = 3;
-            //SessionHelper.UnitId = 1;
-            ////SessionHelper.DateFormat = "dd MMM, yyyy";
-            //return Redirect("~/Main");
-
-
             var encriptData = string.Empty;
             if (Request.QueryString[SsoUtility.SsoToken] != null)
             {

@@ -42,6 +42,7 @@ namespace AppProj.Domain
         public int RoleId { get; set; }
         public bool IsActive { get; set; }
         public string Password { get; set; }
+        public string MobileNo { get; set; }
     
         public virtual ICollection<BEPData> BEPDatas { get; set; }
         public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }

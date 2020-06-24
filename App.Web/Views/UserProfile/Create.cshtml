@@ -26,81 +26,95 @@
                 @Html.ValidationSummary(true)
                 @Html.HiddenFor(model => model.Id)
                 @Html.HiddenFor(model => model.Photo)
-                <table class="text tbluser" border="0" cellpadding="4" cellspacing="3" width="100%">
-                    <tr>
-                        <td class="title">
-                            @Html.LabelFor(model => model.Pin)
-                        </td>
-                        <td class="control">
-                            @if (Model.Id <= 0)
-                            {
-                                @Html.TextBoxFor(model => model.Pin, new { @class = "input-group form-control" })
-                                @Html.ValidationMessageFor(model => model.Pin)
-                            }
-                            else
-                            {
-                                @Html.DisplayFor(model => model.Pin, new { @class = "input-group form-control" })
-                                @Html.HiddenFor(model => model.Pin)
-                            }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            @Html.LabelFor(model => model.UserName)
-                        </td>
-                        <td class="control">
-                            @Html.TextBoxFor(model => model.UserName, new { @class = "input-group form-control" })
-                            @Html.ValidationMessageFor(model => model.UserName)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            @Html.LabelFor(model => model.EmailAddress)
-                        </td>
-                        <td class="control">
-                            @Html.TextBoxFor(model => model.EmailAddress, new { @class = "input-group form-control" })
-                            @Html.ValidationMessageFor(model => model.EmailAddress)
+            <table class="text tbluser" border="0" cellpadding="4" cellspacing="3" width="100%">
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.Pin)
+                    </td>
+                    @*<td class="control">
+                        @if (Model.Id <= 0)
+                        {
+                            @Html.TextBoxFor(model => model.Pin, new { @class = "input-group form-control" })
+                            @Html.ValidationMessageFor(model => model.Pin)
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(model => model.Pin, new { @class = "input-group form-control" })
+                            @Html.HiddenFor(model => model.Pin)
+                        }
+                    </td>*@
+                    <td class="control">
+                        @Html.TextBoxFor(model => model.Pin, new { @class = "input-group form-control" })
+                        @Html.ValidationMessageFor(model => model.Pin)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.UserName)
+                    </td>
+                    <td class="control">
+                        @Html.TextBoxFor(model => model.UserName, new { @class = "input-group form-control" })
+                        @Html.ValidationMessageFor(model => model.UserName)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.EmailAddress)
+                    </td>
+                    <td class="control">
+                        @Html.TextBoxFor(model => model.EmailAddress, new { @class = "input-group form-control" })
+                        @Html.ValidationMessageFor(model => model.EmailAddress)
 
-                        </td>
-                    </tr>
-                    <tr class="trpass" style="display:none;">
-                        <td class="title">
-                            @Html.LabelFor(model => model.Password)
-                        </td>
-                        <td class="control">
-                            @Html.PasswordFor(model => model.Password)
-                            @Html.ValidationMessageFor(model => model.Password)
-                        </td>
-                    </tr>
-                    <tr class="trpass" style="display:none;">
-                        <td class="title">
-                            @Html.LabelFor(model => model.ConfirmNewPassword)
-                        </td>
-                        <td class="control">
-                            @Html.PasswordFor(model => model.ConfirmNewPassword)
-                            @Html.ValidationMessageFor(model => model.ConfirmNewPassword)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            @Html.LabelFor(model => model.RoleId)
-                        </td>
-                        <td class="control">
-                            @Html.DropDownListFor(model => model.RoleId, Model.Roles, new { @class = "searchable-dropdown form-control" })
-                            @Html.ValidationMessageFor(model => model.RoleId)
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="title">
-                            @Html.LabelFor(model => model.IsActive)
-                        </td>
-                        <td class="control">
-                            @Html.CheckBoxFor(model => model.IsActive)
-                            @Html.ValidationMessageFor(model => model.IsActive)
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.MobileNo)
+                    </td>
+                    <td class="control">
+                        @Html.TextBoxFor(model => model.MobileNo, new { @class = "input-group form-control" })
+                        @Html.ValidationMessageFor(model => model.MobileNo)
 
-                </table>
+                    </td>
+                </tr>
+                <tr class="trpass" style="display:none;">
+                    <td class="title">
+                        @Html.LabelFor(model => model.Password)
+                    </td>
+                    <td class="control">
+                        @Html.PasswordFor(model => model.Password)
+                        @Html.ValidationMessageFor(model => model.Password)
+                    </td>
+                </tr>
+                <tr class="trpass" style="display:none;">
+                    <td class="title">
+                        @Html.LabelFor(model => model.ConfirmNewPassword)
+                    </td>
+                    <td class="control">
+                        @Html.PasswordFor(model => model.ConfirmNewPassword)
+                        @Html.ValidationMessageFor(model => model.ConfirmNewPassword)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.RoleId)
+                    </td>
+                    <td class="control">
+                        @Html.DropDownListFor(model => model.RoleId, Model.Roles, new { @class = "searchable-dropdown form-control" })
+                        @Html.ValidationMessageFor(model => model.RoleId)
+                    </td>
+                </tr>
+                <tr>
+                    <td class="title">
+                        @Html.LabelFor(model => model.IsActive)
+                    </td>
+                    <td class="control">
+                        @Html.CheckBoxFor(model => model.IsActive)
+                        @Html.ValidationMessageFor(model => model.IsActive)
+                    </td>
+                </tr>
+
+            </table>
                 <div class="control mt-3">
                     <p>
                         <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
@@ -138,7 +152,8 @@
                     rows.filter('.trpass').hide();
                     $("#UserName").val(data.StaffName);
                     $("#EmailAddress").val(data.EmailID);
-                   
+                    $("#MobileNo").val(data.MobileNo);
+
                     //var d = new Date(parseInt(data.DOB.substr(6)));
                     //$("#dob").val(d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear());
 
@@ -176,7 +191,8 @@
                 },
                 success: function (data) {
                     $("#UserName").val(data.Fname + ' ' + data.Mname + ' ' + data.Lname);
-                    $("#EmailAddress").val(data.Email);
+                    $("#EmailAddress").val(data.EmailID);
+                    $("#MobileNo").val(data.MobileNo);
                     
                     var d = new Date(parseInt(data.DOB.substr(6)));
                     $("#dob").val(d.getDate() + '-' + (d.getMonth() + 1) + '-' + d.getFullYear());

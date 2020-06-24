@@ -82,6 +82,7 @@ namespace AppProj.Web
                 .RegisterType<IDoctorPoleStatusesRepository, DoctorPoleStatusesRepository>(new HttpContextLifetimeManager<IDoctorPoleStatusesRepository>())
                 .RegisterType<IDoctorPoleCouncillingRepository, DoctorPoleCouncillingRepository>(new HttpContextLifetimeManager<IDoctorPoleCouncillingRepository>())
                 .RegisterType<IWorkstationLeaveQuarantineRepository, WorkstationLeaveQuarantineRepository>(new HttpContextLifetimeManager<IWorkstationLeaveQuarantineRepository>())
+                .RegisterType<IKioskQuotaRepository, KioskQuotaRepository>(new HttpContextLifetimeManager<IKioskQuotaRepository>())
 
                 .RegisterType<IDistrictByUserProfileService, DistrictByUserProfileService>(new HttpContextLifetimeManager<IDistrictByUserProfileService>())
                 .RegisterType<IFeatureService, FeatureService>(new HttpContextLifetimeManager<IFeatureService>())

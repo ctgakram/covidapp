@@ -28,6 +28,12 @@ namespace AppProj.Web.Models
         [RegularExpression("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", ErrorMessage = "Invalid Email Address")]
         public string EmailAddress { get; set; }
 
+        
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{5})$",
+                   ErrorMessage = "*")]
+        [Display(Name = "Mobile Number")]
+        public string MobileNo { get; set; }
+
         [Required(ErrorMessage = "Please Insert Password")]
         [Display(Name = "Current Password")]
         [MaxLength(100)]

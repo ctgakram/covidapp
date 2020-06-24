@@ -115,6 +115,9 @@
     <Compile Include="HnppData.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="KioskQuota.cs">
+      <DependentUpon>AppModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="MapSummary.cs">
       <DependentUpon>AppModel.tt</DependentUpon>
     </Compile>

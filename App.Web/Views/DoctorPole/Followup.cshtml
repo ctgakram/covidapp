@@ -18,6 +18,7 @@
     @Html.ValidationSummary(true)
 
     @Html.HiddenFor(m => m.DoctorPoleId)
+    @Html.HiddenFor(m => m.KioskToken)
 
 
     <button type="button" class="collapsible">@{var v5 = Model.DoctorsPole.StandingData7 == null ? "" : Model.DoctorsPole.StandingData7.Name;} @v5  <span style="font-size:11px;"> @Model.DoctorsPole.StaffName (PIN : @Model.DoctorsPole.PIN)</span></button>
@@ -378,11 +379,12 @@
                         @Html.ValidationMessageFor(model => model.DeathTime)
                     </div>
                 </th>
-                <th>
+                <td>
                     <div class="tokendiv">
-                        Request for Token
+                        <a href="#" id="btnOtp" class="btn btn-danger">Request for Token</a>
+                        <span id="token"></span>
                     </div>
-                </th>
+                </td>
                 <th>
                     Next Followup
                     @Html.DropDownListFor(model => model.FollowupAfterDays, Model.FollowupAfterDaysList, "Please select next follow up days")
@@ -395,9 +397,72 @@
     </div>
 }
 
+
+
 <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
+
+        $("#btnOtp").die('click').live('click', function () {
+
+            $.ajax({
+                type: "GET",
+                data: {
+                    "kioskId": 861837
+                },
+                url: '@Url.Action("CallForToken")',
+                dataType: "json",
+                crossOrigin: true,
+                async: false,
+                success: function (data) {
+                    if (data.Success) {
+                        $('#btnOtp').hide();
+
+                        var otp = window.prompt("An OTP has given to your mobile/email. Please Enter OTP Here", "");
+
+                        GetToken(data.OtpKey, otp);
+                    }
+                    else {
+                        alert(data.Message);
+                    }
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+
+        });
+
+
+        function GetToken(otpKey, otp) {
+            $.ajax({
+                type: "GET",
+                data: {
+                    "kioskId": 861837,
+                    "otpKey": otpKey,
+                    "otp": otp,
+                    "profileId": $('#DoctorPoleId').val()
+                },
+                url: '@Url.Action("GetToken")',
+                dataType: "json",
+                crossOrigin: true,
+                async: false,
+                success: function (data) {
+                    if (data.Success) {
+                        alert('Token has given to the patient\'s mobile number and email ');
+                        $('#token').html(data.Message);
+                        $("#KioskToken").val(data.Message);
+                    }
+                    else {
+                        alert(data.Message);
+                    }
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
+        }
+
 
         $("#save-submit").click(function () {
 
@@ -494,7 +559,7 @@
                 $(".deathdiv").show();
                 $(".tokendiv").hide();
             }
-            else if (v == 862671) { //recommandent for test
+            else if (v == 862671 || v == 861702) { //recommandent for test
                 $(".deathdiv").hide();
                 $(".tokendiv").show();
             }
@@ -576,7 +641,9 @@
             startDate: null
         });
 
-
+        function btnOtpClick() {
+            alert('ok');
+        }
     });
 </script>
 
