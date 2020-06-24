@@ -1,5 +1,7 @@
 ﻿@{
     Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    ViewBag.layoutTop = true;
+    ViewBag.layoutLeft = true;
     var ajaxOpt = new AjaxOptions
     {
         HttpMethod = "GET",
@@ -39,9 +41,7 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-
             var btns = {
-                
             };
 
             /*data grid initializer*/
@@ -53,7 +53,8 @@
             , btns   //buttons are at these columns
             , true
             );
-
+            $(".long-nav-items-wrapper.col-lg-9 a").removeClass("active");
+            $(".long-nav-items-wrapper.col-lg-9 a[href='/StandingView/Index/SRC']").addClass("active");
         });
     </script>
 }

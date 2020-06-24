@@ -1,12 +1,13 @@
 ﻿@model AppProj.Domain.ModelExt.DoctorPoleDashboardModel
 @{
     ViewBag.Title = "COVID Response";
-    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    //Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
     string act = "";
 }
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
         <ul class="breadcrumb">
             <li>
                 <h2 class="textPrimary">
@@ -17,20 +18,20 @@
 
     </div>
 </div>
-<div class="row-fluid">
+<div class="row">
 
-    <div class="span12">
+    <div class="col-lg-12">
 
-        <div class="row-fluid">
+        <div class="row">
 
-            <div class="span4">
+            <div class="col-lg-4">
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>Program wise cases</span>
                             </div>
 
@@ -69,12 +70,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>District wise more than 2 Cases</span>
                             </div>
 
@@ -113,12 +114,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>Male-Female Ratio</span>
                             </div>
 
@@ -157,12 +158,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>Age breakdown</span>
                             </div>
 
@@ -203,14 +204,14 @@
 
             </div><!-- Mid panel -->
 
-            <div class="span4">
+            <div class="col-lg-4">
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>Call Records</span>
                             </div>
 
@@ -224,12 +225,12 @@
                                         <col class="utopia-col-0">
                                         <col class="utopia-col-1">
                                         <col class="utopia-col-0">
-                                    </colgroup>                                    
+                                    </colgroup>
                                     <tbody>
                                         <tr>
                                             <th>Total Call</th>
                                             <td>@Model.TotalCall</td>
-                                            
+
                                         </tr>
                                     </tbody>
                                 </table>
@@ -237,11 +238,11 @@
                             </div>
                         </section>
                     </div>
-                    <div class="span12">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/group.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/group.png">
                                 <span>District wise cases</span>
                             </div>
 
@@ -283,14 +284,14 @@
             </div>
 
 
-            <div class="span4">
+            <div class="col-lg-4">
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/checkmark.png">
                                 <span>Total Figures</span>
                             </div>
 
@@ -353,12 +354,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/checkmark.png">
                                 <span>Program wise positive cases</span>
                             </div>
 
@@ -397,12 +398,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/checkmark.png">
                                 <span>District wise positive cases</span>
                             </div>
 
@@ -441,12 +442,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/checkmark.png">
                                 <span>Male-Female ration of positive cases</span>
                             </div>
 
@@ -485,12 +486,12 @@
                     </div>
                 </div>
 
-                <div class="row-fluid">
-                    <div class="span12">
+                <div class="row">
+                    <div class="col-lg-12">
 
                         <section class="utopia-widget">
                             <div class="utopia-widget-title">
-                                <img src="~/Content/img/icons2/checkmark.png" class="utopia-widget-icon">
+                                <img class="tel-com-dashboard-img" src="~/Content/img/icons2/checkmark.png">
                                 <span>Age breakdown of positive cases</span>
                             </div>
 
@@ -540,11 +541,9 @@
     <script type="text/javascript" src="~/Scripts/js/jquery.sparkline.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-
-
+            $(".sidebar-item").removeClass("active");
+            $("#tel_dashboard").addClass("active");
+            $("#telemedicine").css("display", "block");
         });
-
-
-
     </script>
 }

@@ -1,10 +1,13 @@
 ﻿@model IEnumerable<AppProj.Domain.StandingData>
 @{
     ViewBag.Title = "COVID Response";
-    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    ViewBag.page = "GisMap";
+    ViewBag.layoutTop = true;
+    ViewBag.layoutLeft = false;
 }
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
         <ul class="breadcrumb">
             <li>
                 <h2 class="textPrimary">
@@ -26,8 +29,8 @@
 @section scripts{
     <script type="text/javascript">
         $(document).ready(function () {
-
-
+            $(".long-nav-items-wrapper.col-lg-9 a").removeClass("active");
+            $(".long-nav-items-wrapper.col-lg-9 a[href='/Main/GisMap']").addClass("active");
         });
 
 

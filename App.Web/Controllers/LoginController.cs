@@ -40,7 +40,7 @@ namespace AppProj.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index(LogOnModel model)
+        public ActionResult Login(LogOnModel model)
         {
             if (IsAuthorised(model.user, ""+model.password))
             {

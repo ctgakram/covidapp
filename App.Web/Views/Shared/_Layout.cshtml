@@ -37,7 +37,7 @@
                     <div class="span6">
                         <div class="utopia-login">
                             <h1>User Access</h1>
-                            <form action="Login" method="post" class="utopia">
+                            <form action="~/Login/Index" method="post" class="utopia">
                                 <input type="hidden" name="site" id="site" value="@AppProj.Web.Helpers.SsoUtility.Site" />
                                 <label>Username:</label>
                                 @Html.TextBoxFor(m => m.user, new { id = "UserName", @placeholder = "user name", @class = "span12 utopia-fluid-input" })
