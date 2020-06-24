@@ -37,5 +37,8 @@ namespace AppProj.Service.Services
         void DeleteVisitDetailAllByParent(int id);
 
         void AddCounciling(DoctorPoleCouncilling entity);
+
+        void UpdateKioskQuota(KioskQuota entity);
+        KioskQuota GetKiosk(string key, int kioskId);
     }
 }

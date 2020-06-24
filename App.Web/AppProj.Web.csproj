@@ -288,6 +288,7 @@
     <Compile Include="IOC\UnityDependencyResolver.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\ApiModel.cs" />
+    <Compile Include="Models\ApplicantApiReturnModel.cs" />
     <Compile Include="Models\ConfigModel.cs" />
     <Compile Include="Models\CoronaGov.cs" />
     <Compile Include="Models\DashboardModel.cs" />

@@ -19,6 +19,7 @@ namespace AppProj.Service.ServicesImpl
         readonly IDoctorPoleCouncillingRepository councilingRepository;
         readonly IDoctorPoleStatusesRepository repositoryStatus;
         readonly IStandingDataRepository standingRepository;
+        readonly IKioskQuotaRepository kioskRepository;
         readonly IUnitOfWork unitOfWork;
 
         public DoctorsPoleService(IDoctorsPolesRepository repository
@@ -27,7 +28,8 @@ namespace AppProj.Service.ServicesImpl
             , IDoctorsPoleVisitDetailRepository visitDetailRepository
             , IDoctorPoleCouncillingRepository councilingRepository
             , IDoctorPoleStatusesRepository repositoryStatus
-            , IStandingDataRepository standingRepository)
+            , IStandingDataRepository standingRepository
+            , IKioskQuotaRepository kioskRepository)
         {
             this.repository = repository;
             this.standingRepository = standingRepository;
@@ -36,6 +38,7 @@ namespace AppProj.Service.ServicesImpl
             this.councilingRepository = councilingRepository;
             this.repositoryStatus = repositoryStatus;
             this.unitOfWork = unitOfWork;
+            this.kioskRepository = kioskRepository;
         }
 
         public IEnumerable<DoctorsPole> GetPersonal(string pinOrMobile)
@@ -193,14 +196,19 @@ namespace AppProj.Service.ServicesImpl
 
         public DoctorPoleDashboardModel Dashboard(int? sourceId, int minVar)
         {
-            List<int> suspectedTypes = new List<int> { 1, 2, 3, 4, 5, 7 };
+            List<int> suspectedTypes = new List<int> { 861701
+                                                        ,861702
+                                                        ,861703
+                                                        ,861704
+                                                        ,862671
+                                                        ,862672};
             decimal tmp = 0;
             int staff = 861692; //staff effected person
 
             DoctorPoleDashboardModel model = new DoctorPoleDashboardModel();
 
             var totals = repositoryStatus.GetMany(c =>
-            suspectedTypes.Contains(c.StandingData.IntValue.Value)
+            suspectedTypes.Contains(c.StatusId)
             && (sourceId == null ? true : (sourceId == c.DoctorsPole.ProgramId))
             && c.DoctorsPole.EffectedPersonId == staff
             ).ToList();
@@ -244,9 +252,10 @@ namespace AppProj.Service.ServicesImpl
             model.TotalCall = visitRepository.GetAll().Count();
 
             model.TotalTestPending = suspectedData.Where(c =>
-            ((c.SampleTakenDate != null && c.TestResultId == null) || c.TestResultId == 861717)
+            (((c.SampleTakenDate != null && c.TestResultId == null) || c.TestResultId == 861717)
             || ((c.SampleTakenDate1 != null && c.TestResultId1 == null) || c.TestResultId == 861717)
-            || ((c.SampleTakenDate2 != null && c.TestResultId2 == null) || c.TestResultId == 861717)
+            || ((c.SampleTakenDate2 != null && c.TestResultId2 == null) || c.TestResultId == 861717))
+            && (c.StatusId == 862671 || c.StatusId == 861701)
             ).Count();
 
             model.TotalHomeIsolation = currentPositive
@@ -473,6 +482,17 @@ namespace AppProj.Service.ServicesImpl
             {
                 repositoryStatus.Add(new DoctorPoleStatus { DoctorPoleId = id, StatusId = statId, StartDate = DateTime.Now });
             }
+        }
+
+        public void UpdateKioskQuota(KioskQuota entity)
+        {            
+            kioskRepository.Update(entity);
+        }
+
+        public KioskQuota GetKiosk(string key, int kioskId)
+        {
+            return kioskRepository.GetMany(c => c.AppKey == key && c.KioskId==kioskId)
+                .FirstOrDefault();
         }
     }
 }

@@ -60,6 +60,7 @@ namespace AppProj.Domain
         public Nullable<int> IsolationOfficeId { get; set; }
         public Nullable<System.DateTime> DeathTime { get; set; }
         public Nullable<int> CouncilorUserId { get; set; }
+        public string KioskToken { get; set; }
     
         public virtual DoctorsPole DoctorsPole { get; set; }
         public virtual ICollection<DoctorsPoleVisitDetail> DoctorsPoleVisitDetails { get; set; }

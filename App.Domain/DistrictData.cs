@@ -79,6 +79,15 @@ namespace AppProj.Domain
         public Nullable<int> PricePumpkin { get; set; }
         public string PriceComment { get; set; }
         public Nullable<bool> IsPriceUpdate { get; set; }
+        public Nullable<int> AgroLaborSalaryMale { get; set; }
+        public Nullable<int> AgroLaborExpMale { get; set; }
+        public Nullable<int> CarpenterSalaryMale { get; set; }
+        public Nullable<int> CarpenterAssSalaryMale { get; set; }
+        public Nullable<int> RickPullIncome { get; set; }
+        public Nullable<int> RickPullExp { get; set; }
+        public Nullable<int> AgroLaborSalaryFemale { get; set; }
+        public Nullable<int> AgroLaborExpFemale { get; set; }
+        public Nullable<int> CarpenterAssSalaryFemale { get; set; }
     
         public virtual StandingData StandingData { get; set; }
         public virtual StandingData StandingData1 { get; set; }
