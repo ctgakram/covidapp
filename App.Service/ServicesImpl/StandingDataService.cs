@@ -70,6 +70,19 @@ namespace AppProj.Service.ServicesImpl
                 .Get(c => c.Type == "GEN" && c.Name == txt);
         }
 
+        public IEnumerable<StandingData> GetBloodGroup()
+        {
+            return serviceRepository
+                .GetMany(c => c.Type == "BLG")
+                .OrderBy(d => d.Name);
+        }
+
+        public StandingData GetBloodGroup(string txt)
+        {
+            return serviceRepository
+                .Get(c => c.Type == "BLG" && c.Name == txt);
+        }
+
         public IEnumerable<StandingData> GetDistricts()
         {
             return serviceRepository

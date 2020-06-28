@@ -401,6 +401,7 @@
           <Property Name="LastCouncilingDate" Type="date" />
           <Property Name="BloodGroupId" Type="int" />
           <Property Name="StatusChangedAt" Type="date" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="DoctorsPoleVisitDetails">
           <Key>
@@ -3277,6 +3278,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="UserProfile1" Relationship="AppModel.FK_DoctorsPoles_UserProfiles1" FromRole="DoctorsPole" ToRole="UserProfile" />
           <NavigationProperty Name="UserProfile2" Relationship="AppModel.FK_DoctorsPoles_UserProfiles2" FromRole="DoctorsPole" ToRole="UserProfile" />
           <NavigationProperty Name="DoctorsPoleVisits" Relationship="AppModel.FK_DoctorsPoleVisits_DoctorsPoles" FromRole="DoctorsPole" ToRole="DoctorsPoleVisit" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="DoctorsPoleVisitDetail">
           <Key>
@@ -5099,6 +5101,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySetMapping Name="DoctorsPoles">
             <EntityTypeMapping TypeName="AppModel.DoctorsPole">
               <MappingFragment StoreEntitySet="DoctorsPoles">
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="StatusChangedAt" ColumnName="StatusChangedAt" />
                 <ScalarProperty Name="BloodGroupId" ColumnName="BloodGroupId" />
                 <ScalarProperty Name="LastCouncilingDate" ColumnName="LastCouncilingDate" />

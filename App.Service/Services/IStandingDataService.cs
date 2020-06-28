@@ -16,6 +16,8 @@ namespace AppProj.Service.Services
         StandingData GetProject(string txt);
         IEnumerable<StandingData> GetGender();
         StandingData GetGender(string txt);
+        IEnumerable<StandingData> GetBloodGroup();
+        StandingData GetBloodGroup(string txt);
         IEnumerable<StandingData> GetDistricts();
         StandingData GetDistricts(string txt);
         IEnumerable<StandingData> GetDistricts(int divId);

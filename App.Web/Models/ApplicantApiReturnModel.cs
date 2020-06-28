@@ -34,8 +34,24 @@ namespace AppProj.Web.Models
         public int RelationId { get; set; }
         public int BloodGroupId { get; set; }
         public int Age { get; set; }
-        public string Staff_Program { get; set; }
+        
+
         public string HrEmail { get; set; }
+        public string Staff_Program { get; set; }
+        public string Staff_Name { get; set; }
+        public string Staff_Pin { get; set; }
+        public string Staff_Designation { get; set; }
+        public string Staff_Division { get; set; }
+        public string Staff_District { get; set; }
+        public string Staff_AreaOffice { get; set; }
+        public string Staff_Sex { get; set; }
+        public string Staff_Age { get; set; }
+        public string Staff_Mobile { get; set; }
+        public string Staff_Email { get; set; }
+        public string Staff_Relation { get; set; }
+
         public string By_Name { get; set; }
+        public string By_Mobile { get; set; }
+        public string By_Email { get; set; }
     }
 }

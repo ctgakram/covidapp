@@ -71,7 +71,8 @@ namespace AppProj.Web.Models
         public Nullable<int> IsolationOfficeId { get; set; }
         public Nullable<System.DateTime> DeathTime { get; set; }
         public Nullable<int> CouncilorUserId { get; set; }
-
+        public Nullable<int> BloodGroupId { get; set; }
+        
         [Required(ErrorMessage = "Required")]
         [Range(0, 120, ErrorMessage = "(age within 0 to 120)")]
         public int Age { get; set; }
@@ -104,8 +105,8 @@ namespace AppProj.Web.Models
         public IEnumerable<SelectListItem> AdmitList { get; set; }
         public IEnumerable<SelectListItem> IsolationOffices { get; set; }
         public IEnumerable<SelectListItem> Councilors { get; set; }
-
-
+        public IEnumerable<SelectListItem> BloodGroupList { get; set; }
+        
         public List<DoctorsPole> ExistingData { get; set; }
 
         

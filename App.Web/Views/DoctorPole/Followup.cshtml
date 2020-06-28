@@ -340,14 +340,14 @@
                     </div>
                 </th>
                 <th>
-                    <div class="hosdiv">
+                    <div class="hosdiv homediv">
                         Attendant Name
                         @Html.TextBoxFor(model => model.AlternateName)
                         @Html.ValidationMessageFor(model => model.AlternateName)
                     </div>
                 </th>
                 <th>
-                    <div class="hosdiv">
+                    <div class="hosdiv homediv">
                         Phone Number
                         @Html.TextBoxFor(model => model.AlternatePhoneNo)
                         @Html.ValidationMessageFor(model => model.AlternatePhoneNo)
@@ -382,6 +382,10 @@
                 <td>
                     <div class="tokendiv">
                         <a href="#" id="btnOtp" class="btn btn-danger">Request for Token</a>
+                        <div id="divOtp">
+                            <input type="text" id="txtOtp" placeholder="Enter OTP Here" />
+                            <a href="#" id="btnOtpSubmit" class="btn btn-danger">Submit OTP</a>
+                        </div>
                         <span id="token"></span>
                     </div>
                 </td>
@@ -404,12 +408,30 @@
         </table>
     </div>
 }
+@using (Ajax.BeginForm("CreateDetail", "DoctorPole", ajaxOpt))
+{
+    <input type="hidden" id="PIN_" name="PIN_" value="@Model.DoctorsPole.PIN" />
+    <input type="hidden" id="MobileNo_" name="MobileNo_" value="@Model.DoctorsPole.MobileNo" />
 
+    <input id="save-submit" type="submit" value="Back" class="btn btn-info" />
+}
 
 
 <script type="text/javascript">
     ValidatateForm("form0");
     $(document).ready(function () {
+
+        var OtpKey;
+        $('#divOtp').hide();
+
+        $("#btnOtpSubmit").die('click').live('click', function () {
+            var otp = $('#txtOtp').val();
+
+            if (otp == '') { alert('please enter OTP'); }
+            else {
+                GetToken(OtpKey, otp);
+            }
+        });
 
         $("#btnOtp").die('click').live('click', function () {
 
@@ -426,9 +448,14 @@
                     if (data.Success) {
                         $('#btnOtp').hide();
 
-                        var otp = window.prompt("An OTP has given to your mobile/email. Please Enter OTP Here", "");
+                        alert('An OTP has given to your mobile/email.');
 
-                        GetToken(data.OtpKey, otp);
+                        $('#divOtp').show();
+
+                        OtpKey = data.OtpKey;
+                        //var otp = window.prompt("An OTP has given to your mobile/email. Please Enter OTP Here", "");
+
+                        //GetToken(data.OtpKey, otp);
                     }
                     else {
                         alert(data.Message);
@@ -460,8 +487,10 @@
                         alert('Token has given to the patient\'s mobile number and email ');
                         $('#token').html(data.Message);
                         $("#KioskToken").val(data.Message);
+                        $('#divOtp').hide();
                     }
                     else {
+                        $('#divOtp').hide();
                         alert(data.Message);
                     }
                 },
@@ -552,6 +581,11 @@
             else if (v == 861719) { //hospitalized
                 $(".isodiv").hide();
                 $(".hosdiv").show();
+            }
+            else if (v == 861718) { //home iso
+                $(".isodiv").hide();
+                $(".hosdiv").hide();
+                $(".homediv").show();
             }
             else {
                 $(".isodiv").hide();
