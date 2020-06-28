@@ -86,6 +86,7 @@ namespace AppProj.Domain
         public Nullable<System.DateTime> LastCouncilingDate { get; set; }
         public Nullable<int> BloodGroupId { get; set; }
         public Nullable<System.DateTime> StatusChangedAt { get; set; }
+        public string Email { get; set; }
     
         public virtual ICollection<DoctorPoleCouncilling> DoctorPoleCouncillings { get; set; }
         public virtual ICollection<DoctorPoleStatus> DoctorPoleStatuses { get; set; }

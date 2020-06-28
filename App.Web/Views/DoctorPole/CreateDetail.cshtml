@@ -68,6 +68,9 @@
                             Patient Age
                             @Html.TextBoxFor(model => model.Age)
                             @Html.ValidationMessageFor(model => model.Age)
+                            Blood Broup
+                            @Html.DropDownListFor(model => model.BloodGroupId, Model.BloodGroupList,"Select Blood Group")
+                            @Html.ValidationMessageFor(model => model.BloodGroupId)
                         </td>
                     </tr>
                     <tr>

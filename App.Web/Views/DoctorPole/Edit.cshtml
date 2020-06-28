@@ -21,7 +21,7 @@
     }
     @Html.HiddenFor(m => m.StaffName)
 
-    <table class="table table-striped table-bordered fixed_headers">
+    <table class="table table-striped table-bordered fixed_headers" style="width:50%; vertical-align:top;">
         <tr>
             <td>
                 Staff Name
@@ -72,6 +72,9 @@
                 Patient Age
                 @Html.TextBoxFor(model => model.Age)
                 @Html.ValidationMessageFor(model => model.Age)
+                Blood Broup
+                @Html.DropDownListFor(model => model.BloodGroupId, Model.BloodGroupList, "Select Blood Group")
+                @Html.ValidationMessageFor(model => model.BloodGroupId)
             </td>
         </tr>
         <tr>

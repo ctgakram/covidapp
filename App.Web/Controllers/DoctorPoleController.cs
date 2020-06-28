@@ -142,6 +142,9 @@ namespace AppProj.Web.Controllers
                 var gen = standingDataService.GetGender().Where(r => r.IsActive);
                 model.GenderList = gen.ToSelectList(null, "Id", "Name");
 
+                var bg = standingDataService.GetBloodGroup().Where(r => r.IsActive);
+                model.BloodGroupList = bg.ToSelectList(null, "Id", "Name");
+
                 model.ExistingData = service.GetPersonal(srcTxt).ToList();
 
                 model.IsFound = false;
@@ -152,7 +155,7 @@ namespace AppProj.Web.Controllers
                 model.PIN = staff.pin;
                 model.IsFound = true;
                 model.Designation = staff.Designationname;
-
+                
                 model.ExistingData = service.GetPersonal(staff.pin).ToList();
 
                 var prjId = GetProject(staff.projectname);
@@ -163,11 +166,17 @@ namespace AppProj.Web.Controllers
 
                 var disOfStaff = standingDataService.GetDistricts(staff.districtname);
                 var genOfStaff = standingDataService.GetGender(staff.sex);
+                var bgOfStaff = standingDataService.GetBloodGroup(staff.BloodGroup);
 
                 var div = standingDataService.GetDivisions().Where(r => r.IsActive);
                 var gen = standingDataService.GetGender().Where(r => r.IsActive);
 
-
+                var bg = standingDataService.GetBloodGroup().Where(r => r.IsActive);
+                model.BloodGroupList = bg.ToSelectList(null, "Id", "Name");
+                if (bgOfStaff != null)
+                {
+                    model.BloodGroupId = bgOfStaff.Id;
+                }
 
                 if (genOfStaff != null)
                 {
@@ -250,6 +259,9 @@ namespace AppProj.Web.Controllers
 
             var gen = standingDataService.GetGender().Where(r => r.IsActive).OrderBy(c => c.IntValue);
             model.GenderList = gen.ToSelectList(null, "Id", "Name");
+
+            var bg = standingDataService.GetBloodGroup().Where(r => r.IsActive).OrderBy(c => c.Name);
+            model.BloodGroupList = bg.ToSelectList(null, "Id", "Name");
 
             var eff = standingDataService.GetByType(StandingDataTypes.Doctor_EffectedPerson)
                     .Where(r => r.IsActive)
@@ -985,6 +997,12 @@ namespace AppProj.Web.Controllers
                     return Json(model, JsonRequestBehavior.AllowGet);
                 }
             }
+            else
+            {
+                model.Success = false;
+                model.Message = "Daily quota has exceed for this user";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
 
             
             string URL = "https://coronatest.brac.net/api/appointment";
@@ -1041,10 +1059,24 @@ namespace AppProj.Web.Controllers
             post.OTP = otp;
             post.OtpKey = otpKey;
             post.RelationId = 861789;
-            post.Staff_Program = profile.StandingData1 == null ? "" : profile.StandingData1.Name;
 
             post.HrEmail= ConfigurationManager.AppSettings.Get("kiosk_hr_email");
             post.By_Name = user.UserName;
+            post.By_Mobile = user.MobileNo;
+            post.By_Email = user.EmailAddress;
+
+            post.Staff_Program = profile.StandingData1 == null ? "" : profile.StandingData1.Name;
+            post.Staff_Age = "" + profile.Age;
+            post.Staff_AreaOffice = profile.AreaOffice;
+            post.Staff_Designation = profile.Designation;
+            post.Staff_District = profile.StandingData6 == null ? "" : profile.StandingData6.Name;
+            post.Staff_Division = profile.StandingData5 == null ? "" : profile.StandingData5.Name;
+            post.Staff_Email = "";
+            post.Staff_Mobile = profile.MobileNo;
+            post.Staff_Name = profile.Name;
+            post.Staff_Pin = profile.PIN;
+            post.Staff_Sex = profile.StandingData.Name;
+            post.Staff_Relation = profile.StandingData7 == null ? "" : profile.StandingData7.Name;
 
             var json = JsonConvert.SerializeObject(post);
             var data = new StringContent(json, Encoding.UTF8, "application/json");
