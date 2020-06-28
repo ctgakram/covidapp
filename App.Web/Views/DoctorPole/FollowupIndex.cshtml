@@ -14,43 +14,7 @@
     };
 }
 
-<style type="text/css">
-    .multiselect {
-        width: 200px;
-    }
 
-    .selectBox {
-        position: relative;
-    }
-
-        .selectBox select {
-            width: 100%;
-            font-weight: normal;
-            background-color: #f4f5f5;
-            border: 0px;
-        }
-
-    .overSelect {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: 0;
-    }
-
-    #checkboxes {
-        display: none;
-        border: 1px #dadada solid;
-    }
-
-        #checkboxes label {
-            display: block;
-        }
-
-            #checkboxes label:hover {
-                background-color: #1e90ff;
-            }
-</style>
 
 
 <div class="page-header">
@@ -68,7 +32,7 @@
     </div>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive custom-action">
     <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
         <div class="dt_top">
             <div class="dt_toolbar">
@@ -123,8 +87,8 @@
                             @for (int i = 0; i < Model.StatusList.Count(); i++)
                             {
 
-                                <label for="@i">
-                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "", @class = "statusChk" })@Html.DisplayFor(model => model.StatusList[i].Text)
+                                <label>
+                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "", @class = "statusChk" }) @Html.DisplayFor(model => model.StatusList[i].Text)
                                 </label>
 
                                 @Html.HiddenFor(model => model.StatusList[i].Value)
@@ -147,51 +111,14 @@
                         <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
                     </button>
                 </div>
-                @*<div class="span4 utopia-form-freeSpace">
-            <fieldset>
-                <div class="control-group">
-                    <label class="control-label" for="select01">
-                        &nbsp;
-                    </label>
-
-
-
-
-                    <div class="controls">
-
-
-
-
-
-                        <input type="hidden" id="StatusIds" value="" />
-
-                        <input style="margin-left:20px; margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk" type="checkbox" checked="checked" /><span style="color:#4800ff">Only Staff</span>
-                        <input id="StatusList_99__Value" name="StatusList[99].Value" type="hidden" value="-1">
-
-
-                        <button id="dateSearchButton" class="btn btn-bracify search">
-
-                            <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
-                        </button>
-
-                    </div>
-                </div>
-            </fieldset>
-        </div>*@
                 <input type="hidden" id="StatusIds" value="" />
                 <input type="hidden" id="onlyPatient" value="false" />
-
-
-
-
-
-
             </div>
         </div>
         <div class="custom-add">
-            @if (UserRole.Check("DETAIL", SessionHelper.Role))
+            @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
             {
-                @Ajax.ActionLink("New Call", "Create", "DetailSubmission", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
+                @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-bracify-add", @style = "min-width:auto" })
             }
         </div>
         <table id="gridTable" class="table table-striped table-bordered fixed_headers">
@@ -341,14 +268,14 @@
             //'ToDate': 'ToDate'
         }
         var btns = {
-            14: false //column number : is button group
+            14: true //column number : is button group
         };
 
         /*data grid initializer*/
         DataTableBinder($("#gridTable")   //table object
             , '@Url.Content("~/DoctorPole/FollowupDataGrid")'  //json data url
             , [200, 1000] //record size
-            , true //show all with row size
+            , false //show all with row size
         , addPost  //additional parameters at query string
         , btns   //buttons are at these columns
         , true

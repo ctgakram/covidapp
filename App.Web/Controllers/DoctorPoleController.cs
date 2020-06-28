@@ -719,10 +719,10 @@ namespace AppProj.Web.Controllers
                        //,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
-                         ,new GridButtonModel{U=Url.Action("FollowupSuspected",new {Id=c.Id}), T="Suspected", D = GridButtonDialog.dialig1.ToString(), H="Suspected Patient", M="class=\"btn btn-mini btn-success\"", V = (visibleSus)}
-                         ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-danger\"", V = (visibleAdmin)}
-                         ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"btn btn-mini btn-success\"", V = (visibleCouncil)}
+                         new GridButtonModel{U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"\"", V = (visibleDoc)}
+                         ,new GridButtonModel{U=Url.Action("FollowupSuspected",new {Id=c.Id}), T="Suspected", D = GridButtonDialog.dialig1.ToString(), H="Suspected Patient", M="class=\"\"", V = (visibleSus)}
+                         ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"\"", V = (visibleAdmin)}
+                         ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"\"", V = (visibleCouncil)}
                     }
             }).ToArray();
 
@@ -852,9 +852,9 @@ namespace AppProj.Web.Controllers
                        //,String.Format("{0:dd MMM, yyyy}", c.LastCouncilingDate)
                 ,new GridButtonModel[]
                     {
-                         new GridButtonModel {U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"btn btn-mini btn-warning\"", V = (visibleDoc)}
-                        ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"btn btn-mini btn-danger\"", V = (visibleAdmin)}
-                        ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"btn btn-mini btn-success\"", V = (visibleCouncil)}
+                         new GridButtonModel {U=Url.Action("Followup",new {Id=c.Id}), T="Followup", D = GridButtonDialog.dialig1.ToString(), H="Followup", M="class=\"\"", V = (visibleDoc)}
+                        ,new GridButtonModel {U=Url.Action("Edit",new {Id=c.Id}), T="Edit", D = GridButtonDialog.dialig1.ToString(), H="Edit", M="class=\"\"", V = (visibleAdmin)}
+                        ,new GridButtonModel {U=Url.Action("Counciling",new {Id=c.Id}), T="Counseling", D = GridButtonDialog.dialig1.ToString(), H="Counseling", M="class=\"\"", V = (visibleCouncil)}
                     }
             }).ToArray();
 

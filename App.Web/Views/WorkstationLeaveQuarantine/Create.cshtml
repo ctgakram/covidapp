@@ -21,10 +21,13 @@
     </tr>
     <tr>
         <td>
-            @Html.TextBoxFor(model => model.PIN_, new { @placeholder = "Staff PIN" })
+            @Html.TextBoxFor(model => model.PIN_, new { @placeholder = "Staff PIN", @class = "input-group form-control" })
             @Html.ValidationMessageFor(model => model.PIN_)
-            <input id="save-submit" type="submit" value="Next" class="btn btn-primary" />
+            @*<input id="save-submit" type="submit" value="Next" class="btn btn-primary" />*@
             @Html.DisplayFor(model => model.Message)
+            <br />
+            <input id="save-submit" type="submit" value="Next" class="btn btn-bracify font-color-white" />
+
         </td>
        
     </tr>  

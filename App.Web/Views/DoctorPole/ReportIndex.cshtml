@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div class="table-responsive">
+<div class="table-responsive custom-action">
     <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
         <div class="dt_top">
             <div class="dt_toolbar">
@@ -86,12 +86,12 @@
                             <select>
                                 <option>Select an option</option>
                             </select>
-                            <div class="overSelect"></div>
+                            <div class="overSelect" id="statusOverSelect"></div>
                         </div>
                         <div class="controls" id="checkboxes">
                             @for (int i = 0; i < Model.StatusList.Count(); i++)
                             {
-                                <label for="@i">
+                                <label>
                                     @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:5px; margin-right:5px;", @class = "statusChk" })
                                     @Html.DisplayFor(model => model.StatusList[i].Text)
                                 </label>
@@ -141,20 +141,20 @@
                             <select>
                                 <option>Select an option</option>
                             </select>
-                            <div class="overSelect"></div>
+                            <div class="overSelect" id="followUpOverSelect"></div>
                         </div>
                         <div class="controls" id="radiobutton">
                             <label>
-                                <input type="radio" name="rdoDateType" value="A" checked="checked"> All Data
+                                <input type="radio" name="rdoDateType" value="A" checked="checked">&nbsp;All Data
                             </label>
                             <label>
-                                <input type="radio" name="rdoDateType" value="L"> Last Follow-Up
+                                <input type="radio" name="rdoDateType" value="L">&nbsp;Last Follow-Up
                             </label>
                             <label>
-                                <input type="radio" name="rdoDateType" value="N"> Next Folloe-Up
+                                <input type="radio" name="rdoDateType" value="N">&nbsp;Next Follow-Up
                             </label>
                             <label>
-                                <input type="radio" name="rdoDateType" value="E"> Enrollment
+                                <input type="radio" name="rdoDateType" value="E">&nbsp;Enrollment
                             </label>
                         </div>
                         <input type="hidden" id="dateType" value="A" />
@@ -167,57 +167,8 @@
                         <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
                     </button>
                 </div>
-
-                @*<div class="span4 utopia-form-freeSpace">
-                        <fieldset>
-                            <div class="control-group">
-                                @for (int i = 0; i < Model.StatusList.Count(); i++)
-                                {
-                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:20px; margin-right:5px;", @class = "statusChk" })
-                                    @Html.DisplayFor(model => model.StatusList[i].Text)
-                                    @Html.HiddenFor(model => model.StatusList[i].Value)
-                                    @Html.HiddenFor(model => model.StatusList[i].Text)
-
-                                }
-                                <input type="hidden" id="StatusIds" value="" />
-                                <input style="margin-left:5px; margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk" type="checkbox" checked="checked" /> <span style="color:#4800ff">Only Staff</span>
-                                <input id="StatusList_99__Value" name="StatusList[99].Value" type="hidden" value="-1">
-
-                            </div>
-
-                        </fieldset>
-                    </div>*@
-
-
                 <input type="hidden" id="onlyPatient" value="false" />
-
-
-
             </div>
-            @*<div class="row-fluid">
-                    <div class="utopia-widget-content">
-                        <div class="span8 utopia-form-freeSpace">
-                            <fieldset>
-                                <div class="control-group ">
-                                    Date by: <input type="radio" name="rdoDateType" value="A" checked="checked"> All Data
-                                    <input type="radio" name="rdoDateType" value="L"> Last Follow-Up
-                                    <input type="radio" name="rdoDateType" value="N"> Next Folloe-Up
-                                    <input type="radio" name="rdoDateType" value="E"> Enrollment
-                                    <input type="hidden" id="dateType" value="A" />
-                                    <div id="dateDiv">
-                                        From Date:   @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-                                        To Date: @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-small", @placeholder = "Date" })
-                                    </div>
-                                </div>
-                            </fieldset>
-
-                        </div>
-
-                    </div>
-
-                </div>*@
-
-
         </div>
 
 
@@ -390,7 +341,7 @@
             'StatusIds': 'StatusIds'
         }
         var btns = {
-            14: false //column number : is button group
+            14: true //column number : is button group
         };
 
         /*data grid initializer*/
@@ -402,12 +353,29 @@
         , btns   //buttons are at these columns
         , true
         );
-        
+
         $(".sidebar-item").removeClass("active");
         $("#all_profiles").addClass("active");
         $("#telemedicine").css("display", "block");
     });
         var expanded = false;
+    $(document).on("click",
+        function(e) {
+            if ($(e.target).attr('class') === 'overSelect') {
+                $(".multiselect").each(function() {
+                    if (e.target.id === undefined || e.target.id === null || e.target.id === '') {
+                        $('.controls').css("display", "none");
+                    } else if ($(this).find('#' + e.target.id).length < 1) {
+                        $(this).find('.controls').css("display", "none");
+                    }
+
+                });
+            } else {
+                expanded = false;
+                $('.multiselect .controls').css("display", "none");
+            }
+
+        });
 
         function showCheckboxes(option) {
             var elgrpup = document.getElementById(option);
@@ -419,5 +387,6 @@
                 expanded = false;
             }
         }
+
     </script>
 }

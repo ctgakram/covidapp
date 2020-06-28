@@ -642,3 +642,6 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom: 0px;
     position: absolute;
 }
+.btn:focus, .btn.focus{
+    box-shadow:none;
+}
