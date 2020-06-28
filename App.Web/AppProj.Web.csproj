@@ -3661,6 +3661,8 @@
     <Content Include="Views\DoctorPole\FollowupIndex - Copy.cshtml" />
     <Content Include="Views\DoctorPole\ReportIndex -  Copy.cshtml" />
     <Content Include="Views\DoctorPole\HrIndex - Copy.cshtml" />
+    <Content Include="Views\WorkstationLeaveQuarantine\Create - Copy.cshtml" />
+    <Content Include="Views\WorkstationLeaveQuarantine\CreateDetail -Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

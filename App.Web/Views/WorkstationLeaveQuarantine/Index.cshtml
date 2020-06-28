@@ -58,7 +58,7 @@
             <div class="filter-item">
                 <label for="end_date">PIN</label>
                 <div class="input-group datepicker flatpickr">
-                    @Html.TextBoxFor(model => model.PIN)
+                    @Html.TextBoxFor(model => model.PIN, new { @class = "input-group form-control" })
                     @Html.ValidationMessageFor(model=> model.PIN)
                 </div>
             </div>

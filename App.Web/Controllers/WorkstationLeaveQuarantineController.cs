@@ -289,6 +289,16 @@ namespace AppProj.Web.Controllers
                 entity.WorkStationReturnDate = null;
             }
 
+            if (Request.Form["IsWorkStationLeftByDoctor"].ToString() == "1")
+            {
+                entity.IsWorkStationLeftByDoctor = true;
+            }
+            else
+            {
+                entity.IsWorkStationLeftByDoctor = false;
+                entity.WorkStationLeftByDoctorDate = null;
+            }
+
 
             if (Request.Form["IsStayInQuarantine"].ToString() == "1")
             {

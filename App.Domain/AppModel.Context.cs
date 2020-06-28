@@ -55,9 +55,9 @@ namespace AppProj.Domain
         public DbSet<SummerizedData> SummerizedDatas { get; set; }
         public DbSet<UserLoginLog> UserLoginLogs { get; set; }
         public DbSet<UserProfile> UserProfiles { get; set; }
-        public DbSet<WorkstationLeaveQuarantine> WorkstationLeaveQuarantines { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
         public DbSet<KioskQuota> KioskQuotas { get; set; }
+        public DbSet<WorkstationLeaveQuarantine> WorkstationLeaveQuarantines { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]
         public virtual IQueryable<Nullable<int>> FunGetPointsByUser(Nullable<int> areaId, Nullable<int> locationId, Nullable<int> pointId, Nullable<int> userId)
