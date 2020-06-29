@@ -20,7 +20,6 @@
         @Html.HiddenFor(m => m.Id)
     }
     @Html.HiddenFor(m => m.StaffName)
-
     <table>
         <tr>
             <td style="width:50%; vertical-align:top;">
@@ -35,42 +34,42 @@
                     <tr>
                         <td>
                             PIN
-                            @Html.TextBoxFor(model => model.PIN, new { @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.PIN)
                             @Html.ValidationMessageFor(model => model.PIN)
                             Program
-                            @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList, new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList)
                             @Html.ValidationMessageFor(model => model.ProgramId)
                             Designation
-                            @Html.TextBoxFor(model => model.Designation, new { @style = "color:#ff6a00", @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.Designation, new { @style = "color:#ff6a00" })
                             @Html.ValidationMessageFor(model => model.Designation)
                             Division
-                            @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList, new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList)
                             @Html.ValidationMessageFor(model => model.DivisionId)
                             District
-                            @Html.DropDownListFor(model => model.DistrictId, Model.DistrictList, new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.DistrictId, Model.DistrictList)
                             @Html.ValidationMessageFor(model => model.DistrictId)
                             Area Office
-                            @Html.TextBoxFor(model => model.AreaOffice, new { @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.AreaOffice)
                             @Html.ValidationMessageFor(model => model.AreaOffice)
                         </td>
                         <td>
                             Who is Effected
-                            @Html.DropDownListFor(model => model.EffectedPersonId, Model.EffectedPersonList, new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.EffectedPersonId, Model.EffectedPersonList)
                             @Html.ValidationMessageFor(model => model.EffectedPersonId)
                             Patient Name
-                            @Html.TextBoxFor(model => model.Name, new { @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.Name)
                             @Html.ValidationMessageFor(model => model.Name)
                             Patient Sex
-                            @Html.DropDownListFor(model => model.GenderId, Model.GenderList, new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.GenderId, Model.GenderList)
                             @Html.ValidationMessageFor(model => model.GenderId)
                             Patient Mobile No
-                            @Html.TextBoxFor(model => model.MobileNo, new { @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.MobileNo)
                             @Html.ValidationMessageFor(model => model.MobileNo)
                             Patient Age
-                            @Html.TextBoxFor(model => model.Age, new { @class = "input-group   form-control input" })
+                            @Html.TextBoxFor(model => model.Age)
                             @Html.ValidationMessageFor(model => model.Age)
                             Blood Broup
-                            @Html.DropDownListFor(model => model.BloodGroupId, Model.BloodGroupList, "Select Blood Group", new { @class = "searchable-dropdown form-control" })
+                            @Html.DropDownListFor(model => model.BloodGroupId, Model.BloodGroupList, "Select Blood Group")
                             @Html.ValidationMessageFor(model => model.BloodGroupId)
                         </td>
                     </tr>
@@ -88,15 +87,19 @@
                         </td>
                         <td>
                             Comment
-                            @Html.TextAreaFor(model => model.CommentByHR, new { @class = "input-group   form-control input" })
+                            @Html.TextAreaFor(model => model.CommentByHR)
                             @Html.ValidationMessageFor(model => model.CommentByHR)
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            @Ajax.ActionLink("<< Back ", "Create", "DoctorPole", ajaxOpt, new { @class = "btn btn-bracify font-color-white" })
+                            @Ajax.ActionLink("<< Back ", "Create", "DoctorPole", ajaxOpt, new { @class = "" })
                         </td>
-                        
+                        <td>
+                            <p>
+                                <input id="save-submit" type="submit" value="Save New Case" class="btn btn-primary" />
+                            </p>
+                        </td>
                     </tr>
                 </table>
             </td>
@@ -152,12 +155,6 @@
             </td>
         </tr>
     </table>
-    <div class="control mt-3">
-        <hr />
-        <p>
-            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
-        </p>
-    </div>
 }
 <script type="text/javascript">
     ValidatateForm("form0");

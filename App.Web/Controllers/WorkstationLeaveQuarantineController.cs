@@ -625,6 +625,8 @@ namespace AppProj.Web.Controllers
                        ,c.InfoCollectedPIN
                        ,c.InfoCollectedDesignation
                        ,String.Format("{0:dd MMM, yyyy}", c.InfoCollectedDate)
+                       ,c.IsWorkStationLeftByDoctor==true?"<span style=\"color:#FF0000\">Yes</span>":"No"
+                       ,String.Format("{0:dd MMM, yyyy}", c.WorkStationLeftByDoctorDate)
                        ,c.Comment
                        //,c.UserProfile.UserName
                 ,new GridButtonModel[]

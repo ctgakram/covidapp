@@ -33,7 +33,7 @@
                 @Html.ValidationMessageFor(model => model.PIN)
                 <br />
                 Program
-                @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList, new { @class = "searchable-dropdown form-control" )
+                @Html.DropDownListFor(model => model.ProgramId, Model.ProgramList, new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.ProgramId)
                 <br />
                 Designation
@@ -41,7 +41,7 @@
                 @Html.ValidationMessageFor(model => model.Designation)
                 <br />
                 Division
-                @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList, new { @class = "searchable-dropdown form-control")
+                @Html.DropDownListFor(model => model.DivisionId, Model.DivisionList, new { @class = "searchable-dropdown form-control" })
                 @Html.ValidationMessageFor(model => model.DivisionId)
                 <br />
                 District
@@ -91,7 +91,7 @@
             </td>
             <td>
                 Comment
-                @Html.TextAreaFor(model => model.CommentByHR)
+                @Html.TextAreaFor(model => model.CommentByHR, new { @class = "input-group form-control" })
                 @Html.ValidationMessageFor(model => model.CommentByHR)
             </td>
         </tr>

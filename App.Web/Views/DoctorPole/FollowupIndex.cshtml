@@ -81,22 +81,22 @@
                             <select>
                                 <option>Select an option</option>
                             </select>
-                            <div class="overSelect"></div>
+                            <div class="overSelect" id="statusOverSelect"></div>
                         </div>
                         <div class="controls" id="checkboxes">
                             @for (int i = 0; i < Model.StatusList.Count(); i++)
                             {
 
-                                <label>
-                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "", @class = "statusChk" }) @Html.DisplayFor(model => model.StatusList[i].Text)
+                                <label class="custom-drp-element">
+                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "", @class = "statusChk custom-drp-element" }) @Html.DisplayFor(model => model.StatusList[i].Text)
                                 </label>
 
                                 @Html.HiddenFor(model => model.StatusList[i].Value)
                                 @Html.HiddenFor(model => model.StatusList[i].Text)
 
                             }
-                            <label for="StatusList_99__Selected">
-                                <input style="margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk" type="checkbox" checked="checked" /><span style="color:#4800ff">Only Staff</span>
+                            <label for="StatusList_99__Selected" class="custom-drp-element">
+                                <input style="margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk custom-drp-element" type="checkbox" checked="checked" /><span style="color:#4800ff">Only Staff</span>
                                 <input id="StatusList_99__Value" name="StatusList[99].Value" type="hidden" value="-1">
                             </label>
 
@@ -288,15 +288,35 @@
     });
         var expanded = false;
 
+    $(document).on("click",
+        function(e) {
+            if ($(e.target).hasClass('custom-drp-element')) {
+            } else if ($(e.target).attr('class') === 'overSelect') {
+                $(".multiselect").each(function() {
+                    if (e.target.id === undefined || e.target.id === null || e.target.id === '') {
+                        $('.controls').css("display", "none");
+                    } else if ($(this).find('#' + e.target.id).length < 1) {
+                        $(this).children('.controls').css("display", "none");
+                    }
+
+                });
+            } else {
+                $('.multiselect .controls').css("display", "none");
+            }
+
+        });
+
+
         function showCheckboxes() {
             var checkboxes = document.getElementById("checkboxes");
-            if (!expanded) {
-                checkboxes.style.display = "block";
-                expanded = true;
-            } else {
-                checkboxes.style.display = "none";
-                expanded = false;
-            }
+            checkboxes.style.display = "block";
+//            if (!expanded) {
+//                checkboxes.style.display = "block";
+//                expanded = true;
+//            } else {
+//                checkboxes.style.display = "none";
+//                expanded = false;
+//            }
         }
     </script>
 }

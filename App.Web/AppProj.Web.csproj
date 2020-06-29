@@ -3629,7 +3629,7 @@
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff2" />
     <Content Include="Views\StandingView\Index.cshtml" />
     <Content Include="Views\DoctorPole\Index.cshtml" />
-    <Content Include="Views\DoctorPole\HrIndex.cshtml" />
+    <Content Include="Views\DoctorPole\HrIndex - Copy.cshtml" />
     <Content Include="Views\DoctorPole\Create.cshtml" />
     <Content Include="Views\DoctorPole\CreateDetail.cshtml" />
     <Content Include="Views\DoctorPole\Save.cshtml" />
@@ -3660,9 +3660,11 @@
     <Content Include="Views\RoleFeature\Index -Copy.cshtml" />
     <Content Include="Views\DoctorPole\FollowupIndex - Copy.cshtml" />
     <Content Include="Views\DoctorPole\ReportIndex -  Copy.cshtml" />
-    <Content Include="Views\DoctorPole\HrIndex - Copy.cshtml" />
+    <Content Include="Views\DoctorPole\HrIndex.cshtml" />
     <Content Include="Views\WorkstationLeaveQuarantine\Create - Copy.cshtml" />
     <Content Include="Views\WorkstationLeaveQuarantine\CreateDetail -Copy.cshtml" />
+    <Content Include="Views\DoctorPole\Create -Copy.cshtml" />
+    <Content Include="Views\DoctorPole\CreateDetail - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

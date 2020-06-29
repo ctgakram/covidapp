@@ -1,4 +1,6 @@
-﻿@model AppProj.Web.Models.WorkstationLeaveQuarantineModel
+﻿@using AppProj.Web.Helpers;
+@using AppProj.Web;
+@model AppProj.Web.Models.WorkstationLeaveQuarantineModel
 @{
     var ajaxOpt = new AjaxOptions
     {
@@ -423,7 +425,7 @@
                                             <td>
                                                 @if (Model.Id == 0)
                                                 {
-                                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "" })
+                                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "btn btn-bracify font-color-white" })
                                                 }
                                             </td>
 

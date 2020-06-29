@@ -91,8 +91,8 @@
                         <div class="controls" id="checkboxes">
                             @for (int i = 0; i < Model.StatusList.Count(); i++)
                             {
-                                <label>
-                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:5px; margin-right:5px;", @class = "statusChk" })
+                                <label class="custom-drp-element">
+                                    @Html.CheckBoxFor(model => model.StatusList[i].Selected, new { @style = "margin-left:5px; margin-right:5px;", @class = "statusChk custom-drp-element" })
                                     @Html.DisplayFor(model => model.StatusList[i].Text)
                                 </label>
 
@@ -100,9 +100,9 @@
                                 @Html.HiddenFor(model => model.StatusList[i].Text)
 
                             }
-                            <label for="StatusList_99__Selected">
+                            <label for="StatusList_99__Selected" class="custom-drp-element">
 
-                                <input style="margin-left:5px; margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk" type="checkbox" checked="checked" /> <span style="color:#4800ff">Only Staff</span>
+                                <input style="margin-left:5px; margin-right:5px;" id="StatusList_99__Selected" name="StatusList_99__Selected" class="statusChk custom-drp-element" type="checkbox" checked="checked" /> <span style="color:#4800ff">Only Staff</span>
                                 <input id="StatusList_99__Value" name="StatusList[99].Value" type="hidden" value="-1">
                             </label>
                             <input type="hidden" id="StatusIds" value="" />
@@ -144,17 +144,17 @@
                             <div class="overSelect" id="followUpOverSelect"></div>
                         </div>
                         <div class="controls" id="radiobutton">
-                            <label>
-                                <input type="radio" name="rdoDateType" value="A" checked="checked">&nbsp;All Data
+                            <label class="custom-drp-element">
+                                <input type="radio" name="rdoDateType" value="A" checked="checked" class="custom-drp-element">&nbsp;All Data
                             </label>
-                            <label>
-                                <input type="radio" name="rdoDateType" value="L">&nbsp;Last Follow-Up
+                            <label class="custom-drp-element">
+                                <input type="radio" name="rdoDateType" value="L" class="custom-drp-element">&nbsp;Last Follow-Up
                             </label>
-                            <label>
-                                <input type="radio" name="rdoDateType" value="N">&nbsp;Next Follow-Up
+                            <label class="custom-drp-element">
+                                <input type="radio" name="rdoDateType" value="N" class="custom-drp-element">&nbsp;Next Follow-Up
                             </label>
-                            <label>
-                                <input type="radio" name="rdoDateType" value="E">&nbsp;Enrollment
+                            <label class="custom-drp-element">
+                                <input type="radio" name="rdoDateType" value="E" class="custom-drp-element">&nbsp;Enrollment
                             </label>
                         </div>
                         <input type="hidden" id="dateType" value="A" />
@@ -253,71 +253,67 @@
 
 @section scripts{
     <script type="text/javascript">
-    $(document).ready(function () {
+        $(document).ready(function() {
 
-        $('#dateDiv').hide();
+            $('#dateDiv').hide();
 
-        $('input[type=radio][name=rdoDateType]').change(function () {
-            if (this.value == 'A') {
-                $('#dateDiv').hide();
-            }
-            else {
-                $('#dateDiv').show();
-            }
-        });
-
-        $("#prn").click(function () {
-            $("#gridTable").printThis();
-        });
-
-        $("#exp").click(function () {
-            tableToExcel('gridTable', 'Export Name');
-        });
-
-        DatePicker('FromDate', 'dd MMM, yyyy');
-        DatePicker('ToDate', 'dd MMM, yyyy');
-
-        $(".ddl").change(function () {
-            GetStatus();
-            $('#gridTable').dataTable().fnDraw();
-        });
-
-        $("#dateSearchButton").click(function () {
-            GetStatus();
-            $('#gridTable').dataTable().fnDraw();
-        });
-
-        function GetStatus() {
-            var stid = '';
-            $('.statusChk:checkbox:checked').each(function () {
-                var res = '#' + this.id.replace("Selected", "Value");
-                stid = stid + $(res).val() + ',';
+            $('input[type=radio][name=rdoDateType]').change(function() {
+                if (this.value == 'A') {
+                    $('#dateDiv').hide();
+                } else {
+                    $('#dateDiv').show();
+                }
             });
-            $("#StatusIds").val(stid);
-        }
 
-        $("#dateSearchButton2").click(function () {
-            //$("#onlyPatient").val(true);
-            $('#gridTable').dataTable().fnDraw();
-        });
+            $("#prn").click(function() {
+                $("#gridTable").printThis();
+            });
 
-        $('#ContentTypeId2').change(function (event) {
-            LoadUpazialSearch($('#ContentTypeId2').val());
-        });
+            $("#exp").click(function() {
+                tableToExcel('gridTable', 'Export Name');
+            });
 
-        @*$('#ContentTypeId2').change(function (event) {
+            DatePicker('FromDate', 'dd MMM, yyyy');
+            DatePicker('ToDate', 'dd MMM, yyyy');
+
+            $(".ddl").change(function() {
+                GetStatus();
+                $('#gridTable').dataTable().fnDraw();
+            });
+
+            $("#dateSearchButton").click(function() {
+                GetStatus();
+                $('#gridTable').dataTable().fnDraw();
+            });
+
+            function GetStatus() {
+                var stid = '';
+                $('.statusChk:checkbox:checked').each(function() {
+                    var res = '#' + this.id.replace("Selected", "Value");
+                    stid = stid + $(res).val() + ',';
+                });
+                $("#StatusIds").val(stid);
+            }
+
+            $("#dateSearchButton2").click(function() {
+                //$("#onlyPatient").val(true);
+                $('#gridTable').dataTable().fnDraw();
+            });
+
+            $('#ContentTypeId2').change(function(event) {
+                LoadUpazialSearch($('#ContentTypeId2').val());
+            });
+
+            @*$('#ContentTypeId2').change(function (event) {
             LoadPointSearch($('#ContentTypeId2').val());
         });*@
 
-        window.LoadUpazialSearch = function (areaId) {
-            var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
-            LoadDropDownListWithCall('ContentTypeId3'
-                , url
-                , 'All District'
-                , null);
-        }
+            window.LoadUpazialSearch = function(areaId) {
+                var url = '@Url.Content("~/Main/GetDistrictByDivision")?id=' + areaId;
+                LoadDropDownListWithCall('ContentTypeId3', url, 'All District', null);
+            }
 
-        @*window.LoadPointSearch = function (locationId) {
+            @*window.LoadPointSearch = function (locationId) {
             var url = '@Url.Content("~/Point/GetPointsByLocation")?id=' + locationId;
             LoadDropDownListWithCall('ContentTypeId3'
                 , url
@@ -325,67 +321,74 @@
                 , null);
         }*@
 
-        $('input[type=radio][name=rdoDateType]').change(function () {
-            $("#dateType").val(this.value);
-        });
+            $('input[type=radio][name=rdoDateType]').change(function() {
+                $("#dateType").val(this.value);
+            });
 
 
-        var addPost = {
-            'ContentTypeId1': 'ContentTypeId1',
-            'ContentTypeId2': 'ContentTypeId2',
-            'ContentTypeId3': 'ContentTypeId3',
-            'FromDate': 'FromDate',
-            'ToDate': 'ToDate',
-            'SearchText': 'SearchText',
-            'dateType': 'dateType',
-            'StatusIds': 'StatusIds'
-        }
-        var btns = {
-            14: true //column number : is button group
-        };
-
-        /*data grid initializer*/
-        DataTableBinder($("#gridTable")   //table object
-            , '@Url.Content("~/DoctorPole/ReportDataGrid")'  //json data url
-            , [50, 100, 200, 1000] //record size
-            , true //show all with row size
-        , addPost  //additional parameters at query string
-        , btns   //buttons are at these columns
-        , true
-        );
-
-        $(".sidebar-item").removeClass("active");
-        $("#all_profiles").addClass("active");
-        $("#telemedicine").css("display", "block");
-    });
-        var expanded = false;
-    $(document).on("click",
-        function(e) {
-            if ($(e.target).attr('class') === 'overSelect') {
-                $(".multiselect").each(function() {
-                    if (e.target.id === undefined || e.target.id === null || e.target.id === '') {
-                        $('.controls').css("display", "none");
-                    } else if ($(this).find('#' + e.target.id).length < 1) {
-                        $(this).find('.controls').css("display", "none");
-                    }
-
-                });
-            } else {
-                expanded = false;
-                $('.multiselect .controls').css("display", "none");
+            var addPost = {
+                'ContentTypeId1': 'ContentTypeId1',
+                'ContentTypeId2': 'ContentTypeId2',
+                'ContentTypeId3': 'ContentTypeId3',
+                'FromDate': 'FromDate',
+                'ToDate': 'ToDate',
+                'SearchText': 'SearchText',
+                'dateType': 'dateType',
+                'StatusIds': 'StatusIds'
             }
+            var btns = {
+                14: true //column number : is button group
+            };
 
+            /*data grid initializer*/
+            DataTableBinder($("#gridTable") //table object
+                ,
+                '@Url.Content("~/DoctorPole/ReportDataGrid")' //json data url
+                ,
+                [50, 100, 200, 1000] //record size
+                ,
+                true //show all with row size
+                ,
+                addPost //additional parameters at query string
+                ,
+                btns //buttons are at these columns
+                ,
+                true
+            );
+
+            $(".sidebar-item").removeClass("active");
+            $("#all_profiles").addClass("active");
+            $("#telemedicine").css("display", "block");
         });
+        var expanded = false;
+        $(document).on("click",
+            function(e) {
+                if ($(e.target).hasClass('custom-drp-element')) {
+                } else if ($(e.target).attr('class') === 'overSelect') {
+                    $(".multiselect").each(function() {
+                        if (e.target.id === undefined || e.target.id === null || e.target.id === '') {
+                            $('.controls').css("display", "none");
+                        } else if ($(this).find('#' + e.target.id).length < 1) {
+                            $(this).children('.controls').css("display", "none");
+                        }
+
+                    });
+                } else {
+                    $('.multiselect .controls').css("display", "none");
+                }
+
+            });
 
         function showCheckboxes(option) {
             var elgrpup = document.getElementById(option);
-            if (!expanded) {
-                elgrpup.style.display = "block";
-                expanded = true;
-            } else {
-                elgrpup.style.display = "none";
-                expanded = false;
-            }
+            elgrpup.style.display = "block";
+//            if (!expanded) {
+//                elgrpup.style.display = "block";
+//                expanded = true;
+//            } else {
+//                elgrpup.style.display = "none";
+//                expanded = false;
+//            }
         }
 
     </script>

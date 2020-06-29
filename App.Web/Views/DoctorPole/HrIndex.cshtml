@@ -111,7 +111,7 @@
         <div class="custom-add">
             @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
             {
-                @Ajax.ActionLink("New Call", "Create", "octorsPole", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add", @style = "min-width:80px" })
+                @Ajax.ActionLink("New Call", "Create", "DoctorsPole", ajaxOpt, new { @class = "btn btn-bracify-add", @style = "min-width:80px" })
             }
         </div>
 

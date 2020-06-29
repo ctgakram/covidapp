@@ -59,15 +59,15 @@
                 <label for="end_date">PIN</label>
                 <div class="input-group datepicker flatpickr">
                     @Html.TextBoxFor(model => model.PIN, new { @class = "input-group form-control" })
-                    @Html.ValidationMessageFor(model=> model.PIN)
+                    @Html.ValidationMessageFor(model => model.PIN)
                 </div>
             </div>
             @*<div class="filter-item">
-                <button id="pinSearchButton" class="btn btn-bracify search">
-                    <span>Search</span>
-                    <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
-                </button>
-            </div>*@
+                    <button id="pinSearchButton" class="btn btn-bracify search">
+                        <span>Search</span>
+                        <img src="@Url.Content("~/Content/src/images/svg/tabular-data/search.svg")" alt="Search">
+                    </button>
+                </div>*@
         </div>
 
         <div class="tnav" style="">
@@ -86,7 +86,7 @@
                 <div class="filter-item">
                     <label for="start_date">সার্চের শুরুর তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                       
+
                         @Html.TextBoxFor(model => model.FromDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -98,7 +98,7 @@
                 <div class="filter-item">
                     <label for="end_date">সার্চের শেষ তারিখ</label>
                     <div class="input-group datepicker flatpickr">
-                        
+
                         @Html.TextBoxFor(model => model.ToDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         <div class="input-group-append border-0 calender-icon">
                             <button class="btn" type="button" data-toggle="">
@@ -217,17 +217,17 @@
                             Date
                         </th>
                         <th>
+                            Is WorkStation Left By Doctor
+                        </th>
+                        <th>
+                            WorkStation Left By Doctor Date
+                        </th>
+                        <th>
                             Comment
                         </th>
-                        @*<th>
-                        Data Entered by
-                    </th>*@
                         <th>
                         </th>
-                        @*@if (UserRole.Check("SUMMERY", SessionHelper.Role))
-                    {
-                        <th></th>
-                    }*@
+
                     </tr>
                 </thead>
             </table>
@@ -289,7 +289,7 @@
                 'PIN':'PIN'
             }
             var btns = {
-                31: false //column number : is button group
+                33: false //column number : is button group
             };
 
             /*data grid initializer*/

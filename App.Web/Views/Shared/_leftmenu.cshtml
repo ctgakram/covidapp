@@ -47,29 +47,29 @@
                 <span>TeleHealth Consultation</span>
             </div>
             <div class="collapse sidebar-collapse-wrapper" id="telemedicine">
-                @if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
-                {
+                @*@if (UserRole.Check("DoctorPool_HR", SessionHelper.Role))
+                {*@
                     <a id="hrd_call" class="sidebar-item" href="~/DoctorPole/HrIndex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.743" height="19.693" viewBox="0 0 19.743 19.693"> <path id="program-data" d="M13.859,3.075V6.066A6.905,6.905,0,0,1,19.781,12.9a7.032,7.032,0,0,1-.474,2.507l2.567,1.51a9.749,9.749,0,0,0,.869-4.018,9.877,9.877,0,0,0-8.884-9.822Zm-.987,16.732a6.906,6.906,0,0,1-.987-13.741V3.075a9.871,9.871,0,1,0,8.934,15.656l-2.567-1.51A6.861,6.861,0,0,1,12.871,19.807Z" transform="translate(-3 -3.075)" fill="#b9b9b9" /></svg>
                         <span>HRD Call</span>
                     </a>
-                }
+                @*}*@
 
-                @if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
-                {
+                @*@if (UserRole.Check("DoctorPool_Doc", SessionHelper.Role))
+                {*@
                     <a id="tele_consultancy" class="sidebar-item" href="~/DoctorPole/FollowupIndex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.743" height="19.693" viewBox="0 0 19.743 19.693"> <path id="program-data" d="M13.859,3.075V6.066A6.905,6.905,0,0,1,19.781,12.9a7.032,7.032,0,0,1-.474,2.507l2.567,1.51a9.749,9.749,0,0,0,.869-4.018,9.877,9.877,0,0,0-8.884-9.822Zm-.987,16.732a6.906,6.906,0,0,1-.987-13.741V3.075a9.871,9.871,0,1,0,8.934,15.656l-2.567-1.51A6.861,6.861,0,0,1,12.871,19.807Z" transform="translate(-3 -3.075)" fill="#b9b9b9" /></svg>
                         <span>Tele Consultancy</span>
                     </a>
-                }
+                @*}*@
 
-                @if (UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
-                {
+                @*@if (UserRole.Check("DoctorPool_Suspect", SessionHelper.Role))
+                {*@
                     <a id="follow_up" class="sidebar-item" href="~/DoctorPole/FollowupIndex">
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.743" height="19.693" viewBox="0 0 19.743 19.693"> <path id="program-data" d="M13.859,3.075V6.066A6.905,6.905,0,0,1,19.781,12.9a7.032,7.032,0,0,1-.474,2.507l2.567,1.51a9.749,9.749,0,0,0,.869-4.018,9.877,9.877,0,0,0-8.884-9.822Zm-.987,16.732a6.906,6.906,0,0,1-.987-13.741V3.075a9.871,9.871,0,1,0,8.934,15.656l-2.567-1.51A6.861,6.861,0,0,1,12.871,19.807Z" transform="translate(-3 -3.075)" fill="#b9b9b9" /></svg>
                         <span>Follow Up</span>
                     </a>
-                }
+                @*}*@
 
                 <a id="all_profiles" class="sidebar-item" href="~/DoctorPole/ReportIndex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19.743" height="19.693" viewBox="0 0 19.743 19.693"> <path id="program-data" d="M13.859,3.075V6.066A6.905,6.905,0,0,1,19.781,12.9a7.032,7.032,0,0,1-.474,2.507l2.567,1.51a9.749,9.749,0,0,0,.869-4.018,9.877,9.877,0,0,0-8.884-9.822Zm-.987,16.732a6.906,6.906,0,0,1-.987-13.741V3.075a9.871,9.871,0,1,0,8.934,15.656l-2.567-1.51A6.861,6.861,0,0,1,12.871,19.807Z" transform="translate(-3 -3.075)" fill="#b9b9b9" /></svg>
@@ -150,7 +150,7 @@
             </a>
             <a id="b_emp" class="sidebar-item" href="~/DistrictSubmission/IndexBrac">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.766" height="19.766" viewBox="0 0 19.766 19.766"> <path id="bdc-info" d="M11.895,17.824h1.977v-5.93H11.895ZM12.883,3a9.883,9.883,0,1,0,9.883,9.883A9.887,9.887,0,0,0,12.883,3Zm0,17.789a7.906,7.906,0,1,1,7.906-7.906A7.917,7.917,0,0,1,12.883,20.789ZM11.895,9.918h1.977V7.941H11.895Z" transform="translate(-3 -3)" fill="#b9b9b9" /></svg>
-                <span>পণ্যের দাম</span>
+                <span>পণ্যের দাম ও মজুরি</span>
             </a>
             <a id="Dis_Cur" class="sidebar-item" href="~/DistrictSubmission/IndexSum">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.766" height="19.766" viewBox="0 0 19.766 19.766"> <path id="bdc-info" d="M11.895,17.824h1.977v-5.93H11.895ZM12.883,3a9.883,9.883,0,1,0,9.883,9.883A9.887,9.887,0,0,0,12.883,3Zm0,17.789a7.906,7.906,0,1,1,7.906-7.906A7.917,7.917,0,0,1,12.883,20.789ZM11.895,9.918h1.977V7.941H11.895Z" transform="translate(-3 -3)" fill="#b9b9b9" /></svg>

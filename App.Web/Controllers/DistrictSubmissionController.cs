@@ -638,7 +638,18 @@ namespace AppProj.Web.Controllers
                        ,c.PriceEgg
                        ,c.PriceChille
                        ,c.PricePumpkin
+                       ,c.AgroLaborSalaryMale
+                       ,c.AgroLaborExpMale
+                       ,c.AgroLaborSalaryFemale
+                       ,c.AgroLaborExpFemale
+                       ,c.CarpenterSalaryMale
+                       ,c.CarpenterAssSalaryMale
+                       ,c.CarpenterAssSalaryFemale
+                       ,c.RickPullIncome
+                       ,c.RickPullExp
                        ,c.PriceComment
+                       
+                       
                       
             }).ToArray();
 
