@@ -235,7 +235,7 @@
                     <br />
                     @Html.CheckBoxFor(model => model.IsBreathing) Breathlessness
                     Others :
-                    @Html.TextBoxFor(model => model.OtherSymptoms)
+                    @Html.TextBoxFor(model => model.OtherSymptoms, new { @class = "input-group form-control" })
                 </th>
                 <th>
                     @Html.CheckBoxFor(model => model.AdvConTreat) Conservative treatment
@@ -249,12 +249,12 @@
                 <th>
                     Other Advices
                     <br />
-                    @Html.TextAreaFor(model => model.AdviceTxt)
+                    @Html.TextAreaFor(model => model.AdviceTxt, new { @class = "input-group form-control" })
                 </th>
                 <th>
                     @Html.CheckBoxFor(model => model.IsAntibioticTaken)
                     Antibiotic Taken
-                    @Html.TextAreaFor(model => model.AntibioticTxt)
+                    @Html.TextAreaFor(model => model.AntibioticTxt, new { @class = "input-group form-control" })
                 </th>
             </tr>
             <tr>
@@ -273,59 +273,59 @@
             <tr>
                 <th>
                     Sample taken date
-                    @Html.TextBoxFor(model => model.SampleTakenDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.TextBoxFor(model => model.SampleTakenDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                     @Html.ValidationMessageFor(model => model.SampleTakenDate)
                     <br />
                     Test Result
-                    @Html.DropDownListFor(model => model.TestResultId, Model.TestResultList, "Not Applicable Now")
+                    @Html.DropDownListFor(model => model.TestResultId, Model.TestResultList, "Not Applicable Now", new { @class = "searchable-dropdown form-control" })
                     @Html.ValidationMessageFor(model => model.TestResultId)
                     <br />
                     Test Result Date
-                    @Html.TextBoxFor(model => model.TestResultDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                    @Html.TextBoxFor(model => model.TestResultDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                     @Html.ValidationMessageFor(model => model.TestResultDate)
                 </th>
                 <th>
                     <div class="2ndLast">
                         2nd Last Sample taken date
-                        @Html.TextBoxFor(model => model.SampleTakenDate1, "{0:dd MMM, yyyy}", new { @class = "span2 2ndLast", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.SampleTakenDate1, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.SampleTakenDate1)
                         <br />
                         2nd Last Test Result
-                        @Html.DropDownListFor(model => model.TestResultId1, Model.TestResultList, "Not Applicable Now", new { @class = "2ndLast" })
+                        @Html.DropDownListFor(model => model.TestResultId1, Model.TestResultList, "Not Applicable Now", new { @class = "searchable-dropdown form-control" })
                         @Html.ValidationMessageFor(model => model.TestResultId1)
                         <br />
                         2nd Last Test Result Date
-                        @Html.TextBoxFor(model => model.TestResultDate1, "{0:dd MMM, yyyy}", new { @class = "span2 2ndLast", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.TestResultDate1, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.TestResultDate1)
                     </div>
                 </th>
                 <th>
                     <div class="last">
                         Last Sample taken date
-                        @Html.TextBoxFor(model => model.SampleTakenDate2, "{0:dd MMM, yyyy}", new { @class = "span2 last", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.SampleTakenDate2, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.SampleTakenDate2)
                         <br />
                         Last Test Result
-                        @Html.DropDownListFor(model => model.TestResultId2, Model.TestResultList, "Not Applicable Now", new { @class = "last" })
+                        @Html.DropDownListFor(model => model.TestResultId2, Model.TestResultList, "Not Applicable Now", new { @class = "searchable-dropdown form-control" })
                         @Html.ValidationMessageFor(model => model.TestResultId2)
                         <br />
                         Last Test Result Date
-                        @Html.TextBoxFor(model => model.TestResultDate2, "{0:dd MMM, yyyy}", new { @class = "span2 last", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.TestResultDate2, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.TestResultDate2)
                     </div>
                 </th>
                 <th>
                     Admitted at
-                    @Html.DropDownListFor(model => model.AdmittedTypeId, Model.AdminTypeList, "Not Applicable Now")
+                    @Html.DropDownListFor(model => model.AdmittedTypeId, Model.AdminTypeList, "Not Applicable Now", new { @class = "searchable-dropdown form-control" })
                     @Html.ValidationMessageFor(model => model.AdmittedTypeId)
                     <div class="hosdiv">
                         <br />
                         Admission Date
-                        @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.AdmissionDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.AdmissionDate)
                         <br />
                         Discharge Date
-                        @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
+                        @Html.TextBoxFor(model => model.DischargeDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
                         @Html.ValidationMessageFor(model => model.DischargeDate)
                     </div>
                 </th>
@@ -365,12 +365,12 @@
 
                 <th>
                     Comments
-                    @Html.TextAreaFor(model => model.Comments)
+                    @Html.TextAreaFor(model => model.Comments, new { @class = "input-group form-control" })
                     @Html.ValidationMessageFor(model => model.Comments)
                 </th>
                 <th>
                     <span style="color:#ff6a00">Status</span>
-                    @Html.DropDownListFor(model => model.StatusId, Model.StatusList)
+                    @Html.DropDownListFor(model => model.StatusId, Model.StatusList, new { @class = "searchable-dropdown form-control" })
                     @Html.ValidationMessageFor(model => model.StatusId)
                     <div class="deathdiv">
                         <br />
@@ -391,11 +391,19 @@
                 </td>
                 <th>
                     Next Followup
-                    @Html.DropDownListFor(model => model.FollowupAfterDays, Model.FollowupAfterDaysList, "Please select next follow up days")
+                    @Html.DropDownListFor(model => model.FollowupAfterDays, Model.FollowupAfterDaysList, "Please select next follow up days", new { @class = "searchable-dropdown form-control" })
                     @Html.ValidationMessageFor(model => model.FollowupAfterDays)
                     <br />
-                    <input id="save-submit" type="submit" value="Submit Followup" class="btn btn-warning" />
+                    @*<input id="save-submit" type="submit" value="Submit Followup" class="btn btn-warning" />*@
                 </th>
+
+            </tr>
+            <tr>
+                <td class="control">
+                    <p>
+                        <input id="save-submit" type="submit" value="Submit Followup" class="btn btn-bracify font-color-white" />
+                    </p>
+                </td>
             </tr>
         </table>
     </div>
@@ -405,7 +413,7 @@
     <input type="hidden" id="PIN_" name="PIN_" value="@Model.DoctorsPole.PIN" />
     <input type="hidden" id="MobileNo_" name="MobileNo_" value="@Model.DoctorsPole.MobileNo" />
 
-    <input id="save-submit" type="submit" value="Back" class="btn btn-info" />
+    <input id="save-submit" type="submit" value="Back" class="btn btn-bracify font-color-white" />
 }
 
 

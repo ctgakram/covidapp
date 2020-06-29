@@ -15,15 +15,14 @@
 <body>
 
     @Html.Partial("_Header")
-
-    @if (ViewBag.page == "dashboard" || ViewBag.page == "report")
+    @if (ViewBag.layoutLeft == false)
     {
-    <div class="container-custom mt-4">
-        @RenderBody()
-        @Scripts.Render("~/bundles/jquery")
-        <script src="~/Scripts/brac/app.js">
-        </script>
-    </div>
+        <div class="container-custom mt-4">
+            @RenderBody()
+            @Scripts.Render("~/bundles/jquery")
+            <script src="~/Scripts/brac/app.js">
+            </script>
+        </div>
     }
     else
     {
@@ -45,9 +44,9 @@
     <script type="text/javascript">
         $.get("@Url.Content("~/Scripts/brac/site.js")",function()
         {
-           
+
         });
-      
+
     </script>
     @RenderSection("scripts", required: false)
 </body>

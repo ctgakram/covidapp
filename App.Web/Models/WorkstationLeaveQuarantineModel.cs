@@ -73,5 +73,8 @@ namespace AppProj.Web.Models
         public IEnumerable<SelectListItem> SupervisorPermittedList { get; set; }
 
         public string Message { get; set; }
+        public bool? IsWorkStationLeftByDoctor { get; set; }
+        public Nullable<System.DateTime> WorkStationLeftByDoctorDate { get; set; }
+
     }
 }

@@ -20,15 +20,6 @@
         @Html.HiddenFor(m => m.Id)
     }
     @Html.HiddenFor(m => m.StaffName)
-    <style>
-        td.title {
-            width: 30%;
-        }
-
-        .p-1 {
-            padding: .5rem;
-        }
-    </style>
     <table>
         <tr>
             <td style="width:50%; vertical-align:top;">
@@ -44,146 +35,146 @@
                 <div>
                     <table>
                         <tr>
-                            <td style="vertical-align:top;width:50%">
-                                <div class="p-1">
-                                    <table class="table-striped">
-                                        <tr>
-                                            <td class="title">
-                                                PIN
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.PIN, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.PIN)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Designation
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.Designation, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.Designation)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Grade
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.Grade, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.Grade)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Sex
-                                            </td>
-                                            <td class="control">
-                                                @Html.DropDownListFor(model => model.GenderId, Model.GenderList, new { @class = "searchable-dropdown form-control" })
-                                                @Html.ValidationMessageFor(model => model.GenderId)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Home District
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.HomeDistrict, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.HomeDistrict)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Programme/Project
-                                            </td>
-                                            <td class="control">
-                                                @Html.DropDownListFor(model => model.SourceId, Model.ProgramList, new { @class = "searchable-dropdown form-control" })
-                                                @Html.ValidationMessageFor(model => model.SourceId)
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
-
+                            <td style="vertical-align:top">
+                                <table class="table-striped">
+                                    <tr>
+                                        <td class="title">
+                                            PIN
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.PIN)
+                                            @Html.ValidationMessageFor(model => model.PIN)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Designation
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.Designation)
+                                            @Html.ValidationMessageFor(model => model.Designation)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Grade
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.Grade)
+                                            @Html.ValidationMessageFor(model => model.Grade)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Sex
+                                        </td>
+                                        <td class="control">
+                                            @Html.DropDownListFor(model => model.GenderId, Model.GenderList)
+                                            @Html.ValidationMessageFor(model => model.GenderId)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Home District
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.HomeDistrict)
+                                            @Html.ValidationMessageFor(model => model.HomeDistrict)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Programme/Project
+                                        </td>
+                                        <td class="control">
+                                            @Html.DropDownListFor(model => model.SourceId, Model.ProgramList)
+                                            @Html.ValidationMessageFor(model => model.SourceId)
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
 
                             <td style="vertical-align:top">
-                                <div class="p-1">
-                                    <table class="table-striped">
-                                        <tr>
-                                            <td class="title">
-                                                Date Of Joining at Brac
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.DateOfJoiningBrac, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
-                                                @Html.ValidationMessageFor(model => model.DateOfJoiningBrac)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Date of Joining at Current Branch
-                                            </td>
-                                            <td class="control">
-                                                @Html.TextBoxFor(model => model.DateOfJoiningCurrentBranch, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
-                                                @Html.ValidationMessageFor(model => model.DateOfJoiningCurrentBranch)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Branch
-                                            </td>
-                                            <td class="control">
+                                <table class="table-striped">
+                                    <tr>
+                                        <td class="title">
+                                            Date Of Joining at Brac
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.DateOfJoiningBrac, "{0:dd MMM, yyyy}")
+                                            @Html.ValidationMessageFor(model => model.DateOfJoiningBrac)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Date of Joining at Current Branch
+                                        </td>
+                                        <td class="control">
+                                            @Html.TextBoxFor(model => model.DateOfJoiningCurrentBranch, "{0:dd MMM, yyyy}")
+                                            @Html.ValidationMessageFor(model => model.DateOfJoiningCurrentBranch)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Branch
+                                        </td>
+                                        <td class="control">
 
-                                                @Html.TextBoxFor(model => model.Branch, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.Branch)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Area
-                                            </td>
-                                            <td class="control">
+                                            @Html.TextBoxFor(model => model.Branch)
+                                            @Html.ValidationMessageFor(model => model.Branch)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Area
+                                        </td>
+                                        <td class="control">
 
-                                                @Html.TextBoxFor(model => model.Area, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.Area)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Region
-                                            </td>
-                                            <td class="control">
+                                            @Html.TextBoxFor(model => model.Area)
+                                            @Html.ValidationMessageFor(model => model.Area)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Region
+                                        </td>
+                                        <td class="control">
 
-                                                @Html.TextBoxFor(model => model.Region, new { @class = "input-group   form-control input" })
-                                                @Html.ValidationMessageFor(model => model.Region)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                Upazilla
-                                            </td>
-                                            <td class="control">
-                                                @Html.DropDownListFor(model => model.UpazillaId, Model.UpazillaList, new { @class = "searchable-dropdown form-control" })
-                                                @Html.ValidationMessageFor(model => model.UpazillaId)
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title">
-                                                District
-                                            </td>
-                                            <td class="control">
+                                            @Html.TextBoxFor(model => model.Region)
+                                            @Html.ValidationMessageFor(model => model.Region)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            Upazilla
+                                        </td>
+                                        <td class="control">
+                                            @Html.DropDownListFor(model => model.UpazillaId, Model.UpazillaList)
+                                            @Html.ValidationMessageFor(model => model.UpazillaId)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="title">
+                                            District
+                                        </td>
+                                        <td class="control">
 
-                                                @Html.DropDownListFor(model => model.DistrictId, Model.DistrictList, new { @class = "searchable-dropdown form-control" })
-                                                @Html.ValidationMessageFor(model => model.DistrictId)
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </div>
+                                            @Html.DropDownListFor(model => model.DistrictId, Model.DistrictList)
+                                            @Html.ValidationMessageFor(model => model.DistrictId)
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
-                            <td width="50%">
+                            <td>
                                 <p style="font-weight:bold">Workstation Leave Information</p>
-                                <div class="p-1">
+                                <hr style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
                                     <table class="table-striped">
                                         <tr>
                                             <td class="title">
@@ -209,68 +200,40 @@
                                                 If yes, specify the date
                                             </td>
                                             <td class="control" id="tdWorkStationLeaveDateControl">
-                                                @Html.TextBoxFor(model => model.WorkStationLeaveDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.WorkStationLeaveDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
-
-
                                         <tr>
                                             <td class="title" id="tdWorkStationReturnDateTitle">
                                                 When have you returned the workstation?
                                             </td>
                                             <td class="control" id="tdWorkStationReturnDateControl">
-                                                @Html.TextBoxFor(model => model.WorkStationReturnDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.WorkStationReturnDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
-
-
-                                        <tr>
-                                            <td class="title">
-                                                Is doctor suggest to leave Workstation?
-                                            </td>
-                                            <td class="control">
-                                                @if (Model.IsWorkStationLeftByDoctor == true)
-                                                {
-                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeftByDoctor, "1", new { @checked = "checked" }) <text>Yes</text>
-                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeftByDoctor, "0") <text>No</text>
-                                                }
-                                                else
-                                                {
-                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeftByDoctor, "1") <text>Yes</text>
-                                                    @Html.RadioButtonFor(model => model.IsWorkStationLeftByDoctor, "0", new { @checked = "checked" }) <text>No</text>
-                                                }
-
-
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="title" id="tdWorkStationLeftByDoctorDateTitle">
-                                                If yes, specify the date
-                                            </td>
-                                            <td class="control" id="tdWorkStationLeftByDoctorDateControl">
-                                                @Html.TextBoxFor(model => model.WorkStationLeftByDoctorDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
-                                            </td>
-                                        </tr>
-
-
-
                                         <tr>
                                             <td>
                                                 Has  your supervisor  permitted you to leave workstation?
                                             </td>
                                             <td class="control">
-                                                @Html.DropDownListFor(model => model.SupervisorPermitted, Model.SupervisorPermittedList, new { @class = "searchable-dropdown form-control" })
+                                                @Html.DropDownListFor(model => model.SupervisorPermitted, Model.SupervisorPermittedList)
                                                 @Html.ValidationMessageFor(model => model.SupervisorPermitted)
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
                             </td>
-                            <td width="50%">
+                        </tr>
+                        <tr>
+                            <td>
                                 <br />
                                 <p style="font-weight:bold">Quarantine Information</p>
-
-                                <div class="p-1">
+                                <hr style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
                                     <table class="table-striped">
                                         <tr>
                                             <td class="title">
@@ -294,7 +257,7 @@
                                                 If yes, Quarantine start date
                                             </td>
                                             <td class="control" id="tdQuarantineStartDateControl">
-                                                @Html.TextBoxFor(model => model.QuarantineStartDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.QuarantineStartDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
                                         <tr>
@@ -302,7 +265,7 @@
                                                 End date
                                             </td>
                                             <td class="control" id="tdQuarantineEndDateControl">
-                                                @Html.TextBoxFor(model => model.QuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.QuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
                                         <tr>
@@ -344,7 +307,7 @@
                                                 If yes, Extended Quarantine start date
                                             </td>
                                             <td class="control" id="tdExtendedQuarantineStartDateControl">
-                                                @Html.TextBoxFor(model => model.ExtendedQuarantineStartDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.ExtendedQuarantineStartDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
                                         <tr>
@@ -352,7 +315,7 @@
                                                 End date
                                             </td>
                                             <td class="control" id="tdExtendedQuarantineEndDateControl">
-                                                @Html.TextBoxFor(model => model.ExtendedQuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.ExtendedQuarantineEndDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
 
@@ -361,12 +324,17 @@
                                 </div>
                             </td>
                         </tr>
-
                         <tr>
+
                             <td>
                                 <br />
                                 <p style="font-weight:bold">Information collected from</p>
-                                <div class="p-1">
+                                <hr style="width:100%" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div>
                                     <table class="table-striped">
                                         <tr>
                                             <td class="title">
@@ -390,7 +358,7 @@
                                                 Name
                                             </td>
                                             <td class="control" id="tdInfoCollectedNameTitle">
-                                                @Html.TextBoxFor(model => model.InfoCollectedName, new { @class = "input-group   form-control input" })
+                                                @Html.TextBoxFor(model => model.InfoCollectedName)
                                                 @Html.ValidationMessageFor(model => model.InfoCollectedName)
                                             </td>
                                         </tr>
@@ -399,7 +367,7 @@
                                                 PIN
                                             </td>
                                             <td class="control">
-                                                @Html.TextBoxFor(model => model.InfoCollectedPIN, new { @class = "input-group   form-control input" })
+                                                @Html.TextBoxFor(model => model.InfoCollectedPIN)
                                                 @Html.ValidationMessageFor(model => model.InfoCollectedPIN)
                                             </td>
                                         </tr>
@@ -408,7 +376,7 @@
                                                 Designation
                                             </td>
                                             <td class="control">
-                                                @Html.TextBoxFor(model => model.InfoCollectedDesignation, new { @class = "input-group   form-control input" })
+                                                @Html.TextBoxFor(model => model.InfoCollectedDesignation)
                                                 @Html.ValidationMessageFor(model => model.InfoCollectedDesignation)
                                             </td>
                                         </tr>
@@ -417,27 +385,41 @@
                                                 Date
                                             </td>
                                             <td class="control">
-                                                @Html.TextBoxFor(model => model.InfoCollectedDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+                                                @Html.TextBoxFor(model => model.InfoCollectedDate, "{0:dd MMM, yyyy}", new { @class = "span2", @placeholder = "Date" })
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td>
 
+                                                <hr style="width:100%" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                Comments, if any
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                @Html.TextAreaFor(model => model.Comment)
+                                                @Html.ValidationMessageFor(model => model.Comment)
+                                            </td>
+                                        </tr>
                                         <tr>
                                             <td>
                                                 @if (Model.Id == 0)
                                                 {
-                                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "btn btn-bracify font-color-white" })
+                                                    @Ajax.ActionLink("<< Back ", "Create", "WorkstationLeaveQuarantine", ajaxOpt, new { @class = "" })
                                                 }
                                             </td>
-
+                                            <td>
+                                                <p>
+                                                    <input id="save-submit" type="submit" value="Save" class="btn btn-primary" />
+                                                </p>
+                                            </td>
                                         </tr>
                                     </table>
                                 </div>
-                            </td>
-                            <td>
-                                Comments, if any
-                                <br />
-                                @Html.TextAreaFor(model => model.Comment, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.Comment)
                             </td>
                         </tr>
                     </table>
@@ -446,12 +428,6 @@
 
         </tr>
     </table>
-    <div class="control mt-3">
-        <hr />
-        <p>
-            <input id="save-submit" type="submit" value="সেভ করুন" class="btn btn-bracify font-color-white">
-        </p>
-    </div>
 }
 <script type="text/javascript">
     ValidatateForm("form0");
@@ -477,20 +453,6 @@
             $("#tdWorkStationReturnDateTitle").show();
             $("#tdWorkStationReturnDateControl").show();
         }
-
-        if (($("input[name=IsWorkStationLeftByDoctor]:checked").val()) == 0) {
-            $("#tdWorkStationLeftByDoctorDateTitle").hide();
-            $("#tdWorkStationLeftByDoctorDateControl").hide();
-
-        }
-        else {
-            $("#tdWorkStationLeftByDoctorDateTitle").show();
-            $("#tdWorkStationLeftByDoctorDateControl").show();
-
-        }
-
-
-
 
         if (($("input[name=IsStayInQuarantine]:checked").val()) == 0) {
             $("#tdQuarantineStartDateTitle").hide();
@@ -545,34 +507,11 @@
 
             }
             else {
-                $("input[name=IsWorkStationLeftByDoctor]")[1].checked = true;
-                $("#tdWorkStationLeftByDoctorDateTitle").hide();
-                $("#tdWorkStationLeftByDoctorDateControl").hide();
 
                 $("#tdWorkStationLeaveDateTitle").show();
                 $("#tdWorkStationLeaveDateControl").show();
                 $("#tdWorkStationReturnDateTitle").show();
                 $("#tdWorkStationReturnDateControl").show();
-
-            }
-
-        });
-        $('input[name="IsWorkStationLeftByDoctor"]').change(function () {
-            var rdvalue = $("input[name=IsWorkStationLeftByDoctor]:checked").val();
-            if (rdvalue == 0) {
-                $("#tdWorkStationLeftByDoctorDateTitle").hide();
-                $("#tdWorkStationLeftByDoctorDateControl").hide();
-            }
-            else {
-                $("input[name=IsWorkStationLeft]")[1].checked = true;
-                $("#tdWorkStationLeftByDoctorDateTitle").show();
-                $("#tdWorkStationLeftByDoctorDateControl").show();
-
-                $("#tdWorkStationLeaveDateTitle").hide();
-                $("#tdWorkStationLeaveDateControl").hide();
-                $("#tdWorkStationReturnDateTitle").hide();
-                $("#tdWorkStationReturnDateControl").hide();
-
 
             }
 
@@ -663,13 +602,6 @@
             startDate: null
         });
 
-        $('#WorkStationLeftByDoctorDate').datepicker({
-            format: "dd M, yyyy",
-            autoclose: true,
-            endDate: null,
-            startDate: null
-        });
-
         $('#WorkStationLeaveDate').datepicker({
             format: "dd M, yyyy",
             autoclose: true,
@@ -714,3 +646,4 @@
 
     });
 </script>
+

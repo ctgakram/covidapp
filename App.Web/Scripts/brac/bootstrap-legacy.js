@@ -16,10 +16,13 @@
     $(".long-nav-toggler").on("click", function () {
         $(".long-nav-items-wrapper").slideToggle();
     });
+    $("a.sidebar-item").click(function (e) {
+        e.stopPropagation();
+    });
     $("div.sidebar-item").click(function () {
         var target = $(this).attr("data-target");
         $(target).slideToggle();
-    });
+    })
     $(".mobile-drawer").on("click", function () {
         console.log("cliked");
         $(".sidebar").toggleClass("in");

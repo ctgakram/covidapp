@@ -1,11 +1,15 @@
 ﻿@{
-    Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    //Layout = "~/Views/Shared/_LayoutGeneral.cshtml";
+    Layout = "~/Views/Shared/_LayoutBrac.cshtml";
+    ViewBag.page = "Analytics";
+    ViewBag.layoutTop = true;
+    ViewBag.layoutLeft = true;
 }
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
         <ul class="breadcrumb">
             <li>
                 <h2 class="textPrimary">
@@ -17,8 +21,8 @@
     </div>
 </div>
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
 
         <section class="utopia-widget">
             <div class="utopia-widget-title">
@@ -35,8 +39,8 @@
     </div>
 </div>
 
-<div class="row-fluid">
-    <div class="span6">
+<div class="row">
+    <div class="col-lg-6">
 
         <section class="utopia-widget">
             <div class="utopia-widget-title">
@@ -52,7 +56,7 @@
         </section>
     </div>
 
-    <div class="span6">
+    <div class="col-lg-6">
 
         <section class="utopia-widget">
             <div class="utopia-widget-title">
@@ -69,8 +73,8 @@
     </div>
 </div>
 
-<div class="row-fluid">
-    <div class="span12">
+<div class="row">
+    <div class="col-lg-12">
 
         <section class="utopia-widget">
             <div class="utopia-widget-title">
@@ -103,7 +107,7 @@
                 // Some raw data (not necessarily accurate)
 
                 var jsonData = $.ajax({
-                    url: "Analytics/Last3YearFundCombo",
+                    url: "../Analytics/Last3YearFundCombo",
                     dataType: "json",
                     async: false
                 }).responseText;
@@ -128,7 +132,7 @@
             function drawChart() {
 
                 var jsonData = $.ajax({
-                    url: "Analytics/BySourcePie",
+                    url: "../Analytics/BySourcePie",
                     dataType: "json",
                     async: false
                 }).responseText;
@@ -165,7 +169,7 @@
             function drawChart2() {
 
                 var jsonData = $.ajax({
-                    url: "Analytics/ByAgePie",
+                    url: "../Analytics/ByAgePie",
                     dataType: "json",
                     async: false
                 }).responseText;
@@ -201,7 +205,7 @@
             function barChart() {
 
                 var jsonData = $.ajax({
-                    url: "Analytics/CountByDistrictBar",
+                    url: "../Analytics/CountByDistrictBar",
                     dataType: "json",
                     async: false
                 }).responseText;
@@ -218,6 +222,8 @@
 
                 chart.draw(data, options);
             }
+            $(".long-nav-items-wrapper.col-lg-9 a").removeClass("active");
+            $(".long-nav-items-wrapper.col-lg-9 a[href='/Analytics']").addClass("active");
         });
 
 

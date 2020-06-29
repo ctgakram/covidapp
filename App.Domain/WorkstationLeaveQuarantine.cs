@@ -51,5 +51,7 @@ namespace AppProj.Domain
         public Nullable<int> LastUpdateById { get; set; }
         public Nullable<System.DateTime> LastUpdateTime { get; set; }
         public bool IsInformationFromAnotherPerson { get; set; }
+        public Nullable<bool> IsWorkStationLeftByDoctor { get; set; }
+        public Nullable<System.DateTime> WorkStationLeftByDoctorDate { get; set; }
     }
 }

@@ -638,7 +638,18 @@ namespace AppProj.Web.Controllers
                        ,c.PriceEgg
                        ,c.PriceChille
                        ,c.PricePumpkin
+                       ,c.AgroLaborSalaryMale
+                       ,c.AgroLaborExpMale
+                       ,c.AgroLaborSalaryFemale
+                       ,c.AgroLaborExpFemale
+                       ,c.CarpenterSalaryMale
+                       ,c.CarpenterAssSalaryMale
+                       ,c.CarpenterAssSalaryFemale
+                       ,c.RickPullIncome
+                       ,c.RickPullExp
                        ,c.PriceComment
+                       
+                       
                       
             }).ToArray();
 
@@ -762,6 +773,18 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + model.Potato;
                 entityDisSum.TotalMoney = entityDisSum.TotalMoney + model.Money;
 
+                entityDisSum.AgroLaborSalaryMale = entityDisSum.AgroLaborSalaryMale + model.AgroLaborSalaryMale;
+                entityDisSum.AgroLaborExpMale = entityDisSum.AgroLaborExpMale + model.AgroLaborExpMale;
+                entityDisSum.CarpenterSalaryMale = entityDisSum.CarpenterSalaryMale + model.CarpenterSalaryMale;
+
+                entityDisSum.CarpenterAssSalaryMale = entityDisSum.CarpenterAssSalaryMale + model.CarpenterAssSalaryMale;
+                entityDisSum.RickPullIncome = entityDisSum.RickPullIncome + model.RickPullIncome;
+                entityDisSum.RickPullExp = entityDisSum.RickPullExp + model.RickPullExp;
+                entityDisSum.AgroLaborSalaryFemale = entityDisSum.AgroLaborSalaryFemale + model.AgroLaborSalaryFemale;
+                entityDisSum.AgroLaborExpFemale = entityDisSum.AgroLaborExpFemale + model.AgroLaborExpFemale;
+                entityDisSum.CarpenterAssSalaryFemale = entityDisSum.CarpenterAssSalaryFemale + model.CarpenterAssSalaryFemale;
+
+
                 //entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + model.BracPatient;
                 //entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + model.BracReleased;
                 //entityDisSum.TotalBracQurantine = entityDisSum.TotalBracQurantine + model.BracQurantine;
@@ -784,6 +807,22 @@ namespace AppProj.Web.Controllers
                 entityDisSum.TotalDal = entityDisSum.TotalDal + (model.Dal - entityDis.Dal);
                 entityDisSum.TotalPotato = entityDisSum.TotalPotato + (model.Potato - entityDis.Potato);
                 entityDisSum.TotalMoney = entityDisSum.TotalMoney + (model.Money - entityDis.Money);
+
+
+                //============
+                entityDisSum.AgroLaborSalaryMale = entityDisSum.AgroLaborSalaryMale + (model.AgroLaborSalaryMale- entityDis.AgroLaborSalaryMale);
+                entityDisSum.AgroLaborExpMale = entityDisSum.AgroLaborExpMale + (model.AgroLaborExpMale - entityDis.AgroLaborExpMale);
+                entityDisSum.CarpenterSalaryMale = entityDisSum.CarpenterSalaryMale + (model.CarpenterSalaryMale - entityDis.CarpenterSalaryMale);
+
+                entityDisSum.CarpenterAssSalaryMale = entityDisSum.CarpenterAssSalaryMale + (model.CarpenterAssSalaryMale - entityDis.CarpenterAssSalaryMale);
+                entityDisSum.RickPullIncome = entityDisSum.RickPullIncome + (model.RickPullIncome - entityDis.RickPullIncome);
+                entityDisSum.RickPullExp = entityDisSum.RickPullExp + (model.RickPullExp - entityDis.RickPullExp);
+                entityDisSum.AgroLaborSalaryFemale = entityDisSum.AgroLaborSalaryFemale + (model.AgroLaborSalaryFemale - entityDis.AgroLaborSalaryFemale);
+                entityDisSum.AgroLaborExpFemale = entityDisSum.AgroLaborExpFemale + (model.AgroLaborExpFemale - entityDis.AgroLaborExpFemale);
+                entityDisSum.CarpenterAssSalaryFemale = entityDisSum.CarpenterAssSalaryFemale + (model.CarpenterAssSalaryFemale - entityDis.CarpenterAssSalaryFemale);
+
+
+
 
                 //entityDisSum.TotalBracPatient = entityDisSum.TotalBracPatient + (model.BracPatient - entityDis.BracPatient);
                 //entityDisSum.TotalBracReleased = entityDisSum.TotalBracReleased + (model.BracReleased - entityDis.BracReleased);
@@ -815,6 +854,17 @@ namespace AppProj.Web.Controllers
             string PriceComment = entityDisSum.PriceComment;
 
 
+            int? AgroLaborSalaryMale = entityDisSum.AgroLaborSalaryMale;
+            int? AgroLaborExpMale = entityDisSum.AgroLaborExpMale;
+            int? CarpenterSalaryMale = entityDisSum.CarpenterSalaryMale;
+            int? CarpenterAssSalaryMale = entityDisSum.CarpenterAssSalaryMale;
+            int? RickPullIncome = entityDisSum.RickPullIncome;
+            int? RickPullExp = entityDisSum.RickPullExp;
+            int? AgroLaborSalaryFemale = entityDisSum.AgroLaborSalaryFemale;
+            int? AgroLaborExpFemale = entityDisSum.AgroLaborExpFemale;
+            int? CarpenterAssSalaryFemale = entityDisSum.CarpenterAssSalaryFemale;
+
+
             ModelCopier.CopyModel(model, entityDis);
             ModelCopier.CopyModel(model, entityDisSum);
 
@@ -836,6 +886,19 @@ namespace AppProj.Web.Controllers
                 entityDisSum.PriceChille = PriceChille;
                 entityDisSum.PricePumpkin = PricePumpkin;
                 entityDisSum.PriceComment = PriceComment;
+
+
+                //=========================
+                entityDisSum.AgroLaborSalaryMale = AgroLaborSalaryMale;
+                entityDisSum.AgroLaborExpMale = AgroLaborExpMale;
+                entityDisSum.CarpenterSalaryMale=CarpenterSalaryMale;
+                entityDisSum.CarpenterAssSalaryMale= CarpenterAssSalaryMale;
+                entityDisSum.RickPullIncome= RickPullIncome;
+                entityDisSum.RickPullExp = RickPullExp;
+                entityDisSum.AgroLaborSalaryFemale = AgroLaborSalaryFemale;
+                entityDisSum.AgroLaborExpFemale = AgroLaborExpFemale;
+                entityDisSum.CarpenterAssSalaryFemale = CarpenterAssSalaryFemale;
+
             }
 
 

@@ -654,6 +654,8 @@
           <Property Name="LastUpdateById" Type="int" />
           <Property Name="LastUpdateTime" Type="datetime" />
           <Property Name="IsInformationFromAnotherPerson" Type="bit" Nullable="false" />
+          <Property Name="IsWorkStationLeftByDoctor" Type="bit" />
+          <Property Name="WorkStationLeftByDoctorDate" Type="date" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -778,7 +780,9 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BERDataItemWiseQuantity_BEPData">
-          <End Role="BEPData" Type="Self.BEPData" Multiplicity="1" />
+          <End Role="BEPData" Type="Self.BEPData" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BERDataItemWiseQuantity" Type="Self.BERDataItemWiseQuantity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BEPData">
@@ -862,7 +866,9 @@ warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_BERDataPeopleWiseQuantity_BEPData">
-          <End Role="BEPData" Type="Self.BEPData" Multiplicity="1" />
+          <End Role="BEPData" Type="Self.BEPData" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="BERDataPeopleWiseQuantity" Type="Self.BERDataPeopleWiseQuantity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="BEPData">
@@ -2313,7 +2319,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <EntitySet Name="SummerizedDatas" EntityType="AppModel.SummerizedData" />
           <EntitySet Name="UserLoginLogs" EntityType="AppModel.UserLoginLog" />
           <EntitySet Name="UserProfiles" EntityType="AppModel.UserProfile" />
-          <EntitySet Name="WorkstationLeaveQuarantines" EntityType="AppModel.WorkstationLeaveQuarantine" />
           <EntitySet Name="QryRoleFeatures" EntityType="AppModel.QryRoleFeature" />
           <AssociationSet Name="FK_BEPData_BEPData" Association="AppModel.FK_BEPData_BEPData">
             <End Role="BEPData" EntitySet="BEPDatas" />
@@ -2672,6 +2677,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
           <EntitySet Name="KioskQuotas" EntityType="AppModel.KioskQuota" />
+          <EntitySet Name="WorkstationLeaveQuarantines" EntityType="AppModel.WorkstationLeaveQuarantine" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="256" />
@@ -3588,48 +3594,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="Role" Relationship="AppModel.FK_dbo_UserProfiles_dbo_Roles_RoleId" FromRole="UserProfile" ToRole="Role" />
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_UserProfiles" FromRole="UserProfile" ToRole="SummerizedData" />
           <Property Name="MobileNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="WorkstationLeaveQuarantine">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Designation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GenderId" Type="Int32" />
-          <Property Name="HomeDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="DateOfJoiningBrac" Type="DateTime" Precision="0" />
-          <Property Name="DateOfJoiningCurrentBranch" Type="DateTime" Precision="0" />
-          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="UpazillaId" Type="Int32" />
-          <Property Name="DistrictId" Type="Int32" />
-          <Property Name="DivisionId" Type="Int32" />
-          <Property Name="SourceId" Type="Int32" />
-          <Property Name="IsWorkStationLeft" Type="Boolean" Nullable="false" />
-          <Property Name="WorkStationLeaveDate" Type="DateTime" Precision="0" />
-          <Property Name="WorkStationReturnDate" Type="DateTime" Precision="0" />
-          <Property Name="SupervisorPermitted" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="IsStayInQuarantine" Type="Boolean" Nullable="false" />
-          <Property Name="QuarantineStartDate" Type="DateTime" Precision="0" />
-          <Property Name="QuarantineEndDate" Type="DateTime" Precision="0" />
-          <Property Name="IsCoronaSymptomitic" Type="Boolean" Nullable="false" />
-          <Property Name="IsQuarantineExtended" Type="Boolean" Nullable="false" />
-          <Property Name="ExtendedQuarantineStartDate" Type="DateTime" Precision="0" />
-          <Property Name="ExtendedQuarantineEndDate" Type="DateTime" Precision="0" />
-          <Property Name="InfoCollectedName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="InfoCollectedPIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="InfoCollectedDesignation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Name="InfoCollectedDate" Type="DateTime" Precision="0" />
-          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="EntryById" Type="Int32" Nullable="false" />
-          <Property Name="EntryTime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastUpdateById" Type="Int32" />
-          <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
-          <Property Name="IsInformationFromAnotherPerson" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="QryRoleFeature">
           <Key>
@@ -4723,6 +4687,50 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
         </EntityType>
+        <EntityType Name="WorkstationLeaveQuarantine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Grade" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="HomeDistrict" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfJoiningBrac" Type="DateTime" Precision="0" />
+          <Property Name="DateOfJoiningCurrentBranch" Type="DateTime" Precision="0" />
+          <Property Name="Branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UpazillaId" Type="Int32" />
+          <Property Name="DistrictId" Type="Int32" />
+          <Property Name="DivisionId" Type="Int32" />
+          <Property Name="SourceId" Type="Int32" />
+          <Property Name="IsWorkStationLeft" Type="Boolean" Nullable="false" />
+          <Property Name="WorkStationLeaveDate" Type="DateTime" Precision="0" />
+          <Property Name="WorkStationReturnDate" Type="DateTime" Precision="0" />
+          <Property Name="SupervisorPermitted" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="IsStayInQuarantine" Type="Boolean" Nullable="false" />
+          <Property Name="QuarantineStartDate" Type="DateTime" Precision="0" />
+          <Property Name="QuarantineEndDate" Type="DateTime" Precision="0" />
+          <Property Name="IsCoronaSymptomitic" Type="Boolean" Nullable="false" />
+          <Property Name="IsQuarantineExtended" Type="Boolean" Nullable="false" />
+          <Property Name="ExtendedQuarantineStartDate" Type="DateTime" Precision="0" />
+          <Property Name="ExtendedQuarantineEndDate" Type="DateTime" Precision="0" />
+          <Property Name="InfoCollectedName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InfoCollectedPIN" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="InfoCollectedDesignation" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="InfoCollectedDate" Type="DateTime" Precision="0" />
+          <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EntryById" Type="Int32" Nullable="false" />
+          <Property Name="EntryTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastUpdateById" Type="Int32" />
+          <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="IsInformationFromAnotherPerson" Type="Boolean" Nullable="false" />
+          <Property Name="IsWorkStationLeftByDoctor" Type="Boolean" />
+          <Property Name="WorkStationLeftByDoctorDate" Type="DateTime" Precision="0" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5382,9 +5390,35 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="QryRoleFeatures">
+            <EntityTypeMapping TypeName="AppModel.QryRoleFeature">
+              <MappingFragment StoreEntitySet="QryRoleFeatures">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KioskQuotas">
+            <EntityTypeMapping TypeName="AppModel.KioskQuota">
+              <MappingFragment StoreEntitySet="KioskQuotas">
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="Available" ColumnName="Available" />
+                <ScalarProperty Name="DailyLimit" ColumnName="DailyLimit" />
+                <ScalarProperty Name="KioskId" ColumnName="KioskId" />
+                <ScalarProperty Name="AppKey" ColumnName="AppKey" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WorkstationLeaveQuarantines">
             <EntityTypeMapping TypeName="AppModel.WorkstationLeaveQuarantine">
               <MappingFragment StoreEntitySet="WorkstationLeaveQuarantine">
+                <ScalarProperty Name="WorkStationLeftByDoctorDate" ColumnName="WorkStationLeftByDoctorDate" />
+                <ScalarProperty Name="IsWorkStationLeftByDoctor" ColumnName="IsWorkStationLeftByDoctor" />
                 <ScalarProperty Name="IsInformationFromAnotherPerson" ColumnName="IsInformationFromAnotherPerson" />
                 <ScalarProperty Name="LastUpdateTime" ColumnName="LastUpdateTime" />
                 <ScalarProperty Name="LastUpdateById" ColumnName="LastUpdateById" />
@@ -5421,30 +5455,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="PIN" ColumnName="PIN" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QryRoleFeatures">
-            <EntityTypeMapping TypeName="AppModel.QryRoleFeature">
-              <MappingFragment StoreEntitySet="QryRoleFeatures">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FeatureId" ColumnName="FeatureId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="KioskQuotas">
-            <EntityTypeMapping TypeName="AppModel.KioskQuota">
-              <MappingFragment StoreEntitySet="KioskQuotas">
-                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="Available" ColumnName="Available" />
-                <ScalarProperty Name="DailyLimit" ColumnName="DailyLimit" />
-                <ScalarProperty Name="KioskId" ColumnName="KioskId" />
-                <ScalarProperty Name="AppKey" ColumnName="AppKey" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

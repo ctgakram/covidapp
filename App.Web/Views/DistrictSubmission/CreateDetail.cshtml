@@ -241,76 +241,121 @@
                     </span>
                 </th>
                 <td>
-                    <table class="table table-striped" id="tblPrice">
-                        <tr>
-                            <th>মোটা চাল</th>
-                            <th>মসুর (আমদানিকৃত) সাধারন মানসম্পন্ন</th>
-                            <th>আলু হল্যান্ড সাদা</th>
-                            <th>পেয়াজ (আমদানিকৃত)</th>
-                            <th>সয়াবিন তেল (প্যাকেট)</th>
-                            <th>সয়াবিন তেল (লুজ)</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceRice, new { @class = "input-group  flatpickr form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceRice)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceDal, new { @class = "input-group  flatpickr form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceDal)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PricePotato, new { @class = "input-group  flatpickr form-control input" })
-                                @Html.ValidationMessageFor(model => model.PricePotato)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceOnion, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceOnion)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceOilPack, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceOilPack)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceOil, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceOil)
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>লবণ</th>
-                            <th>বেগুন সাধারনমান</th>
-                            <th>ডিম ফার্ম লাল </th>
-                            <th>কাঁচা মরিচ</th>
-                            <th>মিস্টি কুমড়া (প্রতি কেজি)</th>
-                            <th>মন্তব্য</th>
-                        </tr>
-                        <tr>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceSalt, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceSalt)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceEggPlant, new { @class = "input-group   form-control input" })
-                                @Html.ValidationMessageFor(model => model.PriceEggPlant)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceEgg, new { @class = "input-group   form-control input", })
-                                @Html.ValidationMessageFor(model => model.PriceEgg)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceChille, new { @class = "input-group   form-control input", })
-                                @Html.ValidationMessageFor(model => model.PriceChille)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PricePumpkin, new { @class = "input-group   form-control input", })
-                                @Html.ValidationMessageFor(model => model.PricePumpkin)
-                            </td>
-                            <td>
-                                @Html.TextBoxFor(model => model.PriceComment)
-                                @Html.ValidationMessageFor(model => model.PriceComment)
-                            </td>
-                        </tr>
-                    </table>
+                    <div id="tblPrice">
+                        <div class="form-group">
+                            <label>মোটা চাল</label>
+                            @Html.TextBoxFor(model => model.PriceRice, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceRice)
+                        </div>
+                        <div class="form-group">
+                            <label>মসুর (আমদানিকৃত) সাধারন মানসম্পন্ন</label>
+                            @Html.TextBoxFor(model => model.PriceDal, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceDal)
+                        </div>
+                        <div class="form-group">
+                            <label>আলু হল্যান্ড সাদা</label>
+                            @Html.TextBoxFor(model => model.PricePotato, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PricePotato)
+                        </div>
+                        <div class="form-group">
+                            <label>পেয়াজ (আমদানিকৃত)</label>
+                            @Html.TextBoxFor(model => model.PriceOnion, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceOnion)
+                        </div>
+                        <div class="form-group">
+                            <label>সয়াবিন তেল (প্যাকেট)</label>
+                            @Html.TextBoxFor(model => model.PriceOilPack, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceOilPack)
+                        </div>
+                        <div class="form-group">
+                            <label>সয়াবিন তেল (লুজ)</label>
+                            @Html.TextBoxFor(model => model.PriceOil, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceOil)
+                        </div>
+
+                        <div class="form-group">
+                            <label>লবণ</label>
+                            @Html.TextBoxFor(model => model.PriceSalt, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceSalt)
+                        </div>
+                        <div class="form-group">
+                            <label>বেগুন সাধারনমান</label>
+                            @Html.TextBoxFor(model => model.PriceEggPlant, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceEggPlant)
+                        </div>
+                        <div class="form-group">
+                            <label>ডিম ফার্ম লাল</label>
+                            @Html.TextBoxFor(model => model.PriceEgg, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceEgg)
+                        </div>
+                        <div class="form-group">
+                            <label>কাঁচা মরিচ</label>
+                            @Html.TextBoxFor(model => model.PriceChille, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceChille)
+                        </div>
+                        <div class="form-group">
+                            <label>মিস্টি কুমড়া (প্রতি কেজি)</label>
+                            @Html.TextBoxFor(model => model.PricePumpkin, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PricePumpkin)
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>প্রতিদিনের মজুরি কৃষি শ্রমিক (পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.AgroLaborSalaryMale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AgroLaborSalaryMale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিনের খোরাকি কৃষি শ্রমিক (পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.AgroLaborExpMale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AgroLaborExpMale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিনের মজুরি কৃষি শ্রমিক (নারী)</label>
+                            @Html.TextBoxFor(model => model.AgroLaborSalaryFemale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AgroLaborSalaryFemale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিনের খোরাকি কৃষি শ্রমিক (নারী)</label>
+                            @Html.TextBoxFor(model => model.AgroLaborExpFemale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.AgroLaborExpFemale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিন এর আয় রিক্সাচালক (পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.RickPullIncome, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RickPullIncome)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিন এর মালিকের জমা (রিক্সাচালক-পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.RickPullExp, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.RickPullExp)
+                        </div>
+
+
+                        <div class="form-group">
+                            <label>প্রতিদিনের মজুরি রাজমিস্ত্রি (পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.CarpenterSalaryMale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CarpenterSalaryMale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিনের মজুরি সহকারি রাজমিস্ত্রি (পুরুষ)</label>
+                            @Html.TextBoxFor(model => model.CarpenterAssSalaryMale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CarpenterAssSalaryMale)
+                        </div>
+                        <div class="form-group">
+                            <label>প্রতিদিনের মজুরি সহকারি রাজমিস্ত্রি (নারী)</label>
+                            @Html.TextBoxFor(model => model.CarpenterAssSalaryFemale, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CarpenterAssSalaryFemale)
+                        </div>
+                        <div class="form-group">
+                            <label>মন্তব্য</label>
+                            @Html.TextBoxFor(model => model.PriceComment, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PriceComment)
+                        </div>
+                    </div>
+
+
+
                 </td>
             </tr>
         }

@@ -28,10 +28,10 @@
             জেলা
         </td>
         <td class="control">
-            @Html.DropDownListFor(model => model.DistrictId, Model.Districts, "", new { @class = "searchable-dropdown form-control" })
+            @Html.DropDownListFor(model => model.DistrictId, Model.Districts, new { @class = "searchable-dropdown form-control" })
             @Html.ValidationMessageFor(model => model.DistrictId)
         </td>
-    </tr>    
+    </tr>
     <tr>
         <td class="title">
             তারিখ

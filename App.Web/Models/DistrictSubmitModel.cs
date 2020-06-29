@@ -115,6 +115,18 @@ namespace AppProj.Web.Models
         public string Question2 { get; set; }
         public string Answer1 { get; set; }
         public string Answer2 { get; set; }
+
+
+        public int? AgroLaborSalaryMale { get; set; }
+        public int? AgroLaborExpMale { get; set; }
+        public int? CarpenterSalaryMale { get; set; }
+        public int? CarpenterAssSalaryMale { get; set; }
+
+        public int? RickPullIncome { get; set; }
+        public int? RickPullExp { get; set; }
+        public int? AgroLaborSalaryFemale { get; set; }
+        public int? AgroLaborExpFemale { get; set; }
+        public int? CarpenterAssSalaryFemale { get; set; }
     }
 
     public class DistrictSubmitSubModel

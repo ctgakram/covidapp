@@ -3380,7 +3380,6 @@
     <Content Include="aspnet_client\system_web\4_5_27\crystalreportviewers13\preview.jsp" />
     <Content Include="Content\Message\External COVID-19 Sitrep_16 April 2020.pdf" />
     <Content Include="Content\css\brac\bundle.css.map" />
-    <Content Include="Content\src\images\svg\tabular-data\desktop.ini" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\local.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
@@ -3628,10 +3627,9 @@
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.ttf" />
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff" />
     <Content Include="Content\src\fonts\oriya-sangam\OriyaSangamMN.woff2" />
-    <Content Include="Content\src\images\svg\desktop.ini" />
     <Content Include="Views\StandingView\Index.cshtml" />
     <Content Include="Views\DoctorPole\Index.cshtml" />
-    <Content Include="Views\DoctorPole\HrIndex.cshtml" />
+    <Content Include="Views\DoctorPole\HrIndex - Copy.cshtml" />
     <Content Include="Views\DoctorPole\Create.cshtml" />
     <Content Include="Views\DoctorPole\CreateDetail.cshtml" />
     <Content Include="Views\DoctorPole\Save.cshtml" />
@@ -3660,6 +3658,13 @@
     <Content Include="Views\WorkstationLeaveQuarantine\Save.cshtml" />
     <Content Include="Views\RoleFeature\Index.cshtml" />
     <Content Include="Views\RoleFeature\Index -Copy.cshtml" />
+    <Content Include="Views\DoctorPole\FollowupIndex - Copy.cshtml" />
+    <Content Include="Views\DoctorPole\ReportIndex -  Copy.cshtml" />
+    <Content Include="Views\DoctorPole\HrIndex.cshtml" />
+    <Content Include="Views\WorkstationLeaveQuarantine\Create - Copy.cshtml" />
+    <Content Include="Views\WorkstationLeaveQuarantine\CreateDetail -Copy.cshtml" />
+    <Content Include="Views\DoctorPole\Create -Copy.cshtml" />
+    <Content Include="Views\DoctorPole\CreateDetail - Copy.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

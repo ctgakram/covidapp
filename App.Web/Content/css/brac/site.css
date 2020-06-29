@@ -578,3 +578,70 @@ div.dataTables_processing {
 .form-control, .select2-container--default .select2-selection--single {
     font-size: 14px;
 }
+
+.filter-item {
+    z-index: 100;
+}
+
+/*multiselect*/
+
+.multiselect {
+    min-width: 100px;
+}
+
+.selectBox {
+    position: relative;
+}
+
+    .selectBox select {
+        width: 100%;
+        font-weight: normal;
+        background-color: #f4f5f5;
+        border: 0px;
+    }
+
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.controls {
+    display: none;
+    border: 1px #dadada solid;
+}
+
+    .controls label {
+        display: flex !important;
+        padding: 2px;
+    }
+
+        .controls label:hover {
+            background-color: #1e90ff;
+        }
+
+input[type="radio"], input[type="checkbox"] {
+    margin-top: 4px;
+}
+
+/*end multiselect*/
+.tel-com-dashboard-img {
+    width: 25px;
+    padding: 6px;
+}
+
+.flatpickr {
+    height: 30px;
+}
+
+.textPrimary img.utopia-icons2-small-img {
+    width: 30px;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+    position: absolute;
+}
+.btn:focus, .btn.focus{
+    box-shadow:none;
+}

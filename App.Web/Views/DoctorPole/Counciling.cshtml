@@ -247,13 +247,13 @@ else
                     Advices
                 </th>
                 <td>
-                    @Html.TextAreaFor(model => model.AdviceTxt)
+                    @Html.TextAreaFor(model => model.AdviceTxt, new { @class = "input-group form-control" })
                 </td>
                 <th>
                     Comments
                 </th>
                 <td>
-                    @Html.TextAreaFor(model => model.AntibioticTxt)
+                    @Html.TextAreaFor(model => model.AntibioticTxt, new { @class = "input-group form-control" })
                 </td>
             </tr>
             <tr>
