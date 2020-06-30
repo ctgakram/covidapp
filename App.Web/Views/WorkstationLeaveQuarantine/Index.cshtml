@@ -117,7 +117,7 @@
         </div>
 
         <div class="custom-add">
-            @if (UserRole.Check("SUMMERY", SessionHelper.Role))
+            @if (UserRole.Check("HR_Staff", SessionHelper.Role))
             {
                 @Ajax.ActionLink("নতুন তথ্য প্রদান", "Create", "WorkstationLeaveQuarantine", new { isOpeningAsset = false }, ajaxOpt, new { @class = "btn btn-bracify-add" })
             }

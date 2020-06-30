@@ -13,6 +13,13 @@
     };
 
 }
+<style type="text/css">
+    .filter-item {
+        width: 20%;
+        padding: 2px;
+        margin: 0 !important;
+    }
+</style>
 @using (Ajax.BeginForm("FollowupSave", "DoctorPole", ajaxOpt))
 {
     @Html.ValidationSummary(true)
