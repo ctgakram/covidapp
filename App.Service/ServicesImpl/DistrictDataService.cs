@@ -71,6 +71,27 @@ namespace AppProj.Service.ServicesImpl
         }
 
 
+        public IEnumerable<DistrictSummery> GetSummery(int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, out int count)
+        {
+            fromDate = fromDate ?? DateTime.Now;
+            toDate = toDate ?? DateTime.Now;
+
+            IEnumerable<DistrictSummery> data = sumRepository
+                .GetMany(c =>
+                c.PriceDate >= fromDate && c.PriceDate <= toDate
+                && (divId == null ? true : c.DivisionId == divId)
+                && (disId == null ? true : c.DistrictId == disId)
+                )
+                .OrderBy(c => c.StandingData.Name)
+                .ThenBy(c => c.StandingData1.Name)
+                .Skip(skip).Take(take).ToArray();
+
+            count = sumRepository.GetCount(c => (divId == null ? true : c.DivisionId == divId)
+                && (disId == null ? true : c.DistrictId == disId)
+                );
+
+            return data;
+        }
         public IEnumerable<DistrictSummery> GetSummery(int? divId, int? disId, int skip, int take, out int count)
         {
             IEnumerable<DistrictSummery> data = sumRepository.GetMany(c => (divId == null ? true : c.DivisionId == divId)
@@ -86,6 +107,9 @@ namespace AppProj.Service.ServicesImpl
 
             return data;
         }
+
+
+
         public IEnumerable<DistrictSummery> GetSummery()
         {
             return sumRepository.GetAll();

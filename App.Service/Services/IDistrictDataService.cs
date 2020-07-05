@@ -15,6 +15,7 @@ namespace AppProj.Service.Services
         DistrictSummery GetSummery(int districtId);
         IEnumerable<DistrictData> Get(int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, out int count);
         IEnumerable<DistrictSummery> GetSummery(int? divId, int? disId, int skip, int take, out int count);
+        IEnumerable<DistrictSummery> GetSummery(int? divId, int? disId, DateTime? fromDate, DateTime? toDate, int skip, int take, out int count);
         IEnumerable<DistrictSummery> GetSummery();
         string GetTopDistricts(int take);
         IEnumerable<CountModel> GetLastPatientCount(int take);

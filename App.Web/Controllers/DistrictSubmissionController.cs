@@ -582,8 +582,8 @@ namespace AppProj.Web.Controllers
             var dis = standingDataService.GetDistricts(0).Where(r => r.IsActive);
             up.ContentTypes2 = dis.ToSelectList(null, "Id", "Name");
 
-            //up.FromDate = DateTime.Now;
-            //up.ToDate = DateTime.Now;
+            up.FromDate = DateTime.Now;
+            up.ToDate = DateTime.Now;
 
             return View(up);
         }
@@ -616,12 +616,12 @@ namespace AppProj.Web.Controllers
             catch { }
 
 
-            //DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
-            //DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
+            DateTime FromDate = Convert.ToDateTime(Request.QueryString["FromDate"]);
+            DateTime ToDate = Convert.ToDateTime(Request.QueryString["ToDate"]);
 
             int count = 0;
-            List<DistrictSummery> dataList = disDataService.GetSummery(divId, disId, skip, take, out count).ToList();
-                       
+            List<DistrictSummery> dataList = disDataService.GetSummery(divId, disId, FromDate, ToDate, skip, take, out count).ToList();
+
 
             var obj = (from c in dataList
                        select new object[] {c.StandingData.Name
@@ -632,7 +632,7 @@ namespace AppProj.Web.Controllers
                        ,c.PricePotato
                        ,c.PriceOnion
                        ,c.PriceOilPack
-                       ,c.PriceOil                       
+                       ,c.PriceOil
                        ,c.PriceSalt
                        ,c.PriceEggPlant
                        ,c.PriceEgg
@@ -648,9 +648,9 @@ namespace AppProj.Web.Controllers
                        ,c.RickPullIncome
                        ,c.RickPullExp
                        ,c.PriceComment
-                       
-                       
-                      
+
+
+
             }).ToArray();
 
 
@@ -810,7 +810,7 @@ namespace AppProj.Web.Controllers
 
 
                 //============
-                entityDisSum.AgroLaborSalaryMale = entityDisSum.AgroLaborSalaryMale + (model.AgroLaborSalaryMale- entityDis.AgroLaborSalaryMale);
+                entityDisSum.AgroLaborSalaryMale = entityDisSum.AgroLaborSalaryMale + (model.AgroLaborSalaryMale - entityDis.AgroLaborSalaryMale);
                 entityDisSum.AgroLaborExpMale = entityDisSum.AgroLaborExpMale + (model.AgroLaborExpMale - entityDis.AgroLaborExpMale);
                 entityDisSum.CarpenterSalaryMale = entityDisSum.CarpenterSalaryMale + (model.CarpenterSalaryMale - entityDis.CarpenterSalaryMale);
 
@@ -891,9 +891,9 @@ namespace AppProj.Web.Controllers
                 //=========================
                 entityDisSum.AgroLaborSalaryMale = AgroLaborSalaryMale;
                 entityDisSum.AgroLaborExpMale = AgroLaborExpMale;
-                entityDisSum.CarpenterSalaryMale=CarpenterSalaryMale;
-                entityDisSum.CarpenterAssSalaryMale= CarpenterAssSalaryMale;
-                entityDisSum.RickPullIncome= RickPullIncome;
+                entityDisSum.CarpenterSalaryMale = CarpenterSalaryMale;
+                entityDisSum.CarpenterAssSalaryMale = CarpenterAssSalaryMale;
+                entityDisSum.RickPullIncome = RickPullIncome;
                 entityDisSum.RickPullExp = RickPullExp;
                 entityDisSum.AgroLaborSalaryFemale = AgroLaborSalaryFemale;
                 entityDisSum.AgroLaborExpFemale = AgroLaborExpFemale;

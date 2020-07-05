@@ -75,6 +75,8 @@ namespace AppProj.Web.Models
         public string Message { get; set; }
         public bool? IsWorkStationLeftByDoctor { get; set; }
         public Nullable<System.DateTime> WorkStationLeftByDoctorDate { get; set; }
+        public Nullable<System.DateTime> WorkStationLeftByDoctorToDate { get; set; }
+        
 
     }
 }

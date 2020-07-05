@@ -17,7 +17,6 @@ namespace AppProj.Domain
         public UserProfile()
         {
             this.BEPDatas = new HashSet<BEPData>();
-            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
             this.BERDataPeopleWiseQuantities = new HashSet<BERDataPeopleWiseQuantity>();
             this.DetailDatas = new HashSet<DetailData>();
             this.DistrictByUserProfiles = new HashSet<DistrictByUserProfile>();
@@ -33,6 +32,7 @@ namespace AppProj.Domain
             this.HnppDatas = new HashSet<HnppData>();
             this.ProgramByUserProfiles = new HashSet<ProgramByUserProfile>();
             this.SummerizedDatas = new HashSet<SummerizedData>();
+            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
         }
     
         public int Id { get; set; }
@@ -45,7 +45,6 @@ namespace AppProj.Domain
         public string MobileNo { get; set; }
     
         public virtual ICollection<BEPData> BEPDatas { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public virtual ICollection<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
         public virtual ICollection<DetailData> DetailDatas { get; set; }
         public virtual ICollection<DistrictByUserProfile> DistrictByUserProfiles { get; set; }
@@ -62,5 +61,6 @@ namespace AppProj.Domain
         public virtual ICollection<ProgramByUserProfile> ProgramByUserProfiles { get; set; }
         public virtual Role Role { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
     }
 }

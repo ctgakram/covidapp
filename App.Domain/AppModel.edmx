@@ -41,8 +41,8 @@
           <Property Name="DistrictId" Type="int" Nullable="false" />
           <Property Name="ActivityId" Type="int" Nullable="false" />
           <Property Name="ItemId" Type="int" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
-          <Property Name="ExpQuantity" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="ExpQuantity" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ReachCount" Type="int" Nullable="false" />
           <Property Name="InsertedById" Type="int" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -60,24 +60,24 @@
           <Property Name="ProgramId" Type="int" Nullable="false" />
           <Property Name="DivisionId" Type="int" Nullable="false" />
           <Property Name="DistrictId" Type="int" Nullable="false" />
-          <Property Name="Cat1NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat1OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat2NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat2OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat3NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat3OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat4NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat4OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat5NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat5OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat6NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat6OldReach" Type="int" Nullable="false" />
+          <Property Name="Cat1NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat1OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat2NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat2OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat3NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat3OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat4NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat4OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat5NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat5OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat6NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat6OldReach" Type="float" Nullable="false" />
           <Property Name="InsertedById" Type="int" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
-          <Property Name="Cat7NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat7OldReach" Type="int" Nullable="false" />
-          <Property Name="Cat8NewReach" Type="int" Nullable="false" />
-          <Property Name="Cat8OldReach" Type="int" Nullable="false" />
+          <Property Name="Cat7NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat7OldReach" Type="float" Nullable="false" />
+          <Property Name="Cat8NewReach" Type="float" Nullable="false" />
+          <Property Name="Cat8OldReach" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Content">
           <Key>
@@ -655,7 +655,8 @@
           <Property Name="LastUpdateTime" Type="datetime" />
           <Property Name="IsInformationFromAnotherPerson" Type="bit" Nullable="false" />
           <Property Name="IsWorkStationLeftByDoctor" Type="bit" />
-          <Property Name="WorkStationLeftByDoctorDate" Type="date" />
+          <Property Name="WorkStationLeftByDoctorDate" Type="datetime" />
+          <Property Name="WorkStationLeftByDoctorToDate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'Covid.dbo.QryRoleFeatures' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -2293,7 +2294,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <FunctionImport Name="SprDemad1" />
           <FunctionImport Name="SprJob1" />
           <EntitySet Name="BEPDatas" EntityType="AppModel.BEPData" />
-          <EntitySet Name="BERDataItemWiseQuantities" EntityType="AppModel.BERDataItemWiseQuantity" />
           <EntitySet Name="BERDataPeopleWiseQuantities" EntityType="AppModel.BERDataPeopleWiseQuantity" />
           <EntitySet Name="Contents" EntityType="AppModel.Content" />
           <EntitySet Name="DetailDatas" EntityType="AppModel.DetailData" />
@@ -2356,37 +2356,9 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="UserProfile" EntitySet="UserProfiles" />
             <End Role="BEPData" EntitySet="BEPDatas" />
           </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_BEPData" Association="AppModel.FK_BERDataItemWiseQuantity_BEPData">
-            <End Role="BEPData" EntitySet="BEPDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
           <AssociationSet Name="FK_BERDataPeopleWiseQuantity_BEPData" Association="AppModel.FK_BERDataPeopleWiseQuantity_BEPData">
             <End Role="BEPData" EntitySet="BEPDatas" />
             <End Role="BERDataPeopleWiseQuantity" EntitySet="BERDataPeopleWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas1" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas2" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas3" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas4" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4">
-            <End Role="StandingData" EntitySet="StandingDatas" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BERDataItemWiseQuantity_UserProfiles" Association="AppModel.FK_BERDataItemWiseQuantity_UserProfiles">
-            <End Role="UserProfile" EntitySet="UserProfiles" />
-            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
           </AssociationSet>
           <AssociationSet Name="FK_BERDataPeopleWiseQuantity_StandingDatas1" Association="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas1">
             <End Role="StandingData" EntitySet="StandingDatas" />
@@ -2677,6 +2649,35 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             <End Role="SummerizedData" EntitySet="SummerizedDatas" />
           </AssociationSet>
           <EntitySet Name="KioskQuotas" EntityType="AppModel.KioskQuota" />
+          <EntitySet Name="BERDataItemWiseQuantities" EntityType="AppModel.BERDataItemWiseQuantity" />
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_BEPData" Association="AppModel.FK_BERDataItemWiseQuantity_BEPData">
+            <End Role="BEPData" EntitySet="BEPDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas1" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas2" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas3" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_StandingDatas4" Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4">
+            <End Role="StandingData" EntitySet="StandingDatas" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BERDataItemWiseQuantity_UserProfiles" Association="AppModel.FK_BERDataItemWiseQuantity_UserProfiles">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="BERDataItemWiseQuantity" EntitySet="BERDataItemWiseQuantities" />
+          </AssociationSet>
           <EntitySet Name="WorkstationLeaveQuarantines" EntityType="AppModel.WorkstationLeaveQuarantine" />
           </EntityContainer>
         <ComplexType Name="SprRptAssetsDepreciationSchedule_Result">
@@ -2853,35 +2854,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="StandingData5" Relationship="AppModel.FK_BEPData_StandingDatas1" FromRole="BEPData" ToRole="StandingData" />
           <NavigationProperty Name="StandingData6" Relationship="AppModel.FK_BEPData_StandingDatas2" FromRole="BEPData" ToRole="StandingData" />
           <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_BEPData_UserProfiles" FromRole="BEPData" ToRole="UserProfile" />
-          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_BEPData" FromRole="BEPData" ToRole="BERDataItemWiseQuantity" />
           <NavigationProperty Name="BERDataPeopleWiseQuantities" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_BEPData" FromRole="BEPData" ToRole="BERDataPeopleWiseQuantity" />
-        </EntityType>
-        <EntityType Name="BERDataItemWiseQuantity">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BEPDataId" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="ProgramId" Type="Int32" Nullable="false" />
-          <Property Name="DivisionId" Type="Int32" Nullable="false" />
-          <Property Name="DistrictId" Type="Int32" Nullable="false" />
-          <Property Name="ActivityId" Type="Int32" Nullable="false" />
-          <Property Name="ItemId" Type="Int32" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <Property Name="ExpQuantity" Type="Int32" Nullable="false" />
-          <Property Name="ReachCount" Type="Int32" Nullable="false" />
-          <Property Name="InsertedById" Type="Int32" Nullable="false" />
-          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ReachCountFemale" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="BEPData" Relationship="AppModel.FK_BERDataItemWiseQuantity_BEPData" FromRole="BERDataItemWiseQuantity" ToRole="BEPData" />
-          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
-          <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
-          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" FromRole="BERDataItemWiseQuantity" ToRole="UserProfile" />
+          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_BEPData" FromRole="BEPData" ToRole="BERDataItemWiseQuantity" />
         </EntityType>
         <EntityType Name="BERDataPeopleWiseQuantity">
           <Key>
@@ -3482,11 +3456,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="BEPDatas4" Relationship="AppModel.FK_BEPData_StandingDatas_Restriction" FromRole="StandingData" ToRole="BEPData" />
           <NavigationProperty Name="BEPDatas5" Relationship="AppModel.FK_BEPData_StandingDatas1" FromRole="StandingData" ToRole="BEPData" />
           <NavigationProperty Name="BEPDatas6" Relationship="AppModel.FK_BEPData_StandingDatas2" FromRole="StandingData" ToRole="BEPData" />
-          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
-          <NavigationProperty Name="BERDataItemWiseQuantities1" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
-          <NavigationProperty Name="BERDataItemWiseQuantities2" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
-          <NavigationProperty Name="BERDataItemWiseQuantities3" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
-          <NavigationProperty Name="BERDataItemWiseQuantities4" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
           <NavigationProperty Name="BERDataPeopleWiseQuantities" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas1" FromRole="StandingData" ToRole="BERDataPeopleWiseQuantity" />
           <NavigationProperty Name="BERDataPeopleWiseQuantities1" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas2" FromRole="StandingData" ToRole="BERDataPeopleWiseQuantity" />
           <NavigationProperty Name="BERDataPeopleWiseQuantities2" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas3" FromRole="StandingData" ToRole="BERDataPeopleWiseQuantity" />
@@ -3536,6 +3505,11 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_StandingDatas" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas1" Relationship="AppModel.FK_SummerizedData_StandingDatas1" FromRole="StandingData" ToRole="SummerizedData" />
           <NavigationProperty Name="SummerizedDatas2" Relationship="AppModel.FK_SummerizedData_StandingDatas2" FromRole="StandingData" ToRole="SummerizedData" />
+          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
+          <NavigationProperty Name="BERDataItemWiseQuantities1" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
+          <NavigationProperty Name="BERDataItemWiseQuantities2" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
+          <NavigationProperty Name="BERDataItemWiseQuantities3" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
+          <NavigationProperty Name="BERDataItemWiseQuantities4" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" FromRole="StandingData" ToRole="BERDataItemWiseQuantity" />
         </EntityType>
         <EntityType Name="SummerizedData">
           <Key>
@@ -3576,7 +3550,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <Property Name="Password" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="BEPDatas" Relationship="AppModel.FK_BEPData_UserProfiles" FromRole="UserProfile" ToRole="BEPData" />
-          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" FromRole="UserProfile" ToRole="BERDataItemWiseQuantity" />
           <NavigationProperty Name="BERDataPeopleWiseQuantities" Relationship="AppModel.FK_BERDataPeopleWiseQuantity_UserProfiles" FromRole="UserProfile" ToRole="BERDataPeopleWiseQuantity" />
           <NavigationProperty Name="DetailDatas" Relationship="AppModel.FK_DetailData_UserProfiles" FromRole="UserProfile" ToRole="DetailData" />
           <NavigationProperty Name="DistrictByUserProfiles" Relationship="AppModel.FK_DistrictByUserProfiles_UserProfiles" FromRole="UserProfile" ToRole="DistrictByUserProfile" />
@@ -3594,6 +3567,7 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <NavigationProperty Name="Role" Relationship="AppModel.FK_dbo_UserProfiles_dbo_Roles_RoleId" FromRole="UserProfile" ToRole="Role" />
           <NavigationProperty Name="SummerizedDatas" Relationship="AppModel.FK_SummerizedData_UserProfiles" FromRole="UserProfile" ToRole="SummerizedData" />
           <Property Name="MobileNo" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BERDataItemWiseQuantities" Relationship="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" FromRole="UserProfile" ToRole="BERDataItemWiseQuantity" />
         </EntityType>
         <EntityType Name="QryRoleFeature">
           <Key>
@@ -3715,18 +3689,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_BEPData">
-          <End Type="AppModel.BEPData" Role="BEPData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="BEPData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="BEPDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_BERDataPeopleWiseQuantity_BEPData">
           <End Type="AppModel.BEPData" Role="BEPData" Multiplicity="1" />
           <End Type="AppModel.BERDataPeopleWiseQuantity" Role="BERDataPeopleWiseQuantity" Multiplicity="*" />
@@ -3736,78 +3698,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
             </Principal>
             <Dependent Role="BERDataPeopleWiseQuantity">
               <PropertyRef Name="BEPDataId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="ItemId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas1">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="ProgramId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas2">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="DivisionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas3">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="DistrictId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas4">
-          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StandingData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="ActivityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BERDataItemWiseQuantity_UserProfiles">
-          <End Type="AppModel.UserProfile" Role="UserProfile" Multiplicity="1" />
-          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UserProfile">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BERDataItemWiseQuantity">
-              <PropertyRef Name="InsertedById" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4687,6 +4577,119 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="StartTime" Type="Time" Nullable="false" Precision="7" />
           <Property Name="EndTime" Type="Time" Nullable="false" Precision="7" />
         </EntityType>
+        <EntityType Name="BERDataItemWiseQuantity">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BEPDataId" Type="Int32" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="DivisionId" Type="Int32" Nullable="false" />
+          <Property Name="DistrictId" Type="Int32" Nullable="false" />
+          <Property Name="ActivityId" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ExpQuantity" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="ReachCount" Type="Int32" Nullable="false" />
+          <Property Name="InsertedById" Type="Int32" Nullable="false" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReachCountFemale" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BEPData" Relationship="AppModel.FK_BERDataItemWiseQuantity_BEPData" FromRole="BERDataItemWiseQuantity" ToRole="BEPData" />
+          <NavigationProperty Name="StandingData" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData1" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData2" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData3" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
+          <NavigationProperty Name="StandingData4" Relationship="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" FromRole="BERDataItemWiseQuantity" ToRole="StandingData" />
+          <NavigationProperty Name="UserProfile" Relationship="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" FromRole="BERDataItemWiseQuantity" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_BERDataItemWiseQuantity_BEPData">
+          <End Type="AppModel.BEPData" Role="BEPData" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BEPData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="BEPDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas1">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas2">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="DivisionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas3">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="DistrictId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_StandingDatas4">
+          <End Type="AppModel.StandingData" Role="StandingData" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StandingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="ActivityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BERDataItemWiseQuantity_UserProfiles">
+          <End Type="AppModel.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="AppModel.BERDataItemWiseQuantity" Role="BERDataItemWiseQuantity" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BERDataItemWiseQuantity">
+              <PropertyRef Name="InsertedById" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityType Name="WorkstationLeaveQuarantine">
           <Key>
             <PropertyRef Name="Id" />
@@ -4729,7 +4732,8 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
           <Property Name="LastUpdateTime" Type="DateTime" Precision="3" />
           <Property Name="IsInformationFromAnotherPerson" Type="Boolean" Nullable="false" />
           <Property Name="IsWorkStationLeftByDoctor" Type="Boolean" />
-          <Property Name="WorkStationLeftByDoctorDate" Type="DateTime" Precision="0" />
+          <Property Name="WorkStationLeftByDoctorDate" Type="DateTime" Precision="3" />
+          <Property Name="WorkStationLeftByDoctorToDate" Type="DateTime" Precision="3" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -4787,27 +4791,6 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
                 <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
                 <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BERDataItemWiseQuantities">
-            <EntityTypeMapping TypeName="AppModel.BERDataItemWiseQuantity">
-              <MappingFragment StoreEntitySet="BERDataItemWiseQuantity">
-                <ScalarProperty Name="ReachCountFemale" ColumnName="ReachCountFemale" />
-                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
-                <ScalarProperty Name="InsertedById" ColumnName="InsertedById" />
-                <ScalarProperty Name="ReachCount" ColumnName="ReachCount" />
-                <ScalarProperty Name="ExpQuantity" ColumnName="ExpQuantity" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
-                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
-                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
-                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
-                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="BEPDataId" ColumnName="BEPDataId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -5414,9 +5397,31 @@ FROM [dbo].[QryRoleFeatures] AS [QryRoleFeatures]</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BERDataItemWiseQuantities">
+            <EntityTypeMapping TypeName="AppModel.BERDataItemWiseQuantity">
+              <MappingFragment StoreEntitySet="BERDataItemWiseQuantity">
+                <ScalarProperty Name="ReachCountFemale" ColumnName="ReachCountFemale" />
+                <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="InsertedById" ColumnName="InsertedById" />
+                <ScalarProperty Name="ReachCount" ColumnName="ReachCount" />
+                <ScalarProperty Name="ExpQuantity" ColumnName="ExpQuantity" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
+                <ScalarProperty Name="DistrictId" ColumnName="DistrictId" />
+                <ScalarProperty Name="DivisionId" ColumnName="DivisionId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="BEPDataId" ColumnName="BEPDataId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WorkstationLeaveQuarantines">
             <EntityTypeMapping TypeName="AppModel.WorkstationLeaveQuarantine">
               <MappingFragment StoreEntitySet="WorkstationLeaveQuarantine">
+                <ScalarProperty Name="WorkStationLeftByDoctorToDate" ColumnName="WorkStationLeftByDoctorToDate" />
                 <ScalarProperty Name="WorkStationLeftByDoctorDate" ColumnName="WorkStationLeftByDoctorDate" />
                 <ScalarProperty Name="IsWorkStationLeftByDoctor" ColumnName="IsWorkStationLeftByDoctor" />
                 <ScalarProperty Name="IsInformationFromAnotherPerson" ColumnName="IsInformationFromAnotherPerson" />

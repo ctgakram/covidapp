@@ -22,8 +22,8 @@ namespace AppProj.Domain.ModelExt
     {
         public string Activity { get; set; }
         public string Item { get; set; }
-        public int Qnt { get; set; }
-        public int ExpQnt { get; set; }
+        public decimal Qnt { get; set; }
+        public decimal ExpQnt { get; set; }
         public int Reach { get; set; }
         public int Male { get; set; }
         public int Female { get; set; }
@@ -32,13 +32,13 @@ namespace AppProj.Domain.ModelExt
 
     public class BepDataSummeryModelFixedMaterial
     {
-        public int Festun { get; set; }
-        public int Miking { get; set; }
+        public decimal Festun { get; set; }
+        public decimal Miking { get; set; }
 
-        public int Sanitizer { get; set; }
-        public int Gloves { get; set; }
-        public int Aproan { get; set; }
-        public int Mask { get; set; }
+        public decimal Sanitizer { get; set; }
+        public decimal Gloves { get; set; }
+        public decimal Aproan { get; set; }
+        public decimal Mask { get; set; }
 
     }
 

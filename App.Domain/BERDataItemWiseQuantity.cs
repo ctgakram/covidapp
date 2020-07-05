@@ -23,8 +23,8 @@ namespace AppProj.Domain
         public int DistrictId { get; set; }
         public int ActivityId { get; set; }
         public int ItemId { get; set; }
-        public int Quantity { get; set; }
-        public int ExpQuantity { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal ExpQuantity { get; set; }
         public int ReachCount { get; set; }
         public int InsertedById { get; set; }
         public System.DateTime LastUpdated { get; set; }

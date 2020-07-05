@@ -126,9 +126,9 @@ namespace AppProj.Web.Models
         public int ActivityId { get; set; }
         public int ItemId { get; set; }
         [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
         [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
-        public int ExpQuantity { get; set; }
+        public decimal ExpQuantity { get; set; }
         [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
         public int ReachCount { get; set; }
         [Range(0, Int32.MaxValue, ErrorMessage = "(সংখ্যাটি ০ বা তার চেয়ে বড় হবে)")]
