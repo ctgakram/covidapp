@@ -53,5 +53,6 @@ namespace AppProj.Domain
         public bool IsInformationFromAnotherPerson { get; set; }
         public Nullable<bool> IsWorkStationLeftByDoctor { get; set; }
         public Nullable<System.DateTime> WorkStationLeftByDoctorDate { get; set; }
+        public Nullable<System.DateTime> WorkStationLeftByDoctorToDate { get; set; }
     }
 }

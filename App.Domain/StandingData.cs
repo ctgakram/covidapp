@@ -23,11 +23,6 @@ namespace AppProj.Domain
             this.BEPDatas4 = new HashSet<BEPData>();
             this.BEPDatas5 = new HashSet<BEPData>();
             this.BEPDatas6 = new HashSet<BEPData>();
-            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
-            this.BERDataItemWiseQuantities1 = new HashSet<BERDataItemWiseQuantity>();
-            this.BERDataItemWiseQuantities2 = new HashSet<BERDataItemWiseQuantity>();
-            this.BERDataItemWiseQuantities3 = new HashSet<BERDataItemWiseQuantity>();
-            this.BERDataItemWiseQuantities4 = new HashSet<BERDataItemWiseQuantity>();
             this.BERDataPeopleWiseQuantities = new HashSet<BERDataPeopleWiseQuantity>();
             this.BERDataPeopleWiseQuantities1 = new HashSet<BERDataPeopleWiseQuantity>();
             this.BERDataPeopleWiseQuantities2 = new HashSet<BERDataPeopleWiseQuantity>();
@@ -77,6 +72,11 @@ namespace AppProj.Domain
             this.SummerizedDatas = new HashSet<SummerizedData>();
             this.SummerizedDatas1 = new HashSet<SummerizedData>();
             this.SummerizedDatas2 = new HashSet<SummerizedData>();
+            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
+            this.BERDataItemWiseQuantities1 = new HashSet<BERDataItemWiseQuantity>();
+            this.BERDataItemWiseQuantities2 = new HashSet<BERDataItemWiseQuantity>();
+            this.BERDataItemWiseQuantities3 = new HashSet<BERDataItemWiseQuantity>();
+            this.BERDataItemWiseQuantities4 = new HashSet<BERDataItemWiseQuantity>();
         }
     
         public int Id { get; set; }
@@ -98,11 +98,6 @@ namespace AppProj.Domain
         public virtual ICollection<BEPData> BEPDatas4 { get; set; }
         public virtual ICollection<BEPData> BEPDatas5 { get; set; }
         public virtual ICollection<BEPData> BEPDatas6 { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities1 { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities2 { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities3 { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities4 { get; set; }
         public virtual ICollection<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
         public virtual ICollection<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities1 { get; set; }
         public virtual ICollection<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities2 { get; set; }
@@ -152,5 +147,10 @@ namespace AppProj.Domain
         public virtual ICollection<SummerizedData> SummerizedDatas { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas1 { get; set; }
         public virtual ICollection<SummerizedData> SummerizedDatas2 { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities1 { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities2 { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities3 { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities4 { get; set; }
     }
 }

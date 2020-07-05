@@ -13,12 +13,12 @@ namespace AppProj.Domain.ModelExt
         public string District { get; set; }
         public string Item { get; set; }
         public string Activity { get; set; }
-        public int Quantity { get; set; }
-        public int ExpQuantity { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal ExpQuantity { get; set; }
         public int ReachCount { get; set; }
         public int ReachCountFemale { get; set; }
 
-        public int ResQuantity { get; set; }
+        public decimal ResQuantity { get; set; }
         public int ResReachCount { get; set; }
 
         public int Cat1NewReach { get; set; }

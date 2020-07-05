@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="31efdc5f07f24a83abde93ff3c304cf2" Name="Diagram1" ZoomLevel="52" >
+      <Diagram DiagramId="31efdc5f07f24a83abde93ff3c304cf2" Name="Diagram1" ZoomLevel="50" >
         <EntityTypeShape EntityType="AppModel.BEPData" Width="1.5" PointX="6" PointY="43.875" />
-        <EntityTypeShape EntityType="AppModel.BERDataItemWiseQuantity" Width="1.5" PointX="17.25" PointY="42.125" />
         <EntityTypeShape EntityType="AppModel.BERDataPeopleWiseQuantity" Width="1.5" PointX="17.25" PointY="48.125" />
         <EntityTypeShape EntityType="AppModel.Content" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="AppModel.DetailData" Width="1.5" PointX="6" PointY="51.375" />
@@ -42,14 +41,7 @@
         <AssociationConnector Association="AppModel.FK_BEPData_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_BEPData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_BEPData_UserProfiles" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_BEPData" />
         <AssociationConnector Association="AppModel.FK_BERDataPeopleWiseQuantity_BEPData" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" />
-        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" />
         <AssociationConnector Association="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas1" />
         <AssociationConnector Association="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_BERDataPeopleWiseQuantity_StandingDatas3" />
@@ -123,6 +115,14 @@
         <AssociationConnector Association="AppModel.FK_SummerizedData_StandingDatas2" />
         <AssociationConnector Association="AppModel.FK_SummerizedData_UserProfiles" />
         <EntityTypeShape EntityType="AppModel.KioskQuota" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="AppModel.BERDataItemWiseQuantity" Width="1.5" PointX="14.25" PointY="40.75" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_BEPData" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas1" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas2" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas3" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_StandingDatas4" />
+        <AssociationConnector Association="AppModel.FK_BERDataItemWiseQuantity_UserProfiles" />
         <EntityTypeShape EntityType="AppModel.WorkstationLeaveQuarantine" Width="1.5" PointX="7.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>

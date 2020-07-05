@@ -62,11 +62,11 @@ namespace AppProj.Web.Controllers
 
                 model.PIN = ("" + mod.PIN_).Trim();
 
-                int count = 0;
-                var entity = workstationLeaveQuarantineService.Get(model.PIN, 0, 1000000000, out count).ToList();
+                //int count = 0;
+                //var entity = workstationLeaveQuarantineService.Get(model.PIN, 0, 1000000000, out count).ToList();
 
-                if (entity.Count == 0)
-                {
+                //if (entity.Count == 0)
+                //{
                     IEnumerable<StaffProfile> dataObjects = null;
                     StaffProfile staff = null;
 
@@ -229,13 +229,13 @@ namespace AppProj.Web.Controllers
                     }
 
                     return PartialView(model);
-                }
-                else
-                {
-                    model.Message = "Information already taken from this PIN";
+                //}
+                //else
+                //{
+                //    model.Message = "Information already taken from this PIN";
 
-                    return this.RedirectToAction("Edit", "WorkstationLeaveQuarantine", new { entity.FirstOrDefault().Id, model.Message });
-                }
+                //    return this.RedirectToAction("Edit", "WorkstationLeaveQuarantine", new { entity.FirstOrDefault().Id, model.Message });
+                //}
             }
             catch
             {
@@ -297,6 +297,7 @@ namespace AppProj.Web.Controllers
             {
                 entity.IsWorkStationLeftByDoctor = false;
                 entity.WorkStationLeftByDoctorDate = null;
+                entity.WorkStationLeftByDoctorToDate = null;
             }
 
 
@@ -355,7 +356,6 @@ namespace AppProj.Web.Controllers
                 }
                 
             }
-
             if (model.Id == 0)
             {
                 workstationLeaveQuarantineService.Add(entity);
@@ -627,6 +627,7 @@ namespace AppProj.Web.Controllers
                        ,String.Format("{0:dd MMM, yyyy}", c.InfoCollectedDate)
                        ,c.IsWorkStationLeftByDoctor==true?"<span style=\"color:#FF0000\">Yes</span>":"No"
                        ,String.Format("{0:dd MMM, yyyy}", c.WorkStationLeftByDoctorDate)
+                       ,String.Format("{0:dd MMM, yyyy}", c.WorkStationLeftByDoctorToDate)
                        ,c.Comment
                        //,c.UserProfile.UserName
                 ,new GridButtonModel[]

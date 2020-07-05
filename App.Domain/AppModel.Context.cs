@@ -29,7 +29,6 @@ namespace AppProj.Domain
         }
     
         public DbSet<BEPData> BEPDatas { get; set; }
-        public DbSet<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public DbSet<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
         public DbSet<Content> Contents { get; set; }
         public DbSet<DetailData> DetailDatas { get; set; }
@@ -57,6 +56,7 @@ namespace AppProj.Domain
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<QryRoleFeature> QryRoleFeatures { get; set; }
         public DbSet<KioskQuota> KioskQuotas { get; set; }
+        public DbSet<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public DbSet<WorkstationLeaveQuarantine> WorkstationLeaveQuarantines { get; set; }
     
         [EdmFunction("AppModelContainer", "FunGetPointsByUser")]

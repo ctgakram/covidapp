@@ -16,8 +16,8 @@ namespace AppProj.Domain
     {
         public BEPData()
         {
-            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
             this.BERDataPeopleWiseQuantities = new HashSet<BERDataPeopleWiseQuantity>();
+            this.BERDataItemWiseQuantities = new HashSet<BERDataItemWiseQuantity>();
         }
     
         public int Id { get; set; }
@@ -49,7 +49,7 @@ namespace AppProj.Domain
         public virtual StandingData StandingData5 { get; set; }
         public virtual StandingData StandingData6 { get; set; }
         public virtual UserProfile UserProfile { get; set; }
-        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
         public virtual ICollection<BERDataPeopleWiseQuantity> BERDataPeopleWiseQuantities { get; set; }
+        public virtual ICollection<BERDataItemWiseQuantity> BERDataItemWiseQuantities { get; set; }
     }
 }

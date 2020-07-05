@@ -226,7 +226,7 @@
 
                                         <tr>
                                             <td class="title">
-                                                Is doctor suggest to leave Workstation?
+                                                Is doctor suggested to stay in quarantine?
                                             </td>
                                             <td class="control">
                                                 @if (Model.IsWorkStationLeftByDoctor == true)
@@ -249,9 +249,17 @@
                                             </td>
                                             <td class="control" id="tdWorkStationLeftByDoctorDateControl">
                                                 @Html.TextBoxFor(model => model.WorkStationLeftByDoctorDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
+
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="title" id="tdWorkStationLeftByDoctorToDateTitle">
+                                            </td>
+                                            <td class="control" id="tdWorkStationLeftByDoctorToDateControl">
+                                                @Html.TextBoxFor(model => model.WorkStationLeftByDoctorToDate, "{0:dd MMM, yyyy}", new { @class = "input-group datepicker flatpickr form-control input", @placeholder = "Date" })
 
+                                            </td>
+                                        </tr>
 
 
                                         <tr>
@@ -481,11 +489,14 @@
         if (($("input[name=IsWorkStationLeftByDoctor]:checked").val()) == 0) {
             $("#tdWorkStationLeftByDoctorDateTitle").hide();
             $("#tdWorkStationLeftByDoctorDateControl").hide();
-
+            $("#tdWorkStationLeftByDoctorDateToTitle").hide();
+            $("#tdWorkStationLeftByDoctorDateToControl").hide();
         }
         else {
             $("#tdWorkStationLeftByDoctorDateTitle").show();
             $("#tdWorkStationLeftByDoctorDateControl").show();
+            $("#tdWorkStationLeftByDoctorDateToTitle").show();
+            $("#tdWorkStationLeftByDoctorDateToControl").show();
 
         }
 
@@ -548,6 +559,8 @@
                 $("input[name=IsWorkStationLeftByDoctor]")[1].checked = true;
                 $("#tdWorkStationLeftByDoctorDateTitle").hide();
                 $("#tdWorkStationLeftByDoctorDateControl").hide();
+                $("#tdWorkStationLeftByDoctorDateToTitle").hide();
+                $("#tdWorkStationLeftByDoctorDateToControl").hide();
 
                 $("#tdWorkStationLeaveDateTitle").show();
                 $("#tdWorkStationLeaveDateControl").show();
@@ -562,11 +575,15 @@
             if (rdvalue == 0) {
                 $("#tdWorkStationLeftByDoctorDateTitle").hide();
                 $("#tdWorkStationLeftByDoctorDateControl").hide();
+                $("#tdWorkStationLeftByDoctorDateToTitle").hide();
+                $("#tdWorkStationLeftByDoctorDateToControl").hide();
             }
             else {
                 $("input[name=IsWorkStationLeft]")[1].checked = true;
                 $("#tdWorkStationLeftByDoctorDateTitle").show();
                 $("#tdWorkStationLeftByDoctorDateControl").show();
+                $("#tdWorkStationLeftByDoctorDateToTitle").show();
+                $("#tdWorkStationLeftByDoctorDateToControl").show();
 
                 $("#tdWorkStationLeaveDateTitle").hide();
                 $("#tdWorkStationLeaveDateControl").hide();
@@ -664,6 +681,13 @@
         });
 
         $('#WorkStationLeftByDoctorDate').datepicker({
+            format: "dd M, yyyy",
+            autoclose: true,
+            endDate: '+0d',
+            startDate: null
+        });
+
+        $('#WorkStationLeftByDoctorToDate').datepicker({
             format: "dd M, yyyy",
             autoclose: true,
             endDate: null,
